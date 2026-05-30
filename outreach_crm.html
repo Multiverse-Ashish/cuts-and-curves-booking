@@ -3,407 +3,362 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gorakhpur Salon Leads — Outreach CRM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>DigiLoad Leads — Salon Outreach CRM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ── RESET & BASE ─────────────────────────────────────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg:       #f4f6fb;
-      --card:     #ffffff;
-      --border:   #e2e8f0;
-      --accent:   #4f46e5;
-      --accent-h: #3730a3;
-      --green:    #10b981;
-      --green-h:  #059669;
-      --yellow:   #f59e0b;
-      --red:      #ef4444;
-      --text:     #0f172a;
-      --muted:    #64748b;
-      --wa:       #25d366;
-      --wa-h:     #1a9e4a;
-      --radius:   12px;
-      --shadow:   0 2px 12px rgba(0,0,0,.08);
-      --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+      --bg:         #f0f4ff;
+      --card:       #ffffff;
+      --border:     #e2e8f0;
+      --accent:     #4f46e5;
+      --accent-h:   #3730a3;
+      --green:      #10b981;
+      --green-bg:   #ecfdf5;
+      --red:        #ef4444;
+      --red-bg:     #fef2f2;
+      --yellow:     #f59e0b;
+      --text:       #0f172a;
+      --muted:      #64748b;
+      --wa:         #25d366;
+      --wa-h:       #1a9e4a;
+      --call:       #3b82f6;
+      --call-h:     #1d4ed8;
+      --radius:     12px;
+      --shadow:     0 2px 12px rgba(0,0,0,.08);
+      --shadow-lg:  0 8px 32px rgba(0,0,0,.14);
     }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      min-height: 100vh;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
 
     /* ── HEADER ──────────────────────────────────────────────────────────── */
     .crm-header {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-      padding: 28px 32px;
+      background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 60%, #7c3aed 100%);
+      padding: 0 32px;
       color: #fff;
+      position: sticky; top: 0; z-index: 200;
+      box-shadow: 0 4px 24px rgba(79,70,229,.4);
     }
     .crm-header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      max-width: 1500px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 16px;
+    }
+    .crm-logo { display: flex; align-items: center; gap: 14px; }
+    .logo-icon {
+      width: 40px; height: 40px; background: rgba(255,255,255,.15);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; border: 1px solid rgba(255,255,255,.2);
     }
     .crm-logo h1 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -.02em;
+      font-size: 1.25rem; font-weight: 800; letter-spacing: -.03em;
     }
-    .crm-logo p { font-size: .82rem; color: rgba(255,255,255,.75); margin-top: 4px; }
-    .header-meta {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: .82rem;
-      color: rgba(255,255,255,.8);
+    .crm-logo h1 span { color: #a5b4fc; }
+    .crm-logo p { font-size: .72rem; color: rgba(255,255,255,.6); margin-top: 1px; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .header-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 16px; border-radius: 50px;
+      font-family: inherit; font-size: .8rem; font-weight: 600;
+      cursor: pointer; border: none; transition: all .2s; white-space: nowrap;
     }
-    .header-meta strong { color: #fff; }
+    .header-btn-ghost {
+      background: rgba(255,255,255,.12); color: #fff;
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .header-btn-ghost:hover { background: rgba(255,255,255,.22); }
+    .header-btn-primary { background: #fff; color: var(--accent); }
+    .header-btn-primary:hover { background: #e0e7ff; }
+    #import-csv-input { display: none; }
 
-    /* ── DASHBOARD STATS ─────────────────────────────────────────────────── */
+    /* ── DASHBOARD ───────────────────────────────────────────────────────── */
     .dashboard {
-      max-width: 1400px;
-      margin: 28px auto 0;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      max-width: 1500px; margin: 28px auto 0; padding: 0 24px;
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
     }
     .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 24px;
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 22px;
+      box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px;
+      transition: transform .2s, box-shadow .2s;
     }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
     .stat-icon {
-      width: 48px; height: 48px;
-      border-radius: 10px;
+      width: 44px; height: 44px; border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
+      font-size: 1.1rem; flex-shrink: 0;
     }
-    .si-indigo { background: #eef2ff; color: var(--accent); }
+    .si-blue   { background: #eff6ff; color: #3b82f6; }
     .si-green  { background: #ecfdf5; color: var(--green); }
+    .si-red    { background: #fef2f2; color: var(--red); }
     .si-yellow { background: #fffbeb; color: var(--yellow); }
     .si-purple { background: #f5f3ff; color: #7c3aed; }
-    .stat-label { font-size: .75rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-    .stat-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.85rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+    .stat-label { font-size: .7rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
+    .stat-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--text); line-height: 1.1; margin-top: 2px; }
 
     /* ── TOOLBAR ─────────────────────────────────────────────────────────── */
     .toolbar {
-      max-width: 1400px;
-      margin: 20px auto 0;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
+      max-width: 1500px; margin: 20px auto 0; padding: 0 24px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
     }
-    .search-wrap {
-      position: relative;
-      flex: 1;
-      min-width: 220px;
-    }
-    .search-wrap i {
-      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-      color: var(--muted); font-size: .9rem;
-    }
+    .search-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-wrap i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); }
     .search-input {
-      width: 100%;
-      padding: 10px 14px 10px 38px;
-      border: 1.5px solid var(--border);
-      border-radius: 50px;
-      background: var(--card);
-      font-family: inherit;
-      font-size: .88rem;
-      color: var(--text);
+      width: 100%; padding: 10px 14px 10px 38px;
+      border: 1.5px solid var(--border); border-radius: 50px;
+      background: var(--card); font-family: inherit; font-size: .88rem; color: var(--text);
       transition: border-color .2s;
     }
     .search-input:focus { outline: none; border-color: var(--accent); }
     .filter-btn {
-      padding: 9px 20px;
-      border-radius: 50px;
-      border: 1.5px solid var(--border);
-      background: var(--card);
-      font-family: inherit;
-      font-size: .82rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--muted);
-      transition: all .2s;
+      padding: 8px 16px; border-radius: 50px; border: 1.5px solid var(--border);
+      background: var(--card); font-family: inherit; font-size: .8rem;
+      font-weight: 600; cursor: pointer; color: var(--muted); transition: all .2s; white-space: nowrap;
     }
     .filter-btn.active, .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
-    .export-btn {
-      padding: 9px 20px;
-      border-radius: 50px;
-      border: none;
-      background: var(--accent);
-      color: #fff;
-      font-family: inherit;
-      font-size: .82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background .2s;
-      display: flex; align-items: center; gap: 7px;
+    .filter-btn.f-qualified.active { border-color: var(--green); color: var(--green); background: var(--green-bg); }
+    .filter-btn.f-notq.active { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    .tb-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 16px; border-radius: 50px; border: none;
+      font-family: inherit; font-size: .8rem; font-weight: 600;
+      cursor: pointer; transition: all .2s; white-space: nowrap;
     }
-    .export-btn:hover { background: var(--accent-h); }
+    .tb-btn-accent { background: var(--accent); color: #fff; }
+    .tb-btn-accent:hover { background: var(--accent-h); }
+    .tb-btn-outline { background: var(--card); color: var(--muted); border: 1.5px solid var(--border); }
+    .tb-btn-outline:hover { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
 
-    /* ── TABLE WRAPPER ───────────────────────────────────────────────────── */
+    /* ── TABLE WRAP ──────────────────────────────────────────────────────── */
     .table-wrap {
-      max-width: 1400px;
-      margin: 16px auto 40px;
-      padding: 0 24px;
+      max-width: 1500px; margin: 16px auto 32px; padding: 0 24px;
     }
     .table-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); overflow: auto;
     }
-
-    /* ── TABLE ───────────────────────────────────────────────────────────── */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    thead {
-      background: #f8fafc;
-      border-bottom: 2px solid var(--border);
-    }
+    table { width: 100%; border-collapse: collapse; min-width: 1100px; }
+    thead { background: #f8fafc; border-bottom: 2px solid var(--border); position: sticky; top: 64px; z-index: 10; }
     th {
-      padding: 13px 16px;
-      text-align: left;
-      font-size: .72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: var(--muted);
-      white-space: nowrap;
+      padding: 12px 14px; text-align: left;
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .07em; color: var(--muted); white-space: nowrap;
     }
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background .15s;
-    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .15s; }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: #f8fafc; }
-    tbody tr.qualified { background: #f0fdf4 !important; }
-    tbody tr.qualified:hover { background: #dcfce7 !important; }
-    td {
-      padding: 14px 16px;
-      vertical-align: middle;
-    }
+    tbody tr.row-qualified { background: #f0fdf4 !important; }
+    tbody tr.row-qualified:hover { background: #dcfce7 !important; }
+    tbody tr.row-notqualified { background: #fef2f2 !important; }
+    tbody tr.row-notqualified:hover { background: #fee2e2 !important; }
+    td { padding: 12px 14px; vertical-align: middle; }
 
-    /* ── CELLS ───────────────────────────────────────────────────────────── */
-    .cell-num {
-      font-size: .75rem;
-      color: var(--muted);
-      font-weight: 600;
-      width: 32px;
-      text-align: center;
+    /* ── CELL TYPES ──────────────────────────────────────────────────────── */
+    .cell-num { font-size: .72rem; color: var(--muted); font-weight: 600; text-align: center; width: 36px; }
+
+    /* Status dropdown */
+    .status-select {
+      padding: 6px 10px; border-radius: 50px; border: 1.5px solid var(--border);
+      font-family: inherit; font-size: .78rem; font-weight: 600;
+      cursor: pointer; background: var(--card); transition: all .2s;
+      min-width: 148px; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+      padding-right: 28px;
     }
-    .cell-check { width: 44px; text-align: center; }
-    .cell-check input[type="checkbox"] {
-      width: 18px; height: 18px;
-      accent-color: var(--green);
-      cursor: pointer;
-      border-radius: 4px;
+    .status-select:focus { outline: none; border-color: var(--accent); }
+    .status-select.s-qualified { border-color: var(--green); color: var(--green); background-color: var(--green-bg); }
+    .status-select.s-notqualified { border-color: var(--red); color: var(--red); background-color: var(--red-bg); }
+    .status-select.s-pending { border-color: var(--yellow); color: #92400e; background-color: #fffbeb; }
+
+    /* Name cell */
+    .cell-name { min-width: 160px; }
+    .name-link {
+      font-weight: 700; font-size: .9rem; color: var(--text);
+      display: flex; align-items: center; gap: 7px;
     }
-    .cell-name {
-      font-weight: 600;
-      font-size: .9rem;
-      color: var(--text);
-      max-width: 200px;
+    .name-link:hover { color: var(--accent); }
+    .map-pin { color: var(--red); font-size: .75rem; }
+
+    /* Address cell */
+    .cell-addr { max-width: 170px; font-size: .78rem; color: var(--muted); line-height: 1.4; }
+    .cell-addr .addr-line { display: block; }
+
+    /* Phone cell */
+    .cell-phone { white-space: nowrap; }
+    .phone-link { font-size: .88rem; color: var(--call); font-weight: 500; }
+    .phone-link:hover { text-decoration: underline; }
+    .no-data { color: var(--muted); font-size: .75rem; font-style: italic; }
+
+    /* URL cell */
+    .cell-url { min-width: 110px; }
+    .url-link {
+      color: var(--accent); font-size: .8rem;
+      display: flex; align-items: center; gap: 5px; white-space: nowrap;
     }
-    .qualified-badge {
-      display: inline-block;
-      background: #dcfce7;
-      color: #166534;
-      font-size: .65rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 50px;
-      margin-left: 8px;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-    .cell-phone {
-      font-size: .85rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .cell-url a {
-      color: var(--accent);
-      font-size: .8rem;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      max-width: 220px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .cell-url a:hover { text-decoration: underline; }
-    .no-url { color: var(--muted); font-size: .78rem; font-style: italic; }
-    .cell-price {
-      width: 130px;
-    }
+    .url-link:hover { text-decoration: underline; }
+
+    /* Price cell */
+    .cell-price { width: 120px; }
     .price-input {
-      width: 110px;
-      padding: 7px 10px;
+      width: 100px; padding: 6px 10px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: .88rem; color: var(--text);
+      transition: border-color .2s; background: var(--bg);
+    }
+    .price-input:focus { outline: none; border-color: var(--accent); background: #fff; }
+
+    /* Actions cell */
+    .cell-actions { min-width: 240px; white-space: nowrap; }
+    .act-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+    /* Action buttons */
+    .act-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 13px; border-radius: 50px; border: none;
+      font-family: inherit; font-size: .76rem; font-weight: 600;
+      cursor: pointer; transition: all .2s; white-space: nowrap;
+    }
+    .act-btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-wa { background: var(--wa); color: #fff; }
+    .btn-wa:hover:not(:disabled) { background: var(--wa-h); transform: translateY(-1px); }
+    .btn-call { background: var(--call); color: #fff; }
+    .btn-call:hover:not(:disabled) { background: var(--call-h); transform: translateY(-1px); }
+    .btn-copy {
+      background: var(--card); color: var(--muted);
       border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: .88rem;
-      color: var(--text);
-      transition: border-color .2s;
     }
-    .price-input:focus { outline: none; border-color: var(--accent); }
-    .cell-actions { white-space: nowrap; }
+    .btn-copy:hover { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
+    .btn-copy.copied { border-color: var(--green); color: var(--green); background: var(--green-bg); }
 
-    /* ── ACTION BUTTONS ──────────────────────────────────────────────────── */
-    .btn-wa-send {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 16px;
-      border-radius: 50px;
-      border: none;
-      background: var(--wa);
-      color: #fff;
-      font-family: inherit;
-      font-size: .8rem;
-      font-weight: 600;
-      cursor: pointer;
+    /* ── IMPORT MODAL ────────────────────────────────────────────────────── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(15,23,42,.6); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff; border-radius: 20px; padding: 36px 32px;
+      width: 520px; max-width: 95vw; box-shadow: var(--shadow-lg);
+    }
+    .modal-box h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem;
+      font-weight: 700; margin-bottom: 8px;
+    }
+    .modal-box p { color: var(--muted); font-size: .88rem; margin-bottom: 20px; line-height: 1.6; }
+    .modal-box code {
+      background: #f1f5f9; padding: 2px 7px; border-radius: 4px;
+      font-size: .82rem; font-family: monospace; color: var(--accent);
+    }
+    .drop-zone {
+      border: 2px dashed var(--border); border-radius: 12px;
+      padding: 36px; text-align: center; cursor: pointer;
+      transition: all .2s; margin-bottom: 20px; background: var(--bg);
+    }
+    .drop-zone:hover, .drop-zone.dragover { border-color: var(--accent); background: #eef2ff; }
+    .drop-zone i { font-size: 2rem; color: var(--accent); margin-bottom: 10px; display: block; }
+    .drop-zone p { color: var(--muted); font-size: .88rem; margin: 0; }
+    .drop-zone strong { color: var(--accent); }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+    .modal-btn {
+      padding: 9px 22px; border-radius: 50px; font-family: inherit;
+      font-size: .88rem; font-weight: 600; cursor: pointer; border: none;
       transition: all .2s;
-      white-space: nowrap;
     }
-    .btn-wa-send:hover { background: var(--wa-h); transform: translateY(-1px); }
-    .btn-copy-msg {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 50px;
-      border: 1.5px solid var(--border);
-      background: var(--card);
-      color: var(--muted);
-      font-family: inherit;
-      font-size: .78rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-left: 8px;
-      transition: all .2s;
-      white-space: nowrap;
+    .modal-btn-cancel { background: var(--bg); color: var(--muted); border: 1.5px solid var(--border); }
+    .modal-btn-cancel:hover { border-color: var(--red); color: var(--red); }
+    .modal-btn-primary { background: var(--accent); color: #fff; }
+    .modal-btn-primary:hover { background: var(--accent-h); }
+    .csv-format-hint {
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 16px; font-size: .78rem; color: var(--muted); margin-bottom: 18px;
     }
-    .btn-copy-msg:hover { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
-    .btn-copy-msg.copied { border-color: var(--green); color: var(--green); background: #ecfdf5; }
-
-    /* ── NO PHONE BADGE ──────────────────────────────────────────────────── */
-    .no-phone { color: var(--muted); font-size: .75rem; font-style: italic; }
-
-    /* ── TOAST ───────────────────────────────────────────────────────────── */
-    .toast {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: var(--text);
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: var(--radius);
-      font-size: .85rem;
-      font-weight: 500;
-      box-shadow: var(--shadow-lg);
-      z-index: 9999;
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: all .25s ease;
+    .csv-format-hint strong { color: var(--text); display: block; margin-bottom: 6px; }
+    .csv-format-hint .col-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .col-tag {
+      background: #e0e7ff; color: var(--accent); padding: 2px 10px;
+      border-radius: 50px; font-size: .72rem; font-weight: 600;
     }
-    .toast.show { opacity: 1; transform: translateY(0); }
 
     /* ── FOOTER SUMMARY ──────────────────────────────────────────────────── */
     .footer-summary {
-      max-width: 1400px;
-      margin: 0 auto 48px;
-      padding: 0 24px;
+      max-width: 1500px; margin: 0 auto 48px; padding: 0 24px;
     }
     .summary-card {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      border-radius: var(--radius);
-      padding: 24px 32px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      background: linear-gradient(135deg, #1e1b4b, #4f46e5 50%, #7c3aed);
+      border-radius: var(--radius); padding: 28px 36px; color: #fff;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+      box-shadow: 0 8px 32px rgba(79,70,229,.3);
     }
-    .summary-card h3 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-    .summary-card p { font-size: .88rem; color: rgba(255,255,255,.8); margin-top: 4px; }
-    .summary-nums {
-      display: flex;
-      gap: 36px;
-      flex-wrap: wrap;
-    }
+    .summary-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.05rem; font-weight: 700; }
+    .summary-card > div > p { font-size: .85rem; color: rgba(255,255,255,.7); margin-top: 5px; }
+    .summary-nums { display: flex; gap: 40px; flex-wrap: wrap; }
     .summary-num { text-align: right; }
-    .summary-num .n { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.7rem; font-weight: 700; }
-    .summary-num .l { font-size: .72rem; color: rgba(255,255,255,.7); text-transform: uppercase; letter-spacing: .07em; }
+    .summary-num .n { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.9rem; font-weight: 800; }
+    .summary-num .l { font-size: .68rem; color: rgba(255,255,255,.65); text-transform: uppercase; letter-spacing: .08em; }
+
+    /* ── TOAST ───────────────────────────────────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--text); color: #fff; padding: 12px 20px;
+      border-radius: var(--radius); font-size: .85rem; font-weight: 500;
+      box-shadow: var(--shadow-lg); z-index: 9999;
+      opacity: 0; transform: translateY(12px); pointer-events: none;
+      transition: all .3s ease; display: flex; align-items: center; gap: 10px;
+      max-width: 340px;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ── EMPTY STATE ─────────────────────────────────────────────────────── */
+    .empty-state { text-align: center; padding: 64px 24px; color: var(--muted); }
+    .empty-state i { font-size: 2.5rem; margin-bottom: 14px; display: block; color: var(--border); }
 
     /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .dashboard { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) { .dashboard { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px)  { .dashboard { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  {
       .dashboard { grid-template-columns: 1fr 1fr; }
-      .crm-header { padding: 20px; }
-      .table-wrap { padding: 0 12px; }
-      table { font-size: 12px; }
-      th, td { padding: 10px 10px; }
-      .btn-wa-send { padding: 6px 12px; font-size: .75rem; }
+      .crm-header { padding: 0 16px; }
+      .table-wrap, .toolbar, .dashboard, .footer-summary { padding: 0 12px; }
+      .crm-logo p { display: none; }
     }
-    @media (max-width: 560px) {
-      .dashboard { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 400px)  { .dashboard { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ── HEADER ──────────────────────────────────────────────────────────── -->
 <header class="crm-header">
   <div class="crm-header-inner">
     <div class="crm-logo">
-      <h1><i class="fas fa-cut" style="margin-right:10px;"></i>Gorakhpur Salon Leads — Outreach CRM</h1>
-      <p>Track, qualify, message, and close 45 premium salon leads</p>
+      <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+      <div>
+        <h1>Digi<span>Load</span> Leads</h1>
+        <p>Gorakhpur Salon Outreach CRM · <span id="lead-count">45</span> Leads</p>
+      </div>
     </div>
-    <div class="header-meta">
-      <span>📍 Gorakhpur, UP</span>
-      <span>|</span>
-      <span>🗓️ Campaign: 2026</span>
-      <span>|</span>
-      <strong id="last-updated">Updated today</strong>
+    <div class="header-actions">
+      <button class="header-btn header-btn-ghost" onclick="document.getElementById('import-csv-input').click()">
+        <i class="fas fa-file-import"></i> Import CSV
+      </button>
+      <input type="file" id="import-csv-input" accept=".csv" onchange="importCSV(event)">
+      <button class="header-btn header-btn-ghost" onclick="exportCSV()">
+        <i class="fas fa-download"></i> Export CSV
+      </button>
+      <button class="header-btn header-btn-primary" onclick="openImportModal()">
+        <i class="fas fa-question-circle"></i> CSV Format
+      </button>
     </div>
   </div>
 </header>
 
-<!-- DASHBOARD STATS -->
+<!-- ── DASHBOARD ──────────────────────────────────────────────────────── -->
 <div class="dashboard">
   <div class="stat-card">
-    <div class="stat-icon si-indigo"><i class="fas fa-users"></i></div>
+    <div class="stat-icon si-blue"><i class="fas fa-users"></i></div>
     <div>
       <div class="stat-label">Total Leads</div>
       <div class="stat-value" id="stat-total">45</div>
@@ -412,8 +367,15 @@
   <div class="stat-card">
     <div class="stat-icon si-green"><i class="fas fa-check-circle"></i></div>
     <div>
-      <div class="stat-label">Qualified</div>
+      <div class="stat-label">Qualified ✅</div>
       <div class="stat-value" id="stat-qualified">0</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon si-red"><i class="fas fa-times-circle"></i></div>
+    <div>
+      <div class="stat-label">Not Qualified ❌</div>
+      <div class="stat-value" id="stat-notq">0</div>
     </div>
   </div>
   <div class="stat-card">
@@ -424,62 +386,68 @@
     </div>
   </div>
   <div class="stat-card">
-    <div class="stat-icon si-purple"><i class="fas fa-paper-plane"></i></div>
+    <div class="stat-icon si-purple"><i class="fas fa-chart-line"></i></div>
     <div>
-      <div class="stat-label">Sites Live</div>
-      <div class="stat-value">45</div>
+      <div class="stat-label">Conversion Rate</div>
+      <div class="stat-value" id="stat-conv">0%</div>
     </div>
   </div>
 </div>
 
-<!-- TOOLBAR -->
+<!-- ── TOOLBAR ────────────────────────────────────────────────────────── -->
 <div class="toolbar">
   <div class="search-wrap">
     <i class="fas fa-search"></i>
-    <input type="text" class="search-input" id="search-input" placeholder="Search by business name or phone...">
+    <input type="text" class="search-input" id="search-input" placeholder="Search name, phone, address...">
   </div>
-  <button class="filter-btn active" data-filter="all">All (45)</button>
-  <button class="filter-btn" data-filter="qualified">Qualified</button>
-  <button class="filter-btn" data-filter="pending">Pending</button>
-  <button class="filter-btn" data-filter="has-phone">Has Phone</button>
-  <button class="export-btn" onclick="exportCSV()">
-    <i class="fas fa-download"></i> Export CSV
+  <button class="filter-btn active"      data-filter="all">All</button>
+  <button class="filter-btn f-qualified" data-filter="qualified">✅ Qualified</button>
+  <button class="filter-btn f-notq"      data-filter="notqualified">❌ Not Qualified</button>
+  <button class="filter-btn"             data-filter="pending">⏳ Pending</button>
+  <button class="filter-btn"             data-filter="has-phone">📞 Has Phone</button>
+  <button class="tb-btn tb-btn-accent" onclick="resetAllStatus()" title="Clear all status selections">
+    <i class="fas fa-redo-alt"></i> Reset Status
   </button>
 </div>
 
-<!-- TABLE -->
+<!-- ── TABLE ──────────────────────────────────────────────────────────── -->
 <div class="table-wrap">
   <div class="table-card">
     <table id="leads-table">
       <thead>
         <tr>
           <th>#</th>
-          <th><i class="fas fa-check" style="color:var(--green)"></i></th>
+          <th>Status</th>
           <th>Business Name</th>
-          <th>Phone Number</th>
-          <th>Demo Site URL</th>
-          <th>Deal Price (₹)</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Demo Site</th>
+          <th>Deal ₹</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody id="leads-tbody">
-        <!-- Rows injected by JS -->
+        <!-- Rendered by JS -->
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- FOOTER SUMMARY -->
+<!-- ── FOOTER SUMMARY ─────────────────────────────────────────────────── -->
 <div class="footer-summary">
   <div class="summary-card">
     <div>
-      <h3>📊 Campaign Summary</h3>
-      <p>Gorakhpur Premium Salon Lead Outreach — Track your close rate and revenue below.</p>
+      <h3>📊 DigiLoad Campaign Summary</h3>
+      <p>Gorakhpur Premium Salon Outreach · Track close rate &amp; revenue in real-time</p>
     </div>
     <div class="summary-nums">
       <div class="summary-num">
         <div class="n" id="sum-qualified">0</div>
         <div class="l">Qualified</div>
+      </div>
+      <div class="summary-num">
+        <div class="n" id="sum-notq">0</div>
+        <div class="l">Not Qualified</div>
       </div>
       <div class="summary-num">
         <div class="n" id="sum-conversion">0%</div>
@@ -497,74 +465,120 @@
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+<!-- ── IMPORT FORMAT MODAL ────────────────────────────────────────────── -->
+<div class="modal-overlay" id="import-modal">
+  <div class="modal-box">
+    <h3><i class="fas fa-file-csv" style="color:var(--green);margin-right:8px"></i>CSV Import Format</h3>
+    <p>Import your own leads via CSV. The file should have the following columns (order doesn't matter, first row must be headers):</p>
+    <div class="csv-format-hint">
+      <strong>Required & Optional Columns:</strong>
+      <div class="col-tags">
+        <span class="col-tag">Business Name ✱</span>
+        <span class="col-tag">Phone Number</span>
+        <span class="col-tag">Full Address</span>
+        <span class="col-tag">Google Maps Link</span>
+        <span class="col-tag">Website Demo URL</span>
+        <span class="col-tag">Google Rating</span>
+      </div>
+    </div>
+    <div class="drop-zone" id="drop-zone" onclick="document.getElementById('import-csv-input').click()">
+      <i class="fas fa-cloud-upload-alt"></i>
+      <p><strong>Click to upload</strong> or drag &amp; drop your CSV file here</p>
+      <p style="margin-top:6px;font-size:.75rem;">Supports .csv files · Max 5MB</p>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeImportModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ──────────────────────────────────────────────────────────── -->
+<div class="toast" id="toast"><i class="fas fa-info-circle"></i><span id="toast-msg"></span></div>
 
 <script>
-// ── LEAD DATA ─────────────────────────────────────────────────────────────────
-const LEADS = [
-  {name:"Looks Salon",phone:"+91 88818 87733",wa:"918881887733",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/looks-salon/index.html"},
-  {name:"Shahnaz Husain Salon",phone:"+91 74599 34444",wa:"917459934444",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shahnaz-husain-salon/index.html"},
-  {name:"Yes Mam",phone:"+91 95987 77222",wa:"919598777222",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/yes-mam/index.html"},
-  {name:"hair",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/hair/index.html"},
-  {name:"Legends Cut Gents salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/legends-cut-gents-salon/index.html"},
-  {name:"USTRAA PREMIUM MENS SALON",phone:"+91 97214 84848",wa:"919721484848",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ustraa-premium-mens-salon/index.html"},
-  {name:"Sports Salon",phone:"+91 85430 33309",wa:"918543033309",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sports-salon/index.html"},
-  {name:"The Barber's Station",phone:"+91 97943 86262",wa:"919794386262",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-barbers-station/index.html"},
-  {name:"Luxe Wellness Spa",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/luxe-wellness-spa/index.html"},
-  {name:"Shine wellness spa & massage",phone:"+91 89602 48778",wa:"918960248778",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shine-wellness-spa-massage/index.html"},
-  {name:"Classicc Beauty clinic",phone:"+91 91152 22155",wa:"919115222155",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/classicc-beauty-clinic/index.html"},
-  {name:"MERAKI STUDIO",phone:"+91 78008 00013",wa:"917800800013",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/meraki-studio/index.html"},
-  {name:"Glamz Studio Unisex Salon",phone:"+91 95980 80090",wa:"919598080090",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/glamz-studio-unisex-salon/index.html"},
-  {name:"Prime Studio 1.8",phone:"+91 85730 05081",wa:"918573005081",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/prime-studio-18/index.html"},
-  {name:"Level and co Salon",phone:"+91 80095 65714",wa:"918009565714",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/level-and-co-salon/index.html"},
-  {name:"Juvena Herbals",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/juvena-herbals/index.html"},
-  {name:"Senrick Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/senrick-salon/index.html"},
-  {name:"Xpertcare Unisex Salon & Academy",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/xpertcare-unisex-salon-academy/index.html"},
-  {name:"Mahi Blush & Glow",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mahi-blush-glow/index.html"},
-  {name:"Monsoon Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/monsoon-salon/index.html"},
-  {name:"Orchid Beauty Salon Unisex",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/orchid-beauty-salon-unisex/index.html"},
-  {name:"Artist Unisex Salon & Academy",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/artist-unisex-salon-academy/index.html"},
-  {name:"Lakme Salon Gorakhnath",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/lakme-salon-gorakhnath/index.html"},
-  {name:"THE GRAND AURA UNISEX SALON",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-grand-aura-unisex-salon/index.html"},
-  {name:"Dheeraj Hair Story Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/dheeraj-hair-story-unisex-salon/index.html"},
-  {name:"Pd Proffessional Care",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/pd-proffessional-care/index.html"},
-  {name:"Km Orgatonics",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/km-orgatonics/index.html"},
-  {name:"Fusion By Neelima Makeup Studio",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/fusion-by-neelima-makeup-studio/index.html"},
-  {name:"Anjali's Makeover",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/anjalis-makeover/index.html"},
-  {name:"Cuts & Glow Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cuts-glow-unisex-salon/index.html"},
-  {name:"SMART 'N' SHINY UNISEX SALON",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/smart-n-shiny-unisex-salon/index.html"},
-  {name:"Naai The Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/naai-the-salon/index.html"},
-  {name:"Nikita Walani Makeup Studio",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/nikita-walani-makeup-studio/index.html"},
-  {name:"Cosmoline Hair & Beauty Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cosmoline-hair-beauty-salon/index.html"},
-  {name:"ZLATO GLAM & GLOW",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/zlato-glam-glow/index.html"},
-  {name:"The Glam Squad Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-glam-squad-unisex-salon/index.html"},
-  {name:"Sringar Family Salon & Academy",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sringar-family-salon-academy/index.html"},
-  {name:"Ak Makeup Studio",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ak-makeup-studio/index.html"},
-  {name:"Make Over By L'oreal",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/make-over-by-loreal/index.html"},
-  {name:"GMAC Family Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/gmac-family-unisex-salon/index.html"},
-  {name:"Studio99 Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/studio99-unisex-salon/index.html"},
-  {name:"Mr Shyam Mens Parlour",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mr-shyam-mens-parlour/index.html"},
-  {name:"The Hair Lab Barber Shop",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-hair-lab-barber-shop/index.html"},
-  {name:"Diamond Hair Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/diamond-hair-salon/index.html"},
-  {name:"Muskan Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/muskan-unisex-salon/index.html"},
+// ─────────────────────────────────────────────────────────────────────────────
+// DEFAULT LEAD DATA  (with address + google maps url)
+// ─────────────────────────────────────────────────────────────────────────────
+const DEFAULT_LEADS = [
+  {name:"Looks Salon",phone:"+91 88818 87733",wa:"918881887733",address:"Civil Lines, Gorakhpur, UP",maps:"https://maps.google.com/?q=Looks+Salon+Civil+Lines+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/looks-salon/index.html"},
+  {name:"Shahnaz Husain Salon",phone:"+91 74599 34444",wa:"917459934444",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Shahnaz+Husain+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shahnaz-husain-salon/index.html"},
+  {name:"Yes Mam",phone:"+91 95987 77222",wa:"919598777222",address:"Mohaddipur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Yes+Mam+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/yes-mam/index.html"},
+  {name:"hair",phone:"",wa:"",address:"Gorakhpur, UP",maps:"https://maps.google.com/?q=hair+salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/hair/index.html"},
+  {name:"Legends Cut Gents salon",phone:"",wa:"",address:"Basharatpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Legends+Cut+Gents+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/legends-cut-gents-salon/index.html"},
+  {name:"USTRAA PREMIUM MENS SALON",phone:"+91 97214 84848",wa:"919721484848",address:"Gorakhnath, Gorakhpur, UP",maps:"https://maps.google.com/?q=USTRAA+PREMIUM+MENS+SALON+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ustraa-premium-mens-salon/index.html"},
+  {name:"Sports Salon",phone:"+91 85430 33309",wa:"918543033309",address:"Rapti Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Sports+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sports-salon/index.html"},
+  {name:"The Barber's Station",phone:"+91 97943 86262",wa:"919794386262",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=The+Barbers+Station+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-barbers-station/index.html"},
+  {name:"Luxe Wellness Spa",phone:"",wa:"",address:"Civil Lines, Gorakhpur, UP",maps:"https://maps.google.com/?q=Luxe+Wellness+Spa+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/luxe-wellness-spa/index.html"},
+  {name:"Shine wellness spa & massage",phone:"+91 89602 48778",wa:"918960248778",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Shine+Wellness+Spa+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shine-wellness-spa-massage/index.html"},
+  {name:"Classicc Beauty clinic",phone:"+91 91152 22155",wa:"919115222155",address:"Basharatpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Classicc+Beauty+Clinic+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/classicc-beauty-clinic/index.html"},
+  {name:"MERAKI STUDIO",phone:"+91 78008 00013",wa:"917800800013",address:"Civil Lines, Gorakhpur, UP",maps:"https://maps.google.com/?q=MERAKI+STUDIO+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/meraki-studio/index.html"},
+  {name:"Glamz Studio Unisex Salon",phone:"+91 95980 80090",wa:"919598080090",address:"Gorakhnath, Gorakhpur, UP",maps:"https://maps.google.com/?q=Glamz+Studio+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/glamz-studio-unisex-salon/index.html"},
+  {name:"Prime Studio 1.8",phone:"+91 85730 05081",wa:"918573005081",address:"Mohaddipur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Prime+Studio+1.8+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/prime-studio-18/index.html"},
+  {name:"Level and co Salon",phone:"+91 80095 65714",wa:"918009565714",address:"Rapti Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Level+and+co+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/level-and-co-salon/index.html"},
+  {name:"Juvena Herbals",phone:"",wa:"",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Juvena+Herbals+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/juvena-herbals/index.html"},
+  {name:"Senrick Salon",phone:"",wa:"",address:"Civil Lines, Gorakhpur, UP",maps:"https://maps.google.com/?q=Senrick+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/senrick-salon/index.html"},
+  {name:"Xpertcare Unisex Salon & Academy",phone:"",wa:"",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=Xpertcare+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/xpertcare-unisex-salon-academy/index.html"},
+  {name:"Mahi Blush & Glow",phone:"",wa:"",address:"Indira Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Mahi+Blush+Glow+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mahi-blush-glow/index.html"},
+  {name:"Monsoon Salon",phone:"",wa:"",address:"Gorakhnath, Gorakhpur, UP",maps:"https://maps.google.com/?q=Monsoon+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/monsoon-salon/index.html"},
+  {name:"Orchid Beauty Salon Unisex",phone:"",wa:"",address:"Sahjanwa, Gorakhpur, UP",maps:"https://maps.google.com/?q=Orchid+Beauty+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/orchid-beauty-salon-unisex/index.html"},
+  {name:"Artist Unisex Salon & Academy",phone:"",wa:"",address:"Mohaddipur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Artist+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/artist-unisex-salon-academy/index.html"},
+  {name:"Lakme Salon Gorakhnath",phone:"",wa:"",address:"Gorakhnath Mandir, Gorakhpur, UP",maps:"https://maps.google.com/?q=Lakme+Salon+Gorakhnath",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/lakme-salon-gorakhnath/index.html"},
+  {name:"THE GRAND AURA UNISEX SALON",phone:"",wa:"",address:"Kunraghat, Gorakhpur, UP",maps:"https://maps.google.com/?q=THE+GRAND+AURA+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-grand-aura-unisex-salon/index.html"},
+  {name:"Dheeraj Hair Story Unisex Salon",phone:"",wa:"",address:"Indira Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Dheeraj+Hair+Story+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/dheeraj-hair-story-unisex-salon/index.html"},
+  {name:"Pd Proffessional Care",phone:"",wa:"",address:"Divya Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Pd+Proffessional+Care+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/pd-proffessional-care/index.html"},
+  {name:"Km Orgatonics",phone:"",wa:"",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Km+Orgatonics+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/km-orgatonics/index.html"},
+  {name:"Fusion By Neelima Makeup Studio",phone:"",wa:"",address:"Rapti Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Fusion+By+Neelima+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/fusion-by-neelima-makeup-studio/index.html"},
+  {name:"Anjali's Makeover",phone:"",wa:"",address:"Rajendra Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Anjali+Makeover+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/anjalis-makeover/index.html"},
+  {name:"Cuts & Glow Unisex Salon",phone:"",wa:"",address:"Basharatpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Cuts+Glow+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cuts-glow-unisex-salon/index.html"},
+  {name:"SMART 'N' SHINY UNISEX SALON",phone:"",wa:"",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=SMART+N+SHINY+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/smart-n-shiny-unisex-salon/index.html"},
+  {name:"Naai The Salon",phone:"",wa:"",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Naai+The+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/naai-the-salon/index.html"},
+  {name:"Nikita Walani Makeup Studio",phone:"",wa:"",address:"Hari Om Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Nikita+Walani+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/nikita-walani-makeup-studio/index.html"},
+  {name:"Cosmoline Hair & Beauty Salon",phone:"",wa:"",address:"Geeta Vatika, Gorakhpur, UP",maps:"https://maps.google.com/?q=Cosmoline+Hair+Beauty+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cosmoline-hair-beauty-salon/index.html"},
+  {name:"ZLATO GLAM & GLOW",phone:"",wa:"",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=ZLATO+GLAM+GLOW+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/zlato-glam-glow/index.html"},
+  {name:"The Glam Squad Unisex Salon",phone:"",wa:"",address:"Gorakhnath, Gorakhpur, UP",maps:"https://maps.google.com/?q=The+Glam+Squad+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-glam-squad-unisex-salon/index.html"},
+  {name:"Sringar Family Salon & Academy",phone:"",wa:"",address:"Mughala, Gorakhpur, UP",maps:"https://maps.google.com/?q=Sringar+Family+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sringar-family-salon-academy/index.html"},
+  {name:"Ak Makeup Studio",phone:"",wa:"",address:"Shahpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Ak+Makeup+Studio+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ak-makeup-studio/index.html"},
+  {name:"Make Over By L'oreal",phone:"",wa:"",address:"Basharatpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Make+Over+By+Loreal+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/make-over-by-loreal/index.html"},
+  {name:"GMAC Family Unisex Salon",phone:"",wa:"",address:"Shivpur Road, Gorakhpur, UP",maps:"https://maps.google.com/?q=GMAC+Family+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/gmac-family-unisex-salon/index.html"},
+  {name:"Studio99 Unisex Salon",phone:"",wa:"",address:"Char Fatak Road, Gorakhpur, UP",maps:"https://maps.google.com/?q=Studio99+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/studio99-unisex-salon/index.html"},
+  {name:"Mr Shyam Mens Parlour",phone:"",wa:"",address:"Singhariya, Gorakhpur, UP",maps:"https://maps.google.com/?q=Mr+Shyam+Mens+Parlour+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mr-shyam-mens-parlour/index.html"},
+  {name:"The Hair Lab Barber Shop",phone:"",wa:"",address:"Raneedeeha, Gorakhpur, UP",maps:"https://maps.google.com/?q=The+Hair+Lab+Barber+Shop+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-hair-lab-barber-shop/index.html"},
+  {name:"Diamond Hair Salon",phone:"",wa:"",address:"Bharwalia Buzurg, Gorakhpur, UP",maps:"https://maps.google.com/?q=Diamond+Hair+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/diamond-hair-salon/index.html"},
+  {name:"Muskan Unisex Salon",phone:"",wa:"",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=Muskan+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/muskan-unisex-salon/index.html"},
 ];
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────────────────
+let LEADS = [];     // active working dataset (may differ from DEFAULT if imported)
 const state = {
-  qualified: {},   // idx -> bool
-  prices:    {},   // idx -> number
+  status: {},   // idx -> 'qualified' | 'notqualified' | 'pending'
+  prices: {},   // idx -> number
 };
 let activeFilter = 'all';
 
-// ── RENDER ────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// PHONE CLEANUP
+// ─────────────────────────────────────────────────────────────────────────────
+function toWA(phone) {
+  if (!phone) return '';
+  const d = phone.replace(/\D/g, '');
+  if (d.length === 10) return '91' + d;
+  if (d.length > 10 && d.startsWith('91')) return d;
+  if (d.length > 10) return '91' + d.slice(-10);
+  return '';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WHATSAPP MESSAGE
+// ─────────────────────────────────────────────────────────────────────────────
 function buildMessage(lead) {
   return `Hello ${lead.name}! 👋
 
-I was checking local salons in Gorakhpur and noticed that *${lead.name}* doesn't have a proper online presence — no booking page, no service showcase, no client reviews online.
+I was checking salons in Gorakhpur and noticed that *${lead.name}* doesn't have a professional online presence — no booking page, no service showcase, no client reviews.
 
 I've already built a *premium demo website* for your salon:
-🌐 ${lead.url}
+🌐 ${lead.url || '(Link coming soon)'}
 
 Here's what's included:
 ✅ Online Appointment Booking via WhatsApp
@@ -573,92 +587,131 @@ Here's what's included:
 ✅ Client Reviews Section
 ✅ Mobile-Friendly & Fast
 
-Take a look and let me know — *how's your experience?* Would you like to launch this for ${lead.name}? I can customise it fully with your branding, team, and offers.
+Take a look — *how's your experience?* Would you like to launch this for ${lead.name}? I can customise it fully with your branding, team, and offers.
 
 Can we connect for a quick discussion? 🚀`;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// ROW RENDER
+// ─────────────────────────────────────────────────────────────────────────────
 function renderRow(lead, idx) {
-  const isQ = !!state.qualified[idx];
-  const price = state.prices[idx] || '';
-  const urlCell = lead.url
-    ? `<a href="${lead.url}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt" style="font-size:.7rem"></i> View Site</a>`
-    : `<span class="no-url">Not deployed</span>`;
+  const status  = state.status[idx] || 'pending';
+  const price   = state.prices[idx] || '';
+
+  const rowClass = status === 'qualified' ? 'row-qualified'
+                 : status === 'notqualified' ? 'row-notqualified' : '';
+
+  // Name + maps link
+  const nameCell = lead.maps
+    ? `<a class="name-link" href="${lead.maps}" target="_blank" rel="noopener" title="Open in Google Maps">
+         <i class="fas fa-map-marker-alt map-pin"></i>${lead.name}
+       </a>`
+    : `<span class="name-link" style="cursor:default"><i class="fas fa-store" style="color:var(--muted)"></i>${lead.name}</span>`;
+
+  // Address
+  const addrCell = lead.address
+    ? `<span class="addr-line">${lead.address}</span>`
+    : `<span class="no-data">Not available</span>`;
+
+  // Phone
+  const phoneTel = lead.phone ? lead.phone.replace(/\s/g,'') : '';
   const phoneCell = lead.phone
-    ? lead.phone
-    : `<span class="no-phone">No number</span>`;
+    ? `<a class="phone-link" href="tel:${phoneTel}" title="Call ${lead.name}">${lead.phone}</a>`
+    : `<span class="no-data">No number</span>`;
 
+  // Site URL
+  const urlCell = lead.url
+    ? `<a class="url-link" href="${lead.url}" target="_blank"><i class="fas fa-external-link-alt" style="font-size:.68rem"></i> View Site</a>`
+    : `<span class="no-data">Not deployed</span>`;
+
+  // Status dropdown
+  const sSel = {
+    qualified:    's-qualified',
+    notqualified: 's-notqualified',
+    pending:      's-pending',
+  }[status];
+
+  // WA button
   const waBtn = lead.wa
-    ? `<button class="btn-wa-send" onclick="sendWA(${idx})" title="Open WhatsApp with pre-filled message">
-         <i class="fab fa-whatsapp"></i> Send on WhatsApp
-       </button>`
-    : `<button class="btn-wa-send" style="background:#94a3b8;cursor:not-allowed" disabled title="No phone number available">
-         <i class="fab fa-whatsapp"></i> No Number
-       </button>`;
+    ? `<button class="act-btn btn-wa" onclick="sendWA(${idx})" title="Send WhatsApp message"><i class="fab fa-whatsapp"></i> WhatsApp</button>`
+    : `<button class="act-btn btn-wa" disabled title="No phone number"><i class="fab fa-whatsapp"></i> No Number</button>`;
 
-  return `<tr id="row-${idx}" class="${isQ ? 'qualified' : ''}">
-    <td class="cell-num">${idx + 1}</td>
-    <td class="cell-check">
-      <input type="checkbox" id="chk-${idx}" ${isQ ? 'checked' : ''} onchange="toggleQualified(${idx})" title="Mark as Qualified">
-    </td>
-    <td class="cell-name">
-      ${lead.name}
-      ${isQ ? '<span class="qualified-badge">✓ Qualified</span>' : ''}
-    </td>
-    <td class="cell-phone">${phoneCell}</td>
-    <td class="cell-url">${urlCell}</td>
-    <td class="cell-price">
-      <input type="number" class="price-input" id="price-${idx}" value="${price}"
-        placeholder="₹ 0" min="0"
-        oninput="updatePrice(${idx}, this.value)"
-        title="Enter deal price for this lead">
-    </td>
-    <td class="cell-actions">
+  // Call button
+  const callBtn = lead.phone
+    ? `<a class="act-btn btn-call" href="tel:${phoneTel}" title="Call ${lead.name}"><i class="fas fa-phone"></i> Call</a>`
+    : `<button class="act-btn btn-call" disabled title="No phone number"><i class="fas fa-phone"></i> Call</button>`;
+
+  return `<tr id="row-${idx}" class="${rowClass}">
+  <td class="cell-num">${idx + 1}</td>
+  <td>
+    <select class="status-select ${sSel}" id="status-${idx}" onchange="setStatus(${idx}, this.value)">
+      <option value="pending"      ${status==='pending'      ?'selected':''}>⏳ Pending</option>
+      <option value="qualified"    ${status==='qualified'    ?'selected':''}>✅ Qualified</option>
+      <option value="notqualified" ${status==='notqualified' ?'selected':''}>❌ Not Qualified</option>
+    </select>
+  </td>
+  <td class="cell-name">${nameCell}</td>
+  <td class="cell-addr">${addrCell}</td>
+  <td class="cell-phone">${phoneCell}</td>
+  <td class="cell-url">${urlCell}</td>
+  <td class="cell-price">
+    <input type="number" class="price-input" id="price-${idx}" value="${price}"
+      placeholder="0" min="0" oninput="updatePrice(${idx}, this.value)" title="Deal price">
+  </td>
+  <td class="cell-actions">
+    <div class="act-row">
       ${waBtn}
-      <button class="btn-copy-msg" id="copy-${idx}" onclick="copyMsg(${idx})" title="Copy outreach message to clipboard">
-        <i class="fas fa-copy"></i> Copy Msg
+      ${callBtn}
+      <button class="act-btn btn-copy" id="copy-${idx}" onclick="copyMsg(${idx})" title="Copy outreach message">
+        <i class="fas fa-copy"></i> Copy
       </button>
-    </td>
-  </tr>`;
+    </div>
+  </td>
+</tr>`;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDER TABLE
+// ─────────────────────────────────────────────────────────────────────────────
 function renderTable() {
-  const searchVal = document.getElementById('search-input').value.toLowerCase();
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
   const tbody = document.getElementById('leads-tbody');
   let html = '';
-  let shown = 0;
 
   LEADS.forEach((lead, idx) => {
-    const isQ = !!state.qualified[idx];
-    const hasPhone = !!lead.wa;
+    const status   = state.status[idx] || 'pending';
+    const hasPhone = !!lead.phone;
 
-    // Filter
-    if (activeFilter === 'qualified' && !isQ) return;
-    if (activeFilter === 'pending' && isQ) return;
-    if (activeFilter === 'has-phone' && !hasPhone) return;
+    if (activeFilter === 'qualified'    && status !== 'qualified')    return;
+    if (activeFilter === 'notqualified' && status !== 'notqualified') return;
+    if (activeFilter === 'pending'      && status !== 'pending')      return;
+    if (activeFilter === 'has-phone'    && !hasPhone)                 return;
 
-    // Search
-    if (searchVal && !lead.name.toLowerCase().includes(searchVal) && !lead.phone.includes(searchVal)) return;
+    if (q) {
+      const haystack = [lead.name, lead.phone, lead.address].join(' ').toLowerCase();
+      if (!haystack.includes(q)) return;
+    }
 
     html += renderRow(lead, idx);
-    shown++;
   });
 
-  tbody.innerHTML = html || `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--muted)">No leads match your filter.</td></tr>`;
+  tbody.innerHTML = html || `<tr><td colspan="8" class="empty-state"><i class="fas fa-search"></i><p>No leads match your filter.</p></td></tr>`;
   updateStats();
 }
 
-// ── ACTIONS ───────────────────────────────────────────────────────────────────
-function toggleQualified(idx) {
-  const chk = document.getElementById(`chk-${idx}`);
-  state.qualified[idx] = chk.checked;
-  const row = document.getElementById(`row-${idx}`);
-  if (chk.checked) {
-    row.classList.add('qualified');
-    row.querySelector('.cell-name').innerHTML = LEADS[idx].name + ' <span class="qualified-badge">✓ Qualified</span>';
-  } else {
-    row.classList.remove('qualified');
-    row.querySelector('.cell-name').textContent = LEADS[idx].name;
+// ─────────────────────────────────────────────────────────────────────────────
+// ACTIONS
+// ─────────────────────────────────────────────────────────────────────────────
+function setStatus(idx, val) {
+  state.status[idx] = val;
+  const row = document.getElementById('row-${idx}');
+  // Re-render just this row
+  const tr = document.getElementById(`row-${idx}`);
+  if (tr) {
+    const newTr = document.createElement('tbody');
+    newTr.innerHTML = renderRow(LEADS[idx], idx);
+    tr.replaceWith(newTr.firstChild);
   }
   updateStats();
   saveState();
@@ -673,56 +726,197 @@ function updatePrice(idx, val) {
 function sendWA(idx) {
   const lead = LEADS[idx];
   if (!lead.wa) return;
-  const msg = buildMessage(lead);
-  window.open(`https://wa.me/${lead.wa}?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/${lead.wa}?text=${encodeURIComponent(buildMessage(lead))}`, '_blank');
 }
 
 function copyMsg(idx) {
-  const lead = LEADS[idx];
-  const msg = buildMessage(lead);
-  navigator.clipboard.writeText(msg).then(() => {
-    const btn = document.getElementById(`copy-${idx}`);
+  const btn = document.getElementById(`copy-${idx}`);
+  navigator.clipboard.writeText(buildMessage(LEADS[idx])).then(() => {
     btn.classList.add('copied');
     btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-    showToast('Message copied to clipboard!');
+    showToast('Message copied to clipboard!', 'fas fa-check-circle');
     setTimeout(() => {
       btn.classList.remove('copied');
-      btn.innerHTML = '<i class="fas fa-copy"></i> Copy Msg';
+      btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
     }, 2500);
-  }).catch(() => {
-    showToast('Copy failed — please copy manually.', true);
-  });
+  }).catch(() => showToast('Copy failed — try manually.', 'fas fa-exclamation-triangle', true));
 }
 
-// ── STATS ─────────────────────────────────────────────────────────────────────
+function resetAllStatus() {
+  if (!confirm('Reset all lead statuses to Pending? Prices will be kept.')) return;
+  state.status = {};
+  saveState();
+  renderTable();
+  showToast('All statuses reset to Pending.', 'fas fa-redo-alt');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STATS
+// ─────────────────────────────────────────────────────────────────────────────
 function updateStats() {
-  const qualifiedCount = Object.values(state.qualified).filter(Boolean).length;
-  const totalRevenue = Object.values(state.prices).reduce((a, b) => a + (b || 0), 0);
-  const convRate = Math.round((qualifiedCount / LEADS.length) * 100);
-  const avg = qualifiedCount > 0
-    ? Math.round(Object.entries(state.prices).filter(([k]) => state.qualified[k]).reduce((a, [,v]) => a + (v || 0), 0) / qualifiedCount)
-    : 0;
+  const total     = LEADS.length;
+  const qualified = Object.values(state.status).filter(s => s === 'qualified').length;
+  const notq      = Object.values(state.status).filter(s => s === 'notqualified').length;
+  const revenue   = Object.values(state.prices).reduce((a, b) => a + (b || 0), 0);
+  const convRate  = total ? Math.round((qualified / total) * 100) : 0;
+  const qualPrices = Object.entries(state.prices)
+    .filter(([k]) => state.status[k] === 'qualified')
+    .map(([,v]) => v || 0);
+  const avg = qualPrices.length ? Math.round(qualPrices.reduce((a, b) => a + b, 0) / qualPrices.length) : 0;
 
-  document.getElementById('stat-qualified').textContent = qualifiedCount;
-  document.getElementById('stat-value').textContent = '₹' + totalRevenue.toLocaleString('en-IN');
-  document.getElementById('sum-qualified').textContent = qualifiedCount;
+  const fmt = n => n.toLocaleString('en-IN');
+  document.getElementById('stat-total').textContent     = total;
+  document.getElementById('stat-qualified').textContent = qualified;
+  document.getElementById('stat-notq').textContent      = notq;
+  document.getElementById('stat-value').textContent     = '₹' + fmt(revenue);
+  document.getElementById('stat-conv').textContent      = convRate + '%';
+  document.getElementById('sum-qualified').textContent  = qualified;
+  document.getElementById('sum-notq').textContent       = notq;
   document.getElementById('sum-conversion').textContent = convRate + '%';
-  document.getElementById('sum-revenue').textContent = '₹' + totalRevenue.toLocaleString('en-IN');
-  document.getElementById('sum-avg').textContent = avg ? '₹' + avg.toLocaleString('en-IN') : '₹0';
+  document.getElementById('sum-revenue').textContent    = '₹' + fmt(revenue);
+  document.getElementById('sum-avg').textContent        = avg ? '₹' + fmt(avg) : '₹0';
+  document.getElementById('lead-count').textContent     = total;
+  // update filter buttons
+  document.querySelector('[data-filter="all"]').textContent          = `All (${total})`;
+  document.querySelector('[data-filter="qualified"]').textContent    = `✅ Qualified (${qualified})`;
+  document.querySelector('[data-filter="notqualified"]').textContent = `❌ Not Qualified (${notq})`;
 }
 
-// ── TOAST ─────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// CSV IMPORT
+// ─────────────────────────────────────────────────────────────────────────────
+function importCSV(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const text    = e.target.result;
+      const lines   = text.trim().split(/\r?\n/);
+      const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g,'').trim().toLowerCase());
+
+      const find = (keys, hdrs) => {
+        for (const k of keys) {
+          const i = hdrs.findIndex(h => h.includes(k));
+          if (i >= 0) return i;
+        }
+        return -1;
+      };
+
+      const iName  = find(['business name','name'],          headers);
+      const iPhone = find(['phone'],                          headers);
+      const iAddr  = find(['address','full address'],         headers);
+      const iMaps  = find(['map','google map'],               headers);
+      const iUrl   = find(['demo','url','website'],           headers);
+
+      if (iName < 0) { showToast('CSV missing "Business Name" column!', 'fas fa-exclamation-triangle', true); return; }
+
+      const imported = [];
+      for (let i = 1; i < lines.length; i++) {
+        const cols = parseCsvLine(lines[i]);
+        if (!cols.length || !cols[iName]) continue;
+        const phone = iPhone >= 0 ? cols[iPhone] || '' : '';
+        imported.push({
+          name:    cols[iName]  || '',
+          phone:   phone,
+          wa:      toWA(phone),
+          address: iAddr >= 0 ? cols[iAddr] || '' : '',
+          maps:    iMaps >= 0 ? cols[iMaps] || '' : '',
+          url:     iUrl  >= 0 ? cols[iUrl]  || '' : '',
+        });
+      }
+
+      if (!imported.length) { showToast('No valid rows found in CSV.', 'fas fa-exclamation-triangle', true); return; }
+
+      if (confirm(`Import ${imported.length} leads from CSV? This will REPLACE current leads (status & prices saved separately).`)) {
+        LEADS = imported;
+        state.status = {};
+        state.prices = {};
+        saveState();
+        renderTable();
+        closeImportModal();
+        showToast(`Imported ${imported.length} leads successfully!`, 'fas fa-file-import');
+      }
+    } catch (err) {
+      showToast('Error reading CSV: ' + err.message, 'fas fa-exclamation-triangle', true);
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+function parseCsvLine(line) {
+  const result = [];
+  let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { inQ = !inQ; }
+    else if (c === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
+    else { cur += c; }
+  }
+  result.push(cur.trim());
+  return result;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CSV EXPORT
+// ─────────────────────────────────────────────────────────────────────────────
+function exportCSV() {
+  let csv = 'Business Name,Phone Number,Address,Google Maps,Demo URL,Status,Deal Price (INR)\n';
+  LEADS.forEach((l, i) => {
+    const s = state.status[i] || 'pending';
+    const p = state.prices[i] || 0;
+    csv += `"${l.name}","${l.phone}","${l.address || ''}","${l.maps || ''}","${l.url}","${s}","${p}"\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'digiload_leads_' + Date.now() + '.csv';
+  a.click(); URL.revokeObjectURL(url);
+  showToast('CSV exported!', 'fas fa-download');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────────────────────────────────────
 let toastTimer;
-function showToast(msg, err = false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
+function showToast(msg, icon='fas fa-info-circle', err=false) {
+  const t  = document.getElementById('toast');
+  const ic = t.querySelector('i');
+  ic.className = icon;
+  document.getElementById('toast-msg').textContent = msg;
   t.style.background = err ? 'var(--red)' : 'var(--text)';
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
 
-// ── FILTERS ───────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// IMPORT MODAL
+// ─────────────────────────────────────────────────────────────────────────────
+function openImportModal()  { document.getElementById('import-modal').classList.add('open'); }
+function closeImportModal() { document.getElementById('import-modal').classList.remove('open'); }
+document.getElementById('import-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('import-modal')) closeImportModal();
+});
+
+// Drag-and-drop on drop zone
+const dz = document.getElementById('drop-zone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+dz.addEventListener('drop', e => {
+  e.preventDefault(); dz.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file && file.name.endsWith('.csv')) {
+    importCSV({ target: { files: [file], value: '' } });
+  } else {
+    showToast('Please drop a .csv file.', 'fas fa-exclamation-triangle', true);
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FILTERS
+// ─────────────────────────────────────────────────────────────────────────────
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -731,42 +925,40 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     renderTable();
   });
 });
-
 document.getElementById('search-input').addEventListener('input', renderTable);
 
-// ── EXPORT CSV ────────────────────────────────────────────────────────────────
-function exportCSV() {
-  let csv = 'Name,Phone,Demo URL,Qualified,Deal Price (INR)\n';
-  LEADS.forEach((l, i) => {
-    const q = state.qualified[i] ? 'Yes' : 'No';
-    const p = state.prices[i] || 0;
-    csv += `"${l.name}","${l.phone}","${l.url}","${q}","${p}"\n`;
-  });
-  const blob = new Blob([csv], { type: 'text/csv' });
-  const url  = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'gorakhpur_leads_outreach.csv';
-  a.click(); URL.revokeObjectURL(url);
-  showToast('CSV exported successfully!');
+// ─────────────────────────────────────────────────────────────────────────────
+// LOCAL STORAGE
+// ─────────────────────────────────────────────────────────────────────────────
+function saveState() {
+  const saved = {
+    status: state.status,
+    prices: state.prices,
+    leads:  LEADS,  // also save imported leads
+  };
+  localStorage.setItem('digiload-crm-v2', JSON.stringify(saved));
 }
 
-// ── PERSIST STATE (localStorage) ─────────────────────────────────────────────
-function saveState() {
-  localStorage.setItem('crm-state', JSON.stringify(state));
-}
 function loadState() {
   try {
-    const saved = JSON.parse(localStorage.getItem('crm-state') || '{}');
-    if (saved.qualified) Object.assign(state.qualified, saved.qualified);
-    if (saved.prices)    Object.assign(state.prices,    saved.prices);
-  } catch (e) {}
+    const saved = JSON.parse(localStorage.getItem('digiload-crm-v2') || '{}');
+    if (saved.status) Object.assign(state.status, saved.status);
+    if (saved.prices) Object.assign(state.prices, saved.prices);
+    if (saved.leads && saved.leads.length) {
+      LEADS = saved.leads;
+    } else {
+      LEADS = DEFAULT_LEADS.map(l => ({...l}));
+    }
+  } catch (e) {
+    LEADS = DEFAULT_LEADS.map(l => ({...l}));
+  }
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────────────────────
 loadState();
 renderTable();
-document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
 </script>
-
 </body>
 </html>
