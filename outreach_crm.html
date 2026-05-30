@@ -404,6 +404,57 @@
     .empty-state { text-align: center; padding: 56px 24px; color: var(--muted); }
     .empty-state i { font-size: 2.2rem; margin-bottom: 12px; display: block; color: var(--border); }
 
+    /* ─────────────────────────────────────────────────────────────────────
+       COLUMN PICKER  — floating dropdown panel
+    ───────────────────────────────────────────────────────────────────── */
+    .col-picker-wrap { position: relative; display: inline-block; }
+    .col-picker-panel {
+      display: none;
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: var(--card); border: 1.5px solid var(--border);
+      border-radius: 14px; box-shadow: var(--shadow-lg);
+      padding: 16px; z-index: 9000;
+      min-width: 240px; max-height: 480px;
+      overflow-y: auto;
+      animation: fadeIn .15s ease;
+    }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+    .col-picker-panel.open { display: block; }
+    .col-picker-title {
+      font-size: .72rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .07em; color: var(--muted); margin-bottom: 10px;
+    }
+    .col-picker-actions {
+      display: flex; gap: 6px; margin-bottom: 12px;
+    }
+    .col-picker-actions button {
+      flex: 1; padding: 5px 0; border-radius: 8px; border: 1.5px solid var(--border);
+      font-family: inherit; font-size: .72rem; font-weight: 600;
+      cursor: pointer; color: var(--muted); background: var(--bg);
+      transition: all .2s;
+    }
+    .col-picker-actions button:hover { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
+    .col-picker-list {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4px 12px;
+    }
+    .col-picker-item {
+      display: flex; align-items: center; gap: 7px;
+      padding: 6px 8px; border-radius: 8px; cursor: pointer;
+      transition: background .15s; user-select: none;
+    }
+    .col-picker-item:hover { background: var(--bg); }
+    .col-picker-item input[type=checkbox] {
+      width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer;
+      flex-shrink: 0;
+    }
+    .col-picker-item label {
+      font-size: .76rem; font-weight: 600; color: var(--text); cursor: pointer;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    /* hidden column: both th and td */
+    .col-hidden { display: none !important; }
+
     /* ═════════════════════════════════════════════════════════════════════
        RESPONSIVE  —  Mobile-first breakpoints
     ═════════════════════════════════════════════════════════════════════ */
@@ -509,6 +560,20 @@
       <button class="header-btn header-btn-ghost" onclick="exportCSV()">
         <i class="fas fa-download"></i> <span class="btn-label">Export CSV</span>
       </button>
+      <!-- Column Picker -->
+      <div class="col-picker-wrap" id="col-picker-wrap">
+        <button class="header-btn header-btn-ghost" onclick="toggleColPicker()" id="col-picker-btn">
+          <i class="fas fa-columns"></i> <span class="btn-label">Columns</span>
+        </button>
+        <div class="col-picker-panel" id="col-picker-panel">
+          <div class="col-picker-title"><i class="fas fa-eye"></i> &nbsp;Show / Hide Columns</div>
+          <div class="col-picker-actions">
+            <button onclick="selectAllCols()">Select All</button>
+            <button onclick="deselectAllCols()">Deselect All</button>
+          </div>
+          <div class="col-picker-list" id="col-picker-list"><!-- built by JS --></div>
+        </div>
+      </div>
       <button class="header-btn header-btn-primary" onclick="openImportModal()">
         <i class="fas fa-question-circle"></i> <span class="btn-label">CSV Format</span>
       </button>
@@ -587,22 +652,22 @@
       <table id="leads-table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Status</th>
-            <th>Business Name</th>
-            <th>Category</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Code</th>
-            <th>Phone</th>
-            <th>⭐ Review</th>
-            <th>Demo Site</th>
-            <th>Google URL</th>
-            <th>Facebook</th>
-            <th>Published?</th>
-            <th>Deal ₹</th>
-            <th>Actions + Email</th>
+            <th data-col="num">#</th>
+            <th data-col="status">Status</th>
+            <th data-col="name">Business Name</th>
+            <th data-col="category">Category</th>
+            <th data-col="street">Street</th>
+            <th data-col="city">City</th>
+            <th data-col="country">Country</th>
+            <th data-col="code">Code</th>
+            <th data-col="phone">Phone</th>
+            <th data-col="review">⭐ Review</th>
+            <th data-col="url">Demo Site</th>
+            <th data-col="google">Google URL</th>
+            <th data-col="facebook">Facebook</th>
+            <th data-col="published">Published?</th>
+            <th data-col="price">Deal ₹</th>
+            <th data-col="actions">Actions + Email</th>
           </tr>
         </thead>
         <tbody id="leads-tbody">
@@ -888,31 +953,31 @@ function renderRow(lead, idx) {
     : `<button class="act-btn btn-mail" disabled title="Enter email below"><i class="fas fa-envelope"></i> Mail</button>`;
 
   return `<tr id="row-${idx}" class="${rowClass}">
-  <td class="cell-num">${idx + 1}</td>
-  <td>
+  <td data-col="num" class="cell-num">${idx + 1}</td>
+  <td data-col="status">
     <select class="status-select ${sSel}" id="status-${idx}" onchange="setStatus(${idx}, this.value)">
       <option value="pending"      ${status==='pending'      ?'selected':''}>⏳ Pending</option>
       <option value="qualified"    ${status==='qualified'    ?'selected':''}>✅ Qualified</option>
       <option value="notqualified" ${status==='notqualified' ?'selected':''}>❌ Not Qualified</option>
     </select>
   </td>
-  <td class="cell-name">${nameCell}</td>
-  <td class="cell-cat">${catCell}</td>
-  <td class="cell-street">${l.street || '<span class="no-data">—</span>'}</td>
-  <td class="cell-city">${l.city   || '<span class="no-data">—</span>'}</td>
-  <td class="cell-country">${l.country || '<span class="no-data">—</span>'}</td>
-  <td class="cell-code"><span class="code-badge">${l.country_code || '—'}</span></td>
-  <td class="cell-phone">${phoneCell}</td>
-  <td class="cell-review">${reviewCell}</td>
-  <td class="cell-url">${urlCell}</td>
-  <td class="cell-google">${googleCell}</td>
-  <td class="cell-fb">${fbCell}</td>
-  <td class="cell-pub">${pubCell}</td>
-  <td class="cell-price">
+  <td data-col="name" class="cell-name">${nameCell}</td>
+  <td data-col="category" class="cell-cat">${catCell}</td>
+  <td data-col="street" class="cell-street">${l.street || '<span class="no-data">—</span>'}</td>
+  <td data-col="city" class="cell-city">${l.city   || '<span class="no-data">—</span>'}</td>
+  <td data-col="country" class="cell-country">${l.country || '<span class="no-data">—</span>'}</td>
+  <td data-col="code" class="cell-code"><span class="code-badge">${l.country_code || '—'}</span></td>
+  <td data-col="phone" class="cell-phone">${phoneCell}</td>
+  <td data-col="review" class="cell-review">${reviewCell}</td>
+  <td data-col="url" class="cell-url">${urlCell}</td>
+  <td data-col="google" class="cell-google">${googleCell}</td>
+  <td data-col="facebook" class="cell-fb">${fbCell}</td>
+  <td data-col="published" class="cell-pub">${pubCell}</td>
+  <td data-col="price" class="cell-price">
     <input type="number" class="price-input" id="price-${idx}" value="${price}"
       placeholder="0" min="0" oninput="updatePrice(${idx}, this.value)">
   </td>
-  <td class="cell-actions">
+  <td data-col="actions" class="cell-actions">
     <div class="act-row">
       ${waBtn}${callBtn}
       <button class="act-btn btn-copy" id="copy-${idx}" onclick="copyMsg(${idx})">
@@ -947,15 +1012,16 @@ function renderTable() {
     if (activeFilter === 'has-phone'    && !hasPhone)                 return;
 
     if (q) {
-      const haystack = [lead.name, lead.phone, lead.address].join(' ').toLowerCase();
+      const haystack = [lead.name, lead.phone, lead.street, lead.city, lead.business_category].join(' ').toLowerCase();
       if (!haystack.includes(q)) return;
     }
 
     html += renderRow(lead, idx);
   });
 
-  tbody.innerHTML = html || `<tr><td colspan="8" class="empty-state"><i class="fas fa-search"></i><p>No leads match your filter.</p></td></tr>`;
+  tbody.innerHTML = html || `<tr><td colspan="16" class="empty-state"><i class="fas fa-search"></i><p>No leads match your filter.</p></td></tr>`;
   updateStats();
+  applyColVisibility(); // apply hidden cols after every render
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1307,10 +1373,117 @@ function loadState() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// COLUMN PICKER
+// ─────────────────────────────────────────────────────────────────────────────
+const COLUMNS = [
+  { key: 'num',       label: '#' },
+  { key: 'status',    label: 'Status' },
+  { key: 'name',      label: 'Business Name' },
+  { key: 'category',  label: 'Category' },
+  { key: 'street',    label: 'Street' },
+  { key: 'city',      label: 'City' },
+  { key: 'country',   label: 'Country' },
+  { key: 'code',      label: 'Code' },
+  { key: 'phone',     label: 'Phone' },
+  { key: 'review',    label: '⭐ Review' },
+  { key: 'url',       label: 'Demo Site' },
+  { key: 'google',    label: 'Google URL' },
+  { key: 'facebook',  label: 'Facebook' },
+  { key: 'published', label: 'Published?' },
+  { key: 'price',     label: 'Deal ₹' },
+  { key: 'actions',   label: 'Actions' },
+];
+
+// Sensible defaults — show core cols, hide noisier ones
+const COL_DEFAULTS = {
+  num: true, status: true, name: true, category: true,
+  street: true, city: true, country: false, code: false,
+  phone: true, review: true, url: true, google: false,
+  facebook: false, published: false, price: true, actions: true,
+};
+
+let visibleCols = { ...COL_DEFAULTS };
+
+function loadVisibleCols() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('digiload-cols') || 'null');
+    if (saved) visibleCols = { ...COL_DEFAULTS, ...saved };
+  } catch(e) {}
+}
+
+function saveVisibleCols() {
+  localStorage.setItem('digiload-cols', JSON.stringify(visibleCols));
+}
+
+// Apply col-hidden class to all th/td with matching data-col
+function applyColVisibility() {
+  COLUMNS.forEach(({ key }) => {
+    const hide = !visibleCols[key];
+    document.querySelectorAll(`[data-col="${key}"]`).forEach(el => {
+      el.classList.toggle('col-hidden', hide);
+    });
+  });
+}
+
+// Build checkboxes inside the panel
+function buildColPickerUI() {
+  const list = document.getElementById('col-picker-list');
+  if (!list) return;
+  list.innerHTML = COLUMNS.map(({ key, label }) => `
+    <div class="col-picker-item" onclick="toggleColKey('${key}')">
+      <input type="checkbox" id="chk-col-${key}"
+        ${visibleCols[key] ? 'checked' : ''}
+        onclick="event.stopPropagation(); toggleColKey('${key}')">
+      <label for="chk-col-${key}">${label}</label>
+    </div>
+  `).join('');
+}
+
+function toggleColKey(key) {
+  visibleCols[key] = !visibleCols[key];
+  const chk = document.getElementById('chk-col-' + key);
+  if (chk) chk.checked = visibleCols[key];
+  applyColVisibility();
+  saveVisibleCols();
+}
+
+function selectAllCols() {
+  COLUMNS.forEach(({ key }) => { visibleCols[key] = true; });
+  buildColPickerUI();
+  applyColVisibility();
+  saveVisibleCols();
+}
+
+function deselectAllCols() {
+  // Always keep name + actions so table is usable
+  COLUMNS.forEach(({ key }) => {
+    visibleCols[key] = (key === 'name' || key === 'actions');
+  });
+  buildColPickerUI();
+  applyColVisibility();
+  saveVisibleCols();
+}
+
+function toggleColPicker() {
+  document.getElementById('col-picker-panel').classList.toggle('open');
+}
+
+// Close picker on outside click
+document.addEventListener('click', e => {
+  const wrap = document.getElementById('col-picker-wrap');
+  if (wrap && !wrap.contains(e.target)) {
+    const panel = document.getElementById('col-picker-panel');
+    if (panel) panel.classList.remove('open');
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────────────────────────────────────
 loadState();
-renderTable();
+loadVisibleCols();
+buildColPickerUI();
+renderTable(); // calls applyColVisibility() at end
 </script>
 </body>
 </html>
