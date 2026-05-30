@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | Diamond Hair Salon</title>
+    <meta name="description" content="Schedule your appointment at Diamond Hair Salon easily. Reserve slots and submit directly to our desk.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&family=Cinzel:wght@400;700&family=Syne:wght@400;700&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Announcement -->
+    <div class="top-announcement">
+        <p><a href="index.html"><i class="fas fa-arrow-left"></i> Return to Home</a></p>
+    </div>
+
+    <div class="booking-page-container">
+        <div class="booking-wizard-card">
+            <div class="wizard-header">
+                <h2>Appointment <span class="glow-text">Reservation</span></h2>
+                <p>Complete your booking request below. Submitting will redirect you to WhatsApp to confirm your slot directly.</p>
+            </div>
+            
+            <form id="booking-form" class="luxury-form">
+                <!-- Service Selection -->
+                <div class="form-group">
+                    <label for="select-service">Select Service</label>
+                    <select id="select-service" required>
+                        <option value="" disabled selected>Choose a premium service...</option>
+                        <option value="Unisex Signature Haircut" data-price="499">Unisex Signature Haircut (₹499)</option>
+<option value="Global Trend Hair Coloring" data-price="1999">Global Trend Hair Coloring (₹1999)</option>
+<option value="Luxe Nourishing Hair Spa" data-price="899">Luxe Nourishing Hair Spa (₹899)</option>
+<option value="Skin Radiance Glow Treatment" data-price="1299">Skin Radiance Glow Treatment (₹1299)</option>
+<option value="Hair Cut & Beard Design Combo" data-price="699">Hair Cut & Beard Design Combo (₹699)</option>
+<option value="Luxury Manicure Spa" data-price="599">Luxury Manicure Spa (₹599)</option>
+
+                    </select>
+                </div>
+
+                <!-- Stylist Selection -->
+                <div class="form-group">
+                    <label for="select-stylist">Preferred Specialist</label>
+                    <select id="select-stylist" required>
+                        <option value="Any Specialist" selected>Any Available Specialist</option>
+                        <option value="Karan (Principal Hairdresser)">Karan (Principal Hairdresser) - Global Cuts & Coloring</option>
+<option value="Pooja (Beauty Expert)">Pooja (Beauty Expert) - Facials & Waxing Care</option>
+<option value="Arjun (Senior Stylist)">Arjun (Senior Stylist) - Men's Cuts & Shaves</option>
+
+                    </select>
+                </div>
+
+                <!-- Date & Time Selection -->
+                <div class="form-row">
+                    <div class="form-group col-half">
+                        <label for="booking-date">Choose Date</label>
+                        <input type="date" id="booking-date" required>
+                    </div>
+                    <div class="form-group col-half">
+                        <label for="booking-time">Select Slot Time</label>
+                        <select id="booking-time" required>
+                            <option value="" disabled selected>Select time...</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="01:00 PM">01:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                            <option value="06:00 PM">06:00 PM</option>
+                            <option value="07:00 PM">07:00 PM</option>
+                            <option value="08:00 PM">08:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Customer Details -->
+                <div class="form-group">
+                    <label for="customer-name">Your Full Name</label>
+                    <input type="text" id="customer-name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="customer-phone">Contact Number (WhatsApp)</label>
+                    <input type="tel" id="customer-phone" placeholder="Your phone number" required>
+                </div>
+
+                <!-- Price Invoice Summary -->
+                <div class="invoice-summary-card">
+                    <h4>Invoice Summary</h4>
+                    <div class="invoice-row">
+                        <span>Service Base Price:</span>
+                        <span id="invoice-base">₹0</span>
+                    </div>
+                    <div class="invoice-row">
+                        <span>GST (18%):</span>
+                        <span id="invoice-gst">₹0</span>
+                    </div>
+                    <hr class="invoice-hr">
+                    <div class="invoice-row total-row">
+                        <span>Total Due Amount:</span>
+                        <span id="invoice-total">₹0</span>
+                    </div>
+                </div>
+
+                <input type="hidden" id="salon-name-val" value="Diamond Hair Salon">
+                <input type="hidden" id="whatsapp-number-val" value="919598777222">
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-submit-booking">
+                    <i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="luxury-footer mini-footer">
+        <p>&copy; 2026 Diamond Hair Salon. Premium Reservation Engine.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
