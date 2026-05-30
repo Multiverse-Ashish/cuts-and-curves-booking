@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Cuts & Curves Salon Menu | Detailed luxury styling, coloring, advanced facials, hair spa, and bridal packages with prices.">
+    <title>Services Menu | Cuts & Curves Luxury Salon</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="subpage-body">
+
+    <!-- Sparkles Canvas Background -->
+    <canvas id="sparklesCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
+            <h1>CUTS & CURVES</h1>
+            <span class="sub-logo">L U X U R Y   S A L O N</span>
+        </div>
+        <nav class="nav" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="booking.html" class="nav-book-btn">Book Now</a>
+            <a href="admin.html" class="nav-admin-link" title="Admin dashboard"><i class="fa-solid fa-user-gear"></i></a>
+        </nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <main style="position:relative; z-index:1;">
+        <!-- Subpage Hero -->
+        <section class="subpage-hero" style="background-image: linear-gradient(to bottom, rgba(8, 8, 8, 0.5) 0%, rgba(8, 8, 8, 0.9) 100%), url('stylist_hair_cut.png');">
+            <div class="subpage-hero-content reveal">
+                <span class="subpage-subtitle">Cuts &amp; Curves Signature Menu</span>
+                <h2>Luxury Experience Menu</h2>
+                <div class="section-divider"></div>
+                <p>Indulge in our curated range of custom grooming and beauty therapies.</p>
+            </div>
+        </section>
+
+        <!-- Dynamic Category Menu Section -->
+        <section class="section">
+            <div class="container">
+                
+                <!-- Category Tab Selector Buttons -->
+                <div class="services-tabs-container reveal">
+                    <button class="service-tab-btn active" data-category="all">All Experiences</button>
+                    <button class="service-tab-btn" data-category="haircut">Precision Cuts</button>
+                    <button class="service-tab-btn" data-category="spa">Hair Spa &amp; Care</button>
+                    <button class="service-tab-btn" data-category="skin">Advanced Skin Care</button>
+                    <button class="service-tab-btn" data-category="grooming">Grooming &amp; Styling</button>
+                </div>
+
+                <!-- Categorized list -->
+                <div class="detailed-services-grid" id="detailedServicesGrid">
+                    <!-- Skeletons loaded on start, then dynamic rows via JS -->
+                    <div class="skeleton-card" style="height: 180px;"></div>
+                    <div class="skeleton-card" style="height: 180px;"></div>
+                    <div class="skeleton-card" style="height: 180px;"></div>
+                    <div class="skeleton-card" style="height: 180px;"></div>
+                </div>
+
+                <div class="services-not-found hidden" id="noServicesMsg" style="text-align: center; color: var(--text-gray); padding: 3rem 1rem;">
+                    <i class="fa-regular fa-folder-open fa-2x" style="color: var(--gold); margin-bottom: 1rem;"></i>
+                    <p>No treatments matched this filter category.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combo Pack Section -->
+        <section class="section combo-section" style="background-color: #0a0a0c; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag"><i class="fa-solid fa-gift"></i> Exclusive Combos</span>
+                    <h2 class="section-title">Luxury Day Rituals</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-desc">Experience combined treatment plans offering absolute indulgence at preferred pricing.</p>
+                </div>
+
+                <div class="combos-grid">
+                    <div class="combo-card reveal" style="transition-delay: 0s;">
+                        <div class="combo-badge">POPULAR</div>
+                        <h4>The Royal Grooming Ritual</h4>
+                        <p class="combo-desc">Signature precision haircut, creative blow dry, organic hair spa scalp massage, and deluxe beard conditioning shave.</p>
+                        <div class="combo-price-row">
+                            <span class="price">₹1,999</span>
+                            <span class="save-tag">Save ₹300</span>
+                        </div>
+                        <a href="booking.html?service=The%20Royal%20Grooming%20Ritual" class="btn btn-primary btn-block">Reserve Ritual</a>
+                    </div>
+
+                    <div class="combo-card reveal" style="transition-delay: 0.1s;">
+                        <div class="combo-badge">RENEWAL</div>
+                        <h4>Revive Skin &amp; Hair Combo</h4>
+                        <p class="combo-desc">Restorative keratin hair treatment mask with vapor steam, and custom hydrating Advanced Skin Glow facial therapy.</p>
+                        <div class="combo-price-row">
+                            <span class="price">₹2,999</span>
+                            <span class="save-tag">Save ₹500</span>
+                        </div>
+                        <a href="booking.html?service=Revive%20Skin%20%26%20Hair%20Combo" class="btn btn-primary btn-block">Reserve Ritual</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>CUTS &amp; CURVES</h3>
+                <p>Vidhayak Niwas, Basement Community Centre, Aishbagh Rd, Rajendra Nagar, Lucknow, UP</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://maps.google.com" target="_blank" aria-label="Google Maps"><i class="fa-solid fa-map-location-dot"></i></a>
+                </div>
+            </div>
+            <div class="footer-hours">
+                <h4>Hours of Luxury</h4>
+                <p>Monday - Sunday: 10:00 AM - 8:30 PM</p>
+                <p>Pre-scheduling via WhatsApp is highly recommended.</p>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Cuts & Curves Luxury Salon. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

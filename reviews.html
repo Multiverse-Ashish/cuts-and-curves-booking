@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cuts & Curves Reviews | Read reviews from our styling guests, view rating distributions, and submit your personal feedback.">
+    <title>Guest Reviews | Cuts & Curves Luxury Salon</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="subpage-body">
+
+    <!-- Sparkles Canvas Background -->
+    <canvas id="sparklesCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
+            <h1>CUTS & CURVES</h1>
+            <span class="sub-logo">L U X U R Y   S A L O N</span>
+        </div>
+        <nav class="nav" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reviews.html" class="active">Reviews</a>
+            <a href="booking.html" class="nav-book-btn">Book Now</a>
+            <a href="admin.html" class="nav-admin-link" title="Admin dashboard"><i class="fa-solid fa-user-gear"></i></a>
+        </nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <main style="position:relative; z-index:1;">
+        <!-- Subpage Hero -->
+        <section class="subpage-hero" style="background-image: linear-gradient(to bottom, rgba(8, 8, 8, 0.5) 0%, rgba(8, 8, 8, 0.9) 100%), url('hair_spa_treatment.png');">
+            <div class="subpage-hero-content reveal">
+                <span class="subpage-subtitle">Guest Feedbacks &amp; Reviews</span>
+                <h2>What Our Guests Say</h2>
+                <div class="section-divider"></div>
+                <p>Read detailed experiences or submit your own review to help us maintain perfection.</p>
+            </div>
+        </section>
+
+        <!-- Reviews Analytics & Form Grid -->
+        <section class="section">
+            <div class="container">
+                <div class="reviews-analytics-grid reveal">
+                    <!-- Rating Summary Card -->
+                    <div class="rating-summary-card">
+                        <h3>Overall Score</h3>
+                        <div class="big-rating-number">4.9</div>
+                        <div class="stars-rating" style="margin-bottom: 0.5rem; justify-content: center;">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="color: var(--text-gray); font-size: 0.8rem; letter-spacing: 0.5px;">Based on 520+ guest experiences</p>
+
+                        <!-- Rating Bars -->
+                        <div class="rating-bars-container" style="margin-top: 1.5rem;">
+                            <div class="rating-bar-row">
+                                <span class="stars-label">5 Stars</span>
+                                <div class="rating-bar-bg">
+                                    <div class="rating-bar-fill" style="width: 92%;"></div>
+                                </div>
+                                <span class="pct-label">92%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="stars-label">4 Stars</span>
+                                <div class="rating-bar-bg">
+                                    <div class="rating-bar-fill" style="width: 6%;"></div>
+                                </div>
+                                <span class="pct-label">6%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="stars-label">3 Stars</span>
+                                <div class="rating-bar-bg">
+                                    <div class="rating-bar-fill" style="width: 2%;"></div>
+                                </div>
+                                <span class="pct-label">2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leave a Review Card Form -->
+                    <div class="leave-review-card">
+                        <h4>Share Your Experience</h4>
+                        <p style="color: var(--text-gray); font-size: 0.75rem; margin-bottom: 1.25rem;">We strive for absolute precision. Tell us about your luxury grooming visit.</p>
+                        
+                        <form id="submitReviewForm" onsubmit="return false;">
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label>Your Rating</label>
+                                <div class="star-rating-selector" id="ratingStarsSelector">
+                                    <span class="star-select-btn" data-value="1"><i class="fa-regular fa-star"></i></span>
+                                    <span class="star-select-btn" data-value="2"><i class="fa-regular fa-star"></i></span>
+                                    <span class="star-select-btn" data-value="3"><i class="fa-regular fa-star"></i></span>
+                                    <span class="star-select-btn" data-value="4"><i class="fa-regular fa-star"></i></span>
+                                    <span class="star-select-btn" data-value="5"><i class="fa-regular fa-star"></i></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="reviewName">Full Name</label>
+                                <input type="text" id="reviewName" placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="reviewRole">Service/Treatment Experience</label>
+                                <input type="text" id="reviewRole" placeholder="e.g. Signature Styling, Hydrating Facial" required>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 1.25rem;">
+                                <label for="reviewText">Review Comments</label>
+                                <textarea id="reviewText" placeholder="Write your review here..." rows="3" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" id="submitReviewBtn">Submit Feedback</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews List Feed -->
+        <section class="section" style="background-color: #0a0a0c; border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag"><i class="fa-solid fa-list-check"></i> Latest Feedbacks</span>
+                    <h2 class="section-title">Verified Guest Reviews</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="detailed-reviews-grid" id="detailedReviewsGrid">
+                    <!-- Loaded dynamically via JS with default reviews fallback -->
+                    <div class="skeleton-card" style="height: 180px;"></div>
+                    <div class="skeleton-card" style="height: 180px;"></div>
+                    <div class="skeleton-card" style="height: 180px;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>CUTS &amp; CURVES</h3>
+                <p>Vidhayak Niwas, Basement Community Centre, Aishbagh Rd, Rajendra Nagar, Lucknow, UP</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://maps.google.com" target="_blank" aria-label="Google Maps"><i class="fa-solid fa-map-location-dot"></i></a>
+                </div>
+            </div>
+            <div class="footer-hours">
+                <h4>Hours of Luxury</h4>
+                <p>Monday - Sunday: 10:00 AM - 8:30 PM</p>
+                <p>Pre-scheduling via WhatsApp is highly recommended.</p>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Cuts & Curves Luxury Salon. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer" style="position:fixed; bottom:2rem; right:2rem; display:flex; flex-direction:column; gap:0.75rem; z-index:10000;"></div>
+
+    <!-- Success Modal: Share review to WhatsApp -->
+    <div class="modal" id="reviewSuccessModal">
+        <div class="modal-content ticket-pass" style="max-width: 420px; padding: 2rem; text-align: center;">
+            <span class="success-checkmark"><i class="fa-solid fa-circle-check"></i></span>
+            <h3 style="margin-bottom: 0.5rem;">Review Registered!</h3>
+            <p style="font-size: 0.8rem; color: var(--text-gray); margin-bottom: 1.5rem;">Your review has been successfully logged on the website database. Click below to also share it directly with the salon owner on WhatsApp!</p>
+            <button class="btn btn-primary btn-block" id="shareReviewWhatsAppBtn" style="margin-bottom: 1rem;">Share on WhatsApp</button>
+            <button class="btn btn-secondary btn-block" onclick="closeReviewModal()">Close Dialog</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -3,29 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuts & Curves | Premium Salon & Spa Booking</title>
+    <meta name="description" content="Cuts & Curves | Premium luxury salon and spa experience in Lucknow. Book signature cuts, hair spa, skin treatments, and beauty therapies.">
+    <title>Cuts & Curves | Luxury Salon & Spa</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Gold Sparkles Animation Layer -->
+    <canvas id="sparklesCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
+
+    <!-- Floating Navigation Bar -->
     <header class="header">
         <div class="logo">
             <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
             <h1>CUTS & CURVES</h1>
             <span class="sub-logo">L U X U R Y   S A L O N</span>
         </div>
-        <nav class="nav">
-            <a href="#services"><i class="fa-solid fa-scissors"></i> Services</a>
-            <a href="#booking"><i class="fa-regular fa-calendar-check"></i> Book Now</a>
-            <a href="#about"><i class="fa-solid fa-info-circle"></i> About</a>
+        <nav class="nav" id="navLinks">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="booking.html" class="nav-book-btn">Book Now</a>
+            <a href="admin.html" class="nav-admin-link" title="Admin dashboard"><i class="fa-solid fa-user-gear"></i></a>
         </nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span><span></span><span></span>
+        </div>
     </header>
 
-    <main>
-        <!-- Premium Hero Carousel -->
+    <main style="position:relative; z-index:1;">
+        
+        <!-- Premium Hero Carousel Section -->
         <section class="hero-carousel" id="home">
             <div class="carousel-container">
                 <!-- Slide 1 -->
@@ -36,7 +50,7 @@
                         <span class="slide-subtitle">Welcome to Cuts & Curves</span>
                         <h2>Sculpting Your Masterpiece</h2>
                         <p>Lucknow's Premier Destination for Luxury Grooming & Aesthetics</p>
-                        <a href="#booking" class="btn btn-primary">Reserve Appointment</a>
+                        <a href="booking.html" class="btn btn-primary">Reserve Appointment</a>
                     </div>
                 </div>
                 <!-- Slide 2 -->
@@ -47,7 +61,7 @@
                         <span class="slide-subtitle">Master Craftsmanship</span>
                         <h2>Artistry in Every Cut</h2>
                         <p>Experience personalized consultations with Lucknow's finest expert stylists</p>
-                        <a href="#booking" class="btn btn-primary">Meet Our Stylists</a>
+                        <a href="booking.html" class="btn btn-primary">Meet Our Stylists</a>
                     </div>
                 </div>
                 <!-- Slide 3 -->
@@ -58,7 +72,7 @@
                         <span class="slide-subtitle">Rejuvenation & Wellness</span>
                         <h2>Luxury Hair & Skin Therapies</h2>
                         <p>Indulge in restorative organic treatments tailored to your ultimate comfort</p>
-                        <a href="#booking" class="btn btn-primary">Explore Treatments</a>
+                        <a href="booking.html" class="btn btn-primary">Explore Treatments</a>
                     </div>
                 </div>
             </div>
@@ -72,293 +86,202 @@
             </div>
         </section>
 
-        <!-- Booking Section -->
-        <section id="booking" class="booking-section">
+        <!-- About Section -->
+        <section id="about" class="section about-section">
             <div class="container">
-                <h3 class="section-title">Schedule Appointment</h3>
-                
-                <div class="booking-grid">
-                    <!-- Left Column: Steps -->
-                    <div class="booking-steps-container">
-                        <!-- Step 1: Services -->
-                        <div class="step-card">
-                            <div class="step-header">
-                                <span class="step-num">1</span>
-                                <h4>Select Luxury Services</h4>
-                            </div>
-                            <div class="services-list">
-                                <div class="service-item" data-id="1" data-name="Signature Haircut & Styling" data-price="799">
-                                    <div class="service-media">
-                                        <i class="fa-solid fa-scissors"></i>
-                                    </div>
-                                    <div class="service-info">
-                                        <h5>Signature Haircut & Styling</h5>
-                                        <p>Personalized consultation, luxury hair wash, cut, and blow-dry style.</p>
-                                    </div>
-                                    <div class="service-action">
-                                        <span class="price">₹799</span>
-                                        <button class="select-btn">Select</button>
-                                    </div>
-                                </div>
-                                <div class="service-item" data-id="2" data-name="Luxury Hair Spa & Therapy" data-price="1499">
-                                    <div class="service-media">
-                                        <i class="fa-solid fa-spa"></i>
-                                    </div>
-                                    <div class="service-info">
-                                        <h5>Luxury Hair Spa & Therapy</h5>
-                                        <p>Deep conditioning treatment with essential oils and relaxing scalp massage.</p>
-                                    </div>
-                                    <div class="service-action">
-                                        <span class="price">₹1,499</span>
-                                        <button class="select-btn">Select</button>
-                                    </div>
-                                </div>
-                                <div class="service-item" data-id="3" data-name="Advanced Skin Treatment" data-price="1999">
-                                    <div class="service-media">
-                                        <i class="fa-solid fa-sparkles"></i>
-                                    </div>
-                                    <div class="service-info">
-                                        <h5>Advanced Skin Treatment</h5>
-                                        <p>Hydrating and rejuvenating facial tailored to your specific skin needs.</p>
-                                    </div>
-                                    <div class="service-action">
-                                        <span class="price">₹1,999</span>
-                                        <button class="select-btn">Select</button>
-                                    </div>
-                                </div>
-                                <div class="service-item" data-id="4" data-name="Premium Beard Grooming" data-price="499">
-                                    <div class="service-media">
-                                        <i class="fa-solid fa-spray-can"></i>
-                                    </div>
-                                    <div class="service-info">
-                                        <h5>Premium Beard Grooming</h5>
-                                        <p>Hot towel shave, beard trimming, styling, and organic beard oil treatment.</p>
-                                    </div>
-                                    <div class="service-action">
-                                        <span class="price">₹499</span>
-                                        <button class="select-btn">Select</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 2: Stylist -->
-                        <div class="step-card">
-                            <div class="step-header">
-                                <span class="step-num">2</span>
-                                <h4>Choose Your Expert Stylist</h4>
-                            </div>
-                            <div class="stylists-grid">
-                                <div class="stylist-item selected" data-id="1" data-name="Vikram">
-                                    <div class="stylist-img">
-                                        <i class="fa-solid fa-user-tie"></i>
-                                    </div>
-                                    <h5>Vikram</h5>
-                                    <p>Creative Director</p>
-                                </div>
-                                <div class="stylist-item" data-id="2" data-name="Priya">
-                                    <div class="stylist-img">
-                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                    </div>
-                                    <h5>Priya</h5>
-                                    <p>Skin Specialist</p>
-                                </div>
-                                <div class="stylist-item" data-id="3" data-name="Rajesh">
-                                    <div class="stylist-img">
-                                        <i class="fa-solid fa-scissors"></i>
-                                    </div>
-                                    <h5>Rajesh</h5>
-                                    <p>Senior Groomer</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 3: Date and Time -->
-                        <div class="step-card">
-                            <div class="step-header">
-                                <span class="step-num">3</span>
-                                <h4>Select Date & Time</h4>
-                            </div>
-                            
-                            <div class="date-time-container">
-                                <div class="calendar-wrapper">
-                                    <div class="calendar-header">
-                                        <span id="monthYear">May 2026</span>
-                                    </div>
-                                    <div class="calendar-grid" id="calendarDays">
-                                        <!-- Will be filled by JS -->
-                                    </div>
-                                </div>
-                                
-                                <div class="slots-wrapper">
-                                    <h5>Available Time Slots</h5>
-                                    <div class="slots-grid">
-                                        <button class="slot-btn" data-time="10:00 AM">10:00 AM</button>
-                                        <button class="slot-btn" data-time="11:30 AM">11:30 AM</button>
-                                        <button class="slot-btn" data-time="01:00 PM">01:00 PM</button>
-                                        <button class="slot-btn" data-time="02:30 PM">02:30 PM</button>
-                                        <button class="slot-btn" data-time="04:00 PM">04:00 PM</button>
-                                        <button class="slot-btn" data-time="05:30 PM">05:30 PM</button>
-                                        <button class="slot-btn" data-time="07:00 PM">07:00 PM</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 4: Contact Info -->
-                        <div class="step-card">
-                            <div class="step-header">
-                                <span class="step-num">4</span>
-                                <h4>Enter Guest Details</h4>
-                            </div>
-                            <form class="contact-form" id="bookingForm">
-                                <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input type="text" id="fullName" placeholder="Enter your full name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phoneNumber">Phone Number</label>
-                                    <input type="tel" id="phoneNumber" placeholder="Enter your 10-digit number" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="emailAddress">Email Address</label>
-                                    <input type="email" id="emailAddress" placeholder="Enter your email address" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="notes">Special Requirements</label>
-                                    <textarea id="notes" placeholder="Tell us if you have any preferences..." rows="3"></textarea>
-                                </div>
-                            </form>
+                <div class="about-wrapper reveal">
+                    <div class="about-image-card">
+                        <div class="about-img-box" style="background-image: url('luxury_salon_interior.png');"></div>
+                        <div class="about-experience-badge">
+                            <span>10+</span>
+                            <small>Years Excellence</small>
                         </div>
                     </div>
-
-                    <!-- Right Column: Live Summary -->
-                    <div class="booking-summary-container">
-                        <div class="summary-card">
-                            <h4>Booking Summary</h4>
-                            <div class="summary-details">
-                                <div class="summary-row">
-                                    <span class="label">Service:</span>
-                                    <span class="value" id="summaryService">None Selected</span>
-                                </div>
-                                <div class="summary-row">
-                                    <span class="label">Expert Stylist:</span>
-                                    <span class="value" id="summaryStylist">Vikram</span>
-                                </div>
-                                <div class="summary-row">
-                                    <span class="label">Date:</span>
-                                    <span class="value" id="summaryDate">None Selected</span>
-                                </div>
-                                <div class="summary-row">
-                                    <span class="label">Time:</span>
-                                    <span class="value" id="summaryTime">None Selected</span>
-                                </div>
-                                <hr>
-                                <div class="summary-row">
-                                    <span class="label">Service Price:</span>
-                                    <span class="value" id="summaryPrice">₹0</span>
-                                </div>
-                                <div class="summary-row">
-                                    <span class="label">GST (18%):</span>
-                                    <span class="value" id="summaryGst">₹0</span>
-                                </div>
-                                <div class="summary-row total">
-                                    <span class="label">Grand Total:</span>
-                                    <span class="value" id="summaryTotal">₹0</span>
-                                </div>
+                    <div class="about-content-card">
+                        <div class="section-tag">
+                            <i class="fa-solid fa-star"></i> Our Story
+                        </div>
+                        <h3>Redefining Beauty &amp; Luxury</h3>
+                        <p>
+                            At Cuts & Curves, we believe that self-care is not a luxury, but a necessity. Our team is dedicated to creating custom grooming, styling, and aesthetic treatments that align with your unique personality, crafting your personal masterpiece with ultimate precision.
+                        </p>
+                        <p>
+                            We select only the premium organic, cruelty-free cosmetic lines to ensure your skin and hair receive nourishing, non-toxic care. Every visit is designed to pamper and restore, setting a new standard for luxury salon experiences in Lucknow.
+                        </p>
+                        <div class="about-perk-grid">
+                            <div class="about-perk-item">
+                                <span class="perk-icon"><i class="fa-solid fa-leaf"></i></span>
+                                <span>Organic Ingredients</span>
                             </div>
-                            <button class="btn btn-primary btn-block" id="confirmBookingBtn" disabled>Confirm Booking</button>
+                            <div class="about-perk-item">
+                                <span class="perk-icon"><i class="fa-solid fa-award"></i></span>
+                                <span>Certified Masters</span>
+                            </div>
+                            <div class="about-perk-item">
+                                <span class="perk-icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
+                                <span>Hygiene-First Standards</span>
+                            </div>
+                            <div class="about-perk-item">
+                                <span class="perk-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span>Hassle-Free Booking</span>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:1rem; margin-top:1.5rem; flex-wrap:wrap;">
+                            <a href="booking.html" class="btn btn-primary">Book Your Visit</a>
+                            <a href="about.html" class="btn" style="border: 1px solid var(--border-color); color:#fff;">Our Heritage</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section services-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag"><i class="fa-solid fa-Scissors"></i> Our Menu</span>
+                    <h2 class="section-title">Luxury Treatments</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-desc">Experience our signature services meticulously crafted to enhance your natural aesthetic.</p>
+                </div>
+                
+                <div class="services-grid" id="homepageServicesGrid">
+                    <!-- Loaded dynamically via app.js, with visual skeletons -->
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+
+                <div class="reveal" style="display:flex; justify-content:center; gap:1.25rem; margin-top:3.5rem; flex-wrap:wrap;">
+                    <a href="booking.html" class="btn btn-primary">Schedule Appointment</a>
+                    <a href="services.html" class="btn" style="border: 1px solid var(--border-color); color:#fff;">View Full Menu</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag"><i class="fa-regular fa-image"></i> Showcase</span>
+                    <h2 class="section-title">Inside Cuts &amp; Curves</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-desc">A visual glimpse into our aesthetic environments and premium styling results.</p>
+                </div>
+                
+                <div class="gallery-grid" id="homepageGalleryGrid">
+                    <!-- Dynamic Gallery Grid -->
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-image"></div>
+                </div>
+                <div class="reveal" style="text-align:center; margin-top:3rem;">
+                    <a href="gallery.html" class="btn" style="border: 1px solid var(--border-color); color:#fff;">Explore Showcase Grid</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section testimonials-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag"><i class="fa-solid fa-quote-left"></i> Feedbacks</span>
+                    <h2 class="section-title">What Our Guests Say</h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="testimonial-slider-container reveal">
+                    <div class="testimonial-track" id="testimonialTrack">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">
+                                <div class="stars-rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="testimonial-quote">"Cuts & Curves has raised the bar for luxury hair grooming in Lucknow. Vikram's haircuts are absolute works of art. The ambient dark gold theme made my styling experience feel incredibly premium."</p>
+                                <span class="client-name">Aarav Mehta</span>
+                                <span class="client-role">Signature Styling Guest</span>
+                            </div>
+                        </div>
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">
+                                <div class="stars-rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="testimonial-quote">"I had an advanced skin hydration treatment from Priya and it was revitalizing. Her knowledge and the premium organic ingredients used left my skin glowing for days. Truly worth every bit."</p>
+                                <span class="client-name">Shreya Sen</span>
+                                <span class="client-role">Skin Therapy Guest</span>
+                            </div>
+                        </div>
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-slide">
+                            <div class="testimonial-content">
+                                <div class="stars-rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="testimonial-quote">"The spa massage and deep conditioning therapy is my absolute go-to. Rajesh is highly experienced and maintains perfect hygiene standards. Highly recommend scheduling through WhatsApp!"</p>
+                                <span class="client-name">Kabir Malhotra</span>
+                                <span class="client-role">Regular Spa Guest</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slider Nav -->
+                    <button class="slider-arrow prev-slide-arrow" aria-label="Previous Testimonial"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="slider-arrow next-slide-arrow" aria-label="Next Testimonial"><i class="fa-solid fa-arrow-right"></i></button>
+                    <div class="slider-dots" id="sliderDots">
+                        <span class="s-dot active" data-index="0"></span>
+                        <span class="s-dot" data-index="1"></span>
+                        <span class="s-dot" data-index="2"></span>
+                    </div>
+                </div>
+                <div class="reveal" style="text-align:center; margin-top:2.5rem;">
+                    <a href="reviews.html" class="btn" style="border: 1px solid var(--border-color); color:#fff;">Read All Guest Reviews</a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content ticket-pass">
-            <div class="ticket-header">
-                <div class="ticket-brand">
-                    <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
-                    <h4>CUTS & CURVES</h4>
-                    <span class="ticket-brand-sub">LUXURY SALON & SPA</span>
-                </div>
-                <div class="ticket-status-badge">CONFIRMED</div>
-            </div>
-            <div class="ticket-divider-top"></div>
-            <div class="ticket-body">
-                <div class="success-alert">
-                    <span class="success-checkmark"><i class="fa-solid fa-circle-check"></i></span>
-                    <h3>Reservation Secured</h3>
-                    <p>Your luxury grooming experience has been reserved successfully.</p>
-                </div>
-                <div class="ticket-details-grid">
-                    <div class="ticket-cell">
-                        <span class="ticket-label">APPOINTMENT ID</span>
-                        <span class="ticket-val" id="ticketId">CC-98273</span>
-                    </div>
-                    <div class="ticket-cell">
-                        <span class="ticket-label">EXPERIENCE / SERVICE</span>
-                        <span class="ticket-val" id="ticketService">Signature Haircut & Styling</span>
-                    </div>
-                    <div class="ticket-cell">
-                        <span class="ticket-label">EXPERT STYLIST</span>
-                        <span class="ticket-val" id="ticketStylist">Vikram</span>
-                    </div>
-                    <div class="ticket-cell">
-                        <span class="ticket-label">DATE & TIME</span>
-                        <span class="ticket-val" id="ticketDate">May 30, 2026 at 10:00 AM</span>
-                    </div>
-                </div>
-            </div>
-            <div class="ticket-stub-divider">
-                <div class="divider-circle circle-left"></div>
-                <div class="divider-dashed-line"></div>
-                <div class="divider-circle circle-right"></div>
-            </div>
-            <div class="ticket-footer">
-                <div class="ticket-price-section">
-                    <span class="ticket-label">GRAND TOTAL (INC. GST)</span>
-                    <span class="ticket-price" id="ticketTotal">₹942</span>
-                </div>
-                <!-- Stylized Barcode -->
-                <div class="barcode-wrapper">
-                    <div class="barcode-lines">
-                        <div class="line thin"></div>
-                        <div class="line thick"></div>
-                        <div class="line medium"></div>
-                        <div class="line thin"></div>
-                        <div class="line thick"></div>
-                        <div class="line thin"></div>
-                        <div class="line medium"></div>
-                        <div class="line thick"></div>
-                        <div class="line thin"></div>
-                        <div class="line medium"></div>
-                        <div class="line thick"></div>
-                    </div>
-                    <span class="barcode-num">CC-RESERVE-2026</span>
-                </div>
-            </div>
-            <button class="btn btn-primary btn-block" onclick="closeModal()">Return to Salon</button>
-        </div>
-    </div>
-
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-info">
-                <h3>Cuts & Curves</h3>
-                <p>Vidhayak Niwas, Basement Community Centre</p>
-                <p>Aishbagh Rd, Rajendra Nagar, Lucknow, UP</p>
+                <h3>CUTS &amp; CURVES</h3>
+                <p>Vidhayak Niwas, Basement Community Centre, Aishbagh Rd, Rajendra Nagar, Lucknow, UP</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://maps.google.com" target="_blank" aria-label="Google Maps"><i class="fa-solid fa-map-location-dot"></i></a>
+                </div>
             </div>
             <div class="footer-hours">
-                <h4>Opening Hours</h4>
+                <h4>Hours of Luxury</h4>
                 <p>Monday - Sunday: 10:00 AM - 8:30 PM</p>
+                <p>Pre-scheduling via WhatsApp is highly recommended.</p>
             </div>
         </div>
         <p class="copyright">&copy; 2026 Cuts & Curves Luxury Salon. All Rights Reserved.</p>
     </footer>
 
+    <!-- Image Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox">
+        <img src="" alt="Gallery Image Expanded" id="lightboxImg">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+    </div>
+
+    <!-- Scripts -->
     <script src="app.js"></script>
 </body>
 </html>

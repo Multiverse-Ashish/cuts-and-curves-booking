@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard | Cuts & Curves Salon</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ========== Admin Sidebar ========== -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="sidebar-logo">
+        <span class="logo-icon">&#128135;</span>
+        <h2>CUTS & CURVES</h2>
+      </a>
+      <div class="sidebar-badge">Control Panel</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="sidebar-link active" data-tab="settings">
+        <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.611 3.611 0 0112 15.6z"/></svg>
+        <span>Credentials Config</span>
+      </a>
+      <a href="#" class="sidebar-link" data-tab="services">
+        <svg viewBox="0 0 24 24"><path d="M4.53 11.9l-1.24-1.24a.996.996 0 010-1.41L7.75 4.8c.39-.39 1.02-.39 1.41 0L10.4 6.04 4.53 11.9zm14.94-7.1l-1.24-1.24c-.39-.39-1.02-.39-1.41 0L12.36 8l5.87 5.87 4.46-4.46c.39-.39.39-1.02 0-1.41l-3.22-3.2zM12 11l-8 8v1h1l8-8-1-1z"/></svg>
+        <span>Salon Services</span>
+      </a>
+      <a href="#" class="sidebar-link" data-tab="gallery">
+        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+        <span>Design Gallery</span>
+      </a>
+      <a href="#" class="sidebar-link" data-tab="bookings">
+        <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+        <span>Bookings List</span>
+      </a>
+      <a href="#" class="sidebar-link" data-tab="reviews">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        <span>Reviews List</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="sidebar-link sidebar-back">
+        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        <span>Back to Website</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ========== Mobile Header ========== -->
+  <div class="admin-mobile-header">
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="mobile-logo">&#128135; Cuts & Curves Admin</span>
+  </div>
+
+  <!-- ========== Admin Main Content ========== -->
+  <main class="admin-main">
+    <div class="admin-header">
+      <h1 class="admin-title" id="pageTitle">Credentials Config</h1>
+      <div class="admin-header-actions">
+        <span class="connection-status" id="connectionStatus">
+          <span class="status-dot"></span>
+          <span class="status-text">Disconnected</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ===== API Settings Tab ===== -->
+    <div class="tab-content active" id="tab-settings">
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>JSONBin & ImgBB API Configuration</h3>
+          <p class="card-desc">Enter your credentials below to enable live dynamic syncing. Keys are saved securely in your local browser storage.</p>
+        </div>
+        <form id="settingsForm">
+          <div class="admin-form-group">
+            <label for="jsonbinApiKey">JSONBin Master API Key</label>
+            <input type="password" id="jsonbinApiKey" placeholder="Enter JSONBin master API key" autocomplete="off">
+            <small>Find this on your jsonbin.io profile settings.</small>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="jsonbinBinId">JSONBin Bin ID</label>
+            <input type="text" id="jsonbinBinId" placeholder="Enter JSONBin Bin ID" autocomplete="off">
+            <small>Create a private/public bin at jsonbin.io initialized with: <code>{"services":[],"gallery":[],"bookings":[]}</code></small>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="imgbbApiKey">ImgBB API Key</label>
+            <input type="password" id="imgbbApiKey" placeholder="Enter ImgBB API key" autocomplete="off">
+            <small>Generate a free API key at api.imgbb.com to host image uploads.</small>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="whatsappNumber">Business WhatsApp Phone (With Country Code, No '+')</label>
+            <input type="text" id="whatsappNumber" placeholder="e.g. 919044041213" autocomplete="off">
+            <small>Phone number to receive client messages (include country code without spacing, e.g. 91 for India).</small>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Config</button>
+            <button type="button" class="btn btn-secondary" id="testConnectionBtn">Test Connection</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Quick Guide -->
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>📖 Connection Instructions</h3>
+          <p class="card-desc">Setup database and file storage in minutes:</p>
+        </div>
+        <div style="font-size: 0.8rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+          <p><strong>1. Database (jsonbin.io):</strong> Register a free account, copy the Master Key, create a new Bin containing the template: <code>{"services": [], "gallery": [], "bookings": []}</code>, and paste the Bin ID here.</p>
+          <p><strong>2. Image Hosting (imgbb.com):</strong> Visit api.imgbb.com, get your API Key, and paste it to enable image uploads for services and gallery pictures.</p>
+          <p><strong>3. WhatsApp Routing:</strong> Configure your phone digits in the box above. Clients booking appointments will automatically compose messages to this number.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Services Tab ===== -->
+    <div class="tab-content" id="tab-services">
+      <!-- Add Service Form -->
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>Create Service Offering</h3>
+          <p class="card-desc">Fill in details and upload an optional image backdrop to display on the menu page.</p>
+        </div>
+        <form id="addServiceForm">
+          <div class="admin-form-row">
+            <div class="admin-form-group">
+              <label for="serviceName">Service Title</label>
+              <input type="text" id="serviceName" placeholder="e.g. Signature Blow Dry" required>
+            </div>
+            <div class="admin-form-group">
+              <label for="servicePrice">Price (₹ or $)</label>
+              <input type="text" id="servicePrice" placeholder="e.g. ₹699" required>
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label for="serviceDesc">Service Description</label>
+            <textarea id="serviceDesc" rows="3" placeholder="Explain what the service includes..." required></textarea>
+          </div>
+          <div class="admin-form-group">
+            <label>Service Display Image</label>
+            <div class="file-upload-area" id="serviceImageDrop">
+              <input type="file" id="serviceImage" accept="image/*" hidden>
+              <div class="upload-placeholder" id="serviceUploadPlaceholder">
+                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                <p>Click or drag image file here to select</p>
+                <small>Max file size 10MB (PNG, JPG, WEBP)</small>
+              </div>
+              <div class="upload-preview hidden" id="serviceUploadPreview">
+                <img src="" alt="Selected Preview" id="servicePreviewImg">
+                <button type="button" class="remove-preview" id="removeServicePreview">&times;</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="addServiceBtn">Add Service</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Services List -->
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>Menu Offerings List</h3>
+          <p class="card-desc">List of all active dynamic service records.</p>
+        </div>
+        <div class="services-list" id="adminServicesList">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.611 3.611 0 0112 15.6z"/></svg>
+            <p>Please enter and connect your API keys under Settings to manage services.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Gallery Tab ===== -->
+    <div class="tab-content" id="tab-gallery">
+      <!-- Upload Gallery Form -->
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>Upload Gallery Asset</h3>
+          <p class="card-desc">Add premium photos showcasing salon spaces and finished client styles.</p>
+        </div>
+        <form id="addGalleryForm">
+          <div class="admin-form-group">
+            <label for="galleryImageLabel">Image Caption / Tag (Optional)</label>
+            <input type="text" id="galleryImageLabel" placeholder="e.g. Salon Main Floor, Hair Styling Room">
+          </div>
+          <div class="admin-form-group">
+            <label>Select Photo File</label>
+            <div class="file-upload-area" id="galleryImageDrop">
+              <input type="file" id="galleryImage" accept="image/*" hidden>
+              <div class="upload-placeholder" id="galleryUploadPlaceholder">
+                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                <p>Click or drag image file here to select</p>
+                <small>Max file size 10MB (PNG, JPG, WEBP)</small>
+              </div>
+              <div class="upload-preview hidden" id="galleryUploadPreview">
+                <img src="" alt="Selected Preview" id="galleryPreviewImg">
+                <button type="button" class="remove-preview" id="removeGalleryPreview">&times;</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="addGalleryBtn">Upload Image</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Current Gallery -->
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>Active Gallery Grid</h3>
+          <p class="card-desc">Images currently visible in the salon showcase grid.</p>
+        </div>
+        <div class="admin-gallery-grid" id="adminGalleryGrid">
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <p>Connect API to load showcase images.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Bookings Tab ===== -->
+    <div class="tab-content" id="tab-bookings">
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>Appointment Log Dashboard</h3>
+          <p class="card-desc">Logged list of all booking requests made through the scheduler page.</p>
+        </div>
+        <div class="bookings-table-wrapper">
+          <table class="bookings-table" id="bookingsTable">
+            <thead>
+              <tr>
+                <th>Guest Name</th>
+                <th>Phone Number</th>
+                <th>Selected Service</th>
+                <th>Date</th>
+                <th>Time Slot</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTableBody">
+              <tr>
+                <td colspan="7" class="empty-state-table">No connection established. Please check Settings.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Reviews Tab ===== -->
+    <div class="tab-content" id="tab-reviews">
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>Guest Feedbacks Dashboard</h3>
+          <p class="card-desc">Review list of guest ratings and testimonies submitted on the reviews page.</p>
+        </div>
+        <div class="bookings-table-wrapper">
+          <table class="bookings-table" id="reviewsTable">
+            <thead>
+              <tr>
+                <th>Guest Name</th>
+                <th>Experience/Role</th>
+                <th>Rating</th>
+                <th>Review Comments</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="reviewsTableBody">
+              <tr>
+                <td colspan="6" class="empty-state-table">No connection established. Please check Settings.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== Toast Notifications Container ========== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="admin.js"></script>
+</body>
+</html>
