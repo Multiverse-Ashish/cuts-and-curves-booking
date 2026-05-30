@@ -171,28 +171,30 @@
     .table-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: var(--radius); box-shadow: var(--shadow);
-      overflow-x: auto;          /* key: table scrolls horizontally */
+      overflow: hidden;  /* clipping only — inner div scrolls */
+    }
+    /* ── The actual scroll container: wraps only the table ── */
+    .table-scroll {
+      overflow-x: auto;
       overflow-y: visible;
       -webkit-overflow-scrolling: touch;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 960px;          /* slightly reduced for easier mobile scroll */
+      min-width: 1020px;  /* wide enough for all columns incl. email */
     }
-    /* thead sticks below the site header — using CSS var --hh */
+    /* thead: NOT sticky — sticky inside overflow-x:auto is broken in all browsers.
+       Instead the whole page scrolls; the main header is sticky for the viewport. */
     thead {
       background: #f8fafc;
       border-bottom: 2px solid var(--border);
-      position: sticky;
-      top: var(--hh);   /* matches exact header height */
-      z-index: 20;
     }
     th {
       padding: 11px 13px; text-align: left;
       font-size: .68rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: .07em; color: var(--muted); white-space: nowrap;
-      background: #f8fafc; /* must have own bg to cover scrolled rows */
+      background: #f8fafc;
     }
     tbody tr { border-bottom: 1px solid var(--border); transition: background .15s; }
     tbody tr:last-child { border-bottom: none; }
@@ -251,8 +253,24 @@
     }
     .price-input:focus { outline: none; border-color: var(--accent); background: #fff; }
 
-    .cell-actions { min-width: 220px; }
+    .cell-actions { min-width: 270px; }
     .act-row { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+
+    /* Email input + button */
+    .email-row {
+      display: flex; align-items: center; gap: 5px; margin-top: 5px; flex-wrap: wrap;
+    }
+    .email-input {
+      flex: 1 1 130px; min-width: 110px; max-width: 180px;
+      padding: 5px 10px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: .76rem; color: var(--text);
+      background: var(--bg); transition: border-color .2s;
+    }
+    .email-input:focus { outline: none; border-color: #8b5cf6; background: #fff; }
+    .email-input::placeholder { color: var(--muted); font-size: .72rem; }
+    .btn-mail { background: #8b5cf6; color: #fff; }
+    .btn-mail:hover:not(:disabled) { background: #6d28d9; transform: translateY(-1px); }
+    .btn-mail:disabled { opacity: .42; cursor: not-allowed; }
 
     .act-btn {
       display: inline-flex; align-items: center; gap: 5px;
@@ -405,12 +423,12 @@
 
       /* Table */
       .table-wrap { padding: 0 12px; margin-top: 10px; }
-      thead { position: static; } /* thead not sticky on mobile to avoid offset confusion */
       th    { font-size: .65rem; padding: 10px 10px; }
       td    { padding: 10px 10px; font-size: .82rem; }
       .status-select { min-width: 120px; font-size: .72rem; }
       .cell-addr { max-width: 130px; font-size: .72rem; }
       .price-input { width: 76px; font-size: .82rem; }
+      .email-input { min-width: 90px; font-size: .7rem; }
       .act-btn { padding: 5px 10px; font-size: .7rem; }
 
       /* Footer summary */
@@ -519,25 +537,27 @@
 <div class="table-wrap">
   <p class="scroll-hint"><i class="fas fa-exchange-alt"></i> Scroll left → right to see all columns</p>
   <div class="table-card">
-    <table id="leads-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Status</th>
-          <th>Business Name</th>
-          <th>Address</th>
-          <th>Phone</th>
-          <th>Demo Site</th>
-          <th>Deal ₹</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="leads-tbody">
-        <!-- Rendered by JS -->
-      </tbody>
-    </table>
-  </div>
-</div>
+    <div class="table-scroll">
+      <table id="leads-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Status</th>
+            <th>Business Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Demo Site</th>
+            <th>Deal ₹</th>
+            <th>Actions + Email</th>
+          </tr>
+        </thead>
+        <tbody id="leads-tbody">
+          <!-- Rendered by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div><!-- /.table-card -->
+</div><!-- /.table-wrap -->
 
 <!-- ── FOOTER SUMMARY ─────────────────────────────────────────────────── -->
 <div class="footer-summary">
@@ -656,12 +676,29 @@ const DEFAULT_LEADS = [
 // ─────────────────────────────────────────────────────────────────────────────
 // STATE
 // ─────────────────────────────────────────────────────────────────────────────
-let LEADS = [];     // active working dataset (may differ from DEFAULT if imported)
-const state = {
-  status: {},   // idx -> 'qualified' | 'notqualified' | 'pending'
-  prices: {},   // idx -> number
-};
+const STORAGE_KEY = 'digiload-crm-v2';
+let LEADS = [];
+let state = { status: {}, prices: {}, emails: {} };
 let activeFilter = 'all';
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    state.status = s.status || {};
+    state.prices = s.prices || {};
+    state.emails = s.emails || {};
+    LEADS = s.leads && s.leads.length ? s.leads : DEFAULT_LEADS.map(l => ({...l}));
+  } catch(e) { 
+    state = { status:{}, prices:{}, emails:{} }; 
+    LEADS = DEFAULT_LEADS.map(l => ({...l}));
+  }
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    status: state.status, prices: state.prices, emails: state.emails, leads: LEADS
+  }));
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PHONE CLEANUP
@@ -704,6 +741,7 @@ Can we connect for a quick discussion? 🚀`;
 function renderRow(lead, idx) {
   const status  = state.status[idx] || 'pending';
   const price   = state.prices[idx] || '';
+  const email   = state.emails[idx] || '';
 
   const rowClass = status === 'qualified' ? 'row-qualified'
                  : status === 'notqualified' ? 'row-notqualified' : '';
@@ -731,7 +769,7 @@ function renderRow(lead, idx) {
     ? `<a class="url-link" href="${lead.url}" target="_blank"><i class="fas fa-external-link-alt" style="font-size:.68rem"></i> View Site</a>`
     : `<span class="no-data">Not deployed</span>`;
 
-  // Status dropdown
+  // Status dropdown classes
   const sSel = {
     qualified:    's-qualified',
     notqualified: 's-notqualified',
@@ -747,6 +785,11 @@ function renderRow(lead, idx) {
   const callBtn = lead.phone
     ? `<a class="act-btn btn-call" href="tel:${phoneTel}" title="Call ${lead.name}"><i class="fas fa-phone"></i> Call</a>`
     : `<button class="act-btn btn-call" disabled title="No phone number"><i class="fas fa-phone"></i> Call</button>`;
+
+  // Email button — active when email filled in
+  const mailBtn = email
+    ? `<button class="act-btn btn-mail" onclick="sendEmail(${idx})" title="Send email to ${lead.name}"><i class="fas fa-envelope"></i> Mail</button>`
+    : `<button class="act-btn btn-mail" disabled title="Enter email address below to enable"><i class="fas fa-envelope"></i> Mail</button>`;
 
   return `<tr id="row-${idx}" class="${rowClass}">
   <td class="cell-num">${idx + 1}</td>
@@ -772,6 +815,12 @@ function renderRow(lead, idx) {
       <button class="act-btn btn-copy" id="copy-${idx}" onclick="copyMsg(${idx})" title="Copy outreach message">
         <i class="fas fa-copy"></i> Copy
       </button>
+    </div>
+    <div class="email-row">
+      <input type="email" class="email-input" id="email-${idx}"
+        value="${email}" placeholder="email@business.com"
+        oninput="saveEmail(${idx}, this.value)" title="Business email address">
+      ${mailBtn}
     </div>
   </td>
 </tr>`;
@@ -811,8 +860,6 @@ function renderTable() {
 // ─────────────────────────────────────────────────────────────────────────────
 function setStatus(idx, val) {
   state.status[idx] = val;
-  const row = document.getElementById('row-${idx}');
-  // Re-render just this row
   const tr = document.getElementById(`row-${idx}`);
   if (tr) {
     const newTr = document.createElement('tbody');
@@ -833,6 +880,57 @@ function sendWA(idx) {
   const lead = LEADS[idx];
   if (!lead.wa) return;
   window.open(`https://wa.me/${lead.wa}?text=${encodeURIComponent(buildMessage(lead))}`, '_blank');
+}
+
+// ── Email ──────────────────────────────────────────────────────────────────
+function saveEmail(idx, val) {
+  state.emails[idx] = val.trim();
+  saveState();
+  const tr = document.getElementById(`row-${idx}`);
+  if (!tr) return;
+  const mailBtn = tr.querySelector('.btn-mail');
+  if (!mailBtn) return;
+  if (val.trim()) {
+    mailBtn.disabled = false;
+    mailBtn.title = `Send email to ${LEADS[idx].name}`;
+  } else {
+    mailBtn.disabled = true;
+    mailBtn.title = 'Enter email address below to enable';
+  }
+}
+
+function buildEmailBody(lead) {
+  return `Hi,
+
+I noticed that ${lead.name} doesn't have a professional online presence — no booking page, no service showcase, no client reviews.
+
+I've already built a premium demo website for your salon:
+${lead.url || '(Link coming soon)'}
+
+Here's what's included:
+✅ Online Appointment Booking via WhatsApp
+✅ Full Services & Pricing Listed
+✅ Professional Photo Gallery
+✅ Client Reviews Section
+✅ Mobile-Friendly & Fast
+
+Take a look — how's your experience? I can customise it fully with your branding, team, and offers.
+
+Can we connect for a quick 10-min call?
+
+Best regards,
+DigiLoad`;
+}
+
+function sendEmail(idx) {
+  const lead  = LEADS[idx];
+  const email = state.emails[idx];
+  if (!email) { showToast('Enter the email address first.', 'fas fa-exclamation-triangle', true); return; }
+  const subject = encodeURIComponent(`Premium Website Ready for ${lead.name} 🚀`);
+  const body    = encodeURIComponent(buildEmailBody(lead));
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${subject}&body=${body}`;
+  window.open(gmailUrl, '_blank');
+  showToast(`Opening Gmail for ${lead.name}…`, 'fas fa-envelope');
 }
 
 function copyMsg(idx) {
@@ -882,7 +980,6 @@ function updateStats() {
   document.getElementById('sum-revenue').textContent    = '₹' + fmt(revenue);
   document.getElementById('sum-avg').textContent        = avg ? '₹' + fmt(avg) : '₹0';
   document.getElementById('lead-count').textContent     = total;
-  // update filter buttons
   document.querySelector('[data-filter="all"]').textContent          = `All (${total})`;
   document.querySelector('[data-filter="qualified"]').textContent    = `✅ Qualified (${qualified})`;
   document.querySelector('[data-filter="notqualified"]').textContent = `❌ Not Qualified (${notq})`;
@@ -1034,29 +1131,29 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 document.getElementById('search-input').addEventListener('input', renderTable);
 
 // ─────────────────────────────────────────────────────────────────────────────
-// LOCAL STORAGE
+// LOCAL STORAGE  (single canonical save/load — emails included)
 // ─────────────────────────────────────────────────────────────────────────────
 function saveState() {
-  const saved = {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
     status: state.status,
     prices: state.prices,
-    leads:  LEADS,  // also save imported leads
-  };
-  localStorage.setItem('digiload-crm-v2', JSON.stringify(saved));
+    emails: state.emails,   // ← persist emails
+    leads:  LEADS,
+  }));
 }
 
 function loadState() {
   try {
-    const saved = JSON.parse(localStorage.getItem('digiload-crm-v2') || '{}');
-    if (saved.status) Object.assign(state.status, saved.status);
-    if (saved.prices) Object.assign(state.prices, saved.prices);
-    if (saved.leads && saved.leads.length) {
-      LEADS = saved.leads;
-    } else {
-      LEADS = DEFAULT_LEADS.map(l => ({...l}));
-    }
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    state.status = saved.status || {};
+    state.prices = saved.prices || {};
+    state.emails = saved.emails || {};   // ← restore emails
+    LEADS = (saved.leads && saved.leads.length)
+      ? saved.leads
+      : DEFAULT_LEADS.map(l => ({...l}));
   } catch (e) {
-    LEADS = DEFAULT_LEADS.map(l => ({...l}));
+    state  = { status:{}, prices:{}, emails:{} };
+    LEADS  = DEFAULT_LEADS.map(l => ({...l}));
   }
 }
 
