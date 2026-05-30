@@ -83,16 +83,57 @@ a {
     color: var(--gold);
 }
 
-/* Hero Section */
-.hero {
+/* Hero Carousel Section */
+.hero-carousel {
     position: relative;
-    height: 60vh;
+    height: 70vh;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.carousel-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
     text-align: center;
     padding: 2rem;
+    z-index: 1;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+.slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.1);
+    transition: transform 6s ease;
+}
+
+.carousel-slide.active .slide-bg {
+    transform: scale(1);
 }
 
 .hero-overlay {
@@ -101,30 +142,106 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(11, 11, 12, 0.6);
-    z-index: 1;
+    background: linear-gradient(to bottom, rgba(11, 11, 12, 0.4) 0%, rgba(11, 11, 12, 0.8) 100%);
+    z-index: 2;
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
-    max-width: 800px;
+    z-index: 3;
+    max-width: 850px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease 0.3s;
 }
 
-.hero h2 {
-    font-size: 3.5rem;
+.carousel-slide.active .hero-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: var(--gold);
     margin-bottom: 1rem;
-    color: #fff;
-    letter-spacing: 1px;
+    display: inline-block;
+    font-weight: 600;
 }
 
-.hero p {
-    font-size: 1.2rem;
+.hero-carousel h2 {
+    font-size: 3.8rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+.hero-carousel p {
+    font-size: 1.1rem;
     font-weight: 300;
     letter-spacing: 2px;
-    color: #d1d3d6;
-    margin-bottom: 2rem;
+    color: #e0e2e5;
+    margin-bottom: 2.5rem;
     text-transform: uppercase;
+}
+
+/* Carousel controls */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(18, 18, 18, 0.4);
+    border: 1px solid var(--border-color);
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s;
+}
+
+.carousel-arrow:hover {
+    background: var(--gold);
+    color: #0b0b0c;
+    border-color: var(--gold);
+}
+
+.prev-arrow {
+    left: 2rem;
+}
+
+.next-arrow {
+    right: 2rem;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.carousel-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.carousel-dots .dot:hover, .carousel-dots .dot.active {
+    background: var(--gold);
+    transform: scale(1.2);
 }
 
 /* Buttons */
@@ -242,18 +359,41 @@ a {
 
 .service-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1.25rem;
+    padding: 1.5rem;
     border: 1px solid var(--border-color);
-    background-color: rgba(255, 255, 255, 0.02);
-    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.01);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     cursor: pointer;
+    gap: 1.5rem;
+}
+
+.service-media {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--gold);
+    transition: all 0.4s;
+    background-color: rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .service-item:hover, .service-item.selected {
     border-color: var(--gold);
-    background-color: rgba(197, 168, 128, 0.05);
+    background-color: rgba(197, 168, 128, 0.04);
+    box-shadow: 0 4px 20px rgba(197, 168, 128, 0.08);
+}
+
+.service-item:hover .service-media, .service-item.selected .service-media {
+    border-color: var(--gold);
+    background-color: var(--gold);
+    color: #0b0b0c;
+    transform: rotate(360deg);
 }
 
 .service-info h5 {
@@ -640,9 +780,21 @@ hr {
         grid-template-columns: 1fr;
     }
     
-    .hero h2 {
+    .hero-carousel h2 {
         font-size: 2.2rem;
     }
+    
+    .hero-carousel {
+        height: 50vh;
+    }
+    
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .prev-arrow { left: 0.5rem; }
+    .next-arrow { right: 0.5rem; }
     
     .header {
         flex-direction: column;
@@ -657,4 +809,197 @@ hr {
     .nav a {
         margin: 0 1rem;
     }
+}
+
+/* Boarding Pass Receipt Style */
+.ticket-pass {
+    background: #0e0e10;
+    border: 1px solid rgba(197, 168, 128, 0.3);
+    border-radius: 8px;
+    padding: 0 !important;
+    max-width: 520px !important;
+    width: 95% !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(197, 168, 128, 0.15) !important;
+    overflow: hidden;
+}
+
+.ticket-header {
+    background: linear-gradient(135deg, #17171a 0%, #0c0c0e 100%);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(197, 168, 128, 0.1);
+}
+
+.ticket-brand h4 {
+    color: #fff;
+    font-size: 1.25rem;
+    letter-spacing: 3px;
+    margin-bottom: 2px;
+}
+
+.ticket-brand-sub {
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.ticket-status-badge {
+    background-color: rgba(197, 168, 128, 0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    letter-spacing: 2px;
+}
+
+.ticket-body {
+    padding: 2.2rem 2rem;
+}
+
+.success-alert {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.success-checkmark {
+    font-size: 3rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.8rem;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.success-alert h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    letter-spacing: 1px;
+}
+
+.success-alert p {
+    font-size: 0.85rem;
+    color: #8c9096;
+}
+
+.ticket-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    padding-top: 1.5rem;
+}
+
+.ticket-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.ticket-label {
+    font-size: 0.65rem;
+    color: #64686e;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.ticket-val {
+    font-size: 0.9rem;
+    color: #f5f5f0;
+    font-weight: 500;
+}
+
+/* Dashed ticket tear line */
+.ticket-stub-divider {
+    position: relative;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider-circle {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #0b0b0c;
+    border: 1px solid rgba(197, 168, 128, 0.3);
+    z-index: 5;
+}
+
+.circle-left {
+    left: -12px;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+.circle-right {
+    right: -12px;
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.divider-dashed-line {
+    width: 100%;
+    height: 0;
+    border-top: 1px dashed rgba(197, 168, 128, 0.3);
+}
+
+.ticket-footer {
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(197, 168, 128, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.ticket-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    margin-top: 2px;
+    font-family: 'Playfair Display', serif;
+}
+
+.barcode-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.barcode-lines {
+    display: flex;
+    height: 35px;
+    gap: 2px;
+    margin-bottom: 4px;
+}
+
+.barcode-lines .line {
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 100%;
+}
+
+.barcode-lines .line.thin { width: 1px; }
+.barcode-lines .line.medium { width: 2px; }
+.barcode-lines .line.thick { width: 4px; }
+
+.barcode-num {
+    font-size: 0.6rem;
+    color: #64686e;
+    letter-spacing: 2px;
+}
+
+.ticket-pass .btn-block {
+    margin: 0 auto 2.5rem;
+    max-width: 85%;
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }

@@ -25,13 +25,50 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h2>Sculpting Your Masterpiece</h2>
-                <p>Lucknow's Finest Luxury Grooming & Styling Experience</p>
-                <a href="#booking" class="btn btn-primary">Book Premium Experience</a>
+        <!-- Premium Hero Carousel -->
+        <section class="hero-carousel" id="home">
+            <div class="carousel-container">
+                <!-- Slide 1 -->
+                <div class="carousel-slide active">
+                    <div class="slide-bg" style="background-image: url('luxury_salon_interior.png');"></div>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <span class="slide-subtitle">Welcome to Cuts & Curves</span>
+                        <h2>Sculpting Your Masterpiece</h2>
+                        <p>Lucknow's Premier Destination for Luxury Grooming & Aesthetics</p>
+                        <a href="#booking" class="btn btn-primary">Reserve Appointment</a>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <div class="slide-bg" style="background-image: url('stylist_hair_cut.png');"></div>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <span class="slide-subtitle">Master Craftsmanship</span>
+                        <h2>Artistry in Every Cut</h2>
+                        <p>Experience personalized consultations with Lucknow's finest expert stylists</p>
+                        <a href="#booking" class="btn btn-primary">Meet Our Stylists</a>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <div class="slide-bg" style="background-image: url('hair_spa_treatment.png');"></div>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <span class="slide-subtitle">Rejuvenation & Wellness</span>
+                        <h2>Luxury Hair & Skin Therapies</h2>
+                        <p>Indulge in restorative organic treatments tailored to your ultimate comfort</p>
+                        <a href="#booking" class="btn btn-primary">Explore Treatments</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-arrow prev-arrow" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-arrow next-arrow" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
             </div>
         </section>
 
@@ -51,6 +88,9 @@
                             </div>
                             <div class="services-list">
                                 <div class="service-item" data-id="1" data-name="Signature Haircut & Styling" data-price="799">
+                                    <div class="service-media">
+                                        <i class="fa-solid fa-scissors"></i>
+                                    </div>
                                     <div class="service-info">
                                         <h5>Signature Haircut & Styling</h5>
                                         <p>Personalized consultation, luxury hair wash, cut, and blow-dry style.</p>
@@ -61,6 +101,9 @@
                                     </div>
                                 </div>
                                 <div class="service-item" data-id="2" data-name="Luxury Hair Spa & Therapy" data-price="1499">
+                                    <div class="service-media">
+                                        <i class="fa-solid fa-spa"></i>
+                                    </div>
                                     <div class="service-info">
                                         <h5>Luxury Hair Spa & Therapy</h5>
                                         <p>Deep conditioning treatment with essential oils and relaxing scalp massage.</p>
@@ -71,6 +114,9 @@
                                     </div>
                                 </div>
                                 <div class="service-item" data-id="3" data-name="Advanced Skin Treatment" data-price="1999">
+                                    <div class="service-media">
+                                        <i class="fa-solid fa-sparkles"></i>
+                                    </div>
                                     <div class="service-info">
                                         <h5>Advanced Skin Treatment</h5>
                                         <p>Hydrating and rejuvenating facial tailored to your specific skin needs.</p>
@@ -81,6 +127,9 @@
                                     </div>
                                 </div>
                                 <div class="service-item" data-id="4" data-name="Premium Beard Grooming" data-price="499">
+                                    <div class="service-media">
+                                        <i class="fa-solid fa-spray-can"></i>
+                                    </div>
                                     <div class="service-info">
                                         <h5>Premium Beard Grooming</h5>
                                         <p>Hot towel shave, beard trimming, styling, and organic beard oil treatment.</p>
@@ -109,14 +158,14 @@
                                 </div>
                                 <div class="stylist-item" data-id="2" data-name="Priya">
                                     <div class="stylist-img">
-                                        <i class="fa-solid fa-user-ninja"></i>
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
                                     </div>
                                     <h5>Priya</h5>
                                     <p>Skin Specialist</p>
                                 </div>
                                 <div class="stylist-item" data-id="3" data-name="Rajesh">
                                     <div class="stylist-img">
-                                        <i class="fa-solid fa-user-astronaut"></i>
+                                        <i class="fa-solid fa-scissors"></i>
                                     </div>
                                     <h5>Rajesh</h5>
                                     <p>Senior Groomer</p>
@@ -228,19 +277,70 @@
 
     <!-- Success Modal -->
     <div class="modal" id="successModal">
-        <div class="modal-content">
-            <span class="success-icon"><i class="fa-solid fa-circle-check"></i></span>
-            <h3>Booking Successful!</h3>
-            <p>Your luxury experience has been scheduled.</p>
-            <div class="ticket">
-                <div class="ticket-row"><strong>Appointment ID:</strong> <span id="ticketId">CC-98273</span></div>
-                <div class="ticket-row"><strong>Service:</strong> <span id="ticketService">Signature Haircut</span></div>
-                <div class="ticket-row"><strong>Expert:</strong> <span id="ticketStylist">Vikram</span></div>
-                <div class="ticket-row"><strong>Date:</strong> <span id="ticketDate">May 31, 2026</span></div>
-                <div class="ticket-row"><strong>Time:</strong> <span id="ticketTime">10:00 AM</span></div>
-                <div class="ticket-row"><strong>Total:</strong> <span id="ticketTotal">₹942</span></div>
+        <div class="modal-content ticket-pass">
+            <div class="ticket-header">
+                <div class="ticket-brand">
+                    <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
+                    <h4>CUTS & CURVES</h4>
+                    <span class="ticket-brand-sub">LUXURY SALON & SPA</span>
+                </div>
+                <div class="ticket-status-badge">CONFIRMED</div>
             </div>
-            <button class="btn btn-primary" onclick="closeModal()">Back to Website</button>
+            <div class="ticket-divider-top"></div>
+            <div class="ticket-body">
+                <div class="success-alert">
+                    <span class="success-checkmark"><i class="fa-solid fa-circle-check"></i></span>
+                    <h3>Reservation Secured</h3>
+                    <p>Your luxury grooming experience has been reserved successfully.</p>
+                </div>
+                <div class="ticket-details-grid">
+                    <div class="ticket-cell">
+                        <span class="ticket-label">APPOINTMENT ID</span>
+                        <span class="ticket-val" id="ticketId">CC-98273</span>
+                    </div>
+                    <div class="ticket-cell">
+                        <span class="ticket-label">EXPERIENCE / SERVICE</span>
+                        <span class="ticket-val" id="ticketService">Signature Haircut & Styling</span>
+                    </div>
+                    <div class="ticket-cell">
+                        <span class="ticket-label">EXPERT STYLIST</span>
+                        <span class="ticket-val" id="ticketStylist">Vikram</span>
+                    </div>
+                    <div class="ticket-cell">
+                        <span class="ticket-label">DATE & TIME</span>
+                        <span class="ticket-val" id="ticketDate">May 30, 2026 at 10:00 AM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ticket-stub-divider">
+                <div class="divider-circle circle-left"></div>
+                <div class="divider-dashed-line"></div>
+                <div class="divider-circle circle-right"></div>
+            </div>
+            <div class="ticket-footer">
+                <div class="ticket-price-section">
+                    <span class="ticket-label">GRAND TOTAL (INC. GST)</span>
+                    <span class="ticket-price" id="ticketTotal">₹942</span>
+                </div>
+                <!-- Stylized Barcode -->
+                <div class="barcode-wrapper">
+                    <div class="barcode-lines">
+                        <div class="line thin"></div>
+                        <div class="line thick"></div>
+                        <div class="line medium"></div>
+                        <div class="line thin"></div>
+                        <div class="line thick"></div>
+                        <div class="line thin"></div>
+                        <div class="line medium"></div>
+                        <div class="line thick"></div>
+                        <div class="line thin"></div>
+                        <div class="line medium"></div>
+                        <div class="line thick"></div>
+                    </div>
+                    <span class="barcode-num">CC-RESERVE-2026</span>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="closeModal()">Return to Salon</button>
         </div>
     </div>
 

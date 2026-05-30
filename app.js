@@ -43,6 +43,7 @@ const ticketTotal = document.getElementById('ticketTotal');
 document.addEventListener('DOMContentLoaded', () => {
     generateCalendar();
     setupListeners();
+    initCarousel();
 });
 
 // Setup Listeners
@@ -190,8 +191,7 @@ function showConfirmation() {
     ticketId.textContent = randomTicketId;
     ticketService.textContent = bookingState.service;
     ticketStylist.textContent = bookingState.stylist;
-    ticketDate.textContent = bookingState.date;
-    ticketTime.textContent = bookingState.time;
+    ticketDate.textContent = `${bookingState.date} at ${bookingState.time}`;
     ticketTotal.textContent = `₹${total.toLocaleString()}`;
     
     successModal.classList.add('active');
@@ -216,4 +216,71 @@ function closeModal() {
     if (selectedDay) selectedDay.classList.remove('selected');
     
     updateSummary();
+}
+
+// Hero Carousel Logic
+let currentSlide = 0;
+let carouselTimer = null;
+
+function initCarousel() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const prevBtn = document.querySelector('.prev-arrow');
+    const nextBtn = document.querySelector('.next-arrow');
+    
+    if (!slides.length) return;
+
+    function showSlide(index) {
+        // Reset active classes
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Normalize index
+        currentSlide = (index + slides.length) % slides.length;
+        
+        // Add active classes
+        slides[currentSlide].classList.add('active');
+        if (dots[currentSlide]) {
+            dots[currentSlide].classList.add('active');
+        }
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    // Auto cycle slide every 5 seconds
+    function startAutoplay() {
+        stopAutoplay();
+        carouselTimer = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoplay() {
+        if (carouselTimer) clearInterval(carouselTimer);
+    }
+
+    // Event listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+            startAutoplay();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startAutoplay();
+        });
+    }
+
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            showSlide(idx);
+            startAutoplay();
+        });
+    });
+
+    // Start
+    startAutoplay();
 }
