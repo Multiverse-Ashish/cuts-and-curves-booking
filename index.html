@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuts & Curves | Premium Salon & Spa Booking</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
+            <h1>CUTS & CURVES</h1>
+            <span class="sub-logo">L U X U R Y   S A L O N</span>
+        </div>
+        <nav class="nav">
+            <a href="#services"><i class="fa-solid fa-scissors"></i> Services</a>
+            <a href="#booking"><i class="fa-regular fa-calendar-check"></i> Book Now</a>
+            <a href="#about"><i class="fa-solid fa-info-circle"></i> About</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h2>Sculpting Your Masterpiece</h2>
+                <p>Lucknow's Finest Luxury Grooming & Styling Experience</p>
+                <a href="#booking" class="btn btn-primary">Book Premium Experience</a>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="booking-section">
+            <div class="container">
+                <h3 class="section-title">Schedule Appointment</h3>
+                
+                <div class="booking-grid">
+                    <!-- Left Column: Steps -->
+                    <div class="booking-steps-container">
+                        <!-- Step 1: Services -->
+                        <div class="step-card">
+                            <div class="step-header">
+                                <span class="step-num">1</span>
+                                <h4>Select Luxury Services</h4>
+                            </div>
+                            <div class="services-list">
+                                <div class="service-item" data-id="1" data-name="Signature Haircut & Styling" data-price="799">
+                                    <div class="service-info">
+                                        <h5>Signature Haircut & Styling</h5>
+                                        <p>Personalized consultation, luxury hair wash, cut, and blow-dry style.</p>
+                                    </div>
+                                    <div class="service-action">
+                                        <span class="price">₹799</span>
+                                        <button class="select-btn">Select</button>
+                                    </div>
+                                </div>
+                                <div class="service-item" data-id="2" data-name="Luxury Hair Spa & Therapy" data-price="1499">
+                                    <div class="service-info">
+                                        <h5>Luxury Hair Spa & Therapy</h5>
+                                        <p>Deep conditioning treatment with essential oils and relaxing scalp massage.</p>
+                                    </div>
+                                    <div class="service-action">
+                                        <span class="price">₹1,499</span>
+                                        <button class="select-btn">Select</button>
+                                    </div>
+                                </div>
+                                <div class="service-item" data-id="3" data-name="Advanced Skin Treatment" data-price="1999">
+                                    <div class="service-info">
+                                        <h5>Advanced Skin Treatment</h5>
+                                        <p>Hydrating and rejuvenating facial tailored to your specific skin needs.</p>
+                                    </div>
+                                    <div class="service-action">
+                                        <span class="price">₹1,999</span>
+                                        <button class="select-btn">Select</button>
+                                    </div>
+                                </div>
+                                <div class="service-item" data-id="4" data-name="Premium Beard Grooming" data-price="499">
+                                    <div class="service-info">
+                                        <h5>Premium Beard Grooming</h5>
+                                        <p>Hot towel shave, beard trimming, styling, and organic beard oil treatment.</p>
+                                    </div>
+                                    <div class="service-action">
+                                        <span class="price">₹499</span>
+                                        <button class="select-btn">Select</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Stylist -->
+                        <div class="step-card">
+                            <div class="step-header">
+                                <span class="step-num">2</span>
+                                <h4>Choose Your Expert Stylist</h4>
+                            </div>
+                            <div class="stylists-grid">
+                                <div class="stylist-item selected" data-id="1" data-name="Vikram">
+                                    <div class="stylist-img">
+                                        <i class="fa-solid fa-user-tie"></i>
+                                    </div>
+                                    <h5>Vikram</h5>
+                                    <p>Creative Director</p>
+                                </div>
+                                <div class="stylist-item" data-id="2" data-name="Priya">
+                                    <div class="stylist-img">
+                                        <i class="fa-solid fa-user-ninja"></i>
+                                    </div>
+                                    <h5>Priya</h5>
+                                    <p>Skin Specialist</p>
+                                </div>
+                                <div class="stylist-item" data-id="3" data-name="Rajesh">
+                                    <div class="stylist-img">
+                                        <i class="fa-solid fa-user-astronaut"></i>
+                                    </div>
+                                    <h5>Rajesh</h5>
+                                    <p>Senior Groomer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Date and Time -->
+                        <div class="step-card">
+                            <div class="step-header">
+                                <span class="step-num">3</span>
+                                <h4>Select Date & Time</h4>
+                            </div>
+                            
+                            <div class="date-time-container">
+                                <div class="calendar-wrapper">
+                                    <div class="calendar-header">
+                                        <span id="monthYear">May 2026</span>
+                                    </div>
+                                    <div class="calendar-grid" id="calendarDays">
+                                        <!-- Will be filled by JS -->
+                                    </div>
+                                </div>
+                                
+                                <div class="slots-wrapper">
+                                    <h5>Available Time Slots</h5>
+                                    <div class="slots-grid">
+                                        <button class="slot-btn" data-time="10:00 AM">10:00 AM</button>
+                                        <button class="slot-btn" data-time="11:30 AM">11:30 AM</button>
+                                        <button class="slot-btn" data-time="01:00 PM">01:00 PM</button>
+                                        <button class="slot-btn" data-time="02:30 PM">02:30 PM</button>
+                                        <button class="slot-btn" data-time="04:00 PM">04:00 PM</button>
+                                        <button class="slot-btn" data-time="05:30 PM">05:30 PM</button>
+                                        <button class="slot-btn" data-time="07:00 PM">07:00 PM</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Contact Info -->
+                        <div class="step-card">
+                            <div class="step-header">
+                                <span class="step-num">4</span>
+                                <h4>Enter Guest Details</h4>
+                            </div>
+                            <form class="contact-form" id="bookingForm">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input type="tel" id="phoneNumber" placeholder="Enter your 10-digit number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailAddress">Email Address</label>
+                                    <input type="email" id="emailAddress" placeholder="Enter your email address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Special Requirements</label>
+                                    <textarea id="notes" placeholder="Tell us if you have any preferences..." rows="3"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Live Summary -->
+                    <div class="booking-summary-container">
+                        <div class="summary-card">
+                            <h4>Booking Summary</h4>
+                            <div class="summary-details">
+                                <div class="summary-row">
+                                    <span class="label">Service:</span>
+                                    <span class="value" id="summaryService">None Selected</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="label">Expert Stylist:</span>
+                                    <span class="value" id="summaryStylist">Vikram</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="label">Date:</span>
+                                    <span class="value" id="summaryDate">None Selected</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="label">Time:</span>
+                                    <span class="value" id="summaryTime">None Selected</span>
+                                </div>
+                                <hr>
+                                <div class="summary-row">
+                                    <span class="label">Service Price:</span>
+                                    <span class="value" id="summaryPrice">₹0</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="label">GST (18%):</span>
+                                    <span class="value" id="summaryGst">₹0</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span class="label">Grand Total:</span>
+                                    <span class="value" id="summaryTotal">₹0</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block" id="confirmBookingBtn" disabled>Confirm Booking</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <span class="success-icon"><i class="fa-solid fa-circle-check"></i></span>
+            <h3>Booking Successful!</h3>
+            <p>Your luxury experience has been scheduled.</p>
+            <div class="ticket">
+                <div class="ticket-row"><strong>Appointment ID:</strong> <span id="ticketId">CC-98273</span></div>
+                <div class="ticket-row"><strong>Service:</strong> <span id="ticketService">Signature Haircut</span></div>
+                <div class="ticket-row"><strong>Expert:</strong> <span id="ticketStylist">Vikram</span></div>
+                <div class="ticket-row"><strong>Date:</strong> <span id="ticketDate">May 31, 2026</span></div>
+                <div class="ticket-row"><strong>Time:</strong> <span id="ticketTime">10:00 AM</span></div>
+                <div class="ticket-row"><strong>Total:</strong> <span id="ticketTotal">₹942</span></div>
+            </div>
+            <button class="btn btn-primary" onclick="closeModal()">Back to Website</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>Cuts & Curves</h3>
+                <p>Vidhayak Niwas, Basement Community Centre</p>
+                <p>Aishbagh Rd, Rajendra Nagar, Lucknow, UP</p>
+            </div>
+            <div class="footer-hours">
+                <h4>Opening Hours</h4>
+                <p>Monday - Sunday: 10:00 AM - 8:30 PM</p>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Cuts & Curves Luxury Salon. All Rights Reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
