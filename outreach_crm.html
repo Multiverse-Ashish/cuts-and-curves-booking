@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gorakhpur Salon Leads — Outreach CRM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ── RESET & BASE ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:       #f4f6fb;
+      --card:     #ffffff;
+      --border:   #e2e8f0;
+      --accent:   #4f46e5;
+      --accent-h: #3730a3;
+      --green:    #10b981;
+      --green-h:  #059669;
+      --yellow:   #f59e0b;
+      --red:      #ef4444;
+      --text:     #0f172a;
+      --muted:    #64748b;
+      --wa:       #25d366;
+      --wa-h:     #1a9e4a;
+      --radius:   12px;
+      --shadow:   0 2px 12px rgba(0,0,0,.08);
+      --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ──────────────────────────────────────────────────────────── */
+    .crm-header {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      padding: 28px 32px;
+      color: #fff;
+    }
+    .crm-header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .crm-logo h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+    .crm-logo p { font-size: .82rem; color: rgba(255,255,255,.75); margin-top: 4px; }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .82rem;
+      color: rgba(255,255,255,.8);
+    }
+    .header-meta strong { color: #fff; }
+
+    /* ── DASHBOARD STATS ─────────────────────────────────────────────────── */
+    .dashboard {
+      max-width: 1400px;
+      margin: 28px auto 0;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .stat-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .si-indigo { background: #eef2ff; color: var(--accent); }
+    .si-green  { background: #ecfdf5; color: var(--green); }
+    .si-yellow { background: #fffbeb; color: var(--yellow); }
+    .si-purple { background: #f5f3ff; color: #7c3aed; }
+    .stat-label { font-size: .75rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    .stat-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.85rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+
+    /* ── TOOLBAR ─────────────────────────────────────────────────────────── */
+    .toolbar {
+      max-width: 1400px;
+      margin: 20px auto 0;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+    }
+    .search-wrap i {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--muted); font-size: .9rem;
+    }
+    .search-input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      background: var(--card);
+      font-family: inherit;
+      font-size: .88rem;
+      color: var(--text);
+      transition: border-color .2s;
+    }
+    .search-input:focus { outline: none; border-color: var(--accent); }
+    .filter-btn {
+      padding: 9px 20px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      font-family: inherit;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all .2s;
+    }
+    .filter-btn.active, .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
+    .export-btn {
+      padding: 9px 20px;
+      border-radius: 50px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-family: inherit;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .export-btn:hover { background: var(--accent-h); }
+
+    /* ── TABLE WRAPPER ───────────────────────────────────────────────────── */
+    .table-wrap {
+      max-width: 1400px;
+      margin: 16px auto 40px;
+      padding: 0 24px;
+    }
+    .table-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* ── TABLE ───────────────────────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead {
+      background: #f8fafc;
+      border-bottom: 2px solid var(--border);
+    }
+    th {
+      padding: 13px 16px;
+      text-align: left;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f8fafc; }
+    tbody tr.qualified { background: #f0fdf4 !important; }
+    tbody tr.qualified:hover { background: #dcfce7 !important; }
+    td {
+      padding: 14px 16px;
+      vertical-align: middle;
+    }
+
+    /* ── CELLS ───────────────────────────────────────────────────────────── */
+    .cell-num {
+      font-size: .75rem;
+      color: var(--muted);
+      font-weight: 600;
+      width: 32px;
+      text-align: center;
+    }
+    .cell-check { width: 44px; text-align: center; }
+    .cell-check input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--green);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .cell-name {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--text);
+      max-width: 200px;
+    }
+    .qualified-badge {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      font-size: .65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 50px;
+      margin-left: 8px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .cell-phone {
+      font-size: .85rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .cell-url a {
+      color: var(--accent);
+      font-size: .8rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .cell-url a:hover { text-decoration: underline; }
+    .no-url { color: var(--muted); font-size: .78rem; font-style: italic; }
+    .cell-price {
+      width: 130px;
+    }
+    .price-input {
+      width: 110px;
+      padding: 7px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .88rem;
+      color: var(--text);
+      transition: border-color .2s;
+    }
+    .price-input:focus { outline: none; border-color: var(--accent); }
+    .cell-actions { white-space: nowrap; }
+
+    /* ── ACTION BUTTONS ──────────────────────────────────────────────────── */
+    .btn-wa-send {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: none;
+      background: var(--wa);
+      color: #fff;
+      font-family: inherit;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .btn-wa-send:hover { background: var(--wa-h); transform: translateY(-1px); }
+    .btn-copy-msg {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-family: inherit;
+      font-size: .78rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 8px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .btn-copy-msg:hover { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
+    .btn-copy-msg.copied { border-color: var(--green); color: var(--green); background: #ecfdf5; }
+
+    /* ── NO PHONE BADGE ──────────────────────────────────────────────────── */
+    .no-phone { color: var(--muted); font-size: .75rem; font-style: italic; }
+
+    /* ── TOAST ───────────────────────────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--text);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all .25s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ── FOOTER SUMMARY ──────────────────────────────────────────────────── */
+    .footer-summary {
+      max-width: 1400px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .summary-card {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .summary-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .summary-card p { font-size: .88rem; color: rgba(255,255,255,.8); margin-top: 4px; }
+    .summary-nums {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+    .summary-num { text-align: right; }
+    .summary-num .n { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.7rem; font-weight: 700; }
+    .summary-num .l { font-size: .72rem; color: rgba(255,255,255,.7); text-transform: uppercase; letter-spacing: .07em; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .dashboard { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .dashboard { grid-template-columns: 1fr 1fr; }
+      .crm-header { padding: 20px; }
+      .table-wrap { padding: 0 12px; }
+      table { font-size: 12px; }
+      th, td { padding: 10px 10px; }
+      .btn-wa-send { padding: 6px 12px; font-size: .75rem; }
+    }
+    @media (max-width: 560px) {
+      .dashboard { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="crm-header">
+  <div class="crm-header-inner">
+    <div class="crm-logo">
+      <h1><i class="fas fa-cut" style="margin-right:10px;"></i>Gorakhpur Salon Leads — Outreach CRM</h1>
+      <p>Track, qualify, message, and close 45 premium salon leads</p>
+    </div>
+    <div class="header-meta">
+      <span>📍 Gorakhpur, UP</span>
+      <span>|</span>
+      <span>🗓️ Campaign: 2026</span>
+      <span>|</span>
+      <strong id="last-updated">Updated today</strong>
+    </div>
+  </div>
+</header>
+
+<!-- DASHBOARD STATS -->
+<div class="dashboard">
+  <div class="stat-card">
+    <div class="stat-icon si-indigo"><i class="fas fa-users"></i></div>
+    <div>
+      <div class="stat-label">Total Leads</div>
+      <div class="stat-value" id="stat-total">45</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon si-green"><i class="fas fa-check-circle"></i></div>
+    <div>
+      <div class="stat-label">Qualified</div>
+      <div class="stat-value" id="stat-qualified">0</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon si-yellow"><i class="fas fa-rupee-sign"></i></div>
+    <div>
+      <div class="stat-label">Total Deal Value</div>
+      <div class="stat-value" id="stat-value">₹0</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon si-purple"><i class="fas fa-paper-plane"></i></div>
+    <div>
+      <div class="stat-label">Sites Live</div>
+      <div class="stat-value">45</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="search-wrap">
+    <i class="fas fa-search"></i>
+    <input type="text" class="search-input" id="search-input" placeholder="Search by business name or phone...">
+  </div>
+  <button class="filter-btn active" data-filter="all">All (45)</button>
+  <button class="filter-btn" data-filter="qualified">Qualified</button>
+  <button class="filter-btn" data-filter="pending">Pending</button>
+  <button class="filter-btn" data-filter="has-phone">Has Phone</button>
+  <button class="export-btn" onclick="exportCSV()">
+    <i class="fas fa-download"></i> Export CSV
+  </button>
+</div>
+
+<!-- TABLE -->
+<div class="table-wrap">
+  <div class="table-card">
+    <table id="leads-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><i class="fas fa-check" style="color:var(--green)"></i></th>
+          <th>Business Name</th>
+          <th>Phone Number</th>
+          <th>Demo Site URL</th>
+          <th>Deal Price (₹)</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="leads-tbody">
+        <!-- Rows injected by JS -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER SUMMARY -->
+<div class="footer-summary">
+  <div class="summary-card">
+    <div>
+      <h3>📊 Campaign Summary</h3>
+      <p>Gorakhpur Premium Salon Lead Outreach — Track your close rate and revenue below.</p>
+    </div>
+    <div class="summary-nums">
+      <div class="summary-num">
+        <div class="n" id="sum-qualified">0</div>
+        <div class="l">Qualified</div>
+      </div>
+      <div class="summary-num">
+        <div class="n" id="sum-conversion">0%</div>
+        <div class="l">Conversion Rate</div>
+      </div>
+      <div class="summary-num">
+        <div class="n" id="sum-revenue">₹0</div>
+        <div class="l">Total Revenue</div>
+      </div>
+      <div class="summary-num">
+        <div class="n" id="sum-avg">₹0</div>
+        <div class="l">Avg Deal Size</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── LEAD DATA ─────────────────────────────────────────────────────────────────
+const LEADS = [
+  {name:"Looks Salon",phone:"+91 88818 87733",wa:"918881887733",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/looks-salon/index.html"},
+  {name:"Shahnaz Husain Salon",phone:"+91 74599 34444",wa:"917459934444",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shahnaz-husain-salon/index.html"},
+  {name:"Yes Mam",phone:"+91 95987 77222",wa:"919598777222",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/yes-mam/index.html"},
+  {name:"hair",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/hair/index.html"},
+  {name:"Legends Cut Gents salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/legends-cut-gents-salon/index.html"},
+  {name:"USTRAA PREMIUM MENS SALON",phone:"+91 97214 84848",wa:"919721484848",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ustraa-premium-mens-salon/index.html"},
+  {name:"Sports Salon",phone:"+91 85430 33309",wa:"918543033309",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sports-salon/index.html"},
+  {name:"The Barber's Station",phone:"+91 97943 86262",wa:"919794386262",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-barbers-station/index.html"},
+  {name:"Luxe Wellness Spa",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/luxe-wellness-spa/index.html"},
+  {name:"Shine wellness spa & massage",phone:"+91 89602 48778",wa:"918960248778",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shine-wellness-spa-massage/index.html"},
+  {name:"Classicc Beauty clinic",phone:"+91 91152 22155",wa:"919115222155",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/classicc-beauty-clinic/index.html"},
+  {name:"MERAKI STUDIO",phone:"+91 78008 00013",wa:"917800800013",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/meraki-studio/index.html"},
+  {name:"Glamz Studio Unisex Salon",phone:"+91 95980 80090",wa:"919598080090",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/glamz-studio-unisex-salon/index.html"},
+  {name:"Prime Studio 1.8",phone:"+91 85730 05081",wa:"918573005081",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/prime-studio-18/index.html"},
+  {name:"Level and co Salon",phone:"+91 80095 65714",wa:"918009565714",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/level-and-co-salon/index.html"},
+  {name:"Juvena Herbals",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/juvena-herbals/index.html"},
+  {name:"Senrick Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/senrick-salon/index.html"},
+  {name:"Xpertcare Unisex Salon & Academy",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/xpertcare-unisex-salon-academy/index.html"},
+  {name:"Mahi Blush & Glow",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mahi-blush-glow/index.html"},
+  {name:"Monsoon Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/monsoon-salon/index.html"},
+  {name:"Orchid Beauty Salon Unisex",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/orchid-beauty-salon-unisex/index.html"},
+  {name:"Artist Unisex Salon & Academy",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/artist-unisex-salon-academy/index.html"},
+  {name:"Lakme Salon Gorakhnath",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/lakme-salon-gorakhnath/index.html"},
+  {name:"THE GRAND AURA UNISEX SALON",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-grand-aura-unisex-salon/index.html"},
+  {name:"Dheeraj Hair Story Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/dheeraj-hair-story-unisex-salon/index.html"},
+  {name:"Pd Proffessional Care",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/pd-proffessional-care/index.html"},
+  {name:"Km Orgatonics",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/km-orgatonics/index.html"},
+  {name:"Fusion By Neelima Makeup Studio",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/fusion-by-neelima-makeup-studio/index.html"},
+  {name:"Anjali's Makeover",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/anjalis-makeover/index.html"},
+  {name:"Cuts & Glow Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cuts-glow-unisex-salon/index.html"},
+  {name:"SMART 'N' SHINY UNISEX SALON",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/smart-n-shiny-unisex-salon/index.html"},
+  {name:"Naai The Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/naai-the-salon/index.html"},
+  {name:"Nikita Walani Makeup Studio",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/nikita-walani-makeup-studio/index.html"},
+  {name:"Cosmoline Hair & Beauty Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cosmoline-hair-beauty-salon/index.html"},
+  {name:"ZLATO GLAM & GLOW",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/zlato-glam-glow/index.html"},
+  {name:"The Glam Squad Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-glam-squad-unisex-salon/index.html"},
+  {name:"Sringar Family Salon & Academy",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sringar-family-salon-academy/index.html"},
+  {name:"Ak Makeup Studio",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ak-makeup-studio/index.html"},
+  {name:"Make Over By L'oreal",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/make-over-by-loreal/index.html"},
+  {name:"GMAC Family Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/gmac-family-unisex-salon/index.html"},
+  {name:"Studio99 Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/studio99-unisex-salon/index.html"},
+  {name:"Mr Shyam Mens Parlour",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mr-shyam-mens-parlour/index.html"},
+  {name:"The Hair Lab Barber Shop",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-hair-lab-barber-shop/index.html"},
+  {name:"Diamond Hair Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/diamond-hair-salon/index.html"},
+  {name:"Muskan Unisex Salon",phone:"",wa:"",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/muskan-unisex-salon/index.html"},
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+const state = {
+  qualified: {},   // idx -> bool
+  prices:    {},   // idx -> number
+};
+let activeFilter = 'all';
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function buildMessage(lead) {
+  return `Hello ${lead.name}! 👋
+
+I was checking local salons in Gorakhpur and noticed that *${lead.name}* doesn't have a proper online presence — no booking page, no service showcase, no client reviews online.
+
+I've already built a *premium demo website* for your salon:
+🌐 ${lead.url}
+
+Here's what's included:
+✅ Online Appointment Booking via WhatsApp
+✅ Full Services & Pricing Listed
+✅ Professional Photo Gallery
+✅ Client Reviews Section
+✅ Mobile-Friendly & Fast
+
+Take a look and let me know — *how's your experience?* Would you like to launch this for ${lead.name}? I can customise it fully with your branding, team, and offers.
+
+Can we connect for a quick discussion? 🚀`;
+}
+
+function renderRow(lead, idx) {
+  const isQ = !!state.qualified[idx];
+  const price = state.prices[idx] || '';
+  const urlCell = lead.url
+    ? `<a href="${lead.url}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt" style="font-size:.7rem"></i> View Site</a>`
+    : `<span class="no-url">Not deployed</span>`;
+  const phoneCell = lead.phone
+    ? lead.phone
+    : `<span class="no-phone">No number</span>`;
+
+  const waBtn = lead.wa
+    ? `<button class="btn-wa-send" onclick="sendWA(${idx})" title="Open WhatsApp with pre-filled message">
+         <i class="fab fa-whatsapp"></i> Send on WhatsApp
+       </button>`
+    : `<button class="btn-wa-send" style="background:#94a3b8;cursor:not-allowed" disabled title="No phone number available">
+         <i class="fab fa-whatsapp"></i> No Number
+       </button>`;
+
+  return `<tr id="row-${idx}" class="${isQ ? 'qualified' : ''}">
+    <td class="cell-num">${idx + 1}</td>
+    <td class="cell-check">
+      <input type="checkbox" id="chk-${idx}" ${isQ ? 'checked' : ''} onchange="toggleQualified(${idx})" title="Mark as Qualified">
+    </td>
+    <td class="cell-name">
+      ${lead.name}
+      ${isQ ? '<span class="qualified-badge">✓ Qualified</span>' : ''}
+    </td>
+    <td class="cell-phone">${phoneCell}</td>
+    <td class="cell-url">${urlCell}</td>
+    <td class="cell-price">
+      <input type="number" class="price-input" id="price-${idx}" value="${price}"
+        placeholder="₹ 0" min="0"
+        oninput="updatePrice(${idx}, this.value)"
+        title="Enter deal price for this lead">
+    </td>
+    <td class="cell-actions">
+      ${waBtn}
+      <button class="btn-copy-msg" id="copy-${idx}" onclick="copyMsg(${idx})" title="Copy outreach message to clipboard">
+        <i class="fas fa-copy"></i> Copy Msg
+      </button>
+    </td>
+  </tr>`;
+}
+
+function renderTable() {
+  const searchVal = document.getElementById('search-input').value.toLowerCase();
+  const tbody = document.getElementById('leads-tbody');
+  let html = '';
+  let shown = 0;
+
+  LEADS.forEach((lead, idx) => {
+    const isQ = !!state.qualified[idx];
+    const hasPhone = !!lead.wa;
+
+    // Filter
+    if (activeFilter === 'qualified' && !isQ) return;
+    if (activeFilter === 'pending' && isQ) return;
+    if (activeFilter === 'has-phone' && !hasPhone) return;
+
+    // Search
+    if (searchVal && !lead.name.toLowerCase().includes(searchVal) && !lead.phone.includes(searchVal)) return;
+
+    html += renderRow(lead, idx);
+    shown++;
+  });
+
+  tbody.innerHTML = html || `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--muted)">No leads match your filter.</td></tr>`;
+  updateStats();
+}
+
+// ── ACTIONS ───────────────────────────────────────────────────────────────────
+function toggleQualified(idx) {
+  const chk = document.getElementById(`chk-${idx}`);
+  state.qualified[idx] = chk.checked;
+  const row = document.getElementById(`row-${idx}`);
+  if (chk.checked) {
+    row.classList.add('qualified');
+    row.querySelector('.cell-name').innerHTML = LEADS[idx].name + ' <span class="qualified-badge">✓ Qualified</span>';
+  } else {
+    row.classList.remove('qualified');
+    row.querySelector('.cell-name').textContent = LEADS[idx].name;
+  }
+  updateStats();
+  saveState();
+}
+
+function updatePrice(idx, val) {
+  state.prices[idx] = parseFloat(val) || 0;
+  updateStats();
+  saveState();
+}
+
+function sendWA(idx) {
+  const lead = LEADS[idx];
+  if (!lead.wa) return;
+  const msg = buildMessage(lead);
+  window.open(`https://wa.me/${lead.wa}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function copyMsg(idx) {
+  const lead = LEADS[idx];
+  const msg = buildMessage(lead);
+  navigator.clipboard.writeText(msg).then(() => {
+    const btn = document.getElementById(`copy-${idx}`);
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    showToast('Message copied to clipboard!');
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<i class="fas fa-copy"></i> Copy Msg';
+    }, 2500);
+  }).catch(() => {
+    showToast('Copy failed — please copy manually.', true);
+  });
+}
+
+// ── STATS ─────────────────────────────────────────────────────────────────────
+function updateStats() {
+  const qualifiedCount = Object.values(state.qualified).filter(Boolean).length;
+  const totalRevenue = Object.values(state.prices).reduce((a, b) => a + (b || 0), 0);
+  const convRate = Math.round((qualifiedCount / LEADS.length) * 100);
+  const avg = qualifiedCount > 0
+    ? Math.round(Object.entries(state.prices).filter(([k]) => state.qualified[k]).reduce((a, [,v]) => a + (v || 0), 0) / qualifiedCount)
+    : 0;
+
+  document.getElementById('stat-qualified').textContent = qualifiedCount;
+  document.getElementById('stat-value').textContent = '₹' + totalRevenue.toLocaleString('en-IN');
+  document.getElementById('sum-qualified').textContent = qualifiedCount;
+  document.getElementById('sum-conversion').textContent = convRate + '%';
+  document.getElementById('sum-revenue').textContent = '₹' + totalRevenue.toLocaleString('en-IN');
+  document.getElementById('sum-avg').textContent = avg ? '₹' + avg.toLocaleString('en-IN') : '₹0';
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, err = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = err ? 'var(--red)' : 'var(--text)';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── FILTERS ───────────────────────────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderTable();
+  });
+});
+
+document.getElementById('search-input').addEventListener('input', renderTable);
+
+// ── EXPORT CSV ────────────────────────────────────────────────────────────────
+function exportCSV() {
+  let csv = 'Name,Phone,Demo URL,Qualified,Deal Price (INR)\n';
+  LEADS.forEach((l, i) => {
+    const q = state.qualified[i] ? 'Yes' : 'No';
+    const p = state.prices[i] || 0;
+    csv += `"${l.name}","${l.phone}","${l.url}","${q}","${p}"\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'gorakhpur_leads_outreach.csv';
+  a.click(); URL.revokeObjectURL(url);
+  showToast('CSV exported successfully!');
+}
+
+// ── PERSIST STATE (localStorage) ─────────────────────────────────────────────
+function saveState() {
+  localStorage.setItem('crm-state', JSON.stringify(state));
+}
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('crm-state') || '{}');
+    if (saved.qualified) Object.assign(state.qualified, saved.qualified);
+    if (saved.prices)    Object.assign(state.prices,    saved.prices);
+  } catch (e) {}
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+loadState();
+renderTable();
+document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+</script>
+
+</body>
+</html>
