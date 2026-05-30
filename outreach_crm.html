@@ -244,6 +244,46 @@
     .url-link  { color: var(--accent); font-size: .78rem; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
     .url-link:hover { text-decoration: underline; }
 
+    /* ── New column cells ──────────────────────────────────────────── */
+    .cell-cat     { min-width: 120px; }
+    .cell-street  { min-width: 110px; font-size: .78rem; color: var(--text); }
+    .cell-city    { min-width: 90px;  font-size: .78rem; }
+    .cell-country { min-width: 80px;  font-size: .78rem; }
+    .cell-code    { width: 52px; text-align: center; }
+    .cell-review  { width: 70px; text-align: center; }
+    .cell-google, .cell-fb { min-width: 90px; }
+    .cell-pub     { min-width: 80px; text-align: center; }
+
+    /* Category pill */
+    .cat-badge {
+      display: inline-block; padding: 3px 9px; border-radius: 50px;
+      background: #eef2ff; color: var(--accent); font-size: .7rem; font-weight: 700;
+      white-space: nowrap;
+    }
+    /* Country code badge */
+    .code-badge {
+      display: inline-block; padding: 2px 7px; border-radius: 4px;
+      background: #f1f5f9; color: var(--muted); font-size: .68rem; font-weight: 700;
+      letter-spacing: .05em;
+    }
+    /* Review badge */
+    .review-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: .78rem; font-weight: 700; color: #92400e;
+      background: #fef3c7; padding: 2px 8px; border-radius: 50px;
+    }
+    /* Published badges */
+    .pub-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 50px;
+    }
+    .pub-yes { background: var(--green-bg); color: var(--green); }
+    .pub-no  { background: #f1f5f9;        color: var(--muted); }
+
+    /* Danger (remove leads) button */
+    .tb-btn-danger { background: var(--red-bg); color: var(--red); border: 1.5px solid var(--red); }
+    .tb-btn-danger:hover { background: var(--red); color: #fff; }
+
     .cell-price { width: 110px; }
     .price-input {
       width: 92px; padding: 6px 9px;
@@ -527,8 +567,14 @@
     <button class="filter-btn f-notq"      data-filter="notqualified">❌ Not Qualified</button>
     <button class="filter-btn"             data-filter="pending">⏳ Pending</button>
     <button class="filter-btn"             data-filter="has-phone">📞 Has Phone</button>
-    <button class="tb-btn tb-btn-accent" onclick="resetAllStatus()" title="Clear all status">
-      <i class="fas fa-redo-alt"></i> Reset
+    <button class="tb-btn tb-btn-accent" onclick="resetAllStatus()" title="Reset all statuses to Pending">
+      <i class="fas fa-redo-alt"></i> <span class="btn-label">Reset Status</span>
+    </button>
+    <button class="tb-btn tb-btn-outline" onclick="resetLeads()" title="Restore default Gorakhpur leads dataset">
+      <i class="fas fa-undo"></i> <span class="btn-label">Restore Defaults</span>
+    </button>
+    <button class="tb-btn tb-btn-danger" onclick="removeAllLeads()" title="Permanently remove all leads">
+      <i class="fas fa-trash"></i> <span class="btn-label">Remove All</span>
     </button>
   </div>
 </div>
@@ -544,9 +590,17 @@
             <th>#</th>
             <th>Status</th>
             <th>Business Name</th>
-            <th>Address</th>
+            <th>Category</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Code</th>
             <th>Phone</th>
+            <th>⭐ Review</th>
             <th>Demo Site</th>
+            <th>Google URL</th>
+            <th>Facebook</th>
+            <th>Published?</th>
             <th>Deal ₹</th>
             <th>Actions + Email</th>
           </tr>
@@ -625,53 +679,75 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // DEFAULT LEAD DATA  (with address + google maps url)
 // ─────────────────────────────────────────────────────────────────────────────
-const DEFAULT_LEADS = [
-  {name:"Looks Salon",phone:"+91 88818 87733",wa:"918881887733",address:"Civil Lines, Gorakhpur, UP",maps:"https://maps.google.com/?q=Looks+Salon+Civil+Lines+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/looks-salon/index.html"},
-  {name:"Shahnaz Husain Salon",phone:"+91 74599 34444",wa:"917459934444",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Shahnaz+Husain+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shahnaz-husain-salon/index.html"},
-  {name:"Yes Mam",phone:"+91 95987 77222",wa:"919598777222",address:"Mohaddipur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Yes+Mam+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/yes-mam/index.html"},
-  {name:"hair",phone:"",wa:"",address:"Gorakhpur, UP",maps:"https://maps.google.com/?q=hair+salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/hair/index.html"},
-  {name:"Legends Cut Gents salon",phone:"",wa:"",address:"Basharatpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Legends+Cut+Gents+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/legends-cut-gents-salon/index.html"},
-  {name:"USTRAA PREMIUM MENS SALON",phone:"+91 97214 84848",wa:"919721484848",address:"Gorakhnath, Gorakhpur, UP",maps:"https://maps.google.com/?q=USTRAA+PREMIUM+MENS+SALON+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ustraa-premium-mens-salon/index.html"},
-  {name:"Sports Salon",phone:"+91 85430 33309",wa:"918543033309",address:"Rapti Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Sports+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sports-salon/index.html"},
-  {name:"The Barber's Station",phone:"+91 97943 86262",wa:"919794386262",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=The+Barbers+Station+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-barbers-station/index.html"},
-  {name:"Luxe Wellness Spa",phone:"",wa:"",address:"Civil Lines, Gorakhpur, UP",maps:"https://maps.google.com/?q=Luxe+Wellness+Spa+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/luxe-wellness-spa/index.html"},
-  {name:"Shine wellness spa & massage",phone:"+91 89602 48778",wa:"918960248778",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Shine+Wellness+Spa+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shine-wellness-spa-massage/index.html"},
-  {name:"Classicc Beauty clinic",phone:"+91 91152 22155",wa:"919115222155",address:"Basharatpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Classicc+Beauty+Clinic+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/classicc-beauty-clinic/index.html"},
-  {name:"MERAKI STUDIO",phone:"+91 78008 00013",wa:"917800800013",address:"Civil Lines, Gorakhpur, UP",maps:"https://maps.google.com/?q=MERAKI+STUDIO+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/meraki-studio/index.html"},
-  {name:"Glamz Studio Unisex Salon",phone:"+91 95980 80090",wa:"919598080090",address:"Gorakhnath, Gorakhpur, UP",maps:"https://maps.google.com/?q=Glamz+Studio+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/glamz-studio-unisex-salon/index.html"},
-  {name:"Prime Studio 1.8",phone:"+91 85730 05081",wa:"918573005081",address:"Mohaddipur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Prime+Studio+1.8+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/prime-studio-18/index.html"},
-  {name:"Level and co Salon",phone:"+91 80095 65714",wa:"918009565714",address:"Rapti Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Level+and+co+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/level-and-co-salon/index.html"},
-  {name:"Juvena Herbals",phone:"",wa:"",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Juvena+Herbals+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/juvena-herbals/index.html"},
-  {name:"Senrick Salon",phone:"",wa:"",address:"Civil Lines, Gorakhpur, UP",maps:"https://maps.google.com/?q=Senrick+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/senrick-salon/index.html"},
-  {name:"Xpertcare Unisex Salon & Academy",phone:"",wa:"",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=Xpertcare+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/xpertcare-unisex-salon-academy/index.html"},
-  {name:"Mahi Blush & Glow",phone:"",wa:"",address:"Indira Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Mahi+Blush+Glow+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mahi-blush-glow/index.html"},
-  {name:"Monsoon Salon",phone:"",wa:"",address:"Gorakhnath, Gorakhpur, UP",maps:"https://maps.google.com/?q=Monsoon+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/monsoon-salon/index.html"},
-  {name:"Orchid Beauty Salon Unisex",phone:"",wa:"",address:"Sahjanwa, Gorakhpur, UP",maps:"https://maps.google.com/?q=Orchid+Beauty+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/orchid-beauty-salon-unisex/index.html"},
-  {name:"Artist Unisex Salon & Academy",phone:"",wa:"",address:"Mohaddipur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Artist+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/artist-unisex-salon-academy/index.html"},
-  {name:"Lakme Salon Gorakhnath",phone:"",wa:"",address:"Gorakhnath Mandir, Gorakhpur, UP",maps:"https://maps.google.com/?q=Lakme+Salon+Gorakhnath",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/lakme-salon-gorakhnath/index.html"},
-  {name:"THE GRAND AURA UNISEX SALON",phone:"",wa:"",address:"Kunraghat, Gorakhpur, UP",maps:"https://maps.google.com/?q=THE+GRAND+AURA+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-grand-aura-unisex-salon/index.html"},
-  {name:"Dheeraj Hair Story Unisex Salon",phone:"",wa:"",address:"Indira Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Dheeraj+Hair+Story+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/dheeraj-hair-story-unisex-salon/index.html"},
-  {name:"Pd Proffessional Care",phone:"",wa:"",address:"Divya Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Pd+Proffessional+Care+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/pd-proffessional-care/index.html"},
-  {name:"Km Orgatonics",phone:"",wa:"",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Km+Orgatonics+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/km-orgatonics/index.html"},
-  {name:"Fusion By Neelima Makeup Studio",phone:"",wa:"",address:"Rapti Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Fusion+By+Neelima+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/fusion-by-neelima-makeup-studio/index.html"},
-  {name:"Anjali's Makeover",phone:"",wa:"",address:"Rajendra Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Anjali+Makeover+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/anjalis-makeover/index.html"},
-  {name:"Cuts & Glow Unisex Salon",phone:"",wa:"",address:"Basharatpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Cuts+Glow+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cuts-glow-unisex-salon/index.html"},
-  {name:"SMART 'N' SHINY UNISEX SALON",phone:"",wa:"",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=SMART+N+SHINY+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/smart-n-shiny-unisex-salon/index.html"},
-  {name:"Naai The Salon",phone:"",wa:"",address:"Golghar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Naai+The+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/naai-the-salon/index.html"},
-  {name:"Nikita Walani Makeup Studio",phone:"",wa:"",address:"Hari Om Nagar, Gorakhpur, UP",maps:"https://maps.google.com/?q=Nikita+Walani+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/nikita-walani-makeup-studio/index.html"},
-  {name:"Cosmoline Hair & Beauty Salon",phone:"",wa:"",address:"Geeta Vatika, Gorakhpur, UP",maps:"https://maps.google.com/?q=Cosmoline+Hair+Beauty+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cosmoline-hair-beauty-salon/index.html"},
-  {name:"ZLATO GLAM & GLOW",phone:"",wa:"",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=ZLATO+GLAM+GLOW+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/zlato-glam-glow/index.html"},
-  {name:"The Glam Squad Unisex Salon",phone:"",wa:"",address:"Gorakhnath, Gorakhpur, UP",maps:"https://maps.google.com/?q=The+Glam+Squad+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-glam-squad-unisex-salon/index.html"},
-  {name:"Sringar Family Salon & Academy",phone:"",wa:"",address:"Mughala, Gorakhpur, UP",maps:"https://maps.google.com/?q=Sringar+Family+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sringar-family-salon-academy/index.html"},
-  {name:"Ak Makeup Studio",phone:"",wa:"",address:"Shahpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Ak+Makeup+Studio+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ak-makeup-studio/index.html"},
-  {name:"Make Over By L'oreal",phone:"",wa:"",address:"Basharatpur, Gorakhpur, UP",maps:"https://maps.google.com/?q=Make+Over+By+Loreal+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/make-over-by-loreal/index.html"},
-  {name:"GMAC Family Unisex Salon",phone:"",wa:"",address:"Shivpur Road, Gorakhpur, UP",maps:"https://maps.google.com/?q=GMAC+Family+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/gmac-family-unisex-salon/index.html"},
-  {name:"Studio99 Unisex Salon",phone:"",wa:"",address:"Char Fatak Road, Gorakhpur, UP",maps:"https://maps.google.com/?q=Studio99+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/studio99-unisex-salon/index.html"},
-  {name:"Mr Shyam Mens Parlour",phone:"",wa:"",address:"Singhariya, Gorakhpur, UP",maps:"https://maps.google.com/?q=Mr+Shyam+Mens+Parlour+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mr-shyam-mens-parlour/index.html"},
-  {name:"The Hair Lab Barber Shop",phone:"",wa:"",address:"Raneedeeha, Gorakhpur, UP",maps:"https://maps.google.com/?q=The+Hair+Lab+Barber+Shop+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-hair-lab-barber-shop/index.html"},
-  {name:"Diamond Hair Salon",phone:"",wa:"",address:"Bharwalia Buzurg, Gorakhpur, UP",maps:"https://maps.google.com/?q=Diamond+Hair+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/diamond-hair-salon/index.html"},
-  {name:"Muskan Unisex Salon",phone:"",wa:"",address:"Taramandal, Gorakhpur, UP",maps:"https://maps.google.com/?q=Muskan+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/muskan-unisex-salon/index.html"},
+// Helper: extend a legacy lead object with new fields if missing
+function normalizeLead(l) {
+  return {
+    name:              l.name              || '',
+    street:            l.street            || l.address || '',
+    city:              l.city              || 'Gorakhpur',
+    country:           l.country           || 'India',
+    country_code:      l.country_code      || 'IN',
+    phone:             l.phone             || '',
+    wa:                l.wa                || '',
+    url:               l.url               || '',
+    maps:              l.maps              || '',
+    email:             l.email             || '',
+    facebook:          l.facebook          || '',
+    google_first_url:  l.google_first_url  || '',
+    business_category: l.business_category || 'Salon',
+    review_score:      l.review_score      || '',
+    published:         l.published         || '',
+  };
+}
+
+const _RAW_LEADS = [
+  {name:"Looks Salon",phone:"+91 88818 87733",wa:"918881887733",street:"Civil Lines",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Looks+Salon+Civil+Lines+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/looks-salon/index.html"},
+  {name:"Shahnaz Husain Salon",phone:"+91 74599 34444",wa:"917459934444",street:"Golghar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=Shahnaz+Husain+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shahnaz-husain-salon/index.html"},
+  {name:"Yes Mam",phone:"+91 95987 77222",wa:"919598777222",street:"Mohaddipur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Yes+Mam+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/yes-mam/index.html"},
+  {name:"hair",phone:"",wa:"",street:"Gorakhpur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Hair Salon",maps:"https://maps.google.com/?q=hair+salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/hair/index.html"},
+  {name:"Legends Cut Gents salon",phone:"",wa:"",street:"Basharatpur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Men's Salon",maps:"https://maps.google.com/?q=Legends+Cut+Gents+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/legends-cut-gents-salon/index.html"},
+  {name:"USTRAA PREMIUM MENS SALON",phone:"+91 97214 84848",wa:"919721484848",street:"Gorakhnath",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Men's Salon",maps:"https://maps.google.com/?q=USTRAA+PREMIUM+MENS+SALON+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ustraa-premium-mens-salon/index.html"},
+  {name:"Sports Salon",phone:"+91 85430 33309",wa:"918543033309",street:"Rapti Nagar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Men's Salon",maps:"https://maps.google.com/?q=Sports+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sports-salon/index.html"},
+  {name:"The Barber's Station",phone:"+91 97943 86262",wa:"919794386262",street:"Taramandal",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Barber Shop",maps:"https://maps.google.com/?q=The+Barbers+Station+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-barbers-station/index.html"},
+  {name:"Luxe Wellness Spa",phone:"",wa:"",street:"Civil Lines",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Spa & Wellness",maps:"https://maps.google.com/?q=Luxe+Wellness+Spa+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/luxe-wellness-spa/index.html"},
+  {name:"Shine wellness spa & massage",phone:"+91 89602 48778",wa:"918960248778",street:"Golghar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Spa & Massage",maps:"https://maps.google.com/?q=Shine+Wellness+Spa+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shine-wellness-spa-massage/index.html"},
+  {name:"Classicc Beauty clinic",phone:"+91 91152 22155",wa:"919115222155",street:"Basharatpur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Beauty Clinic",maps:"https://maps.google.com/?q=Classicc+Beauty+Clinic+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/classicc-beauty-clinic/index.html"},
+  {name:"MERAKI STUDIO",phone:"+91 78008 00013",wa:"917800800013",street:"Civil Lines",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Beauty Studio",maps:"https://maps.google.com/?q=MERAKI+STUDIO+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/meraki-studio/index.html"},
+  {name:"Glamz Studio Unisex Salon",phone:"+91 95980 80090",wa:"919598080090",street:"Gorakhnath",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Glamz+Studio+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/glamz-studio-unisex-salon/index.html"},
+  {name:"Prime Studio 1.8",phone:"+91 85730 05081",wa:"918573005081",street:"Mohaddipur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Prime+Studio+1.8+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/prime-studio-18/index.html"},
+  {name:"Level and co Salon",phone:"+91 80095 65714",wa:"918009565714",street:"Rapti Nagar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Level+and+co+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/level-and-co-salon/index.html"},
+  {name:"Juvena Herbals",phone:"",wa:"",street:"Golghar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Herbal Salon",maps:"https://maps.google.com/?q=Juvena+Herbals+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/juvena-herbals/index.html"},
+  {name:"Senrick Salon",phone:"",wa:"",street:"Civil Lines",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Senrick+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/senrick-salon/index.html"},
+  {name:"Xpertcare Unisex Salon & Academy",phone:"",wa:"",street:"Taramandal",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Salon & Academy",maps:"https://maps.google.com/?q=Xpertcare+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/xpertcare-unisex-salon-academy/index.html"},
+  {name:"Mahi Blush & Glow",phone:"",wa:"",street:"Indira Nagar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=Mahi+Blush+Glow+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mahi-blush-glow/index.html"},
+  {name:"Monsoon Salon",phone:"",wa:"",street:"Gorakhnath",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Monsoon+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/monsoon-salon/index.html"},
+  {name:"Orchid Beauty Salon Unisex",phone:"",wa:"",street:"Sahjanwa",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Orchid+Beauty+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/orchid-beauty-salon-unisex/index.html"},
+  {name:"Artist Unisex Salon & Academy",phone:"",wa:"",street:"Mohaddipur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Salon & Academy",maps:"https://maps.google.com/?q=Artist+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/artist-unisex-salon-academy/index.html"},
+  {name:"Lakme Salon Gorakhnath",phone:"",wa:"",street:"Gorakhnath Mandir",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=Lakme+Salon+Gorakhnath",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/lakme-salon-gorakhnath/index.html"},
+  {name:"THE GRAND AURA UNISEX SALON",phone:"",wa:"",street:"Kunraghat",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=THE+GRAND+AURA+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-grand-aura-unisex-salon/index.html"},
+  {name:"Dheeraj Hair Story Unisex Salon",phone:"",wa:"",street:"Indira Nagar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Hair Salon",maps:"https://maps.google.com/?q=Dheeraj+Hair+Story+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/dheeraj-hair-story-unisex-salon/index.html"},
+  {name:"Pd Proffessional Care",phone:"",wa:"",street:"Divya Nagar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=Pd+Proffessional+Care+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/pd-proffessional-care/index.html"},
+  {name:"Km Orgatonics",phone:"",wa:"",street:"Golghar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Organic Salon",maps:"https://maps.google.com/?q=Km+Orgatonics+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/km-orgatonics/index.html"},
+  {name:"Fusion By Neelima Makeup Studio",phone:"",wa:"",street:"Rapti Nagar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Makeup Studio",maps:"https://maps.google.com/?q=Fusion+By+Neelima+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/fusion-by-neelima-makeup-studio/index.html"},
+  {name:"Anjali's Makeover",phone:"",wa:"",street:"Rajendra Nagar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Makeup Studio",maps:"https://maps.google.com/?q=Anjali+Makeover+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/anjalis-makeover/index.html"},
+  {name:"Cuts & Glow Unisex Salon",phone:"",wa:"",street:"Basharatpur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Cuts+Glow+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cuts-glow-unisex-salon/index.html"},
+  {name:"SMART 'N' SHINY UNISEX SALON",phone:"",wa:"",street:"Taramandal",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=SMART+N+SHINY+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/smart-n-shiny-unisex-salon/index.html"},
+  {name:"Naai The Salon",phone:"",wa:"",street:"Golghar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Naai+The+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/naai-the-salon/index.html"},
+  {name:"Nikita Walani Makeup Studio",phone:"",wa:"",street:"Hari Om Nagar",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Makeup Studio",maps:"https://maps.google.com/?q=Nikita+Walani+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/nikita-walani-makeup-studio/index.html"},
+  {name:"Cosmoline Hair & Beauty Salon",phone:"",wa:"",street:"Geeta Vatika",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Hair & Beauty",maps:"https://maps.google.com/?q=Cosmoline+Hair+Beauty+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cosmoline-hair-beauty-salon/index.html"},
+  {name:"ZLATO GLAM & GLOW",phone:"",wa:"",street:"Taramandal",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Glam Studio",maps:"https://maps.google.com/?q=ZLATO+GLAM+GLOW+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/zlato-glam-glow/index.html"},
+  {name:"The Glam Squad Unisex Salon",phone:"",wa:"",street:"Gorakhnath",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=The+Glam+Squad+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-glam-squad-unisex-salon/index.html"},
+  {name:"Sringar Family Salon & Academy",phone:"",wa:"",street:"Mughala",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Salon & Academy",maps:"https://maps.google.com/?q=Sringar+Family+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/sringar-family-salon-academy/index.html"},
+  {name:"Ak Makeup Studio",phone:"",wa:"",street:"Shahpur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Makeup Studio",maps:"https://maps.google.com/?q=Ak+Makeup+Studio+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/ak-makeup-studio/index.html"},
+  {name:"Make Over By L'oreal",phone:"",wa:"",street:"Basharatpur",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=Make+Over+By+Loreal+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/make-over-by-loreal/index.html"},
+  {name:"GMAC Family Unisex Salon",phone:"",wa:"",street:"Shivpur Road",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=GMAC+Family+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/gmac-family-unisex-salon/index.html"},
+  {name:"Studio99 Unisex Salon",phone:"",wa:"",street:"Char Fatak Road",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Studio99+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/studio99-unisex-salon/index.html"},
+  {name:"Mr Shyam Mens Parlour",phone:"",wa:"",street:"Singhariya",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Men's Parlour",maps:"https://maps.google.com/?q=Mr+Shyam+Mens+Parlour+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/mr-shyam-mens-parlour/index.html"},
+  {name:"The Hair Lab Barber Shop",phone:"",wa:"",street:"Raneedeeha",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Barber Shop",maps:"https://maps.google.com/?q=The+Hair+Lab+Barber+Shop+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-hair-lab-barber-shop/index.html"},
+  {name:"Diamond Hair Salon",phone:"",wa:"",street:"Bharwalia Buzurg",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Hair Salon",maps:"https://maps.google.com/?q=Diamond+Hair+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/diamond-hair-salon/index.html"},
+  {name:"Muskan Unisex Salon",phone:"",wa:"",street:"Taramandal",city:"Gorakhpur",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Muskan+Unisex+Salon+Gorakhpur",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/muskan-unisex-salon/index.html"},
 ];
+const DEFAULT_LEADS = _RAW_LEADS.map(normalizeLead);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATE
@@ -742,54 +818,74 @@ function renderRow(lead, idx) {
   const status  = state.status[idx] || 'pending';
   const price   = state.prices[idx] || '';
   const email   = state.emails[idx] || '';
+  const l       = lead; // alias
 
-  const rowClass = status === 'qualified' ? 'row-qualified'
+  const rowClass = status === 'qualified'    ? 'row-qualified'
                  : status === 'notqualified' ? 'row-notqualified' : '';
 
   // Name + maps link
-  const nameCell = lead.maps
-    ? `<a class="name-link" href="${lead.maps}" target="_blank" rel="noopener" title="Open in Google Maps">
-         <i class="fas fa-map-marker-alt map-pin"></i>${lead.name}
+  const nameCell = l.maps
+    ? `<a class="name-link" href="${l.maps}" target="_blank" rel="noopener" title="Open in Google Maps">
+         <i class="fas fa-map-marker-alt map-pin"></i>${l.name}
        </a>`
-    : `<span class="name-link" style="cursor:default"><i class="fas fa-store" style="color:var(--muted)"></i>${lead.name}</span>`;
-
-  // Address
-  const addrCell = lead.address
-    ? `<span class="addr-line">${lead.address}</span>`
-    : `<span class="no-data">Not available</span>`;
+    : `<span class="name-link" style="cursor:default"><i class="fas fa-store" style="color:var(--muted)"></i>${l.name}</span>`;
 
   // Phone
-  const phoneTel = lead.phone ? lead.phone.replace(/\s/g,'') : '';
-  const phoneCell = lead.phone
-    ? `<a class="phone-link" href="tel:${phoneTel}" title="Call ${lead.name}">${lead.phone}</a>`
-    : `<span class="no-data">No number</span>`;
+  const phoneTel  = l.phone ? l.phone.replace(/\s/g,'') : '';
+  const phoneCell = l.phone
+    ? `<a class="phone-link" href="tel:${phoneTel}">${l.phone}</a>`
+    : `<span class="no-data">—</span>`;
 
-  // Site URL
-  const urlCell = lead.url
-    ? `<a class="url-link" href="${lead.url}" target="_blank"><i class="fas fa-external-link-alt" style="font-size:.68rem"></i> View Site</a>`
-    : `<span class="no-data">Not deployed</span>`;
+  // Review score with stars
+  const reviewCell = l.review_score
+    ? `<span class="review-badge"><i class="fas fa-star" style="color:#f59e0b;font-size:.7rem"></i> ${l.review_score}</span>`
+    : `<span class="no-data">—</span>`;
 
-  // Status dropdown classes
-  const sSel = {
-    qualified:    's-qualified',
-    notqualified: 's-notqualified',
-    pending:      's-pending',
-  }[status];
+  // Demo Site
+  const urlCell = l.url
+    ? `<a class="url-link" href="${l.url}" target="_blank"><i class="fas fa-external-link-alt" style="font-size:.68rem"></i> View</a>`
+    : `<span class="no-data">—</span>`;
 
-  // WA button
-  const waBtn = lead.wa
-    ? `<button class="act-btn btn-wa" onclick="sendWA(${idx})" title="Send WhatsApp message"><i class="fab fa-whatsapp"></i> WhatsApp</button>`
-    : `<button class="act-btn btn-wa" disabled title="No phone number"><i class="fab fa-whatsapp"></i> No Number</button>`;
+  // Google first URL (embedded preview)
+  const googleCell = l.google_first_url
+    ? `<a class="url-link" href="${l.google_first_url}" target="_blank" title="${l.google_first_url}">
+        <i class="fab fa-google" style="font-size:.72rem;color:#4285f4"></i> Google
+       </a>`
+    : `<span class="no-data">—</span>`;
 
-  // Call button
-  const callBtn = lead.phone
-    ? `<a class="act-btn btn-call" href="tel:${phoneTel}" title="Call ${lead.name}"><i class="fas fa-phone"></i> Call</a>`
-    : `<button class="act-btn btn-call" disabled title="No phone number"><i class="fas fa-phone"></i> Call</button>`;
+  // Facebook
+  const fbCell = l.facebook
+    ? `<a class="url-link" href="${l.facebook}" target="_blank">
+        <i class="fab fa-facebook" style="font-size:.72rem;color:#1877f2"></i> Facebook
+       </a>`
+    : `<span class="no-data">—</span>`;
 
-  // Email button — active when email filled in
+  // Published badge
+  const pubCell = l.published
+    ? `<span class="pub-badge pub-yes"><i class="fas fa-check-circle"></i> ${l.published}</span>`
+    : `<span class="pub-badge pub-no"><i class="fas fa-circle"></i> No</span>`;
+
+  // Category badge
+  const catCell = l.business_category
+    ? `<span class="cat-badge">${l.business_category}</span>`
+    : `<span class="no-data">—</span>`;
+
+  // Status select
+  const sSel = status === 'qualified'    ? 's-qualified'
+             : status === 'notqualified' ? 's-notqualified' : 's-pending';
+
+  // Action buttons
+  const waBtn = l.wa
+    ? `<button class="act-btn btn-wa" onclick="sendWA(${idx})"><i class="fab fa-whatsapp"></i> WA</button>`
+    : `<button class="act-btn btn-wa" disabled><i class="fab fa-whatsapp"></i> WA</button>`;
+
+  const callBtn = l.phone
+    ? `<a class="act-btn btn-call" href="tel:${phoneTel}"><i class="fas fa-phone"></i> Call</a>`
+    : `<button class="act-btn btn-call" disabled><i class="fas fa-phone"></i> Call</button>`;
+
   const mailBtn = email
-    ? `<button class="act-btn btn-mail" onclick="sendEmail(${idx})" title="Send email to ${lead.name}"><i class="fas fa-envelope"></i> Mail</button>`
-    : `<button class="act-btn btn-mail" disabled title="Enter email address below to enable"><i class="fas fa-envelope"></i> Mail</button>`;
+    ? `<button class="act-btn btn-mail" onclick="sendEmail(${idx})"><i class="fas fa-envelope"></i> Mail</button>`
+    : `<button class="act-btn btn-mail" disabled title="Enter email below"><i class="fas fa-envelope"></i> Mail</button>`;
 
   return `<tr id="row-${idx}" class="${rowClass}">
   <td class="cell-num">${idx + 1}</td>
@@ -801,25 +897,32 @@ function renderRow(lead, idx) {
     </select>
   </td>
   <td class="cell-name">${nameCell}</td>
-  <td class="cell-addr">${addrCell}</td>
+  <td class="cell-cat">${catCell}</td>
+  <td class="cell-street">${l.street || '<span class="no-data">—</span>'}</td>
+  <td class="cell-city">${l.city   || '<span class="no-data">—</span>'}</td>
+  <td class="cell-country">${l.country || '<span class="no-data">—</span>'}</td>
+  <td class="cell-code"><span class="code-badge">${l.country_code || '—'}</span></td>
   <td class="cell-phone">${phoneCell}</td>
+  <td class="cell-review">${reviewCell}</td>
   <td class="cell-url">${urlCell}</td>
+  <td class="cell-google">${googleCell}</td>
+  <td class="cell-fb">${fbCell}</td>
+  <td class="cell-pub">${pubCell}</td>
   <td class="cell-price">
     <input type="number" class="price-input" id="price-${idx}" value="${price}"
-      placeholder="0" min="0" oninput="updatePrice(${idx}, this.value)" title="Deal price">
+      placeholder="0" min="0" oninput="updatePrice(${idx}, this.value)">
   </td>
   <td class="cell-actions">
     <div class="act-row">
-      ${waBtn}
-      ${callBtn}
-      <button class="act-btn btn-copy" id="copy-${idx}" onclick="copyMsg(${idx})" title="Copy outreach message">
+      ${waBtn}${callBtn}
+      <button class="act-btn btn-copy" id="copy-${idx}" onclick="copyMsg(${idx})">
         <i class="fas fa-copy"></i> Copy
       </button>
     </div>
     <div class="email-row">
       <input type="email" class="email-input" id="email-${idx}"
         value="${email}" placeholder="email@business.com"
-        oninput="saveEmail(${idx}, this.value)" title="Business email address">
+        oninput="saveEmail(${idx}, this.value)">
       ${mailBtn}
     </div>
   </td>
@@ -954,6 +1057,28 @@ function resetAllStatus() {
   showToast('All statuses reset to Pending.', 'fas fa-redo-alt');
 }
 
+function resetLeads() {
+  if (!confirm('Restore ALL leads to the default Gorakhpur dataset?\nThis will replace any imported leads (status & prices saved separately).')) return;
+  LEADS = DEFAULT_LEADS.map(l => ({...l}));
+  state.status = {};
+  state.prices = {};
+  state.emails = {};
+  saveState();
+  renderTable();
+  showToast(`Restored ${LEADS.length} default leads.`, 'fas fa-undo');
+}
+
+function removeAllLeads() {
+  if (!confirm('⚠️ PERMANENTLY remove ALL leads?\nThis cannot be undone. Your data will be wiped from localStorage.')) return;
+  LEADS = [];
+  state.status = {};
+  state.prices = {};
+  state.emails = {};
+  saveState();
+  renderTable();
+  showToast('All leads removed. Import a CSV to add new leads.', 'fas fa-trash', true);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // STATS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1006,11 +1131,21 @@ function importCSV(event) {
         return -1;
       };
 
-      const iName  = find(['business name','name'],          headers);
-      const iPhone = find(['phone'],                          headers);
-      const iAddr  = find(['address','full address'],         headers);
-      const iMaps  = find(['map','google map'],               headers);
-      const iUrl   = find(['demo','url','website'],           headers);
+      const iName  = find(['business name','name'],                         headers);
+      const iPhone = find(['phone','phone_number','phone number'],            headers);
+      const iStreet= find(['street'],                                         headers);
+      const iCity  = find(['city'],                                           headers);
+      const iCountry=find(['country'],                                        headers);
+      const iCC    = find(['country_code','code'],                            headers);
+      const iAddr  = find(['address','full address'],                         headers);
+      const iMaps  = find(['google_maps_url','map','google map','maps'],      headers);
+      const iUrl   = find(['url','demo','website','demo site'],               headers);
+      const iEmail = find(['email','emails'],                                 headers);
+      const iFB    = find(['facebook'],                                       headers);
+      const iGurl  = find(['google_first_url','google first','google url'],   headers);
+      const iCat   = find(['business_category','category'],                  headers);
+      const iRev   = find(['review_score','review','rating'],                 headers);
+      const iPub   = find(['published'],                                      headers);
 
       if (iName < 0) { showToast('CSV missing "Business Name" column!', 'fas fa-exclamation-triangle', true); return; }
 
@@ -1019,14 +1154,26 @@ function importCSV(event) {
         const cols = parseCsvLine(lines[i]);
         if (!cols.length || !cols[iName]) continue;
         const phone = iPhone >= 0 ? cols[iPhone] || '' : '';
-        imported.push({
-          name:    cols[iName]  || '',
-          phone:   phone,
-          wa:      toWA(phone),
-          address: iAddr >= 0 ? cols[iAddr] || '' : '',
-          maps:    iMaps >= 0 ? cols[iMaps] || '' : '',
-          url:     iUrl  >= 0 ? cols[iUrl]  || '' : '',
-        });
+        // prefer explicit street, fall back to address column
+        const street = iStreet >= 0 ? cols[iStreet] || ''
+                     : iAddr   >= 0 ? cols[iAddr]   || '' : '';
+        imported.push(normalizeLead({
+          name:             cols[iName]  || '',
+          phone,
+          wa:               toWA(phone),
+          street,
+          city:             iCity  >= 0 ? cols[iCity]  || '' : '',
+          country:          iCountry>=0 ? cols[iCountry]||'' : '',
+          country_code:     iCC    >= 0 ? cols[iCC]    || '' : '',
+          maps:             iMaps  >= 0 ? cols[iMaps]  || '' : '',
+          url:              iUrl   >= 0 ? cols[iUrl]   || '' : '',
+          email:            iEmail >= 0 ? cols[iEmail] || '' : '',
+          facebook:         iFB    >= 0 ? cols[iFB]    || '' : '',
+          google_first_url: iGurl  >= 0 ? cols[iGurl]  || '' : '',
+          business_category:iCat   >= 0 ? cols[iCat]   || '' : '',
+          review_score:     iRev   >= 0 ? cols[iRev]   || '' : '',
+          published:        iPub   >= 0 ? cols[iPub]   || '' : '',
+        }));
       }
 
       if (!imported.length) { showToast('No valid rows found in CSV.', 'fas fa-exclamation-triangle', true); return; }
@@ -1065,11 +1212,13 @@ function parseCsvLine(line) {
 // CSV EXPORT
 // ─────────────────────────────────────────────────────────────────────────────
 function exportCSV() {
-  let csv = 'Business Name,Phone Number,Address,Google Maps,Demo URL,Status,Deal Price (INR)\n';
+  const hdr = 'name,street,city,country,country_code,phone_number,review_score,google_maps_url,url,emails,facebook,google_first_url,business_category,published,status,deal_price_inr\n';
+  let csv = hdr;
   LEADS.forEach((l, i) => {
-    const s = state.status[i] || 'pending';
-    const p = state.prices[i] || 0;
-    csv += `"${l.name}","${l.phone}","${l.address || ''}","${l.maps || ''}","${l.url}","${s}","${p}"\n`;
+    const s  = state.status[i] || 'pending';
+    const p  = state.prices[i] || 0;
+    const em = state.emails[i] || l.email || '';
+    csv += `"${l.name}","${l.street||''}","${l.city||''}","${l.country||''}","${l.country_code||''}","${l.phone||''}","${l.review_score||''}","${l.maps||''}","${l.url||''}","${em}","${l.facebook||''}","${l.google_first_url||''}","${l.business_category||''}","${l.published||''}","${s}","${p}"\n`;
   });
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url  = URL.createObjectURL(blob);
