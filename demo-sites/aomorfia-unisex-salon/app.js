@@ -1,7 +1,7 @@
-/* --- Dynamic Interactivity App Logic --- */
+/* ── App Logic & Micro-Animations ─────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Mobile menu toggle
+  // Mobile menu
   const ham = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobile-nav');
   if (ham && mobileNav) {
@@ -12,20 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       mobileNav.classList.remove('open');
-      ham.querySelector('i').classList.add('fa-bars');
-      ham.querySelector('i').classList.remove('fa-times');
     }));
   }
 
-  // Sticky header shadow on scroll
+  // Sticky header shadow & shrink on scroll
   const header = document.getElementById('site-header');
   if (header) {
     window.addEventListener('scroll', () => {
-      header.style.boxShadow = window.scrollY > 10 ? 'var(--shadow-md)' : '';
+      if (window.scrollY > 20) {
+        header.style.boxShadow = 'var(--shadow-md)';
+        header.style.background = 'rgba(255,255,255,0.88)';
+      } else {
+        header.style.boxShadow = '';
+        header.style.background = 'rgba(255,255,255,0.75)';
+      }
     });
   }
 
-  // Gallery Lightbox
+  // Lightbox
   const lightbox = document.getElementById('lightbox');
   if (lightbox) {
     const lbImg = document.getElementById('lb-img');
@@ -43,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
   }
 
-  // FAQ Accordion Collapsible
+  // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
@@ -53,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Booking Form Invoice Calculation
+  // ── BOOKING FORM ────────────────────────────────────────────────────────────
   const form = document.getElementById('booking-form');
   if (form) {
     const selSvc   = document.getElementById('sel-service');
@@ -66,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const invGst   = document.getElementById('inv-gst');
     const invTotal = document.getElementById('inv-total');
 
-    // Restrict booking date to today and future
+    // Min date = today
     inpDate.min = new Date().toISOString().split('T')[0];
 
-    // Read URL pre-selection query parameters
+    // Pre-select from query string
     const qs = new URLSearchParams(window.location.search);
     if (qs.get('service')) {
       [...selSvc.options].forEach(o => { if (o.value === qs.get('service')) o.selected = true; });
@@ -89,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
     selSvc.addEventListener('change', updateInvoice);
     updateInvoice();
 
-    // Form Submission: Redirect directly to WhatsApp with pre-formatted invoice
     form.addEventListener('submit', e => {
       e.preventDefault();
       const opt    = selSvc.options[selSvc.selectedIndex];
@@ -99,9 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const salon  = document.getElementById('salon-name').value;
       const waNum  = document.getElementById('wa-number').value;
 
-      const msg = `Hello ${salon}! 👋
+      // Detect if booking a course or a regular service
+      const isCourse = opt.closest('optgroup') && opt.closest('optgroup').label.includes('Academy');
 
-I would like to book a luxury appointment:
+      let msg = '';
+      if (isCourse) {
+        msg = `Hello ${salon}! 🎓
+        
+I am interested in enrolling in your professional training course:
+🎓 *Course:* ${selSvc.value}
+💰 *Tuition Fee:* ₹${total} (₹${base} + 18% GST)
+📅 *Preferred Start Batch:* ${inpDate.value}
+⏰ *Time Slot:* ${selTime.value}
+
+My Trainee Details:
+• *Name:* ${inpName.value}
+• *Phone:* ${inpPhone.value}
+
+Please share the syllabus brochure and confirm my registration. Thank you! 🙏`;
+      } else {
+        msg = `Hello ${salon}! 👋
+
+I would like to book an appointment:
 📋 *Service:* ${selSvc.value}
 💰 *Total:* ₹${total} (₹${base} + 18% GST)
 📅 *Date:* ${inpDate.value}
@@ -113,30 +135,31 @@ My Details:
 • *Phone:* ${inpPhone.value}
 
 Please confirm my slot. Thank you! 🙏`;
+      }
 
       window.open(`https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`, '_blank');
     });
   }
 
-  // Subtle scroll fade-in transitions
-  const fadeEls = document.querySelectorAll('.svc-card, .gal-item, .review-card, .pricing-card, .team-card');
+  // ── Intersection Observer for staggered fade-up-scale scroll animations ──
+  const animatedEls = document.querySelectorAll('.svc-card, .gal-item, .review-card, .pricing-card, .team-card, .course-card');
   if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (en.isIntersecting) {
-          en.target.style.opacity = '1';
-          en.target.style.transform = 'translateY(0)';
-          obs.unobserve(en.target);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
-    fadeEls.forEach(el => {
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+    animatedEls.forEach(el => {
       el.style.opacity = '0';
-      el.style.transform = 'translateY(16px)';
-      el.style.transition = 'all 0.5s ease';
-      obs.observe(el);
+      el.style.transform = 'translateY(24px) scale(0.97)';
+      el.style.transition = 'opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
+      observer.observe(el);
     });
   } else {
-    fadeEls.forEach(el => el.style.opacity = '1');
+    animatedEls.forEach(el => el.classList.add('reveal-active'));
   }
+
 });

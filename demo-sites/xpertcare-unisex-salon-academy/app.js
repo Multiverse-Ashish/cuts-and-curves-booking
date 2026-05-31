@@ -1,4 +1,4 @@
-/* ── App Logic ─────────────────────────────────────────────────────────────── */
+/* ── App Logic & Micro-Animations ─────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile menu
@@ -15,11 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
   }
 
-  // Sticky header shadow
+  // Sticky header shadow & shrink on scroll
   const header = document.getElementById('site-header');
   if (header) {
     window.addEventListener('scroll', () => {
-      header.style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,.12)' : '';
+      if (window.scrollY > 20) {
+        header.style.boxShadow = 'var(--shadow-md)';
+        header.style.background = 'rgba(255,255,255,0.88)';
+      } else {
+        header.style.boxShadow = '';
+        header.style.background = 'rgba(255,255,255,0.75)';
+      }
     });
   }
 
@@ -96,7 +102,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const salon  = document.getElementById('salon-name').value;
       const waNum  = document.getElementById('wa-number').value;
 
-      const msg = `Hello ${salon}! 👋
+      // Detect if booking a course or a regular service
+      const isCourse = opt.closest('optgroup') && opt.closest('optgroup').label.includes('Academy');
+
+      let msg = '';
+      if (isCourse) {
+        msg = `Hello ${salon}! 🎓
+        
+I am interested in enrolling in your professional training course:
+🎓 *Course:* ${selSvc.value}
+💰 *Tuition Fee:* ₹${total} (₹${base} + 18% GST)
+📅 *Preferred Start Batch:* ${inpDate.value}
+⏰ *Time Slot:* ${selTime.value}
+
+My Trainee Details:
+• *Name:* ${inpName.value}
+• *Phone:* ${inpPhone.value}
+
+Please share the syllabus brochure and confirm my registration. Thank you! 🙏`;
+      } else {
+        msg = `Hello ${salon}! 👋
 
 I would like to book an appointment:
 📋 *Service:* ${selSvc.value}
@@ -110,22 +135,31 @@ My Details:
 • *Phone:* ${inpPhone.value}
 
 Please confirm my slot. Thank you! 🙏`;
+      }
 
       window.open(`https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`, '_blank');
     });
   }
 
-  // Intersection observer for fade-in animations
-  const fadeEls = document.querySelectorAll('.svc-card, .gal-item, .review-card, .pricing-card, .team-card');
+  // ── Intersection Observer for staggered fade-up-scale scroll animations ──
+  const animatedEls = document.querySelectorAll('.svc-card, .gal-item, .review-card, .pricing-card, .team-card, .course-card');
   if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (en.isIntersecting) { en.target.style.opacity = '1'; obs.unobserve(en.target); }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+          observer.unobserve(entry.target);
+        }
       });
-    }, { threshold: 0.1 });
-    fadeEls.forEach(el => obs.observe(el));
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+    animatedEls.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px) scale(0.97)';
+      el.style.transition = 'opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
+      observer.observe(el);
+    });
   } else {
-    fadeEls.forEach(el => el.style.opacity = '1');
+    animatedEls.forEach(el => el.classList.add('reveal-active'));
   }
 
 });

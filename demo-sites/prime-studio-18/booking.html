@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Appointment | Prime Studio 1.8</title>
+  <title>Book Appointment or Academy Course | Prime Studio 1.8</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
@@ -11,37 +11,42 @@
   <div class="top-bar"><p><a href="index.html" style="color:#fff"><i class="fas fa-arrow-left"></i> Back to Home</a></p></div>
   <div class="booking-page">
     <div class="booking-card">
-      <h2>Book Your Appointment</h2>
-      <p>Fill in the details below. Your booking request will be confirmed directly on WhatsApp.</p>
+      <h2>Book Appointment / Course</h2>
+      <p>Fill in the details below. Your appointment or course enrollment will be confirmed directly on WhatsApp.</p>
       <form id="booking-form">
         <div class="form-group">
-          <label>Select Service</label>
+          <label>Select Service or Course</label>
           <select id="sel-service" required>
-            <option value="" disabled selected>Choose a service...</option>
-            <option value="Unisex Signature Haircut" data-price="499">Unisex Signature Haircut — ₹499</option>
+            <option value="" disabled selected>Choose service or course...</option>
+            <optgroup label="Premium Services">
+              <option value="Unisex Signature Haircut" data-price="499">Unisex Signature Haircut — ₹499</option>
 <option value="Global Hair Coloring" data-price="1999">Global Hair Coloring — ₹1999</option>
 <option value="Nourishing Hair Spa" data-price="899">Nourishing Hair Spa — ₹899</option>
 <option value="Skin Radiance Treatment" data-price="1299">Skin Radiance Treatment — ₹1299</option>
 <option value="Hair + Beard Combo" data-price="699">Hair + Beard Combo — ₹699</option>
 <option value="Luxury Manicure Spa" data-price="599">Luxury Manicure Spa — ₹599</option>
+            </optgroup>
+            <optgroup label="Academy Professional Courses">
+              <option value="HD Bridal & Celebrity Makeup Masterclass" data-price="14999">HD Bridal & Celebrity Makeup Masterclass — ₹14999 (4 Weeks)</option>
+<option value="Advanced Hair Design & Chemical Artistry" data-price="19999">Advanced Hair Design & Chemical Artistry — ₹19999 (6 Weeks)</option>
+<option value="Nail Artistry & Extensions Specialist" data-price="7999">Nail Artistry & Extensions Specialist — ₹7999 (2 Weeks)</option>
+            </optgroup>
           </select>
         </div>
         <div class="form-group">
-          <label>Preferred Specialist</label>
+          <label>Preferred Specialist / Trainer</label>
           <select id="sel-stylist">
-            <option value="Any Available Specialist">Any Available Specialist</option>
-            <option value="Karan Tiwari">Karan Tiwari — Principal Hairdresser</option>
-<option value="Pooja Singh">Pooja Singh — Beauty Expert</option>
-<option value="Arjun Rao">Arjun Rao — Senior Stylist</option>
+            <option value="Any Available Specialist / Trainer">Any Available Specialist / Trainer</option>
+            Karan Tiwari
           </select>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Appointment Date</label>
+            <label>Appointment / Batch Date</label>
             <input type="date" id="inp-date" required>
           </div>
           <div class="form-group">
-            <label>Time Slot</label>
+            <label>Preferred Time Slot</label>
             <select id="sel-time" required>
               <option value="" disabled selected>Select time...</option>
               <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
@@ -55,13 +60,13 @@
         <div class="form-group"><label>WhatsApp Number</label><input type="tel" id="inp-phone" placeholder="Your phone number" required></div>
         <div class="invoice-box">
           <h4>Invoice Summary</h4>
-          <div class="inv-row"><span>Base Price:</span><span id="inv-base">₹0</span></div>
+          <div class="inv-row"><span>Base Tuition / Service:</span><span id="inv-base">₹0</span></div>
           <div class="inv-row"><span>GST (18%):</span><span id="inv-gst">₹0</span></div>
           <div class="inv-row inv-total"><span>Total Due:</span><span id="inv-total">₹0</span></div>
         </div>
         <input type="hidden" id="salon-name" value="Prime Studio 1.8">
         <input type="hidden" id="wa-number" value="918573005081">
-        <button type="submit" class="btn-wa"><i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp</button>
+        <button type="submit" class="btn-wa"><i class="fab fa-whatsapp"></i> Confirm &amp; Enroll via WhatsApp</button>
       </form>
     </div>
   </div>
