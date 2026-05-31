@@ -542,6 +542,21 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
     font-size: 0.75rem !important;
   }
 
+  /* Scaled Card Buttons to prevent overflow in 2-column layout */
+  .btn-book-svc, .btn-course-enroll, .btn-pricing, .btn-team-book {
+    padding: 8px 4px !important;
+    font-size: 0.74rem !important;
+    margin-top: 4px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    text-align: center !important;
+    border-radius: var(--radius-xl) !important;
+    line-height: 1.2 !important;
+  }
+
   /* 2-Column Buttons on Hero */
   .hero-actions {
     display: grid !important;
