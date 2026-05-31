@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment | The Hair Salon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top-bar"><p><a href="index.html" style="color:#fff"><i class="fas fa-arrow-left"></i> Back to Home</a></p></div>
+  <div class="booking-page">
+    <div class="booking-card">
+      <h2>Book Your Appointment</h2>
+      <p>Fill in the details below. Your booking request will be confirmed directly on WhatsApp.</p>
+      <form id="booking-form">
+        <div class="form-group">
+          <label>Select Service</label>
+          <select id="sel-service" required>
+            <option value="" disabled selected>Choose a service...</option>
+            <option value="Signature Haircut & Style" data-price="399">Signature Haircut & Style — ₹399</option>
+<option value="Global Rich Hair Coloring" data-price="1699">Global Rich Hair Coloring — ₹1699</option>
+<option value="Nutritive Deep Conditioning Spa" data-price="799">Nutritive Deep Conditioning Spa — ₹799</option>
+<option value="O2 Purifying Brightening Facial" data-price="1199">O2 Purifying Brightening Facial — ₹1199</option>
+<option value="Spa Pedicure & Foot Scrub" data-price="699">Spa Pedicure & Foot Scrub — ₹699</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Specialist</label>
+          <select id="sel-stylist">
+            <option value="Any Available Specialist">Any Available Specialist</option>
+            <option value="Rahul Dev">Rahul Dev — Creative Style Director</option>
+<option value="Shweta Kapoor">Shweta Kapoor — Color Transformation Expert</option>
+<option value="Kunal Sen">Kunal Sen — Hair Spa & Scalp Specialist</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Appointment Date</label>
+            <input type="date" id="inp-date" required>
+          </div>
+          <div class="form-group">
+            <label>Time Slot</label>
+            <select id="sel-time" required>
+              <option value="" disabled selected>Select time...</option>
+              <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+              <option>12:00 PM</option><option>01:00 PM</option><option>02:00 PM</option>
+              <option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option>
+              <option>06:00 PM</option><option>07:00 PM</option><option>08:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Your Full Name</label><input type="text" id="inp-name" placeholder="Enter your name" required></div>
+        <div class="form-group"><label>WhatsApp Number</label><input type="tel" id="inp-phone" placeholder="Your phone number" required></div>
+        <div class="invoice-box">
+          <h4>Invoice Summary</h4>
+          <div class="inv-row"><span>Base Price:</span><span id="inv-base">₹0</span></div>
+          <div class="inv-row"><span>GST (18%):</span><span id="inv-gst">₹0</span></div>
+          <div class="inv-row inv-total"><span>Total Due:</span><span id="inv-total">₹0</span></div>
+        </div>
+        <input type="hidden" id="salon-name" value="The Hair Salon">
+        <input type="hidden" id="wa-number" value="917355449833">
+        <button type="submit" class="btn-wa"><i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment | Trends Beauty Salon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top-bar"><p><a href="index.html" style="color:#fff"><i class="fas fa-arrow-left"></i> Back to Home</a></p></div>
+  <div class="booking-page">
+    <div class="booking-card">
+      <h2>Book Your Appointment</h2>
+      <p>Fill in the details below. Your booking request will be confirmed directly on WhatsApp.</p>
+      <form id="booking-form">
+        <div class="form-group">
+          <label>Select Service</label>
+          <select id="sel-service" required>
+            <option value="" disabled selected>Choose a service...</option>
+            <option value="Gold Radiance Glow Facial" data-price="1299">Gold Radiance Glow Facial — ₹1299</option>
+<option value="HD Celebrity Bridal Makeup" data-price="6999">HD Celebrity Bridal Makeup — ₹6999</option>
+<option value="Advanced Hair Keratin Infusion" data-price="2499">Advanced Hair Keratin Infusion — ₹2499</option>
+<option value="Deluxe Pedicure & Manicure" data-price="799">Deluxe Pedicure & Manicure — ₹799</option>
+<option value="Premium Party Makeover" data-price="1999">Premium Party Makeover — ₹1999</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Specialist</label>
+          <select id="sel-stylist">
+            <option value="Any Available Specialist">Any Available Specialist</option>
+            <option value="Smriti Mishra">Smriti Mishra — Celebrity Makeup Artist</option>
+<option value="Priya Patel">Priya Patel — Skin Glow Specialist</option>
+<option value="Neha Singh">Neha Singh — Hair Keratin Expert</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Appointment Date</label>
+            <input type="date" id="inp-date" required>
+          </div>
+          <div class="form-group">
+            <label>Time Slot</label>
+            <select id="sel-time" required>
+              <option value="" disabled selected>Select time...</option>
+              <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+              <option>12:00 PM</option><option>01:00 PM</option><option>02:00 PM</option>
+              <option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option>
+              <option>06:00 PM</option><option>07:00 PM</option><option>08:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Your Full Name</label><input type="text" id="inp-name" placeholder="Enter your name" required></div>
+        <div class="form-group"><label>WhatsApp Number</label><input type="tel" id="inp-phone" placeholder="Your phone number" required></div>
+        <div class="invoice-box">
+          <h4>Invoice Summary</h4>
+          <div class="inv-row"><span>Base Price:</span><span id="inv-base">₹0</span></div>
+          <div class="inv-row"><span>GST (18%):</span><span id="inv-gst">₹0</span></div>
+          <div class="inv-row inv-total"><span>Total Due:</span><span id="inv-total">₹0</span></div>
+        </div>
+        <input type="hidden" id="salon-name" value="Trends Beauty Salon">
+        <input type="hidden" id="wa-number" value="916386512424">
+        <button type="submit" class="btn-wa"><i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
