@@ -1538,11 +1538,40 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
     gap: 28px !important;
   }
   .academy-tabs {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    padding: 8px 16px !important;
     gap: 8px !important;
+    width: 100% !important;
+    -webkit-overflow-scrolling: touch !important;
   }
   .academy-tab-btn {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
     padding: 10px 18px !important;
     font-size: 0.88rem !important;
+  }
+  .site-footer {
+    text-align: center !important;
+  }
+  .footer-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 32px !important;
+  }
+  .footer-links ul {
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .social-row {
+    justify-content: center !important;
   }
   .panel-title-row {
     flex-direction: column !important;
@@ -1881,4 +1910,239 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
   border-radius: 4px !important;
   border: 2px solid var(--text) !important;
   box-shadow: 3px 3px 0px var(--text) !important;
+}
+
+/* ── OFFERS SECTION ───────────────────────────────────────────────────────── */
+.offers-section {
+  background: var(--bg) !important;
+  padding: 96px 24px 60px !important;
+}
+.offers-banner-card {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.08) 0%, rgba(var(--accent-rgb), 0.03) 100%) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 60px 48px !important;
+  box-shadow: var(--shadow-md) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 40px !important;
+  transition: all 0.4s ease !important;
+}
+.offers-banner-card:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 15px 40px rgba(var(--accent-rgb), 0.1) !important;
+}
+.offers-banner-content {
+  text-align: center !important;
+  max-width: 700px !important;
+  margin: 0 auto !important;
+}
+.offers-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: var(--accent) !important;
+  color: #fff !important;
+  padding: 6px 18px !important;
+  border-radius: var(--radius-xl) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.2) !important;
+}
+.offers-banner-content h2 {
+  font-family: var(--font-title) !important;
+  font-size: clamp(1.8rem, 4vw, 2.6rem) !important;
+  color: var(--text) !important;
+  margin-bottom: 16px !important;
+  font-weight: 700 !important;
+}
+.offers-banner-content p {
+  color: var(--muted) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  margin-bottom: 28px !important;
+}
+.offers-cta-row {
+  display: flex !important;
+  justify-content: center !important;
+}
+.btn-claim-offer {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 14px 36px !important;
+  font-size: 0.95rem !important;
+}
+.offers-translucent-cards {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+}
+.offer-sub-card {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 28px 24px !important;
+  text-align: center !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.3s ease !important;
+}
+.layout-b .offer-sub-card {
+  background: rgba(255, 255, 255, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+.layout-c .offer-sub-card {
+  border-radius: 4px !important;
+  border: 2px solid var(--text) !important;
+  box-shadow: 4px 4px 0px var(--text) !important;
+  background: var(--card) !important;
+}
+.offer-sub-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--accent) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.layout-c .offer-sub-card:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+.offer-sub-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.15rem;
+}
+.offer-sub-card h4 {
+  font-family: var(--font-body) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  margin-bottom: 8px !important;
+}
+.offer-sub-card p {
+  font-size: 0.85rem !important;
+  color: var(--muted) !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+/* ── GALLERY CAROUSEL ─────────────────────────────────────────────────────── */
+.gallery-carousel-wrapper {
+  width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
+}
+.gallery-carousel {
+  position: relative !important;
+  width: 100% !important;
+  height: 480px !important;
+}
+.gallery-carousel-slides {
+  display: flex !important;
+  width: 100% !important;
+  height: 100% !important;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.gallery-carousel-slide {
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+.gallery-carousel-slide img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+.gallery-carousel-dots {
+  position: absolute !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  gap: 10px !important;
+  z-index: 10 !important;
+}
+.gallery-carousel-dot {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
+}
+.gallery-carousel-dot.active {
+  background: var(--accent) !important;
+  transform: scale(1.2) !important;
+  box-shadow: 0 0 8px var(--accent) !important;
+}
+
+/* ── CONTACT CARD SOCIALS ─────────────────────────────────────────────────── */
+.contact-socials-wrapper {
+  margin-top: 32px !important;
+  padding-top: 24px !important;
+  border-top: 1px dashed var(--border) !important;
+}
+.contact-socials-wrapper h4 {
+  font-size: 0.8rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--muted) !important;
+  margin-bottom: 16px !important;
+  font-weight: 700 !important;
+}
+.contact-social-icons {
+  display: flex !important;
+  gap: 12px !important;
+}
+.contact-social-icon-btn {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid var(--border) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--muted) !important;
+  font-size: 1.1rem !important;
+  transition: all 0.3s ease !important;
+  background: var(--card) !important;
+}
+.contact-social-icon-btn:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  transform: translateY(-3px) !important;
+}
+.layout-c .contact-social-icon-btn {
+  border-radius: 4px !important;
+  border: 2px solid var(--text) !important;
+  box-shadow: 2px 2px 0px var(--text) !important;
+}
+.layout-c .contact-social-icon-btn:hover {
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 3px 3px 0px var(--accent) !important;
+}
+
+@media (max-width: 768px) {
+  .gallery-carousel {
+    height: 280px !important;
+  }
 }

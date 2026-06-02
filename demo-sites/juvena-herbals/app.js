@@ -465,6 +465,38 @@ Please confirm my slot. Thank you! 🙏`;
 
   });
 
+  // Automatic Gallery Carousel Slideshow (Horizontal translate slider)
+  document.querySelectorAll('.gallery-carousel').forEach(carousel => {
+    const track = carousel.querySelector('.gallery-carousel-slides');
+    const slides = carousel.querySelectorAll('.gallery-carousel-slide');
+    const dots = carousel.querySelectorAll('.gallery-carousel-dot');
+    if (slides.length === 0 || !track) return;
+
+    let currentSlide = 0;
+    let slideInterval = setInterval(nextSlide, 4000);
+
+    function showSlide(n) {
+      currentSlide = (n + slides.length) % slides.length;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach(d => d.classList.remove('active'));
+      if (dots[currentSlide]) {
+        dots[currentSlide].classList.add('active');
+      }
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        showSlide(idx);
+        slideInterval = setInterval(nextSlide, 4000);
+      });
+    });
+  });
+
   // ── BACKGROUND PARTICLES ANIMATION ─────────────────────────────────────────
   const canvas = document.getElementById('bg-animation-canvas');
   if (canvas) {

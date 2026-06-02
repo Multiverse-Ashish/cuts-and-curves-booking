@@ -1811,11 +1811,6 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
   max-width: 650px !important;
   margin: 0 !important;
 }
-}
-.layout-b .hero-content {
-  max-width: 650px !important;
-  margin: 0 !important;
-}
 .layout-b .hero-actions {
   justify-content: flex-start !important;
 }
