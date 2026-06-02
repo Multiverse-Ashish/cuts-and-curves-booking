@@ -29,7 +29,7 @@
       --radius:     12px;
       --shadow:     0 2px 12px rgba(0,0,0,.08);
       --shadow-lg:  0 8px 32px rgba(0,0,0,.14);
-      --hh:         64px;   /* header height — used by sticky thead offset */
+      --hh:         104px;  /* header height (including workspace tabs) */
     }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; min-height: 100vh; }
     a { text-decoration: none; color: inherit; }
@@ -520,7 +520,7 @@
     /* ── Mobile (≤ 640px) ───────────────────────────────────────── */
     @media (max-width: 640px) {
       /* Header: auto height, wrap to two rows */
-      :root { --hh: 108px; }   /* taller header on mobile */
+      :root { --hh: 144px; }   /* taller header on mobile */
       .crm-header { position: static; }  /* not sticky on mobile — prevents overlap */
       .crm-header-inner {
         flex-direction: column;
@@ -582,6 +582,78 @@
       /* hide # column on very small screens */
       .cell-num, thead th:first-child { display: none; }
     }
+
+    /* Workspace Tabs Styling */
+    .db-tabs-bar {
+      background: rgba(30, 27, 75, 0.45);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+    }
+    .db-tabs-container {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      height: 100%;
+      align-items: flex-end;
+      scrollbar-width: none;
+    }
+    .db-tabs-container::-webkit-scrollbar { display: none; }
+    .db-tab {
+      padding: 8px 16px;
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 600;
+      font-size: 0.78rem;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      border-radius: 4px 4px 0 0;
+      user-select: none;
+    }
+    .db-tab:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .db-tab.active {
+      color: #fff;
+      border-bottom-color: #a5b4fc;
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .db-tab .close-tab {
+      font-size: 0.72rem;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+      margin-left: 2px;
+    }
+    .db-tab .close-tab:hover {
+      opacity: 1;
+      color: #f87171;
+    }
+    .add-space-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .add-space-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
   </style>
 </head>
 <body>
@@ -593,7 +665,7 @@
       <div class="logo-icon"><i class="fas fa-bolt"></i></div>
       <div>
         <h1>Digi<span>Load</span> Leads</h1>
-        <p>Gorakhpur Salon Outreach CRM · <span id="lead-count">45</span> Leads</p>
+        <p><span id="active-db-title">Gorakhpur Leads</span> · <span id="lead-count">45</span> Leads</p>
       </div>
     </div>
     <div class="header-actions">
@@ -623,6 +695,16 @@
       </button>
       <button class="header-btn header-btn-primary" onclick="openImportModal()">
         <i class="fas fa-question-circle"></i> <span class="btn-label">CSV Format</span>
+      </button>
+    </div>
+  </div>
+  <div class="db-tabs-bar">
+    <div class="db-tabs-container" id="db-tabs-container">
+      <!-- Tabs will be rendered dynamically by renderTabs() -->
+    </div>
+    <div>
+      <button class="add-space-btn" onclick="document.getElementById('import-csv-input').click()">
+        <i class="fas fa-plus"></i> Add Workspace
       </button>
     </div>
   </div>
@@ -938,29 +1020,73 @@ const _RAW_LEADS = [
 const DEFAULT_LEADS = _RAW_LEADS.map(normalizeLead);
 
 // ─────────────────────────────────────────────────────────────────────────────
-// STATE
+// STATE (Multi-workspace database state management)
 // ─────────────────────────────────────────────────────────────────────────────
 const STORAGE_KEY = 'digiload-crm-v2';
 let LEADS = [];
 let state = { status: {}, prices: {}, emails: {} };
 let activeFilter = 'all';
+let DATABASES = {};
+let ACTIVE_DB = 'Gorakhpur Leads';
 
 function loadState() {
   try {
     const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    state.status = s.status || {};
-    state.prices = s.prices || {};
-    state.emails = s.emails || {};
-    LEADS = s.leads && s.leads.length ? s.leads : DEFAULT_LEADS.map(l => ({...l}));
-  } catch(e) { 
-    state = { status:{}, prices:{}, emails:{} }; 
-    LEADS = DEFAULT_LEADS.map(l => ({...l}));
+    if (s.databases && Object.keys(s.databases).length) {
+      DATABASES = s.databases;
+      ACTIVE_DB = s.activeDb || Object.keys(DATABASES)[0];
+    } else {
+      // Migrate legacy single database format or initialize default Gorakhpur workspace
+      const legacyLeads = s.leads && s.leads.length ? s.leads : DEFAULT_LEADS.map(l => ({...l}));
+      DATABASES = {
+        'Gorakhpur Leads': {
+          leads: legacyLeads,
+          status: s.status || {},
+          prices: s.prices || {},
+          emails: s.emails || {}
+        }
+      };
+      ACTIVE_DB = 'Gorakhpur Leads';
+    }
+  } catch(e) {
+    DATABASES = {
+      'Gorakhpur Leads': {
+        leads: DEFAULT_LEADS.map(l => ({...l})),
+        status: {},
+        prices: {},
+        emails: {}
+      }
+    };
+    ACTIVE_DB = 'Gorakhpur Leads';
+  }
+  
+  // Set current active database references
+  const currentDb = DATABASES[ACTIVE_DB] || DATABASES[Object.keys(DATABASES)[0]];
+  LEADS = currentDb.leads;
+  state.status = currentDb.status || {};
+  state.prices = currentDb.prices || {};
+  state.emails = currentDb.emails || {};
+  
+  // Update header text subtitle
+  const titleEl = document.getElementById('active-db-title');
+  if (titleEl) {
+    titleEl.textContent = ACTIVE_DB;
   }
 }
 
 function saveState() {
+  // Sync current active database state before saving
+  if (!DATABASES[ACTIVE_DB]) {
+    DATABASES[ACTIVE_DB] = {};
+  }
+  DATABASES[ACTIVE_DB].leads = LEADS;
+  DATABASES[ACTIVE_DB].status = state.status;
+  DATABASES[ACTIVE_DB].prices = state.prices;
+  DATABASES[ACTIVE_DB].emails = state.emails;
+  
   localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    status: state.status, prices: state.prices, emails: state.emails, leads: LEADS
+    databases: DATABASES,
+    activeDb: ACTIVE_DB
   }));
 }
 
@@ -1253,19 +1379,26 @@ function resetAllStatus() {
 }
 
 function resetLeads() {
-  if (!confirm('Restore ALL leads to the default Gorakhpur dataset?\nThis will replace any imported leads (status & prices saved separately).')) return;
-  LEADS = DEFAULT_LEADS.map(l => ({...l}));
-  state.status = {};
-  state.prices = {};
-  state.emails = {};
+  if (ACTIVE_DB === 'Gorakhpur Leads') {
+    if (!confirm('Restore all leads to the default Gorakhpur dataset? This will reset all changes.')) return;
+    LEADS = DEFAULT_LEADS.map(l => ({...l}));
+    state.status = {};
+    state.prices = {};
+    state.emails = {};
+  } else {
+    if (!confirm(`Reset all status, deal values, and emails inside "${ACTIVE_DB}" workspace?`)) return;
+    state.status = {};
+    state.prices = {};
+    state.emails = {};
+  }
   saveState();
   populateFilters();
   renderTable();
-  showToast(`Restored ${LEADS.length} default leads.`, 'fas fa-undo');
+  showToast(`Reset active workspace "${ACTIVE_DB}".`, 'fas fa-undo');
 }
 
 function removeAllLeads() {
-  if (!confirm('⚠️ PERMANENTLY remove ALL leads?\nThis cannot be undone. Your data will be wiped from localStorage.')) return;
+  if (!confirm(`⚠️ PERMANENTLY remove all leads inside "${ACTIVE_DB}"?\nThis cannot be undone.`)) return;
   LEADS = [];
   state.status = {};
   state.prices = {};
@@ -1273,7 +1406,7 @@ function removeAllLeads() {
   saveState();
   populateFilters();
   renderTable();
-  showToast('All leads removed. Import a CSV to add new leads.', 'fas fa-trash', true);
+  showToast(`All leads cleared from "${ACTIVE_DB}".`, 'fas fa-trash', true);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1375,15 +1508,23 @@ function importCSV(event) {
 
       if (!imported.length) { showToast('No valid rows found in CSV.', 'fas fa-exclamation-triangle', true); return; }
 
-      if (confirm(`Import ${imported.length} leads from CSV? This will REPLACE current leads (status & prices saved separately).`)) {
-        LEADS = imported;
-        state.status = {};
-        state.prices = {};
+      const fileName = file.name || "Imported Leads";
+      if (confirm(`Import ${imported.length} leads from "${fileName}" as a new workspace?`)) {
+        DATABASES[fileName] = {
+          leads: imported,
+          status: {},
+          prices: {},
+          emails: {}
+        };
+        ACTIVE_DB = fileName;
+        
         saveState();
+        loadState();
         populateFilters();
+        renderTabs();
         renderTable();
         closeImportModal();
-        showToast(`Imported ${imported.length} leads successfully!`, 'fas fa-file-import');
+        showToast(`Workspace "${fileName}" created with ${imported.length} leads!`, 'fas fa-file-import');
       }
     } catch (err) {
       showToast('Error reading CSV: ' + err.message, 'fas fa-exclamation-triangle', true);
@@ -1736,9 +1877,69 @@ function renderAnalyticsCharts() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// MULTI-WORKSPACE TABS LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+function renderTabs() {
+  const container = document.getElementById('db-tabs-container');
+  if (!container) return;
+  
+  let html = '';
+  Object.keys(DATABASES).forEach(dbName => {
+    const isActive = dbName === ACTIVE_DB;
+    const activeClass = isActive ? 'active' : '';
+    // Show close button only if there is more than 1 database workspace
+    const closeBtn = Object.keys(DATABASES).length > 1 
+      ? `<i class="fas fa-times close-tab" onclick="deleteDatabase(event, '${dbName}')" title="Delete workspace"></i>`
+      : '';
+      
+    html += `
+      <div class="db-tab ${activeClass}" onclick="switchDatabase('${dbName}')">
+        <i class="fas fa-database" style="font-size: 0.72rem; opacity: 0.85;"></i>
+        <span>${dbName}</span>
+        ${closeBtn}
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function switchDatabase(dbName) {
+  ACTIVE_DB = dbName;
+  saveState();
+  loadState();
+  populateFilters();
+  renderTabs();
+  renderTable();
+  showToast(`Switched to workspace: ${dbName}`, "fas fa-check-circle");
+}
+
+function deleteDatabase(event, dbName) {
+  event.stopPropagation(); // Prevent switching click trigger
+  const keys = Object.keys(DATABASES);
+  if (keys.length <= 1) {
+    showToast("Cannot delete the last remaining workspace.", "fas fa-exclamation-triangle", true);
+    return;
+  }
+  if (!confirm(`Are you sure you want to permanently delete the "${dbName}" workspace?`)) {
+    return;
+  }
+  delete DATABASES[dbName];
+  if (ACTIVE_DB === dbName) {
+    ACTIVE_DB = Object.keys(DATABASES)[0];
+  }
+  saveState();
+  loadState();
+  populateFilters();
+  renderTabs();
+  renderTable();
+  showToast(`Deleted workspace "${dbName}".`, "fas fa-trash");
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────────────────────────────────────
 loadState();
+renderTabs();
 loadVisibleCols();
 buildColPickerUI();
 populateFilters();
