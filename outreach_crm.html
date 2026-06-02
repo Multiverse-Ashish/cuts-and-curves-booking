@@ -1034,24 +1034,87 @@ function loadState() {
     const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
     if (s.databases && Object.keys(s.databases).length) {
       DATABASES = s.databases;
+      
+      // Self-healing migration: If "Gorakhpur Leads" workspace is polluted with both Gorakhpur and Lucknow (size > 50), split them!
+      if (DATABASES['Gorakhpur Leads'] && DATABASES['Gorakhpur Leads'].leads.length > 50) {
+        const allLeads = DATABASES['Gorakhpur Leads'].leads;
+        const gLeads = allLeads.filter(l => l.city.toLowerCase() === 'gorakhpur');
+        const lLeads = allLeads.filter(l => l.city.toLowerCase() === 'lucknow');
+        
+        DATABASES['Gorakhpur Leads'] = {
+          leads: gLeads,
+          status: {},
+          prices: {},
+          emails: {}
+        };
+        DATABASES['Lucknow Leads'] = {
+          leads: lLeads,
+          status: {},
+          prices: {},
+          emails: {}
+        };
+      }
       ACTIVE_DB = s.activeDb || Object.keys(DATABASES)[0];
     } else {
-      // Migrate legacy single database format or initialize default Gorakhpur workspace
-      const legacyLeads = s.leads && s.leads.length ? s.leads : DEFAULT_LEADS.map(l => ({...l}));
-      DATABASES = {
-        'Gorakhpur Leads': {
-          leads: legacyLeads,
-          status: s.status || {},
-          prices: s.prices || {},
-          emails: s.emails || {}
+      // Migrate legacy single database format or initialize default Gorakhpur & Lucknow workspaces
+      if (s.leads && s.leads.length) {
+        const legacyLeads = s.leads;
+        const gLeads = legacyLeads.filter(l => l.city.toLowerCase() === 'gorakhpur');
+        const lLeads = legacyLeads.filter(l => l.city.toLowerCase() === 'lucknow');
+        
+        if (gLeads.length > 0 && lLeads.length > 0) {
+          DATABASES = {
+            'Gorakhpur Leads': {
+              leads: gLeads,
+              status: s.status || {},
+              prices: s.prices || {},
+              emails: s.emails || {}
+            },
+            'Lucknow Leads': {
+              leads: lLeads,
+              status: {},
+              prices: {},
+              emails: {}
+            }
+          };
+        } else {
+          DATABASES = {
+            'Gorakhpur Leads': {
+              leads: legacyLeads,
+              status: s.status || {},
+              prices: s.prices || {},
+              emails: s.emails || {}
+            }
+          };
         }
-      };
+      } else {
+        DATABASES = {
+          'Gorakhpur Leads': {
+            leads: DEFAULT_LEADS.filter(l => l.city.toLowerCase() === 'gorakhpur'),
+            status: {},
+            prices: {},
+            emails: {}
+          },
+          'Lucknow Leads': {
+            leads: DEFAULT_LEADS.filter(l => l.city.toLowerCase() === 'lucknow'),
+            status: {},
+            prices: {},
+            emails: {}
+          }
+        };
+      }
       ACTIVE_DB = 'Gorakhpur Leads';
     }
   } catch(e) {
     DATABASES = {
       'Gorakhpur Leads': {
-        leads: DEFAULT_LEADS.map(l => ({...l})),
+        leads: DEFAULT_LEADS.filter(l => l.city.toLowerCase() === 'gorakhpur'),
+        status: {},
+        prices: {},
+        emails: {}
+      },
+      'Lucknow Leads': {
+        leads: DEFAULT_LEADS.filter(l => l.city.toLowerCase() === 'lucknow'),
         status: {},
         prices: {},
         emails: {}
@@ -1381,7 +1444,13 @@ function resetAllStatus() {
 function resetLeads() {
   if (ACTIVE_DB === 'Gorakhpur Leads') {
     if (!confirm('Restore all leads to the default Gorakhpur dataset? This will reset all changes.')) return;
-    LEADS = DEFAULT_LEADS.map(l => ({...l}));
+    LEADS = DEFAULT_LEADS.filter(l => l.city.toLowerCase() === 'gorakhpur');
+    state.status = {};
+    state.prices = {};
+    state.emails = {};
+  } else if (ACTIVE_DB === 'Lucknow Leads') {
+    if (!confirm('Restore all leads to the default Lucknow dataset? This will reset all changes.')) return;
+    LEADS = DEFAULT_LEADS.filter(l => l.city.toLowerCase() === 'lucknow');
     state.status = {};
     state.prices = {};
     state.emails = {};
