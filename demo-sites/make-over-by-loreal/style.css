@@ -1685,12 +1685,154 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 }
 
 /* Mobile adjustments */
-@media (max-width: 768px) {
-  .svc-grid {
+@media (max-width: 768px) {{
+  .svc-grid {{
     grid-template-columns: repeat(2, 1fr) !important;
-  }
-  .academy-image-banner-marquee .marquee-item {
-    width: 200px !important;
-    height: 130px !important;
-  }
-}
+  }}
+}}
+
+/* Hero Background Carousel slider */
+.hero-bg-carousel {{
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  overflow: hidden !important;
+}}
+.hero-bg-slide {{
+  position: absolute !important;
+  inset: 0 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out !important;
+  z-index: 1 !important;
+}}
+.hero-bg-slide.active {{
+  opacity: 1;
+  z-index: 2 !important;
+}}
+
+/* ── LAYOUT A: Symmetrical Heritage ── */
+.layout-a .hero {{
+  text-align: center !important;
+  justify-content: center !important;
+}}
+.layout-a .hero-content {{
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}}
+.layout-a .hero-actions {{
+  justify-content: center !important;
+}}
+
+/* ── LAYOUT B: Contemporary Glassmorphism ── */
+.layout-b .hero {{
+  text-align: left !important;
+  justify-content: flex-start !important;
+  padding-left: 8% !important;
+}}
+.layout-b .hero-content {{
+  max-width: 650px !important;
+  margin: 0 !important;
+}}
+.layout-b .hero-actions {{
+  justify-content: flex-start !important;
+}}
+.layout-b .svc-card,
+.layout-b .course-card,
+.layout-b .pricing-card,
+.layout-b .team-card,
+.layout-b .review-card,
+.layout-b .category-card,
+.layout-b .why-choose-card,
+.layout-b .career-card,
+.layout-b .academy-panel-layout,
+.layout-b .contact-info-card,
+.layout-b .tabbed-booking-card {{
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.05) !important;
+  border-radius: var(--radius-xl) !important;
+}}
+.layout-b .btn-primary,
+.layout-b .btn-outline,
+.layout-b .btn-book-svc,
+.layout-b .btn-course-enroll,
+.layout-b .btn-pricing,
+.layout-b .btn-team-book,
+.layout-b .btn-wa-submit,
+.layout-b .btn-wa,
+.layout-b .academy-tab-btn {{
+  border-radius: 12px !important;
+}}
+
+/* ── LAYOUT C: Minimalist Brutalism ── */
+.layout-c .hero {{
+  text-align: left !important;
+  justify-content: flex-end !important;
+  padding-right: 8% !important;
+}}
+.layout-c .hero-content {{
+  max-width: 650px !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}}
+.layout-c .hero-actions {{
+  justify-content: flex-start !important;
+}}
+.layout-c .svc-card,
+.layout-c .course-card,
+.layout-c .pricing-card,
+.layout-c .team-card,
+.layout-c .review-card,
+.layout-c .category-card,
+.layout-c .why-choose-card,
+.layout-c .career-card,
+.layout-c .academy-panel-layout,
+.layout-c .contact-info-card,
+.layout-c .tabbed-booking-card {{
+  border-radius: 4px !important;
+  border: 3px solid var(--text) !important;
+  box-shadow: 6px 6px 0px var(--text) !important;
+  background: var(--card) !important;
+}}
+.layout-c .svc-card:hover,
+.layout-c .course-card:hover,
+.layout-c .pricing-card:hover,
+.layout-c .team-card:hover,
+.layout-c .review-card:hover,
+.layout-c .category-card:hover,
+.layout-c .why-choose-card:hover,
+.layout-c .career-card:hover {{
+  transform: translate(-3px, -3px) !important;
+  box-shadow: 10px 10px 0px var(--accent) !important;
+  border-color: var(--accent) !important;
+}}
+.layout-c .btn-primary,
+.layout-c .btn-outline,
+.layout-c .btn-book-svc,
+.layout-c .btn-course-enroll,
+.layout-c .btn-pricing,
+.layout-c .btn-team-book,
+.layout-c .btn-wa-submit,
+.layout-c .btn-wa,
+.layout-c .academy-tab-btn {{
+  border-radius: 4px !important;
+  border: 2px solid var(--text) !important;
+  box-shadow: 4px 4px 0px var(--text) !important;
+}}
+.layout-c .btn-primary:hover,
+.layout-c .btn-wa-submit:hover,
+.layout-c .btn-wa:hover {{
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 6px 6px 0px var(--accent) !important;
+  background: var(--accent2) !important;
+}}
+.layout-c .section-label {{
+  border-radius: 4px !important;
+  border: 2px solid var(--text) !important;
+  box-shadow: 3px 3px 0px var(--text) !important;
+}}

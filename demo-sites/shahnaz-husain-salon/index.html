@@ -9,12 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="layout-B">
   <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
-  <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
-  <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
 
   <!-- TOP BANNER -->
@@ -52,7 +50,10 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" style="background-image:url('https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=90&w=1600&auto=format&fit=crop')">
+  <section class="hero">
+    <div class="hero-bg-carousel">
+      <div class="hero-bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=90&w=1600&auto=format&fit=crop')"></div><div class="hero-bg-slide " style="background-image:url('https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=90&w=1600&auto=format&fit=crop')"></div><div class="hero-bg-slide " style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=90&w=1600&auto=format&fit=crop')"></div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-label">Gorakhpur's Premier Luxury Salon &amp; Academy</span>
@@ -100,6 +101,112 @@
           </ul>
           <a href="#homepage-booking" class="btn-primary">Book an Experience</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMY SECTION -->
+  <section class="section academy-section" id="academy">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Academy &amp; Training</span>
+        <h2>Professional <em>Academy</em> Courses</h2>
+        <p>Learn from certified industry experts. Hands-on training on live models, global certifications, and 100% placement support.</p>
+      </div>
+      <div class="academy-tabs-container">
+        <div class="academy-tabs">
+          
+        <button class="academy-tab-btn active" data-tab="0">
+          <span>HD Bridal & Celebrity Makeup Masterclass</span>
+        </button>
+        <button class="academy-tab-btn " data-tab="1">
+          <span>Advanced Hair Design & Chemical Artistry</span>
+        </button>
+        <button class="academy-tab-btn " data-tab="2">
+          <span>Nail Artistry & Extensions Specialist</span>
+        </button>
+        </div>
+        <div class="academy-tab-contents">
+          
+        <div class="academy-tab-panel active" id="academy-panel-0">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>HD Bridal & Celebrity Makeup Masterclass</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 4 Weeks</span>
+              </div>
+              <p class="panel-desc">High-fidelity base preparation, airbrush makeup, and fashion bridal styling.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">₹14999</span>
+              </div>
+              <button class="btn-course-enroll modal-trigger" data-title="HD Bridal & Celebrity Makeup Masterclass" data-price="14999" data-duration="4 Weeks" data-desc="High-fidelity base preparation, airbrush makeup, and fashion bridal styling." data-category="unisex" data-is-course="true" data-image="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+            </div>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Celebrity Artist Demos</span></li><li><i class='fas fa-check-circle check-green'></i> <span>International Certificate</span></li><li><i class='fas fa-check-circle check-green'></i> <span>100% Placement Support</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="academy-tab-panel " id="academy-panel-1">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>Advanced Hair Design & Chemical Artistry</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 6 Weeks</span>
+              </div>
+              <p class="panel-desc">Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">₹19999</span>
+              </div>
+              <button class="btn-course-enroll modal-trigger" data-title="Advanced Hair Design & Chemical Artistry" data-price="19999" data-duration="6 Weeks" data-desc="Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts." data-category="unisex" data-is-course="true" data-image="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+            </div>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Chemical Lab Training</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Master Stylist Certificate</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Guaranteed Internships</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="academy-tab-panel " id="academy-panel-2">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>Nail Artistry & Extensions Specialist</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 2 Weeks</span>
+              </div>
+              <p class="panel-desc">Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">₹7999</span>
+              </div>
+              <button class="btn-course-enroll modal-trigger" data-title="Nail Artistry & Extensions Specialist" data-price="7999" data-duration="2 Weeks" data-desc="Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care." data-category="unisex" data-is-course="true" data-image="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+            </div>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Nail Product Kit Included</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Nail Tech Certification</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Freelancer Career Setup</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="student-benefits-row">
+        <p><strong>Student Benefits:</strong> Portfolio Photoshoot &bull; Internship/Placement Support &bull; Certification Ceremony</p>
       </div>
     </div>
   </section>
@@ -172,6 +279,34 @@
           <h3>Nail Care</h3>
           <p>Professional manicure &amp; pedicure with advanced techniques and customized services.</p>
           <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Client Love</span>
+        <h2>What Our <em>Clients</em> Say</h2>
+        <p>Rated 4.8 stars on Google — here's why our clients keep coming back.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"The best salon and academy experience in Gorakhpur! Extremely polite staff, luxury ambience, and amazing courses. Highly recommended to everyone!"</p>
+          <div class="reviewer"><div class="r-avatar">A</div><div><strong>Amit Sharma</strong><span>Regular Client / Alumnus</span></div></div>
+        </div>
+        <div class="review-card review-featured">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
+          <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Got a hair makeover here and also got details for their cosmetics course — absolutely stunning! The complimentary consultation was the perfect touch. Highly satisfied."</p>
+          <div class="reviewer"><div class="r-avatar">R</div><div><strong>Rohan Verma</strong><span>First-Time Visitor</span></div></div>
         </div>
       </div>
     </div>
@@ -274,250 +409,6 @@
     </div>
   </section>
 
-  <!-- ACADEMY SECTION -->
-  <section class="section academy-section" id="academy">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Academy &amp; Training</span>
-        <h2>Professional <em>Academy</em> Courses</h2>
-        <p>Learn from certified industry experts. Hands-on training on live models, global certifications, and 100% placement support.</p>
-      </div>
-            <div class="academy-tabs-container">
-        <div class="academy-tabs">
-          
-        <button class="academy-tab-btn active" data-tab="0">
-          <span>HD Bridal & Celebrity Makeup Masterclass</span>
-        </button>
-        <button class="academy-tab-btn " data-tab="1">
-          <span>Advanced Hair Design & Chemical Artistry</span>
-        </button>
-        <button class="academy-tab-btn " data-tab="2">
-          <span>Nail Artistry & Extensions Specialist</span>
-        </button>
-        </div>
-        <div class="academy-tab-contents">
-          
-        <div class="academy-tab-panel active" id="academy-panel-0">
-          <div class="academy-panel-layout">
-            <div class="academy-panel-info">
-              <div class="panel-title-row">
-                <h3>HD Bridal & Celebrity Makeup Masterclass</h3>
-                <span class="duration-badge"><i class="far fa-clock"></i> 4 Weeks</span>
-              </div>
-              <p class="panel-desc">High-fidelity base preparation, airbrush makeup, and fashion bridal styling.</p>
-              <div class="panel-meta-row">
-                <span class="panel-price-label">Tuition Fee:</span>
-                <span class="panel-price">₹14999</span>
-              </div>
-              <button class="btn-course-enroll modal-trigger" data-title="HD Bridal & Celebrity Makeup Masterclass" data-price="14999" data-duration="4 Weeks" data-desc="High-fidelity base preparation, airbrush makeup, and fashion bridal styling." data-category="unisex" data-is-course="true" data-image="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
-            </div>
-            <div class="academy-panel-features">
-              <h4>Course Highlights &amp; Benefits</h4>
-              <ul class="premium-check-list">
-                <li><i class='fas fa-check-circle check-green'></i> <span>Celebrity Artist Demos</span></li><li><i class='fas fa-check-circle check-green'></i> <span>International Certificate</span></li><li><i class='fas fa-check-circle check-green'></i> <span>100% Placement Support</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="academy-tab-panel " id="academy-panel-1">
-          <div class="academy-panel-layout">
-            <div class="academy-panel-info">
-              <div class="panel-title-row">
-                <h3>Advanced Hair Design & Chemical Artistry</h3>
-                <span class="duration-badge"><i class="far fa-clock"></i> 6 Weeks</span>
-              </div>
-              <p class="panel-desc">Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts.</p>
-              <div class="panel-meta-row">
-                <span class="panel-price-label">Tuition Fee:</span>
-                <span class="panel-price">₹19999</span>
-              </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Advanced Hair Design & Chemical Artistry" data-price="19999" data-duration="6 Weeks" data-desc="Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts." data-category="unisex" data-is-course="true" data-image="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
-            </div>
-            <div class="academy-panel-features">
-              <h4>Course Highlights &amp; Benefits</h4>
-              <ul class="premium-check-list">
-                <li><i class='fas fa-check-circle check-green'></i> <span>Chemical Lab Training</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Master Stylist Certificate</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Guaranteed Internships</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="academy-tab-panel " id="academy-panel-2">
-          <div class="academy-panel-layout">
-            <div class="academy-panel-info">
-              <div class="panel-title-row">
-                <h3>Nail Artistry & Extensions Specialist</h3>
-                <span class="duration-badge"><i class="far fa-clock"></i> 2 Weeks</span>
-              </div>
-              <p class="panel-desc">Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care.</p>
-              <div class="panel-meta-row">
-                <span class="panel-price-label">Tuition Fee:</span>
-                <span class="panel-price">₹7999</span>
-              </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Nail Artistry & Extensions Specialist" data-price="7999" data-duration="2 Weeks" data-desc="Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care." data-category="unisex" data-is-course="true" data-image="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
-            </div>
-            <div class="academy-panel-features">
-              <h4>Course Highlights &amp; Benefits</h4>
-              <ul class="premium-check-list">
-                <li><i class='fas fa-check-circle check-green'></i> <span>Nail Product Kit Included</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Nail Tech Certification</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Freelancer Career Setup</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
-                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-
-      <!-- WHY CHOOSE US -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Why Choose Our Academy</span>
-        <h3>Your Beauty Career Starts Here</h3>
-      </div>
-      <div class="why-choose-grid">
-        <div class="why-choose-card">
-          <span class="why-num">01</span>
-          <div class="why-icon-wrap"><i class="fas fa-user-graduate"></i></div>
-          <h4>Learn From Industry Experts</h4>
-          <p>Trainers with 10+ years of real salon and clinical experience will guide you at every step.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">02</span>
-          <div class="why-icon-wrap"><i class="fas fa-hands"></i></div>
-          <h4>100% Practical Training</h4>
-          <p>80% practical sessions for real-world readiness. Because beauty is hands-on.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">03</span>
-          <div class="why-icon-wrap"><i class="fas fa-briefcase"></i></div>
-          <h4>Career-Focused Curriculum</h4>
-          <p>From day one, you're not just a student — you're a future professional.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">04</span>
-          <div class="why-icon-wrap"><i class="fas fa-store"></i></div>
-          <h4>In-House Salon Practice</h4>
-          <p>Practice on real clients and models under expert supervision before you step out.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">05</span>
-          <div class="why-icon-wrap"><i class="fas fa-award"></i></div>
-          <h4>Dual Certification</h4>
-          <p>Government Approved + Academy Certified — valid across India &amp; abroad.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">06</span>
-          <div class="why-icon-wrap"><i class="fas fa-headset"></i></div>
-          <h4>Lifetime Trainer Support</h4>
-          <p>Get lifetime access to trainer support, doubt solving, and career guidance.</p>
-        </div>
-      </div>
-
-      <!-- ELIGIBILITY / WHO CAN JOIN -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Who Can Join?</span>
-        <h3>Open To Aspiring Artists</h3>
-      </div>
-      <div class="eligibility-row">
-        <div class="eligibility-card">
-          <i class="fas fa-graduation-cap"></i>
-          <h4>Students</h4>
-          <p>Kickstart a creative career right after school or college.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-user-tie"></i>
-          <h4>Freelancers</h4>
-          <p>Upgrade your skills to demand premium rates from clients.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-briefcase"></i>
-          <h4>Working Women</h4>
-          <p>Transition into a high-income, creative and flexible field.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-store"></i>
-          <h4>Salon Owners</h4>
-          <p>Learn advanced treatments to expand your salon services.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-home"></i>
-          <h4>Housewives</h4>
-          <p>Start your part-time studio and build your independence.</p>
-        </div>
-      </div>
-
-      </div> <!-- Close container -->
-
-      <!-- Premium Automatic Carousel Banner Wrapper for Sticky Parallax Reveal -->
-      <div class="academy-carousel-banner-wrapper">
-        <div class="academy-carousel-banner">
-          <div class="carousel-slides">
-            <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=600" alt="Academy Training" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1605497746444-ac9db450f779?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1598252577556-3f7734be7708?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
-          </div>
-          <div class="carousel-dots">
-            <span class="carousel-dot active" data-slide="0"></span>
-            <span class="carousel-dot" data-slide="1"></span>
-            <span class="carousel-dot" data-slide="2"></span>
-            <span class="carousel-dot" data-slide="3"></span>
-            <span class="carousel-dot" data-slide="4"></span>
-            <span class="carousel-dot" data-slide="5"></span>
-            <span class="carousel-dot" data-slide="6"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="container"> <!-- Reopen container -->
-
-      <!-- CAREER PATHS & BENEFITS -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Career Paths</span>
-        <h3>Career Opportunities After Completion</h3>
-      </div>
-      <div class="careers-grid">
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-star"></i></div>
-          <h4>Certified Skin/Hair/Makeup Artist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-palette"></i></div>
-          <h4>Freelance Makeup Artist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-gem"></i></div>
-          <h4>Bridal &amp; Occasion Specialist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-store"></i></div>
-          <h4>Salon Owner or Manager</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-chalkboard-teacher"></i></div>
-          <h4>Beauty Trainer</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-briefcase-medical"></i></div>
-          <h4>Skin Technician at Clinics</h4>
-        </div>
-      </div>
-
-      <div class="student-benefits-row">
-        <p><strong>Student Benefits:</strong> Portfolio Photoshoot &bull; Internship/Placement Support &bull; Certification Ceremony</p>
-      </div>
-    </div>
-  </section>
-
   <!-- PRICING -->
   <section class="section pricing-section" id="pricing">
     <div class="container">
@@ -550,37 +441,6 @@
               <p>Full transformation package — hair, skin, and grooming combined.</p>
               <ul class="pricing-features"><li><i class="fas fa-check"></i> 4 Services</li><li><i class="fas fa-check"></i> Master Artist</li><li><i class="fas fa-check"></i> Luxury Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Head Massage</li><li><i class="fas fa-check"></i> Take-Home Kit</li></ul>
               <a href="booking.html" class="btn-pricing">Get Started</a>
-            </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section class="section team-section" id="team">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Meet the Experts</span>
-        <h2>Our <em>Specialist</em> Team</h2>
-        <p>Hand-picked professionals trained in the latest global techniques.</p>
-      </div>
-      <div class="team-grid">
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Karan Tiwari</h4>
-              <p>Principal Hairdresser</p>
-              <a href="booking.html?stylist=Karan%20Tiwari" class="btn-team-book">Book with Karan</a>
-            </div>
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Pooja Singh</h4>
-              <p>Beauty Expert</p>
-              <a href="booking.html?stylist=Pooja%20Singh" class="btn-team-book">Book with Pooja</a>
-            </div>
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Arjun Rao</h4>
-              <p>Senior Stylist</p>
-              <a href="booking.html?stylist=Arjun%20Rao" class="btn-team-book">Book with Arjun</a>
             </div>
       </div>
     </div>
@@ -641,30 +501,33 @@
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section class="section reviews-section" id="reviews">
+  <!-- TEAM -->
+  <section class="section team-section" id="team">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Client Love</span>
-        <h2>What Our <em>Clients</em> Say</h2>
-        <p>Rated 4.8 stars on Google — here's why our clients keep coming back.</p>
+        <span class="section-label">Meet the Experts</span>
+        <h2>Our <em>Specialist</em> Team</h2>
+        <p>Hand-picked professionals trained in the latest global techniques.</p>
       </div>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"The best salon and academy experience in Gorakhpur! Extremely polite staff, luxury ambience, and amazing courses. Highly recommended to everyone!"</p>
-          <div class="reviewer"><div class="r-avatar">A</div><div><strong>Amit Sharma</strong><span>Regular Client / Alumnus</span></div></div>
-        </div>
-        <div class="review-card review-featured">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
-          <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"Got a hair makeover here and also got details for their cosmetics course — absolutely stunning! The complimentary consultation was the perfect touch. Highly satisfied."</p>
-          <div class="reviewer"><div class="r-avatar">R</div><div><strong>Rohan Verma</strong><span>First-Time Visitor</span></div></div>
-        </div>
+      <div class="team-grid">
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Karan Tiwari</h4>
+              <p>Principal Hairdresser</p>
+              <a href="booking.html?stylist=Karan%20Tiwari" class="btn-team-book">Book with Karan</a>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Pooja Singh</h4>
+              <p>Beauty Expert</p>
+              <a href="booking.html?stylist=Pooja%20Singh" class="btn-team-book">Book with Pooja</a>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Arjun Rao</h4>
+              <p>Senior Stylist</p>
+              <a href="booking.html?stylist=Arjun%20Rao" class="btn-team-book">Book with Arjun</a>
+            </div>
       </div>
     </div>
   </section>
@@ -678,7 +541,6 @@
         <p>Book a luxury pampering session or enroll in our next professional certification batch.</p>
       </div>
       <div class="booking-split-grid">
-        <!-- Left Column: Contact info -->
         <div class="contact-info-card">
           <h3>Get In Touch</h3>
           <p>Have questions or want custom group packages? Contact our reception directly.</p>
@@ -698,27 +560,6 @@
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <div class="contact-details">
-                <span>Email Address</span>
-                <strong>info@shahnaz-husain-salon.com</strong>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="contact-details">
-                <span>Address</span>
-                <strong>Shop 33 & 34, Mangalam Tower, Golghar, Gorakhpur, UP 273001</strong>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fab fa-instagram"></i></div>
-              <div class="contact-details">
-                <span>Instagram Feed</span>
-                <strong><a href="https://instagram.com/shahnaz-husain-salon" target="_blank">@shahnaz-husain-salon</a></strong>
-              </div>
-            </div>
-            <div class="contact-item">
               <div class="contact-icon"><i class="far fa-clock"></i></div>
               <div class="contact-details">
                 <span>Working Hours</span>
@@ -727,8 +568,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Right Column: Tabbed Booking form -->
         <div class="tabbed-booking-card">
           <div class="form-tabs">
             <button class="form-tab-btn active" id="tab-appointment-btn"><i class="fas fa-calendar-check"></i> Book Appointment</button>
@@ -739,14 +578,12 @@
               <label id="dropdown-label">Select Service</label>
               <select id="hp-sel-service" required>
                 <option value="" disabled selected>Choose a service...</option>
-                <!-- populated dynamically via JS based on active tab -->
               </select>
             </div>
             <div class="form-group">
               <label>Specialist Preference</label>
               <select id="hp-sel-stylist">
                 <option value="Any Available Specialist">Any Available Specialist</option>
-                <!-- populated dynamically via JS -->
               </select>
             </div>
             <div class="form-row">
@@ -804,11 +641,6 @@
       <div class="footer-brand">
         <h3>Shahnaz Husain Salon</h3>
         <p>Gorakhpur's premier destination for premium styling, aesthetics, wellness, and professional training.</p>
-        <div class="social-row">
-          <a href="https://instagram.com/shahnaz-husain-salon" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://wa.me/917459934444" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
       </div>
       <div class="footer-links">
         <h4>Quick Links</h4>
@@ -824,7 +656,6 @@
         <h4>Find Us</h4>
         <p><i class="fas fa-map-marker-alt"></i> Shop 33 & 34, Mangalam Tower, Golghar, Gorakhpur, UP 273001</p>
         <p><i class="fas fa-clock"></i> Mon – Sun: 9:00 AM – 9:00 PM</p>
-        <p><i class="fas fa-star"></i> Google Rating: 4.8 / 5.0</p>
       </div>
     </div>
     <div class="footer-bottom">

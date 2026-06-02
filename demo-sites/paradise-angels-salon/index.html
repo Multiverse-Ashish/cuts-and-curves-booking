@@ -9,12 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="layout-A">
   <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
-  <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
-  <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
 
   <!-- TOP BANNER -->
@@ -52,7 +50,10 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" style="background-image:url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=90&w=1600&auto=format&fit=crop')">
+  <section class="hero">
+    <div class="hero-bg-carousel">
+      <div class="hero-bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=90&w=1600&auto=format&fit=crop')"></div><div class="hero-bg-slide " style="background-image:url('https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=90&w=1600&auto=format&fit=crop')"></div><div class="hero-bg-slide " style="background-image:url('https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=90&w=1600&auto=format&fit=crop')"></div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-label">Lucknow's Premier Luxury Salon &amp; Academy</span>
@@ -268,7 +269,7 @@
         <h2>Professional <em>Academy</em> Courses</h2>
         <p>Learn from certified industry experts. Hands-on training on live models, global certifications, and 100% placement support.</p>
       </div>
-            <div class="academy-tabs-container">
+      <div class="academy-tabs-container">
         <div class="academy-tabs">
           
         <button class="academy-tab-btn active" data-tab="0">
@@ -360,144 +361,6 @@
         </div>
         </div>
       </div>
-
-      <!-- WHY CHOOSE US -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Why Choose Our Academy</span>
-        <h3>Your Beauty Career Starts Here</h3>
-      </div>
-      <div class="why-choose-grid">
-        <div class="why-choose-card">
-          <span class="why-num">01</span>
-          <div class="why-icon-wrap"><i class="fas fa-user-graduate"></i></div>
-          <h4>Learn From Industry Experts</h4>
-          <p>Trainers with 10+ years of real salon and clinical experience will guide you at every step.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">02</span>
-          <div class="why-icon-wrap"><i class="fas fa-hands"></i></div>
-          <h4>100% Practical Training</h4>
-          <p>80% practical sessions for real-world readiness. Because beauty is hands-on.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">03</span>
-          <div class="why-icon-wrap"><i class="fas fa-briefcase"></i></div>
-          <h4>Career-Focused Curriculum</h4>
-          <p>From day one, you're not just a student — you're a future professional.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">04</span>
-          <div class="why-icon-wrap"><i class="fas fa-store"></i></div>
-          <h4>In-House Salon Practice</h4>
-          <p>Practice on real clients and models under expert supervision before you step out.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">05</span>
-          <div class="why-icon-wrap"><i class="fas fa-award"></i></div>
-          <h4>Dual Certification</h4>
-          <p>Government Approved + Academy Certified — valid across India &amp; abroad.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">06</span>
-          <div class="why-icon-wrap"><i class="fas fa-headset"></i></div>
-          <h4>Lifetime Trainer Support</h4>
-          <p>Get lifetime access to trainer support, doubt solving, and career guidance.</p>
-        </div>
-      </div>
-
-      <!-- ELIGIBILITY / WHO CAN JOIN -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Who Can Join?</span>
-        <h3>Open To Aspiring Artists</h3>
-      </div>
-      <div class="eligibility-row">
-        <div class="eligibility-card">
-          <i class="fas fa-graduation-cap"></i>
-          <h4>Students</h4>
-          <p>Kickstart a creative career right after school or college.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-user-tie"></i>
-          <h4>Freelancers</h4>
-          <p>Upgrade your skills to demand premium rates from clients.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-briefcase"></i>
-          <h4>Working Women</h4>
-          <p>Transition into a high-income, creative and flexible field.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-store"></i>
-          <h4>Salon Owners</h4>
-          <p>Learn advanced treatments to expand your salon services.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-home"></i>
-          <h4>Housewives</h4>
-          <p>Start your part-time studio and build your independence.</p>
-        </div>
-      </div>
-
-      </div> <!-- Close container -->
-
-      <!-- Premium Automatic Carousel Banner Wrapper for Sticky Parallax Reveal -->
-      <div class="academy-carousel-banner-wrapper">
-        <div class="academy-carousel-banner">
-          <div class="carousel-slides">
-            <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=600" alt="Academy Training" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1605497746444-ac9db450f779?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1598252577556-3f7734be7708?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
-          </div>
-          <div class="carousel-dots">
-            <span class="carousel-dot active" data-slide="0"></span>
-            <span class="carousel-dot" data-slide="1"></span>
-            <span class="carousel-dot" data-slide="2"></span>
-            <span class="carousel-dot" data-slide="3"></span>
-            <span class="carousel-dot" data-slide="4"></span>
-            <span class="carousel-dot" data-slide="5"></span>
-            <span class="carousel-dot" data-slide="6"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="container"> <!-- Reopen container -->
-
-      <!-- CAREER PATHS & BENEFITS -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Career Paths</span>
-        <h3>Career Opportunities After Completion</h3>
-      </div>
-      <div class="careers-grid">
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-star"></i></div>
-          <h4>Certified Skin/Hair/Makeup Artist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-palette"></i></div>
-          <h4>Freelance Makeup Artist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-gem"></i></div>
-          <h4>Bridal &amp; Occasion Specialist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-store"></i></div>
-          <h4>Salon Owner or Manager</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-chalkboard-teacher"></i></div>
-          <h4>Beauty Trainer</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-briefcase-medical"></i></div>
-          <h4>Skin Technician at Clinics</h4>
-        </div>
-      </div>
-
       <div class="student-benefits-row">
         <p><strong>Student Benefits:</strong> Portfolio Photoshoot &bull; Internship/Placement Support &bull; Certification Ceremony</p>
       </div>
@@ -643,7 +506,7 @@
         </div>
         <div class="review-card review-featured">
           <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
+          <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
           <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
         </div>
         <div class="review-card">
@@ -664,7 +527,6 @@
         <p>Book a luxury pampering session or enroll in our next professional certification batch.</p>
       </div>
       <div class="booking-split-grid">
-        <!-- Left Column: Contact info -->
         <div class="contact-info-card">
           <h3>Get In Touch</h3>
           <p>Have questions or want custom group packages? Contact our reception directly.</p>
@@ -684,27 +546,6 @@
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <div class="contact-details">
-                <span>Email Address</span>
-                <strong>info@paradise-angels-salon.com</strong>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="contact-details">
-                <span>Address</span>
-                <strong>1/34 Virat Khand-1, Gomti Nagar, Lucknow 226010</strong>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fab fa-instagram"></i></div>
-              <div class="contact-details">
-                <span>Instagram Feed</span>
-                <strong><a href="https://instagram.com/paradise-angels-salon" target="_blank">@paradise-angels-salon</a></strong>
-              </div>
-            </div>
-            <div class="contact-item">
               <div class="contact-icon"><i class="far fa-clock"></i></div>
               <div class="contact-details">
                 <span>Working Hours</span>
@@ -713,8 +554,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Right Column: Tabbed Booking form -->
         <div class="tabbed-booking-card">
           <div class="form-tabs">
             <button class="form-tab-btn active" id="tab-appointment-btn"><i class="fas fa-calendar-check"></i> Book Appointment</button>
@@ -725,14 +564,12 @@
               <label id="dropdown-label">Select Service</label>
               <select id="hp-sel-service" required>
                 <option value="" disabled selected>Choose a service...</option>
-                <!-- populated dynamically via JS based on active tab -->
               </select>
             </div>
             <div class="form-group">
               <label>Specialist Preference</label>
               <select id="hp-sel-stylist">
                 <option value="Any Available Specialist">Any Available Specialist</option>
-                <!-- populated dynamically via JS -->
               </select>
             </div>
             <div class="form-row">
@@ -790,11 +627,6 @@
       <div class="footer-brand">
         <h3>Paradise Angel's Salon</h3>
         <p>Lucknow's premier destination for premium styling, aesthetics, wellness, and professional training.</p>
-        <div class="social-row">
-          <a href="https://instagram.com/paradise-angels-salon" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://wa.me/919026667436" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
       </div>
       <div class="footer-links">
         <h4>Quick Links</h4>
@@ -810,7 +642,6 @@
         <h4>Find Us</h4>
         <p><i class="fas fa-map-marker-alt"></i> 1/34 Virat Khand-1, Gomti Nagar, Lucknow 226010</p>
         <p><i class="fas fa-clock"></i> Mon – Sun: 9:00 AM – 8:00 PM</p>
-        <p><i class="fas fa-star"></i> Google Rating: 5.0 / 5.0</p>
       </div>
     </div>
     <div class="footer-bottom">

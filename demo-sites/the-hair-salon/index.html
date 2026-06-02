@@ -9,12 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="layout-C">
   <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
-  <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
-  <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
 
   <!-- TOP BANNER -->
@@ -52,7 +50,10 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" style="background-image:url('https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=90&w=1600&auto=format&fit=crop')">
+  <section class="hero">
+    <div class="hero-bg-carousel">
+      <div class="hero-bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=90&w=1600&auto=format&fit=crop')"></div><div class="hero-bg-slide " style="background-image:url('https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=90&w=1600&auto=format&fit=crop')"></div><div class="hero-bg-slide " style="background-image:url('https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=90&w=1600&auto=format&fit=crop')"></div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-label">Lucknow's Premier Luxury Salon &amp; Academy</span>
@@ -77,6 +78,51 @@
       <div class="stat"><span class="stat-num">5+</span><span class="stat-lbl">Years of Excellence</span></div>
       <div class="stat"><span class="stat-num">5.0</span><span class="stat-lbl">Google Rating</span></div>
       <div class="stat"><span class="stat-num">20+</span><span class="stat-lbl">Premium Services</span></div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES GRID -->
+  <section class="section categories-section" id="categories-overview">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Discover our specialties</span>
+        <h2>Our Core <em>Specialties</em></h2>
+        <p>Premium care customized for your unique look. Book any category below.</p>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="cat-icon-wrap bg-pink">
+            <i class="fas fa-spa text-pink"></i>
+          </div>
+          <h3>Skin Care</h3>
+          <p>Facials, cleanup, bleach, D-Tan, and advanced skin treatments for glowing, healthy skin.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="category-card">
+          <div class="cat-icon-wrap bg-purple">
+            <i class="fas fa-cut text-purple"></i>
+          </div>
+          <h3>Hair Care</h3>
+          <p>Hair cutting, styling, colouring, spa treatments, and therapeutic hair massage services.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="category-card">
+          <div class="cat-icon-wrap bg-red">
+            <i class="fas fa-paint-brush text-red"></i>
+          </div>
+          <h3>Makeup</h3>
+          <p>Bridal, party, engagement, and glam makeup looks by certified professional artists.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="category-card">
+          <div class="cat-icon-wrap bg-blue">
+            <i class="fas fa-hand-sparkles text-blue"></i>
+          </div>
+          <h3>Nail Care</h3>
+          <p>Professional manicure &amp; pedicure with advanced techniques and customized services.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -132,47 +178,39 @@
     </div>
   </section>
 
-  <!-- CATEGORIES GRID -->
-  <section class="section categories-section" id="categories-overview">
+  <!-- PRICING -->
+  <section class="section pricing-section" id="pricing">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Discover our specialties</span>
-        <h2>Our Core <em>Specialties</em></h2>
-        <p>Premium care customized for your unique look. Book any category below.</p>
+        <span class="section-label">Transparent Pricing</span>
+        <h2>Choose Your <em>Package</em></h2>
+        <p>Simple, upfront pricing with no hidden charges. All packages bookable online.</p>
       </div>
-      <div class="categories-grid">
-        <div class="category-card">
-          <div class="cat-icon-wrap bg-pink">
-            <i class="fas fa-spa text-pink"></i>
-          </div>
-          <h3>Skin Care</h3>
-          <p>Facials, cleanup, bleach, D-Tan, and advanced skin treatments for glowing, healthy skin.</p>
-          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="category-card">
-          <div class="cat-icon-wrap bg-purple">
-            <i class="fas fa-cut text-purple"></i>
-          </div>
-          <h3>Hair Care</h3>
-          <p>Hair cutting, styling, colouring, spa treatments, and therapeutic hair massage services.</p>
-          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="category-card">
-          <div class="cat-icon-wrap bg-red">
-            <i class="fas fa-paint-brush text-red"></i>
-          </div>
-          <h3>Makeup</h3>
-          <p>Bridal, party, engagement, and glam makeup looks by certified professional artists.</p>
-          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="category-card">
-          <div class="cat-icon-wrap bg-blue">
-            <i class="fas fa-hand-sparkles text-blue"></i>
-          </div>
-          <h3>Nail Care</h3>
-          <p>Professional manicure &amp; pedicure with advanced techniques and customized services.</p>
-          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-        </div>
+      <div class="pricing-grid">
+            <div class="pricing-card ">
+              
+              <h3>Starter</h3>
+              <div class="pricing-amount">₹499<span>/session</span></div>
+              <p>Single premium service of your choice. Perfect for a quick refresh.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 1 Service</li><li><i class="fas fa-check"></i> Expert Stylist</li><li><i class="fas fa-check"></i> Quality Products</li><li><i class="fas fa-check"></i> WhatsApp Booking</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
+            <div class="pricing-card pricing-highlight">
+              <span class="pricing-badge">Most Popular</span>
+              <h3>Experience</h3>
+              <div class="pricing-amount">₹1499<span>/session</span></div>
+              <p>Two premium services. The most popular choice for our guests.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 2 Services</li><li><i class="fas fa-check"></i> Senior Specialist</li><li><i class="fas fa-check"></i> Premium Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Tea/Coffee</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
+            <div class="pricing-card ">
+              
+              <h3>Luxury</h3>
+              <div class="pricing-amount">₹2999<span>/session</span></div>
+              <p>Full transformation package — hair, skin, and grooming combined.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 4 Services</li><li><i class="fas fa-check"></i> Master Artist</li><li><i class="fas fa-check"></i> Luxury Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Head Massage</li><li><i class="fas fa-check"></i> Take-Home Kit</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
       </div>
     </div>
   </section>
@@ -268,7 +306,7 @@
         <h2>Professional <em>Academy</em> Courses</h2>
         <p>Learn from certified industry experts. Hands-on training on live models, global certifications, and 100% placement support.</p>
       </div>
-            <div class="academy-tabs-container">
+      <div class="academy-tabs-container">
         <div class="academy-tabs">
           
         <button class="academy-tab-btn active" data-tab="0">
@@ -360,214 +398,36 @@
         </div>
         </div>
       </div>
-
-      <!-- WHY CHOOSE US -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Why Choose Our Academy</span>
-        <h3>Your Beauty Career Starts Here</h3>
-      </div>
-      <div class="why-choose-grid">
-        <div class="why-choose-card">
-          <span class="why-num">01</span>
-          <div class="why-icon-wrap"><i class="fas fa-user-graduate"></i></div>
-          <h4>Learn From Industry Experts</h4>
-          <p>Trainers with 10+ years of real salon and clinical experience will guide you at every step.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">02</span>
-          <div class="why-icon-wrap"><i class="fas fa-hands"></i></div>
-          <h4>100% Practical Training</h4>
-          <p>80% practical sessions for real-world readiness. Because beauty is hands-on.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">03</span>
-          <div class="why-icon-wrap"><i class="fas fa-briefcase"></i></div>
-          <h4>Career-Focused Curriculum</h4>
-          <p>From day one, you're not just a student — you're a future professional.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">04</span>
-          <div class="why-icon-wrap"><i class="fas fa-store"></i></div>
-          <h4>In-House Salon Practice</h4>
-          <p>Practice on real clients and models under expert supervision before you step out.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">05</span>
-          <div class="why-icon-wrap"><i class="fas fa-award"></i></div>
-          <h4>Dual Certification</h4>
-          <p>Government Approved + Academy Certified — valid across India &amp; abroad.</p>
-        </div>
-        <div class="why-choose-card">
-          <span class="why-num">06</span>
-          <div class="why-icon-wrap"><i class="fas fa-headset"></i></div>
-          <h4>Lifetime Trainer Support</h4>
-          <p>Get lifetime access to trainer support, doubt solving, and career guidance.</p>
-        </div>
-      </div>
-
-      <!-- ELIGIBILITY / WHO CAN JOIN -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Who Can Join?</span>
-        <h3>Open To Aspiring Artists</h3>
-      </div>
-      <div class="eligibility-row">
-        <div class="eligibility-card">
-          <i class="fas fa-graduation-cap"></i>
-          <h4>Students</h4>
-          <p>Kickstart a creative career right after school or college.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-user-tie"></i>
-          <h4>Freelancers</h4>
-          <p>Upgrade your skills to demand premium rates from clients.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-briefcase"></i>
-          <h4>Working Women</h4>
-          <p>Transition into a high-income, creative and flexible field.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-store"></i>
-          <h4>Salon Owners</h4>
-          <p>Learn advanced treatments to expand your salon services.</p>
-        </div>
-        <div class="eligibility-card">
-          <i class="fas fa-home"></i>
-          <h4>Housewives</h4>
-          <p>Start your part-time studio and build your independence.</p>
-        </div>
-      </div>
-
-      </div> <!-- Close container -->
-
-      <!-- Premium Automatic Carousel Banner Wrapper for Sticky Parallax Reveal -->
-      <div class="academy-carousel-banner-wrapper">
-        <div class="academy-carousel-banner">
-          <div class="carousel-slides">
-            <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600" alt="Academy Training" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1605497746444-ac9db450f779?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
-            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1598252577556-3f7734be7708?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
-          </div>
-          <div class="carousel-dots">
-            <span class="carousel-dot active" data-slide="0"></span>
-            <span class="carousel-dot" data-slide="1"></span>
-            <span class="carousel-dot" data-slide="2"></span>
-            <span class="carousel-dot" data-slide="3"></span>
-            <span class="carousel-dot" data-slide="4"></span>
-            <span class="carousel-dot" data-slide="5"></span>
-            <span class="carousel-dot" data-slide="6"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="container"> <!-- Reopen container -->
-
-      <!-- CAREER PATHS & BENEFITS -->
-      <div class="academy-sub-header">
-        <span class="sub-label">Career Paths</span>
-        <h3>Career Opportunities After Completion</h3>
-      </div>
-      <div class="careers-grid">
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-star"></i></div>
-          <h4>Certified Skin/Hair/Makeup Artist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-palette"></i></div>
-          <h4>Freelance Makeup Artist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-gem"></i></div>
-          <h4>Bridal &amp; Occasion Specialist</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-store"></i></div>
-          <h4>Salon Owner or Manager</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-chalkboard-teacher"></i></div>
-          <h4>Beauty Trainer</h4>
-        </div>
-        <div class="career-card">
-          <div class="career-icon-wrap"><i class="fas fa-briefcase-medical"></i></div>
-          <h4>Skin Technician at Clinics</h4>
-        </div>
-      </div>
-
       <div class="student-benefits-row">
         <p><strong>Student Benefits:</strong> Portfolio Photoshoot &bull; Internship/Placement Support &bull; Certification Ceremony</p>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section class="section pricing-section" id="pricing">
+  <!-- REVIEWS -->
+  <section class="section reviews-section" id="reviews">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Transparent Pricing</span>
-        <h2>Choose Your <em>Package</em></h2>
-        <p>Simple, upfront pricing with no hidden charges. All packages bookable online.</p>
+        <span class="section-label">Client Love</span>
+        <h2>What Our <em>Clients</em> Say</h2>
+        <p>Rated 5.0 stars on Google — here's why our clients keep coming back.</p>
       </div>
-      <div class="pricing-grid">
-            <div class="pricing-card ">
-              
-              <h3>Starter</h3>
-              <div class="pricing-amount">₹499<span>/session</span></div>
-              <p>Single premium service of your choice. Perfect for a quick refresh.</p>
-              <ul class="pricing-features"><li><i class="fas fa-check"></i> 1 Service</li><li><i class="fas fa-check"></i> Expert Stylist</li><li><i class="fas fa-check"></i> Quality Products</li><li><i class="fas fa-check"></i> WhatsApp Booking</li></ul>
-              <a href="booking.html" class="btn-pricing">Get Started</a>
-            </div>
-            <div class="pricing-card pricing-highlight">
-              <span class="pricing-badge">Most Popular</span>
-              <h3>Experience</h3>
-              <div class="pricing-amount">₹1499<span>/session</span></div>
-              <p>Two premium services. The most popular choice for our guests.</p>
-              <ul class="pricing-features"><li><i class="fas fa-check"></i> 2 Services</li><li><i class="fas fa-check"></i> Senior Specialist</li><li><i class="fas fa-check"></i> Premium Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Tea/Coffee</li></ul>
-              <a href="booking.html" class="btn-pricing">Get Started</a>
-            </div>
-            <div class="pricing-card ">
-              
-              <h3>Luxury</h3>
-              <div class="pricing-amount">₹2999<span>/session</span></div>
-              <p>Full transformation package — hair, skin, and grooming combined.</p>
-              <ul class="pricing-features"><li><i class="fas fa-check"></i> 4 Services</li><li><i class="fas fa-check"></i> Master Artist</li><li><i class="fas fa-check"></i> Luxury Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Head Massage</li><li><i class="fas fa-check"></i> Take-Home Kit</li></ul>
-              <a href="booking.html" class="btn-pricing">Get Started</a>
-            </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section class="section team-section" id="team">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Meet the Experts</span>
-        <h2>Our <em>Specialist</em> Team</h2>
-        <p>Hand-picked professionals trained in the latest global techniques.</p>
-      </div>
-      <div class="team-grid">
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Rahul Dev</h4>
-              <p>Creative Style Director</p>
-              <a href="booking.html?stylist=Rahul%20Dev" class="btn-team-book">Book with Rahul</a>
-            </div>
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Shweta Kapoor</h4>
-              <p>Color Transformation Expert</p>
-              <a href="booking.html?stylist=Shweta%20Kapoor" class="btn-team-book">Book with Shweta</a>
-            </div>
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Kunal Sen</h4>
-              <p>Hair Spa & Scalp Specialist</p>
-              <a href="booking.html?stylist=Kunal%20Sen" class="btn-team-book">Book with Kunal</a>
-            </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"The best salon and academy experience in Lucknow! Extremely polite staff, luxury ambience, and amazing courses. Highly recommended to everyone!"</p>
+          <div class="reviewer"><div class="r-avatar">A</div><div><strong>Amit Sharma</strong><span>Regular Client / Alumnus</span></div></div>
+        </div>
+        <div class="review-card review-featured">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
+          <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Got a hair makeover here and also got details for their cosmetics course — absolutely stunning! The complimentary consultation was the perfect touch. Highly satisfied."</p>
+          <div class="reviewer"><div class="r-avatar">R</div><div><strong>Rohan Verma</strong><span>First-Time Visitor</span></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -627,30 +487,33 @@
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section class="section reviews-section" id="reviews">
+  <!-- TEAM -->
+  <section class="section team-section" id="team">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Client Love</span>
-        <h2>What Our <em>Clients</em> Say</h2>
-        <p>Rated 5.0 stars on Google — here's why our clients keep coming back.</p>
+        <span class="section-label">Meet the Experts</span>
+        <h2>Our <em>Specialist</em> Team</h2>
+        <p>Hand-picked professionals trained in the latest global techniques.</p>
       </div>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"The best salon and academy experience in Lucknow! Extremely polite staff, luxury ambience, and amazing courses. Highly recommended to everyone!"</p>
-          <div class="reviewer"><div class="r-avatar">A</div><div><strong>Amit Sharma</strong><span>Regular Client / Alumnus</span></div></div>
-        </div>
-        <div class="review-card review-featured">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
-          <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"Got a hair makeover here and also got details for their cosmetics course — absolutely stunning! The complimentary consultation was the perfect touch. Highly satisfied."</p>
-          <div class="reviewer"><div class="r-avatar">R</div><div><strong>Rohan Verma</strong><span>First-Time Visitor</span></div></div>
-        </div>
+      <div class="team-grid">
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Rahul Dev</h4>
+              <p>Creative Style Director</p>
+              <a href="booking.html?stylist=Rahul%20Dev" class="btn-team-book">Book with Rahul</a>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Shweta Kapoor</h4>
+              <p>Color Transformation Expert</p>
+              <a href="booking.html?stylist=Shweta%20Kapoor" class="btn-team-book">Book with Shweta</a>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Kunal Sen</h4>
+              <p>Hair Spa & Scalp Specialist</p>
+              <a href="booking.html?stylist=Kunal%20Sen" class="btn-team-book">Book with Kunal</a>
+            </div>
       </div>
     </div>
   </section>
@@ -664,7 +527,6 @@
         <p>Book a luxury pampering session or enroll in our next professional certification batch.</p>
       </div>
       <div class="booking-split-grid">
-        <!-- Left Column: Contact info -->
         <div class="contact-info-card">
           <h3>Get In Touch</h3>
           <p>Have questions or want custom group packages? Contact our reception directly.</p>
@@ -684,27 +546,6 @@
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-              <div class="contact-details">
-                <span>Email Address</span>
-                <strong>info@the-hair-salon.com</strong>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="contact-details">
-                <span>Address</span>
-                <strong>Dubagga Chauraha</strong>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fab fa-instagram"></i></div>
-              <div class="contact-details">
-                <span>Instagram Feed</span>
-                <strong><a href="https://instagram.com/the-hair-salon" target="_blank">@the-hair-salon</a></strong>
-              </div>
-            </div>
-            <div class="contact-item">
               <div class="contact-icon"><i class="far fa-clock"></i></div>
               <div class="contact-details">
                 <span>Working Hours</span>
@@ -713,8 +554,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Right Column: Tabbed Booking form -->
         <div class="tabbed-booking-card">
           <div class="form-tabs">
             <button class="form-tab-btn active" id="tab-appointment-btn"><i class="fas fa-calendar-check"></i> Book Appointment</button>
@@ -725,14 +564,12 @@
               <label id="dropdown-label">Select Service</label>
               <select id="hp-sel-service" required>
                 <option value="" disabled selected>Choose a service...</option>
-                <!-- populated dynamically via JS based on active tab -->
               </select>
             </div>
             <div class="form-group">
               <label>Specialist Preference</label>
               <select id="hp-sel-stylist">
                 <option value="Any Available Specialist">Any Available Specialist</option>
-                <!-- populated dynamically via JS -->
               </select>
             </div>
             <div class="form-row">
@@ -790,11 +627,6 @@
       <div class="footer-brand">
         <h3>The Hair Salon</h3>
         <p>Lucknow's premier destination for premium styling, aesthetics, wellness, and professional training.</p>
-        <div class="social-row">
-          <a href="https://instagram.com/the-hair-salon" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://wa.me/917355449833" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
       </div>
       <div class="footer-links">
         <h4>Quick Links</h4>
@@ -810,7 +642,6 @@
         <h4>Find Us</h4>
         <p><i class="fas fa-map-marker-alt"></i> Dubagga Chauraha</p>
         <p><i class="fas fa-clock"></i> Mon – Sun: 9:00 AM – 11:00 PM</p>
-        <p><i class="fas fa-star"></i> Google Rating: 5.0 / 5.0</p>
       </div>
     </div>
     <div class="footer-bottom">

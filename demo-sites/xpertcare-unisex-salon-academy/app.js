@@ -544,4 +544,16 @@ Please confirm my slot. Thank you! 🙏`;
     animate();
   }
 
+  // Hero Background Carousel slideshow
+  document.querySelectorAll('.hero').forEach(hero => {
+    const slides = hero.querySelectorAll('.hero-bg-slide');
+    if (slides.length <= 1) return;
+    let activeIdx = 0;
+    setInterval(() => {
+      slides[activeIdx].classList.remove('active');
+      activeIdx = (activeIdx + 1) % slides.length;
+      slides[activeIdx].classList.add('active');
+    }, 5000);
+  });
+
 });
