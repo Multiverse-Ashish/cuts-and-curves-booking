@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DigiLoad Leads — Salon Outreach CRM</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -199,10 +200,28 @@
     tbody tr { border-bottom: 1px solid var(--border); transition: background .15s; }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: #f8fafc; }
-    tbody tr.row-qualified    { background: #f0fdf4 !important; }
+    tbody tr.row-qualified    { background: #ecfdf5 !important; }
     tbody tr.row-qualified:hover { background: #dcfce7 !important; }
+    tbody tr.row-qualified td:not([data-col="num"]):not([data-col="status"]):not([data-col="price"]):not([data-col="actions"]) {
+      text-decoration: line-through;
+      color: #065f46;
+      opacity: 0.7;
+    }
+    tbody tr.row-qualified td:not([data-col="num"]):not([data-col="status"]):not([data-col="price"]):not([data-col="actions"]) a {
+      text-decoration: line-through;
+      color: #065f46;
+    }
     tbody tr.row-notqualified { background: #fef2f2 !important; }
     tbody tr.row-notqualified:hover { background: #fee2e2 !important; }
+    tbody tr.row-notqualified td:not([data-col="num"]):not([data-col="status"]):not([data-col="price"]):not([data-col="actions"]) {
+      text-decoration: line-through;
+      color: #991b1b;
+      opacity: 0.7;
+    }
+    tbody tr.row-notqualified td:not([data-col="num"]):not([data-col="status"]):not([data-col="price"]):not([data-col="actions"]) a {
+      text-decoration: line-through;
+      color: #991b1b;
+    }
     td { padding: 11px 13px; vertical-align: middle; }
 
     /* ─────────────────────────────────────────────────────────────────────
@@ -455,6 +474,17 @@
     /* hidden column: both th and td */
     .col-hidden { display: none !important; }
 
+    .filter-select {
+      padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 50px;
+      background: var(--card); font-family: inherit; font-size: .88rem; color: var(--text);
+      transition: border-color .2s; outline: none; cursor: pointer; min-width: 150px;
+      margin-left: 8px;
+    }
+    .filter-select:focus { border-color: var(--accent); }
+    @media (max-width: 900px) {
+      .filter-select { margin-left: 0; margin-right: 8px; margin-top: 8px; }
+    }
+
     /* ═════════════════════════════════════════════════════════════════════
        RESPONSIVE  —  Mobile-first breakpoints
     ═════════════════════════════════════════════════════════════════════ */
@@ -574,6 +604,9 @@
           <div class="col-picker-list" id="col-picker-list"><!-- built by JS --></div>
         </div>
       </div>
+      <button class="header-btn header-btn-ghost" onclick="openAnalyticsModal()">
+        <i class="fas fa-chart-pie"></i> <span class="btn-label">Analytics</span>
+      </button>
       <button class="header-btn header-btn-primary" onclick="openImportModal()">
         <i class="fas fa-question-circle"></i> <span class="btn-label">CSV Format</span>
       </button>
@@ -622,9 +655,17 @@
 
 <!-- ── TOOLBAR ────────────────────────────────────────────────────────── -->
 <div class="toolbar">
-  <div class="search-wrap">
-    <i class="fas fa-search"></i>
-    <input type="text" class="search-input" id="search-input" placeholder="Search name, phone, address...">
+  <div class="search-wrap" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+    <div style="position:relative; flex:1;">
+      <i class="fas fa-search"></i>
+      <input type="text" class="search-input" id="search-input" placeholder="Search name, phone, address...">
+    </div>
+    <select id="filter-location" class="filter-select" onchange="renderTable()">
+      <option value="">All Locations</option>
+    </select>
+    <select id="filter-category" class="filter-select" onchange="renderTable()">
+      <option value="">All Categories/Niches</option>
+    </select>
   </div>
   <div class="filter-pills">
     <button class="filter-btn active"      data-filter="all">All</button>
@@ -705,6 +746,38 @@
       <div class="summary-num">
         <div class="n" id="sum-avg">₹0</div>
         <div class="l">Avg Deal Size</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ANALYTICS MODAL ────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="analytics-modal">
+  <div class="modal-box" style="width: 800px; max-width: 95vw; border-radius: 20px; padding: 28px 24px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+      <h3 style="font-family:'Plus Jakarta Sans',sans-serif; font-size:1.2rem; font-weight:800; color:var(--text); margin:0;">
+        <i class="fas fa-chart-pie" style="color:var(--accent);margin-right:8px"></i>Detailed Leads Analytics
+      </h3>
+      <button class="modal-btn modal-btn-cancel" onclick="closeAnalyticsModal()" style="padding: 0; border: none; background: none; cursor: pointer; color: var(--muted); font-size: 1.2rem;">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="analytics-grid-popup" style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div style="background:#f8fafc; padding: 12px; border-radius:10px; border:1px solid var(--border)">
+        <h4 style="font-size:0.8rem; margin-bottom:8px; text-align:center; color:var(--muted); font-weight:700; text-transform:uppercase;">Leads by Location</h4>
+        <div style="position:relative; height:200px;"><canvas id="chart-location"></canvas></div>
+      </div>
+      <div style="background:#f8fafc; padding: 12px; border-radius:10px; border:1px solid var(--border)">
+        <h4 style="font-size:0.8rem; margin-bottom:8px; text-align:center; color:var(--muted); font-weight:700; text-transform:uppercase;">Leads by Category</h4>
+        <div style="position:relative; height:200px;"><canvas id="chart-category"></canvas></div>
+      </div>
+      <div style="background:#f8fafc; padding: 12px; border-radius:10px; border:1px solid var(--border)">
+        <h4 style="font-size:0.8rem; margin-bottom:8px; text-align:center; color:var(--muted); font-weight:700; text-transform:uppercase;">Lead Status</h4>
+        <div style="position:relative; height:200px;"><canvas id="chart-status"></canvas></div>
+      </div>
+      <div style="background:#f8fafc; padding: 12px; border-radius:10px; border:1px solid var(--border)">
+        <h4 style="font-size:0.8rem; margin-bottom:8px; text-align:center; color:var(--muted); font-weight:700; text-transform:uppercase;">Deal Value by Niche</h4>
+        <div style="position:relative; height:200px;"><canvas id="chart-value"></canvas></div>
       </div>
     </div>
   </div>
@@ -993,8 +1066,8 @@ function renderRow(lead, idx) {
   <td data-col="status">
     <select class="status-select ${sSel}" id="status-${idx}" onchange="setStatus(${idx}, this.value)">
       <option value="pending"      ${status==='pending'      ?'selected':''}>⏳ Pending</option>
-      <option value="qualified"    ${status==='qualified'    ?'selected':''}>✅ Qualified</option>
-      <option value="notqualified" ${status==='notqualified' ?'selected':''}>❌ Not Qualified</option>
+      <option value="qualified"    ${status==='qualified'    ?'selected':''}>✅ Approved</option>
+      <option value="notqualified" ${status==='notqualified' ?'selected':''}>❌ Rejected</option>
     </select>
   </td>
   <td data-col="name" class="cell-name">${nameCell}</td>
@@ -1035,6 +1108,10 @@ function renderRow(lead, idx) {
 // ─────────────────────────────────────────────────────────────────────────────
 function renderTable() {
   const q = document.getElementById('search-input').value.toLowerCase().trim();
+  const locFilterEl = document.getElementById('filter-location');
+  const catFilterEl = document.getElementById('filter-category');
+  const locFilter = locFilterEl ? locFilterEl.value : '';
+  const catFilter = catFilterEl ? catFilterEl.value : '';
   const tbody = document.getElementById('leads-tbody');
   let html = '';
 
@@ -1046,6 +1123,9 @@ function renderTable() {
     if (activeFilter === 'notqualified' && status !== 'notqualified') return;
     if (activeFilter === 'pending'      && status !== 'pending')      return;
     if (activeFilter === 'has-phone'    && !hasPhone)                 return;
+
+    if (locFilter && lead.city !== locFilter) return;
+    if (catFilter && lead.business_category !== catFilter) return;
 
     if (q) {
       const haystack = [lead.name, lead.phone, lead.street, lead.city, lead.business_category].join(' ').toLowerCase();
@@ -1064,12 +1144,19 @@ function renderTable() {
 // ACTIONS
 // ─────────────────────────────────────────────────────────────────────────────
 function setStatus(idx, val) {
+  if (val === 'qualified') {
+    const currentPrice = state.prices[idx] || '';
+    const amt = prompt(`Lead Approved! Enter deal amount (₹) for "${LEADS[idx].name}":`, currentPrice);
+    if (amt !== null) {
+      state.prices[idx] = parseFloat(amt) || 0;
+    }
+  }
   state.status[idx] = val;
   const tr = document.getElementById(`row-${idx}`);
   if (tr) {
     const newTr = document.createElement('tbody');
     newTr.innerHTML = renderRow(LEADS[idx], idx);
-    tr.replaceWith(newTr.firstChild);
+    tr.replaceWith(newTr.firstElementChild);
   }
   updateStats();
   saveState();
@@ -1166,6 +1253,7 @@ function resetLeads() {
   state.prices = {};
   state.emails = {};
   saveState();
+  populateFilters();
   renderTable();
   showToast(`Restored ${LEADS.length} default leads.`, 'fas fa-undo');
 }
@@ -1177,6 +1265,7 @@ function removeAllLeads() {
   state.prices = {};
   state.emails = {};
   saveState();
+  populateFilters();
   renderTable();
   showToast('All leads removed. Import a CSV to add new leads.', 'fas fa-trash', true);
 }
@@ -1285,6 +1374,7 @@ function importCSV(event) {
         state.status = {};
         state.prices = {};
         saveState();
+        populateFilters();
         renderTable();
         closeImportModal();
         showToast(`Imported ${imported.length} leads successfully!`, 'fas fa-file-import');
@@ -1511,7 +1601,133 @@ document.addEventListener('click', e => {
     const panel = document.getElementById('col-picker-panel');
     if (panel) panel.classList.remove('open');
   }
+  const am = document.getElementById('analytics-modal');
+  if (e.target === am) closeAnalyticsModal();
 });
+
+function populateFilters() {
+  const locSelect = document.getElementById('filter-location');
+  const catSelect = document.getElementById('filter-category');
+  if (!locSelect || !catSelect) return;
+
+  const currentLoc = locSelect.value;
+  const currentCat = catSelect.value;
+
+  const cities = [...new Set(LEADS.map(l => l.city).filter(Boolean))].sort();
+  const categories = [...new Set(LEADS.map(l => l.business_category).filter(Boolean))].sort();
+
+  locSelect.innerHTML = '<option value="">All Locations</option>' +
+    cities.map(c => `<option value="${c}">${c}</option>`).join('');
+  catSelect.innerHTML = '<option value="">All Categories/Niches</option>' +
+    categories.map(c => `<option value="${c}">${c}</option>`).join('');
+
+  if (cities.includes(currentLoc)) locSelect.value = currentLoc;
+  if (categories.includes(currentCat)) catSelect.value = currentCat;
+}
+
+let charts = {};
+function openAnalyticsModal() {
+  document.getElementById('analytics-modal').classList.add('open');
+  setTimeout(renderAnalyticsCharts, 50);
+}
+function closeAnalyticsModal() {
+  document.getElementById('analytics-modal').classList.remove('open');
+}
+
+function renderAnalyticsCharts() {
+  if (charts.location) charts.location.destroy();
+  if (charts.category) charts.category.destroy();
+  if (charts.status)   charts.status.destroy();
+  if (charts.value)    charts.value.destroy();
+
+  const locMap = {};
+  LEADS.forEach(l => {
+    const city = l.city || 'Unknown';
+    locMap[city] = (locMap[city] || 0) + 1;
+  });
+
+  const catMap = {};
+  LEADS.forEach(l => {
+    const cat = l.business_category || 'Other';
+    catMap[cat] = (catMap[cat] || 0) + 1;
+  });
+
+  let pending = 0, qualified = 0, notqualified = 0;
+  LEADS.forEach((l, i) => {
+    const s = state.status[i] || 'pending';
+    if (s === 'qualified') qualified++;
+    else if (s === 'notqualified') notqualified++;
+    else pending++;
+  });
+
+  const valMap = {};
+  LEADS.forEach((l, i) => {
+    const cat = l.business_category || 'Other';
+    const p = state.prices[i] || 0;
+    if (p > 0) {
+      valMap[cat] = (valMap[cat] || 0) + p;
+    }
+  });
+
+  const colors = ['#4f46e5', '#10b981', '#ef4444', '#f59e0b', '#7c3aed', '#3b82f6', '#ec407a', '#8b5cf6'];
+
+  const ctxLoc = document.getElementById('chart-location').getContext('2d');
+  charts.location = new Chart(ctxLoc, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(locMap),
+      datasets: [{
+        label: 'Leads',
+        data: Object.values(locMap),
+        backgroundColor: '#3b82f6',
+        borderRadius: 6
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+  });
+
+  const ctxCat = document.getElementById('chart-category').getContext('2d');
+  charts.category = new Chart(ctxCat, {
+    type: 'pie',
+    data: {
+      labels: Object.keys(catMap),
+      datasets: [{
+        data: Object.values(catMap),
+        backgroundColor: colors.slice(0, Object.keys(catMap).length)
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } } }
+  });
+
+  const ctxStat = document.getElementById('chart-status').getContext('2d');
+  charts.status = new Chart(ctxStat, {
+    type: 'doughnut',
+    data: {
+      labels: ['Pending', 'Approved', 'Rejected'],
+      datasets: [{
+        data: [pending, qualified, notqualified],
+        backgroundColor: ['#f59e0b', '#10b981', '#ef4444']
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } } } }
+  });
+
+  const ctxVal = document.getElementById('chart-value').getContext('2d');
+  const valLabels = Object.keys(valMap);
+  charts.value = new Chart(ctxVal, {
+    type: 'bar',
+    data: {
+      labels: valLabels.length ? valLabels : ['No Value'],
+      datasets: [{
+        label: 'Total Value (₹)',
+        data: valLabels.length ? Object.values(valMap) : [0],
+        backgroundColor: '#10b981',
+        borderRadius: 6
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+  });
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // INIT
@@ -1519,6 +1735,7 @@ document.addEventListener('click', e => {
 loadState();
 loadVisibleCols();
 buildColPickerUI();
+populateFilters();
 renderTable(); // calls applyColVisibility() at end
 </script>
 </body>

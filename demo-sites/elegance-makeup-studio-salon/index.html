@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="layout-C">
+<body class="layout-a">
   <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
 
@@ -52,7 +52,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg-carousel">
-      <div class="hero-bg-slide active" ><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1600&q=80" alt="Elegance Makeup Studio & Salon salon" loading="eager"></div><div class="hero-bg-slide " ><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=1600&q=80" alt="Elegance Makeup Studio & Salon salon" loading="lazy"></div><div class="hero-bg-slide " ><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1600&q=80" alt="Elegance Makeup Studio & Salon salon" loading="lazy"></div>
+      <div class="hero-bg-slide active" ><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=90&w=1600&auto=format&fit=crop" alt="Elegance Makeup Studio & Salon salon" loading="eager"></div><div class="hero-bg-slide " ><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=90&w=1600&auto=format&fit=crop" alt="Elegance Makeup Studio & Salon salon" loading="lazy"></div><div class="hero-bg-slide " ><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=90&w=1600&auto=format&fit=crop" alt="Elegance Makeup Studio & Salon salon" loading="lazy"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -78,51 +78,6 @@
       <div class="stat"><span class="stat-num">5+</span><span class="stat-lbl">Years of Excellence</span></div>
       <div class="stat"><span class="stat-num">5.0</span><span class="stat-lbl">Google Rating</span></div>
       <div class="stat"><span class="stat-num">20+</span><span class="stat-lbl">Premium Services</span></div>
-    </div>
-  </section>
-
-  <!-- CATEGORIES GRID -->
-  <section class="section categories-section" id="categories-overview">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Discover our specialties</span>
-        <h2>Our Core <em>Specialties</em></h2>
-        <p>Premium care customized for your unique look. Book any category below.</p>
-      </div>
-      <div class="categories-grid">
-        <div class="category-card">
-          <div class="cat-icon-wrap bg-pink">
-            <i class="fas fa-spa text-pink"></i>
-          </div>
-          <h3>Skin Care</h3>
-          <p>Facials, cleanup, bleach, D-Tan, and advanced skin treatments for glowing, healthy skin.</p>
-          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="category-card">
-          <div class="cat-icon-wrap bg-purple">
-            <i class="fas fa-cut text-purple"></i>
-          </div>
-          <h3>Hair Care</h3>
-          <p>Hair cutting, styling, colouring, spa treatments, and therapeutic hair massage services.</p>
-          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="category-card">
-          <div class="cat-icon-wrap bg-red">
-            <i class="fas fa-paint-brush text-red"></i>
-          </div>
-          <h3>Makeup</h3>
-          <p>Bridal, party, engagement, and glam makeup looks by certified professional artists.</p>
-          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="category-card">
-          <div class="cat-icon-wrap bg-blue">
-            <i class="fas fa-hand-sparkles text-blue"></i>
-          </div>
-          <h3>Nail Care</h3>
-          <p>Professional manicure &amp; pedicure with advanced techniques and customized services.</p>
-          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -178,39 +133,47 @@
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section class="section pricing-section" id="pricing">
+  <!-- CATEGORIES GRID -->
+  <section class="section categories-section" id="categories-overview">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Transparent Pricing</span>
-        <h2>Choose Your <em>Package</em></h2>
-        <p>Simple, upfront pricing with no hidden charges. All packages bookable online.</p>
+        <span class="section-label">Discover our specialties</span>
+        <h2>Our Core <em>Specialties</em></h2>
+        <p>Premium care customized for your unique look. Book any category below.</p>
       </div>
-      <div class="pricing-grid">
-            <div class="pricing-card ">
-              
-              <h3>Starter</h3>
-              <div class="pricing-amount">₹499<span>/session</span></div>
-              <p>Single premium service of your choice. Perfect for a quick refresh.</p>
-              <ul class="pricing-features"><li><i class="fas fa-check"></i> 1 Service</li><li><i class="fas fa-check"></i> Expert Stylist</li><li><i class="fas fa-check"></i> Quality Products</li><li><i class="fas fa-check"></i> WhatsApp Booking</li></ul>
-              <a href="booking.html" class="btn-pricing">Get Started</a>
-            </div>
-            <div class="pricing-card pricing-highlight">
-              <span class="pricing-badge">Most Popular</span>
-              <h3>Experience</h3>
-              <div class="pricing-amount">₹1499<span>/session</span></div>
-              <p>Two premium services. The most popular choice for our guests.</p>
-              <ul class="pricing-features"><li><i class="fas fa-check"></i> 2 Services</li><li><i class="fas fa-check"></i> Senior Specialist</li><li><i class="fas fa-check"></i> Premium Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Tea/Coffee</li></ul>
-              <a href="booking.html" class="btn-pricing">Get Started</a>
-            </div>
-            <div class="pricing-card ">
-              
-              <h3>Luxury</h3>
-              <div class="pricing-amount">₹2999<span>/session</span></div>
-              <p>Full transformation package — hair, skin, and grooming combined.</p>
-              <ul class="pricing-features"><li><i class="fas fa-check"></i> 4 Services</li><li><i class="fas fa-check"></i> Master Artist</li><li><i class="fas fa-check"></i> Luxury Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Head Massage</li><li><i class="fas fa-check"></i> Take-Home Kit</li></ul>
-              <a href="booking.html" class="btn-pricing">Get Started</a>
-            </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="cat-icon-wrap bg-pink">
+            <i class="fas fa-spa text-pink"></i>
+          </div>
+          <h3>Skin Care</h3>
+          <p>Facials, cleanup, bleach, D-Tan, and advanced skin treatments for glowing, healthy skin.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="category-card">
+          <div class="cat-icon-wrap bg-purple">
+            <i class="fas fa-cut text-purple"></i>
+          </div>
+          <h3>Hair Care</h3>
+          <p>Hair cutting, styling, colouring, spa treatments, and therapeutic hair massage services.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="category-card">
+          <div class="cat-icon-wrap bg-red">
+            <i class="fas fa-paint-brush text-red"></i>
+          </div>
+          <h3>Makeup</h3>
+          <p>Bridal, party, engagement, and glam makeup looks by certified professional artists.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="category-card">
+          <div class="cat-icon-wrap bg-blue">
+            <i class="fas fa-hand-sparkles text-blue"></i>
+          </div>
+          <h3>Nail Care</h3>
+          <p>Professional manicure &amp; pedicure with advanced techniques and customized services.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+        </div>
       </div>
     </div>
   </section>
@@ -424,30 +387,70 @@
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section class="section reviews-section" id="reviews">
+  <!-- PRICING -->
+  <section class="section pricing-section" id="pricing">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Client Love</span>
-        <h2>What Our <em>Clients</em> Say</h2>
-        <p>Rated 5.0 stars on Google — here's why our clients keep coming back.</p>
+        <span class="section-label">Transparent Pricing</span>
+        <h2>Choose Your <em>Package</em></h2>
+        <p>Simple, upfront pricing with no hidden charges. All packages bookable online.</p>
       </div>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"The best salon and academy experience in Lucknow! Extremely polite staff, luxury ambience, and amazing courses. Highly recommended to everyone!"</p>
-          <div class="reviewer"><div class="r-avatar">A</div><div><strong>Amit Sharma</strong><span>Regular Client / Alumnus</span></div></div>
-        </div>
-        <div class="review-card review-featured">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
-          <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"Got a hair makeover here and also got details for their cosmetics course — absolutely stunning! The complimentary consultation was the perfect touch. Highly satisfied."</p>
-          <div class="reviewer"><div class="r-avatar">R</div><div><strong>Rohan Verma</strong><span>First-Time Visitor</span></div></div>
-        </div>
+      <div class="pricing-grid">
+            <div class="pricing-card ">
+              
+              <h3>Starter</h3>
+              <div class="pricing-amount">₹499<span>/session</span></div>
+              <p>Single premium service of your choice. Perfect for a quick refresh.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 1 Service</li><li><i class="fas fa-check"></i> Expert Stylist</li><li><i class="fas fa-check"></i> Quality Products</li><li><i class="fas fa-check"></i> WhatsApp Booking</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
+            <div class="pricing-card pricing-highlight">
+              <span class="pricing-badge">Most Popular</span>
+              <h3>Experience</h3>
+              <div class="pricing-amount">₹1499<span>/session</span></div>
+              <p>Two premium services. The most popular choice for our guests.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 2 Services</li><li><i class="fas fa-check"></i> Senior Specialist</li><li><i class="fas fa-check"></i> Premium Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Tea/Coffee</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
+            <div class="pricing-card ">
+              
+              <h3>Luxury</h3>
+              <div class="pricing-amount">₹2999<span>/session</span></div>
+              <p>Full transformation package — hair, skin, and grooming combined.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 4 Services</li><li><i class="fas fa-check"></i> Master Artist</li><li><i class="fas fa-check"></i> Luxury Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Head Massage</li><li><i class="fas fa-check"></i> Take-Home Kit</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section team-section" id="team">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Meet the Experts</span>
+        <h2>Our <em>Specialist</em> Team</h2>
+        <p>Hand-picked professionals trained in the latest global techniques.</p>
+      </div>
+      <div class="team-grid">
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Smriti Mishra</h4>
+              <p>Celebrity Makeup Artist</p>
+              <a href="booking.html?stylist=Smriti%20Mishra" class="btn-team-book">Book with Smriti</a>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Priya Patel</h4>
+              <p>Skin Glow Specialist</p>
+              <a href="booking.html?stylist=Priya%20Patel" class="btn-team-book">Book with Priya</a>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
+              <h4>Neha Singh</h4>
+              <p>Hair Keratin Expert</p>
+              <a href="booking.html?stylist=Neha%20Singh" class="btn-team-book">Book with Neha</a>
+            </div>
       </div>
     </div>
   </section>
@@ -507,33 +510,30 @@
     </div>
   </section>
 
-  <!-- TEAM -->
-  <section class="section team-section" id="team">
+  <!-- REVIEWS -->
+  <section class="section reviews-section" id="reviews">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Meet the Experts</span>
-        <h2>Our <em>Specialist</em> Team</h2>
-        <p>Hand-picked professionals trained in the latest global techniques.</p>
+        <span class="section-label">Client Love</span>
+        <h2>What Our <em>Clients</em> Say</h2>
+        <p>Rated 5.0 stars on Google — here's why our clients keep coming back.</p>
       </div>
-      <div class="team-grid">
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Smriti Mishra</h4>
-              <p>Celebrity Makeup Artist</p>
-              <a href="booking.html?stylist=Smriti%20Mishra" class="btn-team-book">Book with Smriti</a>
-            </div>
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Priya Patel</h4>
-              <p>Skin Glow Specialist</p>
-              <a href="booking.html?stylist=Priya%20Patel" class="btn-team-book">Book with Priya</a>
-            </div>
-            <div class="team-card">
-              <div class="team-avatar"><i class="fas fa-user-circle"></i></div>
-              <h4>Neha Singh</h4>
-              <p>Hair Keratin Expert</p>
-              <a href="booking.html?stylist=Neha%20Singh" class="btn-team-book">Book with Neha</a>
-            </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"The best salon and academy experience in Lucknow! Extremely polite staff, luxury ambience, and amazing courses. Highly recommended to everyone!"</p>
+          <div class="reviewer"><div class="r-avatar">A</div><div><strong>Amit Sharma</strong><span>Regular Client / Alumnus</span></div></div>
+        </div>
+        <div class="review-card review-featured">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
+          <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Got a hair makeover here and also got details for their cosmetics course — absolutely stunning! The complimentary consultation was the perfect touch. Highly satisfied."</p>
+          <div class="reviewer"><div class="r-avatar">R</div><div><strong>Rohan Verma</strong><span>First-Time Visitor</span></div></div>
+        </div>
       </div>
     </div>
   </section>

@@ -123,9 +123,10 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .hero-overlay {
   position:absolute; inset:0;
   background:rgba(10,20,80,0.55);
+  z-index:2 !important;
 }
 .hero-content {
-  position:relative; z-index:2; max-width:800px; padding:60px 24px; color:#fff;
+  position:relative; z-index:3 !important; max-width:800px; padding:60px 24px; color:#fff;
 }
 .hero-label {
   display:inline-block; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25);
@@ -146,6 +147,7 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .hero-scroll {
   position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
   color:rgba(255,255,255,.75); font-size:1.2rem; animation:bounce 2s infinite;
+  z-index:3 !important;
 }
 @keyframes bounce { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,8px)} }
 
@@ -1722,62 +1724,67 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 }
 
 /* Mobile adjustments */
-@media (max-width: 768px) {{
-  .svc-grid {{
+@media (max-width: 768px) {
+  .svc-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-  }}
-}}
+  }
+}
 
 /* Hero Background Carousel slider */
-.hero-bg-carousel {{
+.hero-bg-carousel {
   position: absolute !important;
   inset: 0 !important;
   z-index: 1 !important;
   overflow: hidden !important;
-}}
-.hero-bg-slide {{
+}
+.hero-bg-slide {
   position: absolute !important;
   inset: 0 !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: scroll !important;
   opacity: 0;
   transition: opacity 1.8s ease-in-out !important;
   z-index: 1 !important;
   will-change: opacity;
-}}
-.hero-bg-slide.active {{
+}
+.hero-bg-slide img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+}
+.hero-bg-slide.active {
   opacity: 1 !important;
   z-index: 2 !important;
-}}
+}
 
 /* ── LAYOUT A: Symmetrical Heritage ── */
-.layout-a .hero {{
+.layout-a .hero {
   text-align: center !important;
   justify-content: center !important;
-}}
-.layout-a .hero-content {{
+}
+.layout-a .hero-content {
   max-width: 800px !important;
   margin: 0 auto !important;
-}}
-.layout-a .hero-actions {{
+}
+.layout-a .hero-actions {
   justify-content: center !important;
-}}
+}
 
 /* ── LAYOUT B: Contemporary Glassmorphism ── */
-.layout-b .hero {{
+.layout-b .hero {
   text-align: left !important;
   justify-content: flex-start !important;
   padding-left: 8% !important;
-}}
-.layout-b .hero-content {{
+}
+.layout-b .hero-content {
   max-width: 650px !important;
   margin: 0 !important;
-}}
-.layout-b .hero-actions {{
+}
+.layout-b .hero-actions {
   justify-content: flex-start !important;
-}}
+}
 .layout-b .svc-card,
 .layout-b .course-card,
 .layout-b .pricing-card,
@@ -1788,14 +1795,14 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .layout-b .career-card,
 .layout-b .academy-panel-layout,
 .layout-b .contact-info-card,
-.layout-b .tabbed-booking-card {{
+.layout-b .tabbed-booking-card {
   background: rgba(255, 255, 255, 0.45) !important;
   backdrop-filter: blur(15px) !important;
   -webkit-backdrop-filter: blur(15px) !important;
   border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
   box-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.05) !important;
   border-radius: var(--radius-xl) !important;
-}}
+}
 .layout-b .btn-primary,
 .layout-b .btn-outline,
 .layout-b .btn-book-svc,
@@ -1804,24 +1811,24 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .layout-b .btn-team-book,
 .layout-b .btn-wa-submit,
 .layout-b .btn-wa,
-.layout-b .academy-tab-btn {{
+.layout-b .academy-tab-btn {
   border-radius: 12px !important;
-}}
+}
 
 /* ── LAYOUT C: Minimalist Brutalism ── */
-.layout-c .hero {{
+.layout-c .hero {
   text-align: left !important;
   justify-content: flex-end !important;
   padding-right: 8% !important;
-}}
-.layout-c .hero-content {{
+}
+.layout-c .hero-content {
   max-width: 650px !important;
   margin-left: auto !important;
   margin-right: 0 !important;
-}}
-.layout-c .hero-actions {{
+}
+.layout-c .hero-actions {
   justify-content: flex-start !important;
-}}
+}
 .layout-c .svc-card,
 .layout-c .course-card,
 .layout-c .pricing-card,
@@ -1832,12 +1839,12 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .layout-c .career-card,
 .layout-c .academy-panel-layout,
 .layout-c .contact-info-card,
-.layout-c .tabbed-booking-card {{
+.layout-c .tabbed-booking-card {
   border-radius: 4px !important;
   border: 3px solid var(--text) !important;
   box-shadow: 6px 6px 0px var(--text) !important;
   background: var(--card) !important;
-}}
+}
 .layout-c .svc-card:hover,
 .layout-c .course-card:hover,
 .layout-c .pricing-card:hover,
@@ -1845,11 +1852,11 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .layout-c .review-card:hover,
 .layout-c .category-card:hover,
 .layout-c .why-choose-card:hover,
-.layout-c .career-card:hover {{
+.layout-c .career-card:hover {
   transform: translate(-3px, -3px) !important;
   box-shadow: 10px 10px 0px var(--accent) !important;
   border-color: var(--accent) !important;
-}}
+}
 .layout-c .btn-primary,
 .layout-c .btn-outline,
 .layout-c .btn-book-svc,
@@ -1858,20 +1865,20 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .layout-c .btn-team-book,
 .layout-c .btn-wa-submit,
 .layout-c .btn-wa,
-.layout-c .academy-tab-btn {{
+.layout-c .academy-tab-btn {
   border-radius: 4px !important;
   border: 2px solid var(--text) !important;
   box-shadow: 4px 4px 0px var(--text) !important;
-}}
+}
 .layout-c .btn-primary:hover,
 .layout-c .btn-wa-submit:hover,
-.layout-c .btn-wa:hover {{
+.layout-c .btn-wa:hover {
   transform: translate(-1px, -1px) !important;
   box-shadow: 6px 6px 0px var(--accent) !important;
   background: var(--accent2) !important;
-}}
-.layout-c .section-label {{
+}
+.layout-c .section-label {
   border-radius: 4px !important;
   border: 2px solid var(--text) !important;
   box-shadow: 3px 3px 0px var(--text) !important;
-}}
+}
