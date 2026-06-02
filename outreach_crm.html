@@ -627,14 +627,20 @@
       background: rgba(255, 255, 255, 0.12);
     }
     .db-tab .close-tab {
-      font-size: 0.72rem;
-      opacity: 0.4;
-      transition: opacity 0.2s;
-      margin-left: 2px;
+      font-size: 0.75rem;
+      opacity: 0.5;
+      transition: all 0.2s;
+      margin-left: 6px;
+      padding: 2px 5px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .db-tab .close-tab:hover {
       opacity: 1;
-      color: #f87171;
+      background: rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
     }
     .add-space-btn {
       background: rgba(255, 255, 255, 0.08);
@@ -1961,13 +1967,15 @@ function renderTabs() {
   Object.keys(DATABASES).forEach(dbName => {
     const isActive = dbName === ACTIVE_DB;
     const activeClass = isActive ? 'active' : '';
+    // Escape single quotes for HTML attribute string safety
+    const dbNameEscaped = dbName.replace(/'/g, "\\'");
     // Show close button only if there is more than 1 database workspace
     const closeBtn = Object.keys(DATABASES).length > 1 
-      ? `<i class="fas fa-times close-tab" onclick="deleteDatabase(event, '${dbName}')" title="Delete workspace"></i>`
+      ? `<i class="fas fa-times close-tab" onclick="deleteDatabase(event, '${dbNameEscaped}')" title="Delete workspace"></i>`
       : '';
       
     html += `
-      <div class="db-tab ${activeClass}" onclick="switchDatabase('${dbName}')">
+      <div class="db-tab ${activeClass}" onclick="switchDatabase('${dbNameEscaped}')">
         <i class="fas fa-database" style="font-size: 0.72rem; opacity: 0.85;"></i>
         <span>${dbName}</span>
         ${closeBtn}
