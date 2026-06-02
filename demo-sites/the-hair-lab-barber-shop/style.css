@@ -1738,14 +1738,19 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .hero-bg-slide {{
   position: absolute !important;
   inset: 0 !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: scroll !important;
   opacity: 0;
   transition: opacity 1.8s ease-in-out !important;
   z-index: 1 !important;
   will-change: opacity;
+}}
+.hero-bg-slide img {{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
 }}
 .hero-bg-slide.active {{
   opacity: 1 !important;
