@@ -46,7 +46,7 @@
       z-index: 200;
     }
     .crm-header-inner {
-      max-width: 1500px; margin: 0 auto;
+      width: 100%; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 32px;
       height: var(--hh);
@@ -91,7 +91,7 @@
        DASHBOARD STATS
     ───────────────────────────────────────────────────────────────────── */
     .dashboard {
-      max-width: 1500px; margin: 24px auto 0; padding: 0 24px;
+      width: 100%; margin: 24px auto 0; padding: 0 32px;
       display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
     }
     .stat-card {
@@ -118,7 +118,7 @@
        TOOLBAR
     ───────────────────────────────────────────────────────────────────── */
     .toolbar {
-      max-width: 1500px; margin: 16px auto 0; padding: 0 24px;
+      width: 100%; margin: 16px auto 0; padding: 0 32px;
       display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
     }
     .search-wrap { position: relative; flex: 1 1 220px; }
@@ -159,7 +159,7 @@
        TABLE — horizontally scrollable card
     ───────────────────────────────────────────────────────────────────── */
     .table-wrap {
-      max-width: 1500px; margin: 14px auto 32px; padding: 0 24px;
+      width: 100%; margin: 14px auto 32px; padding: 0 32px;
     }
     /* scroll hint on mobile */
     .scroll-hint {
@@ -341,9 +341,18 @@
     }
     .email-input:focus { outline: none; border-color: #8b5cf6; background: #fff; }
     .email-input::placeholder { color: var(--muted); font-size: .72rem; }
-    .btn-mail { background: #8b5cf6; color: #fff; }
-    .btn-mail:hover:not(:disabled) { background: #6d28d9; transform: translateY(-1px); }
-    .btn-mail:disabled { opacity: .42; cursor: not-allowed; }
+    .btn-mail { background: linear-gradient(135deg,#8b5cf6,#6d28d9); color: #fff; }
+    .btn-mail:hover { background: linear-gradient(135deg,#7c3aed,#5b21b6); transform: translateY(-1px); box-shadow: 0 3px 10px rgba(139,92,246,.4); }
+
+    /* Dedicated email column */
+    .cell-email { min-width: 220px; }
+    .email-cell-wrap {
+      display: flex; align-items: center; gap: 6px; flex-wrap: nowrap;
+    }
+    .email-cell-wrap .email-input {
+      flex: 1 1 120px; min-width: 100px; max-width: 160px;
+    }
+    .email-has-value .email-input { border-color: #8b5cf6; background: #faf5ff; }
 
     .act-btn {
       display: inline-flex; align-items: center; gap: 5px;
@@ -406,7 +415,7 @@
     /* ─────────────────────────────────────────────────────────────────────
        FOOTER SUMMARY
     ───────────────────────────────────────────────────────────────────── */
-    .footer-summary { max-width: 1500px; margin: 0 auto 48px; padding: 0 24px; }
+    .footer-summary { width: 100%; margin: 0 auto 48px; padding: 0 32px; }
     .summary-card {
       background: linear-gradient(135deg, #1e1b4b, #4f46e5 50%, #7c3aed);
       border-radius: var(--radius); padding: 24px 32px; color: #fff;
@@ -547,7 +556,7 @@
       .stat-label { font-size: .62rem; }
 
       /* Toolbar */
-      .toolbar { padding: 0 12px; margin-top: 12px; }
+      .toolbar { padding: 0 16px; margin-top: 12px; }
       .search-wrap { flex: 1 1 100%; }
       .filter-pills { flex: 1 1 100%; gap: 6px; }
       .filter-btn { font-size: .72rem; padding: 6px 11px; }
@@ -557,7 +566,7 @@
       .scroll-hint { display: flex; }
 
       /* Table */
-      .table-wrap { padding: 0 12px; margin-top: 10px; }
+      .table-wrap { padding: 0 16px; margin-top: 10px; }
       th    { font-size: .65rem; padding: 10px 10px; }
       td    { padding: 10px 10px; font-size: .82rem; }
       .status-select { min-width: 120px; font-size: .72rem; }
@@ -567,7 +576,7 @@
       .act-btn { padding: 5px 10px; font-size: .7rem; }
 
       /* Footer summary */
-      .footer-summary { padding: 0 12px; }
+      .footer-summary { padding: 0 16px; }
       .summary-card { padding: 20px 20px; }
       .summary-nums { gap: 18px; }
       .summary-num .n { font-size: 1.4rem; }
@@ -668,6 +677,69 @@
       background: rgba(255, 255, 255, 0.18);
       border-color: rgba(255, 255, 255, 0.3);
     }
+
+    /* ─────────────────────────────────────────────────────────────────────
+       EMAIL COMPOSE MODAL
+    ───────────────────────────────────────────────────────────────────── */
+    #email-modal .modal-box {
+      width: 620px; max-width: 95vw;
+    }
+    .email-compose-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 20px; padding-bottom: 14px;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .email-compose-header h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem; font-weight: 800; color: var(--text); margin: 0;
+    }
+    .compose-close-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); font-size: 1.1rem; padding: 4px;
+      border-radius: 6px; transition: all .2s;
+    }
+    .compose-close-btn:hover { color: var(--red); background: var(--red-bg); }
+    .compose-field {
+      margin-bottom: 14px;
+    }
+    .compose-field label {
+      display: block; font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .compose-field input, .compose-field textarea {
+      width: 100%; padding: 10px 14px;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: inherit; font-size: .86rem; color: var(--text);
+      background: var(--bg); transition: border-color .2s;
+      resize: vertical;
+    }
+    .compose-field input:focus, .compose-field textarea:focus {
+      outline: none; border-color: #8b5cf6; background: #fff;
+    }
+    .compose-field textarea {
+      min-height: 200px; line-height: 1.6;
+    }
+    .compose-to-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f4ff; border: 1.5px solid #c7d2fe;
+      color: var(--accent); padding: 5px 12px;
+      border-radius: 50px; font-size: .8rem; font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .compose-actions {
+      display: flex; justify-content: flex-end; gap: 10px;
+      margin-top: 18px; flex-wrap: wrap;
+    }
+    .btn-send-gmail {
+      background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+      color: #fff; border: none; padding: 10px 22px;
+      border-radius: 50px; font-family: inherit;
+      font-size: .86rem; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: all .2s; box-shadow: 0 4px 14px rgba(139,92,246,.35);
+    }
+    .btn-send-gmail:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(139,92,246,.45); }
   </style>
 </head>
 <body>
@@ -817,8 +889,9 @@
             <th data-col="google">Google URL</th>
             <th data-col="facebook">Facebook</th>
             <th data-col="published">Published?</th>
+            <th data-col="email"><i class="fas fa-envelope" style="color:#8b5cf6;margin-right:4px;"></i>Email</th>
             <th data-col="price">Deal ₹</th>
-            <th data-col="actions">Actions + Email</th>
+            <th data-col="actions">Actions</th>
           </tr>
         </thead>
         <tbody id="leads-tbody">
@@ -916,6 +989,46 @@
     </div>
     <div class="modal-actions">
       <button class="modal-btn modal-btn-cancel" onclick="closeImportModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── EMAIL COMPOSE MODAL ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="email-modal" onclick="closeEmailModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="email-compose-header">
+      <h3><i class="fas fa-envelope" style="color:#8b5cf6;margin-right:8px;"></i>Compose Email</h3>
+      <button class="compose-close-btn" onclick="closeEmailModal()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="compose-to-badge">
+      <i class="fas fa-user-circle"></i>
+      <span id="compose-name">—</span>
+    </div>
+
+    <div class="compose-field">
+      <label>To (Email)</label>
+      <input type="email" id="compose-to" placeholder="recipient@example.com" />
+    </div>
+
+    <div class="compose-field">
+      <label>Subject</label>
+      <input type="text" id="compose-subject" placeholder="e.g. Special Offer for Your Salon" />
+    </div>
+
+    <div class="compose-field">
+      <label>Message Body</label>
+      <textarea id="compose-body" placeholder="Write your personalised message here…"></textarea>
+    </div>
+
+    <div class="compose-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeEmailModal()">Cancel</button>
+      <button class="tb-btn tb-btn-outline" onclick="copyEmailToClipboard()" style="gap:6px;">
+        <i class="fas fa-copy"></i> Copy Text
+      </button>
+      <button class="btn-send-gmail" onclick="sendViaGmail()">
+        <i class="fas fa-paper-plane"></i> Open in Gmail
+      </button>
     </div>
   </div>
 </div>
@@ -1200,7 +1313,11 @@ Would you like me to customize this with your pricing and launch it for you? Let
 function renderRow(lead, idx) {
   const status  = state.status[idx] || 'pending';
   const price   = state.prices[idx] || '';
-  const email   = state.emails[idx] || '';
+  // Pre-populate: prefer user-entered email → fallback to CSV email column
+  const email   = state.emails[idx] || lead.email || '';
+  if (!state.emails[idx] && lead.email) {
+    state.emails[idx] = lead.email; // sync to state for consistency
+  }
   const l       = lead; // alias
 
   const rowClass = status === 'qualified'    ? 'row-qualified'
@@ -1266,9 +1383,8 @@ function renderRow(lead, idx) {
     ? `<a class="act-btn btn-call" href="tel:${phoneTel}"><i class="fas fa-phone"></i> Call</a>`
     : `<button class="act-btn btn-call" disabled><i class="fas fa-phone"></i> Call</button>`;
 
-  const mailBtn = email
-    ? `<button class="act-btn btn-mail" onclick="sendEmail(${idx})"><i class="fas fa-envelope"></i> Mail</button>`
-    : `<button class="act-btn btn-mail" disabled title="Enter email below"><i class="fas fa-envelope"></i> Mail</button>`;
+  // Mail button — always enabled; opens compose modal
+  const mailBtn = `<button class="act-btn btn-mail" onclick="openEmailModal(${idx})" title="Compose email"><i class="fas fa-envelope"></i> Mail</button>`;
 
   return `<tr id="row-${idx}" class="${rowClass}">
   <td data-col="num" class="cell-num">${idx + 1}</td>
@@ -1291,6 +1407,14 @@ function renderRow(lead, idx) {
   <td data-col="google" class="cell-google">${googleCell}</td>
   <td data-col="facebook" class="cell-fb">${fbCell}</td>
   <td data-col="published" class="cell-pub">${pubCell}</td>
+  <td data-col="email" class="cell-email">
+    <div class="email-cell-wrap ${email ? 'email-has-value' : ''}" id="ewrap-${idx}">
+      <input type="email" class="email-input" id="email-${idx}"
+        value="${email}" placeholder="email@salon.com"
+        oninput="saveEmail(${idx}, this.value)">
+      ${mailBtn}
+    </div>
+  </td>
   <td data-col="price" class="cell-price">
     <input type="number" class="price-input" id="price-${idx}" value="${price}"
       placeholder="0" min="0" oninput="updatePrice(${idx}, this.value)">
@@ -1301,12 +1425,6 @@ function renderRow(lead, idx) {
       <button class="act-btn btn-copy" id="copy-${idx}" onclick="copyMsg(${idx})">
         <i class="fas fa-copy"></i> Copy
       </button>
-    </div>
-    <div class="email-row">
-      <input type="email" class="email-input" id="email-${idx}"
-        value="${email}" placeholder="email@business.com"
-        oninput="saveEmail(${idx}, this.value)">
-      ${mailBtn}
     </div>
   </td>
 </tr>`;
@@ -1387,51 +1505,103 @@ function sendWA(idx) {
 function saveEmail(idx, val) {
   state.emails[idx] = val.trim();
   saveState();
-  const tr = document.getElementById(`row-${idx}`);
-  if (!tr) return;
-  const mailBtn = tr.querySelector('.btn-mail');
-  if (!mailBtn) return;
-  if (val.trim()) {
-    mailBtn.disabled = false;
-    mailBtn.title = `Send email to ${LEADS[idx].name}`;
-  } else {
-    mailBtn.disabled = true;
-    mailBtn.title = 'Enter email address below to enable';
+  const wrap = document.getElementById(`ewrap-${idx}`);
+  if (wrap) {
+    if (val.trim()) wrap.classList.add('email-has-value');
+    else wrap.classList.remove('email-has-value');
   }
 }
 
 function buildEmailBody(lead) {
-  return `Hi,
+  const name     = lead.name     || 'your salon';
+  const city     = lead.city     || 'your city';
+  const demoUrl  = lead.url      || '(link coming soon)';
+  const category = lead.business_category || 'salon';
 
-I noticed that ${lead.name} doesn't have a professional online presence — no booking page, no service showcase, no client reviews.
+  return `Hi ${name} Team! 👋
 
-I've already built a premium demo website for your salon:
-${lead.url || '(Link coming soon)'}
+I came across ${name} in ${city} and was genuinely impressed by what you do.
 
-Here's what's included:
-✅ Online Appointment Booking via WhatsApp
-✅ Full Services & Pricing Listed
-✅ Professional Photo Gallery
-✅ Client Reviews Section
-✅ Mobile-Friendly & Fast
+However, I noticed you don't yet have a professional website or online booking page — which means potential clients searching for a ${category} in ${city} might be choosing competitors with a stronger digital presence.
 
-Take a look — how's your experience? I can customise it fully with your branding, team, and offers.
+I've already taken the initiative and built a LIVE, fully-custom demo website for ${name}:
+🌐 ${demoUrl}
 
-Can we connect for a quick 10-min call?
+Here's what the website includes:
+✅ Online Appointment Booking via WhatsApp (zero app download needed)
+✅ Full Services & Pricing Showcase
+✅ Professional Before/After Photo Gallery
+✅ Google Reviews Integration
+✅ Mobile-Optimised & Lightning Fast
+✅ Your location on Google Maps
 
-Best regards,
-DigiLoad`;
+This can be fully personalised with your branding, team photos, offers & pricing — and ready to launch within 48 hours.
+
+Clients who find you online will be able to book instantly. No more missed calls or DMs going unanswered.
+
+Would you be open to a quick 10-minute call this week to take a look?
+
+Looking forward to hearing from you,
+DigiLoad Team
++91 [Your Number]
+https://digiload.in`;
 }
 
-function sendEmail(idx) {
+// Email compose state
+let _composeIdx = -1;
+
+function openEmailModal(idx) {
+  _composeIdx = idx;
   const lead  = LEADS[idx];
-  const email = state.emails[idx];
-  if (!email) { showToast('Enter the email address first.', 'fas fa-exclamation-triangle', true); return; }
-  const subject = encodeURIComponent(`Premium Website Ready for ${lead.name} 🚀`);
-  const body    = encodeURIComponent(buildEmailBody(lead));
-  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${subject}&body=${body}`;
-  window.open(gmailUrl, '_blank');
-  showToast(`Opening Gmail for ${lead.name}…`, 'fas fa-envelope');
+  const email = state.emails[idx] || lead.email || '';
+
+  document.getElementById('compose-name').textContent    = lead.name || 'Unknown';
+  document.getElementById('compose-to').value           = email;
+  document.getElementById('compose-subject').value      = `Premium Website Ready for ${lead.name} 🚀`;
+  document.getElementById('compose-body').value         = buildEmailBody(lead);
+
+  document.getElementById('email-modal').classList.add('active');
+}
+
+function closeEmailModal(e) {
+  if (e && e.target !== document.getElementById('email-modal')) return;
+  document.getElementById('email-modal').classList.remove('active');
+  _composeIdx = -1;
+}
+
+function sendViaGmail() {
+  const to      = document.getElementById('compose-to').value.trim();
+  const subject = document.getElementById('compose-subject').value.trim();
+  const body    = document.getElementById('compose-body').value.trim();
+
+  if (!to) {
+    showToast('Please enter a recipient email address.', 'fas fa-exclamation-triangle', true);
+    document.getElementById('compose-to').focus();
+    return;
+  }
+
+  // Save email to state
+  if (_composeIdx >= 0) {
+    state.emails[_composeIdx] = to;
+    saveState();
+    // Update the inline email input if visible
+    const inp = document.getElementById(`email-${_composeIdx}`);
+    if (inp) inp.value = to;
+  }
+
+  const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.open(url, '_blank');
+  document.getElementById('email-modal').classList.remove('active');
+  showToast(`Opening Gmail for ${to}…`, 'fas fa-paper-plane');
+}
+
+function copyEmailToClipboard() {
+  const subject = document.getElementById('compose-subject').value.trim();
+  const body    = document.getElementById('compose-body').value.trim();
+  const text    = `Subject: ${subject}\n\n${body}`;
+  navigator.clipboard.writeText(text)
+    .then(() => showToast('Email text copied!', 'fas fa-check-circle'))
+    .catch(() => showToast('Copy failed — try manually.', 'fas fa-exclamation-triangle', true));
 }
 
 function copyMsg(idx) {
@@ -1591,28 +1761,41 @@ function importCSV(event) {
 
       if (!imported.length) { showToast('No valid rows found in CSV.', 'fas fa-exclamation-triangle', true); return; }
 
-      const fileName = file.name || "Imported Leads";
+      const fileName = file.name || 'Imported Leads';
+
+      // Pre-populate state.emails from the CSV email column
+      const emailsFromCsv = {};
+      imported.forEach((lead, i) => {
+        if (lead.email) emailsFromCsv[i] = lead.email;
+      });
+
       if (confirm(`Import ${imported.length} leads from "${fileName}" as a new workspace?`)) {
-        // Setup new database and update current active states BEFORE calling saveState
+        // Create new database
         DATABASES[fileName] = {
-          leads: imported,
+          leads:  imported,
           status: {},
           prices: {},
-          emails: {}
+          emails: emailsFromCsv  // ← pre-fill emails from CSV
         };
-        ACTIVE_DB = fileName;
-        LEADS = imported;
+        // Switch to it directly (no loadState race condition)
+        ACTIVE_DB    = fileName;
+        LEADS        = imported;
         state.status = {};
         state.prices = {};
-        state.emails = {};
-        
-        saveState();
-        loadState();
+        state.emails = emailsFromCsv;
+
+        // Persist
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ databases: DATABASES, activeDb: ACTIVE_DB }));
+
+        // Update header
+        const titleEl = document.getElementById('active-db-title');
+        if (titleEl) titleEl.textContent = ACTIVE_DB;
+
         populateFilters();
         renderTabs();
         renderTable();
         closeImportModal();
-        showToast(`Workspace "${fileName}" created with ${imported.length} leads!`, 'fas fa-file-import');
+        showToast(`✔ ${imported.length} leads imported into "${fileName}"!`, 'fas fa-file-import');
       }
     } catch (err) {
       showToast('Error reading CSV: ' + err.message, 'fas fa-exclamation-triangle', true);
@@ -1960,9 +2143,9 @@ function renderTabs() {
     const dbNameText = dbName;
       
     html += `
-      <div class="db-tab ${activeClass}" data-dbname="${dbNameAttr}" onclick="handleTabClick(this, event)">
-        <i class="fas fa-database" style="font-size: 0.72rem; opacity: 0.85;"></i>
-        <span>${dbNameText}</span>
+      <div class="db-tab ${activeClass}" data-dbname="${dbNameAttr}" onclick="handleTabClick(event.currentTarget, event)">
+        <i class="fas fa-database" style="font-size: 0.72rem; opacity: 0.85; pointer-events:none;"></i>
+        <span style="pointer-events:none;">${dbNameText}</span>
         ${closeBtn}
       </div>
     `;
@@ -1971,7 +2154,11 @@ function renderTabs() {
 }
 
 function handleTabClick(el, event) {
-  const dbName = el.getAttribute('data-dbname');
+  // Walk up to the actual .db-tab element in case a child (icon/span) was clicked
+  const tab = el.closest('.db-tab');
+  if (!tab) return;
+  // Decode HTML entities (&quot; → ") from the attribute
+  const dbName = tab.getAttribute('data-dbname').replace(/&quot;/g, '"');
   if (dbName) {
     switchDatabase(dbName);
   }
@@ -1989,16 +2176,34 @@ function handleTabDelete(el, event) {
 }
 
 function switchDatabase(dbName) {
-  // Save current active database state first
+  if (!DATABASES[dbName]) {
+    showToast(`Workspace "${dbName}" not found.`, 'fas fa-exclamation-triangle', true);
+    return;
+  }
+  // Save current state first
   saveState();
-  
-  // Switch to new database
+
+  // Switch active DB
   ACTIVE_DB = dbName;
-  loadState();
+
+  // Directly point globals to new DB — no full reload needed
+  const db = DATABASES[ACTIVE_DB];
+  LEADS        = db.leads  || [];
+  state.status = db.status || {};
+  state.prices = db.prices || {};
+  state.emails = db.emails || {};
+
+  // Update header subtitle
+  const titleEl = document.getElementById('active-db-title');
+  if (titleEl) titleEl.textContent = ACTIVE_DB;
+
+  // Save updated activeDb
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ databases: DATABASES, activeDb: ACTIVE_DB }));
+
   populateFilters();
   renderTabs();
   renderTable();
-  showToast(`Switched to workspace: ${dbName}`, "fas fa-check-circle");
+  showToast(`Switched to: ${dbName}`, 'fas fa-check-circle');
 }
 
 function deleteDatabase(dbName) {
