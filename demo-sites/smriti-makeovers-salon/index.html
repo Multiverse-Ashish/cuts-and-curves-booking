@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
 
   <!-- TOP BANNER -->
   <div class="top-bar">
@@ -180,55 +186,75 @@
         <p>Crafted with precision, delivered with care — explore our signature service menu.</p>
       </div>
       <div class="svc-grid">
-            <div class="svc-card" style="animation-delay:0.0s">
-              <div class="svc-icon"><i class="fas fa-cut"></i></div>
-              <h3>Gold Radiance Glow Facial</h3>
-              <p>Exclusive multi-step skin brightening facial with pure gold dust particles.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
-                <span class="svc-price">₹1299</span>
+            <div class="svc-card modal-trigger" data-title="Gold Radiance Glow Facial" data-price="1299" data-duration="60 min" data-desc="Exclusive multi-step skin brightening facial with pure gold dust particles." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" style="animation-delay:0.0s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Gold Radiance Glow Facial" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Gold Radiance Glow Facial" data-price="1299" data-duration="60 min" data-desc="Exclusive multi-step skin brightening facial with pure gold dust particles." data-category="beauty" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Gold Radiance Glow Facial</h3>
+                <p>Exclusive multi-step skin brightening facial with pure gold dust particles.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
+                  <span class="svc-price">₹1299</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.1s">
-              <div class="svc-icon"><i class="fas fa-spa"></i></div>
-              <h3>HD Celebrity Bridal Makeup</h3>
-              <p>Exclusive event bridal makeup package by premier certified cosmetics experts.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 120 min</span>
-                <span class="svc-price">₹6999</span>
+            <div class="svc-card modal-trigger" data-title="HD Celebrity Bridal Makeup" data-price="6999" data-duration="120 min" data-desc="Exclusive event bridal makeup package by premier certified cosmetics experts." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600" style="animation-delay:0.1s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600" alt="HD Celebrity Bridal Makeup" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="HD Celebrity Bridal Makeup" data-price="6999" data-duration="120 min" data-desc="Exclusive event bridal makeup package by premier certified cosmetics experts." data-category="beauty" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>HD Celebrity Bridal Makeup</h3>
+                <p>Exclusive event bridal makeup package by premier certified cosmetics experts.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 120 min</span>
+                  <span class="svc-price">₹6999</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.2s">
-              <div class="svc-icon"><i class="fas fa-star"></i></div>
-              <h3>Advanced Hair Keratin Infusion</h3>
-              <p>Luxury protein infusion treatment to eradicate frizz and restore natural silkiness.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 90 min</span>
-                <span class="svc-price">₹2499</span>
+            <div class="svc-card modal-trigger" data-title="Advanced Hair Keratin Infusion" data-price="2499" data-duration="90 min" data-desc="Luxury protein infusion treatment to eradicate frizz and restore natural silkiness." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600" style="animation-delay:0.2s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600" alt="Advanced Hair Keratin Infusion" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Advanced Hair Keratin Infusion" data-price="2499" data-duration="90 min" data-desc="Luxury protein infusion treatment to eradicate frizz and restore natural silkiness." data-category="beauty" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Advanced Hair Keratin Infusion</h3>
+                <p>Luxury protein infusion treatment to eradicate frizz and restore natural silkiness.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 90 min</span>
+                  <span class="svc-price">₹2499</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.30000000000000004s">
-              <div class="svc-icon"><i class="fas fa-cut"></i></div>
-              <h3>Deluxe Pedicure & Manicure</h3>
-              <p>Soothing skin scrub, nail shaping, cuticle therapy, and premium lacquer.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
-                <span class="svc-price">₹799</span>
+            <div class="svc-card modal-trigger" data-title="Deluxe Pedicure & Manicure" data-price="799" data-duration="60 min" data-desc="Soothing skin scrub, nail shaping, cuticle therapy, and premium lacquer." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" style="animation-delay:0.30000000000000004s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Deluxe Pedicure & Manicure" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Deluxe Pedicure & Manicure" data-price="799" data-duration="60 min" data-desc="Soothing skin scrub, nail shaping, cuticle therapy, and premium lacquer." data-category="beauty" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Deluxe Pedicure & Manicure</h3>
+                <p>Soothing skin scrub, nail shaping, cuticle therapy, and premium lacquer.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
+                  <span class="svc-price">₹799</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.4s">
-              <div class="svc-icon"><i class="fas fa-spa"></i></div>
-              <h3>Premium Party Makeover</h3>
-              <p>Vibrant event makeup coupled with specialized hair-designing styling.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
-                <span class="svc-price">₹1999</span>
+            <div class="svc-card modal-trigger" data-title="Premium Party Makeover" data-price="1999" data-duration="60 min" data-desc="Vibrant event makeup coupled with specialized hair-designing styling." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" style="animation-delay:0.4s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Premium Party Makeover" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Premium Party Makeover" data-price="1999" data-duration="60 min" data-desc="Vibrant event makeup coupled with specialized hair-designing styling." data-category="beauty" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Premium Party Makeover</h3>
+                <p>Vibrant event makeup coupled with specialized hair-designing styling.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
+                  <span class="svc-price">₹1999</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
       </div>
     </div>
@@ -269,7 +295,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹14999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="HD Bridal & Celebrity Makeup Masterclass" data-price="14999" data-duration="4 Weeks" data-desc="High-fidelity base preparation, airbrush makeup, and fashion bridal styling." data-category="beauty" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="HD Bridal & Celebrity Makeup Masterclass" data-price="14999" data-duration="4 Weeks" data-desc="High-fidelity base preparation, airbrush makeup, and fashion bridal styling." data-category="beauty" data-is-course="true" data-image="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -294,7 +320,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹19999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Advanced Hair Design & Chemical Artistry" data-price="19999" data-duration="6 Weeks" data-desc="Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts." data-category="beauty" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="Advanced Hair Design & Chemical Artistry" data-price="19999" data-duration="6 Weeks" data-desc="Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts." data-category="beauty" data-is-course="true" data-image="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -319,7 +345,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹7999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Nail Artistry & Extensions Specialist" data-price="7999" data-duration="2 Weeks" data-desc="Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care." data-category="beauty" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="Nail Artistry & Extensions Specialist" data-price="7999" data-duration="2 Weeks" data-desc="Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care." data-category="beauty" data-is-course="true" data-image="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -409,6 +435,66 @@
           <i class="fas fa-home"></i>
           <h4>Housewives</h4>
           <p>Start your part-time studio and build your independence.</p>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
         </div>
       </div>
 

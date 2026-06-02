@@ -100,7 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalGstAmount) modalGstAmount.textContent = '₹' + gst;
 
     if (modalBadge) modalBadge.textContent = isCourse ? 'Academy Course' : 'Premium Service';
-    if (modalHero) modalHero.style.backgroundImage = `url('${categoryHeroImages[category] || categoryHeroImages['unisex']}')`;
+        const image = btn.getAttribute('data-image');
+    if (modalHero) {
+      if (image) {
+        modalHero.style.backgroundImage = `url('${image}')`;
+      } else {
+        modalHero.style.backgroundImage = `url('${categoryHeroImages[category] || categoryHeroImages['unisex']}')`;
+      }
+    }
 
     // Construct WhatsApp message
     let msg = '';
@@ -421,6 +428,86 @@ Please confirm my slot. Thank you! 🙏`;
     });
   } else {
     animatedEls.forEach(el => el.classList.add('reveal-active'));
+  }
+
+
+  // ── BACKGROUND PARTICLES ANIMATION ─────────────────────────────────────────
+  const canvas = document.getElementById('bg-animation-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const firstTrigger = document.querySelector('.modal-trigger');
+    const category = firstTrigger ? firstTrigger.getAttribute('data-category') : 'unisex';
+
+    // Particle emoji palettes
+    const palettes = {
+      'barber': ['✨', '⭐', '💈', '✂️'],
+      'spa':    ['🍃', '🌸', '💮', '✨', '🪷'],
+      'beauty': ['💖', '✨', '💄', '🌹'],
+      'unisex': ['✨', '⭐', '💎', '🫧']
+    };
+
+    const icons = palettes[category] || palettes['unisex'];
+    const particles = [];
+    const maxParticles = 25;
+
+    class Particle {
+      constructor() {
+        this.reset(true);
+      }
+
+      reset(init = false) {
+        this.x = Math.random() * width;
+        this.y = init ? Math.random() * height : -50;
+        this.size = 14 + Math.random() * 16;
+        this.speedY = 0.5 + Math.random() * 1.5;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.char = icons[Math.floor(Math.random() * icons.length)];
+        this.opacity = 0.08 + Math.random() * 0.12;
+        this.rotation = Math.random() * 360;
+        this.spin = (Math.random() - 0.5) * 0.02;
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        this.rotation += this.spin;
+        if (this.y > height + 50 || this.x < -50 || this.x > width + 50) {
+          this.reset(false);
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.font = `${this.size}px Arial`;
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.fillText(this.char, -this.size / 2, this.size / 2);
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < maxParticles; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
   }
 
 });

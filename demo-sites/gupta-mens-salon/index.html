@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
 
   <!-- TOP BANNER -->
   <div class="top-bar">
@@ -180,55 +186,75 @@
         <p>Crafted with precision, delivered with care — explore our signature service menu.</p>
       </div>
       <div class="svc-grid">
-            <div class="svc-card" style="animation-delay:0.0s">
-              <div class="svc-icon"><i class="fas fa-cut"></i></div>
-              <h3>Signature Haircut</h3>
-              <p>Classic or modern style cut, complete with relaxing hair wash and styling.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 30 min</span>
-                <span class="svc-price">₹249</span>
+            <div class="svc-card modal-trigger" data-title="Signature Haircut" data-price="249" data-duration="30 min" data-desc="Classic or modern style cut, complete with relaxing hair wash and styling." data-category="barber" data-is-course="false" data-image="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" style="animation-delay:0.0s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" alt="Signature Haircut" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Signature Haircut" data-price="249" data-duration="30 min" data-desc="Classic or modern style cut, complete with relaxing hair wash and styling." data-category="barber" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Signature Haircut</h3>
+                <p>Classic or modern style cut, complete with relaxing hair wash and styling.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 30 min</span>
+                  <span class="svc-price">₹249</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.1s">
-              <div class="svc-icon"><i class="fas fa-spa"></i></div>
-              <h3>Beard Grooming & Shape</h3>
-              <p>Precision razor-edge outline contouring and nourishment oil massage.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 20 min</span>
-                <span class="svc-price">₹149</span>
+            <div class="svc-card modal-trigger" data-title="Beard Grooming & Shape" data-price="149" data-duration="20 min" data-desc="Precision razor-edge outline contouring and nourishment oil massage." data-category="barber" data-is-course="false" data-image="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" style="animation-delay:0.1s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="Beard Grooming & Shape" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Beard Grooming & Shape" data-price="149" data-duration="20 min" data-desc="Precision razor-edge outline contouring and nourishment oil massage." data-category="barber" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Beard Grooming & Shape</h3>
+                <p>Precision razor-edge outline contouring and nourishment oil massage.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 20 min</span>
+                  <span class="svc-price">₹149</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.2s">
-              <div class="svc-icon"><i class="fas fa-star"></i></div>
-              <h3>Royal Straight Razor Shave</h3>
-              <p>Traditional straight shave, hot towel treatment, and luxury skin soothing.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 40 min</span>
-                <span class="svc-price">₹299</span>
+            <div class="svc-card modal-trigger" data-title="Royal Straight Razor Shave" data-price="299" data-duration="40 min" data-desc="Traditional straight shave, hot towel treatment, and luxury skin soothing." data-category="barber" data-is-course="false" data-image="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" style="animation-delay:0.2s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Royal Straight Razor Shave" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Royal Straight Razor Shave" data-price="299" data-duration="40 min" data-desc="Traditional straight shave, hot towel treatment, and luxury skin soothing." data-category="barber" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Royal Straight Razor Shave</h3>
+                <p>Traditional straight shave, hot towel treatment, and luxury skin soothing.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 40 min</span>
+                  <span class="svc-price">₹299</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.30000000000000004s">
-              <div class="svc-icon"><i class="fas fa-cut"></i></div>
-              <h3>Deep Scalp Therapy Spa</h3>
-              <p>Nourishing scalp treatment to reduce hairfall, dandruff, and revive roots.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 45 min</span>
-                <span class="svc-price">₹499</span>
+            <div class="svc-card modal-trigger" data-title="Deep Scalp Therapy Spa" data-price="499" data-duration="45 min" data-desc="Nourishing scalp treatment to reduce hairfall, dandruff, and revive roots." data-category="barber" data-is-course="false" data-image="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" style="animation-delay:0.30000000000000004s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" alt="Deep Scalp Therapy Spa" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Deep Scalp Therapy Spa" data-price="499" data-duration="45 min" data-desc="Nourishing scalp treatment to reduce hairfall, dandruff, and revive roots." data-category="barber" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Deep Scalp Therapy Spa</h3>
+                <p>Nourishing scalp treatment to reduce hairfall, dandruff, and revive roots.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 45 min</span>
+                  <span class="svc-price">₹499</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.4s">
-              <div class="svc-icon"><i class="fas fa-spa"></i></div>
-              <h3>Charcoal Skin Detox</h3>
-              <p>Pore-cleansing activated charcoal mask with dynamic facial massage.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 30 min</span>
-                <span class="svc-price">₹399</span>
+            <div class="svc-card modal-trigger" data-title="Charcoal Skin Detox" data-price="399" data-duration="30 min" data-desc="Pore-cleansing activated charcoal mask with dynamic facial massage." data-category="barber" data-is-course="false" data-image="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600" style="animation-delay:0.4s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600" alt="Charcoal Skin Detox" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Charcoal Skin Detox" data-price="399" data-duration="30 min" data-desc="Pore-cleansing activated charcoal mask with dynamic facial massage." data-category="barber" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Charcoal Skin Detox</h3>
+                <p>Pore-cleansing activated charcoal mask with dynamic facial massage.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 30 min</span>
+                  <span class="svc-price">₹399</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
       </div>
     </div>
@@ -269,7 +295,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹9999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Classic Barbering & Haircut Artistry" data-price="9999" data-duration="4 Weeks" data-desc="Master scissor cuts, clipper fades, tapers, and salon customer handling." data-category="barber" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="Classic Barbering & Haircut Artistry" data-price="9999" data-duration="4 Weeks" data-desc="Master scissor cuts, clipper fades, tapers, and salon customer handling." data-category="barber" data-is-course="true" data-image="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -294,7 +320,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹5999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Precision Beard Sculpting & Razor Shaving" data-price="5999" data-duration="2 Weeks" data-desc="Contour outline razor-edge lining, styling science, and hot-towel treatments." data-category="barber" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="Precision Beard Sculpting & Razor Shaving" data-price="5999" data-duration="2 Weeks" data-desc="Contour outline razor-edge lining, styling science, and hot-towel treatments." data-category="barber" data-is-course="true" data-image="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -319,7 +345,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹3999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Scalp Therapy & Luxury Hair Spa Care" data-price="3999" data-duration="1 Weeks" data-desc="Revive roots, scale treatment techniques, and intensive scalp massage therapies." data-category="barber" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="Scalp Therapy & Luxury Hair Spa Care" data-price="3999" data-duration="1 Weeks" data-desc="Revive roots, scale treatment techniques, and intensive scalp massage therapies." data-category="barber" data-is-course="true" data-image="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -409,6 +435,66 @@
           <i class="fas fa-home"></i>
           <h4>Housewives</h4>
           <p>Start your part-time studio and build your independence.</p>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1522337660859-02f6f27711c9?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
         </div>
       </div>
 

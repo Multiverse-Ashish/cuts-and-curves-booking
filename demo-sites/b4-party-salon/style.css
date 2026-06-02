@@ -1537,3 +1537,131 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
     font-size: 0.88rem !important;
   }
 }
+
+/* Upgraded Premium Service Cards */
+.svc-card {
+  padding: 0 !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.svc-thumb {
+  width: 100% !important;
+  height: 200px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: #eaeaea !important;
+}
+.svc-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.svc-card:hover .svc-thumb img {
+  transform: scale(1.08) !important;
+}
+.svc-card-content {
+  padding: 24px 24px 28px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  flex: 1 !important;
+}
+.svc-card-content h3 {
+  margin: 0 !important;
+}
+.svc-card-content p {
+  margin: 0 !important;
+  flex: 1 !important;
+}
+.svc-icon-small {
+  display: none !important;
+}
+
+/* Academy Image Banner Marquee styling */
+.academy-image-banner-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 48px 0;
+  padding: 10px 0;
+}
+.academy-image-banner-marquee::before,
+.academy-image-banner-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.academy-image-banner-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+.academy-image-banner-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+.academy-image-banner-marquee .marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: loop-marquee 35s linear infinite;
+}
+.academy-image-banner-marquee .marquee-item {
+  width: 280px;
+  height: 180px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--border);
+}
+.academy-image-banner-marquee .marquee-item:hover {
+  transform: scale(1.05) translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+.academy-image-banner-marquee .marquee-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.academy-image-banner-marquee .marquee-item:hover img {
+  transform: scale(1.08);
+}
+@keyframes loop-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Floating background animation canvas */
+.bg-animation-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.25;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .svc-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .academy-image-banner-marquee .marquee-item {
+    width: 200px !important;
+    height: 130px !important;
+  }
+}

@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
 
   <!-- TOP BANNER -->
   <div class="top-bar">
@@ -180,65 +186,89 @@
         <p>Crafted with precision, delivered with care — explore our signature service menu.</p>
       </div>
       <div class="svc-grid">
-            <div class="svc-card" style="animation-delay:0.0s">
-              <div class="svc-icon"><i class="fas fa-cut"></i></div>
-              <h3>Aromatherapy Massage</h3>
-              <p>Gentle full-body massage with calming essential oils for deep relaxation.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
-                <span class="svc-price">₹1499</span>
+            <div class="svc-card modal-trigger" data-title="Aromatherapy Massage" data-price="1499" data-duration="60 min" data-desc="Gentle full-body massage with calming essential oils for deep relaxation." data-category="spa" data-is-course="false" data-image="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" style="animation-delay:0.0s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" alt="Aromatherapy Massage" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Aromatherapy Massage" data-price="1499" data-duration="60 min" data-desc="Gentle full-body massage with calming essential oils for deep relaxation." data-category="spa" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Aromatherapy Massage</h3>
+                <p>Gentle full-body massage with calming essential oils for deep relaxation.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
+                  <span class="svc-price">₹1499</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.1s">
-              <div class="svc-icon"><i class="fas fa-spa"></i></div>
-              <h3>Swedish Massage Therapy</h3>
-              <p>Long-stroke deep-tissue relaxation targeting all major muscle groups.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
-                <span class="svc-price">₹1799</span>
+            <div class="svc-card modal-trigger" data-title="Swedish Massage Therapy" data-price="1799" data-duration="60 min" data-desc="Long-stroke deep-tissue relaxation targeting all major muscle groups." data-category="spa" data-is-course="false" data-image="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600" style="animation-delay:0.1s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600" alt="Swedish Massage Therapy" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Swedish Massage Therapy" data-price="1799" data-duration="60 min" data-desc="Long-stroke deep-tissue relaxation targeting all major muscle groups." data-category="spa" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Swedish Massage Therapy</h3>
+                <p>Long-stroke deep-tissue relaxation targeting all major muscle groups.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
+                  <span class="svc-price">₹1799</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.2s">
-              <div class="svc-icon"><i class="fas fa-star"></i></div>
-              <h3>Reflexology Foot Treatment</h3>
-              <p>Therapeutic pressure-point massage for tired feet and strained joints.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 40 min</span>
-                <span class="svc-price">₹799</span>
+            <div class="svc-card modal-trigger" data-title="Reflexology Foot Treatment" data-price="799" data-duration="40 min" data-desc="Therapeutic pressure-point massage for tired feet and strained joints." data-category="spa" data-is-course="false" data-image="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" style="animation-delay:0.2s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" alt="Reflexology Foot Treatment" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Reflexology Foot Treatment" data-price="799" data-duration="40 min" data-desc="Therapeutic pressure-point massage for tired feet and strained joints." data-category="spa" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Reflexology Foot Treatment</h3>
+                <p>Therapeutic pressure-point massage for tired feet and strained joints.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 40 min</span>
+                  <span class="svc-price">₹799</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.30000000000000004s">
-              <div class="svc-icon"><i class="fas fa-cut"></i></div>
-              <h3>Rejuvenating Herbal Facial</h3>
-              <p>Organic herbal facial treatment for natural radiance and healthy glow.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 50 min</span>
-                <span class="svc-price">₹1199</span>
+            <div class="svc-card modal-trigger" data-title="Rejuvenating Herbal Facial" data-price="1199" data-duration="50 min" data-desc="Organic herbal facial treatment for natural radiance and healthy glow." data-category="spa" data-is-course="false" data-image="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600" style="animation-delay:0.30000000000000004s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600" alt="Rejuvenating Herbal Facial" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Rejuvenating Herbal Facial" data-price="1199" data-duration="50 min" data-desc="Organic herbal facial treatment for natural radiance and healthy glow." data-category="spa" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Rejuvenating Herbal Facial</h3>
+                <p>Organic herbal facial treatment for natural radiance and healthy glow.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 50 min</span>
+                  <span class="svc-price">₹1199</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.4s">
-              <div class="svc-icon"><i class="fas fa-spa"></i></div>
-              <h3>Steam & Body Polish Scrub</h3>
-              <p>Full-body glow scrub exfoliation followed by invigorating steam.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 75 min</span>
-                <span class="svc-price">₹1999</span>
+            <div class="svc-card modal-trigger" data-title="Steam & Body Polish Scrub" data-price="1999" data-duration="75 min" data-desc="Full-body glow scrub exfoliation followed by invigorating steam." data-category="spa" data-is-course="false" data-image="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600" style="animation-delay:0.4s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600" alt="Steam & Body Polish Scrub" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Steam & Body Polish Scrub" data-price="1999" data-duration="75 min" data-desc="Full-body glow scrub exfoliation followed by invigorating steam." data-category="spa" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Steam & Body Polish Scrub</h3>
+                <p>Full-body glow scrub exfoliation followed by invigorating steam.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 75 min</span>
+                  <span class="svc-price">₹1999</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
-            <div class="svc-card" style="animation-delay:0.5s">
-              <div class="svc-icon"><i class="fas fa-star"></i></div>
-              <h3>Deep Muscle Tissue Massage</h3>
-              <p>Intense focused pressure to release deep muscle knots and tension.</p>
-              <div class="svc-meta">
-                <span class="svc-duration"><i class="far fa-clock"></i> 90 min</span>
-                <span class="svc-price">₹2199</span>
+            <div class="svc-card modal-trigger" data-title="Deep Muscle Tissue Massage" data-price="2199" data-duration="90 min" data-desc="Intense focused pressure to release deep muscle knots and tension." data-category="spa" data-is-course="false" data-image="https://images.unsplash.com/photo-1596178060810-72cb6f1947b1?q=80&w=600" style="animation-delay:0.5s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1596178060810-72cb6f1947b1?q=80&w=600" alt="Deep Muscle Tissue Massage" loading="lazy">
               </div>
-              <button class="btn-book-svc modal-trigger" data-title="Deep Muscle Tissue Massage" data-price="2199" data-duration="90 min" data-desc="Intense focused pressure to release deep muscle knots and tension." data-category="spa" data-is-course="false">Book This Service</button>
+              <div class="svc-card-content">
+                <h3>Deep Muscle Tissue Massage</h3>
+                <p>Intense focused pressure to release deep muscle knots and tension.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 90 min</span>
+                  <span class="svc-price">₹2199</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
             </div>
       </div>
     </div>
@@ -279,7 +309,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹12999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Therapeutic Massage & Aromatherapy" data-price="12999" data-duration="4 Weeks" data-desc="Anatomy-focused massage, essential oils therapy, and advanced hot stone methods." data-category="spa" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="Therapeutic Massage & Aromatherapy" data-price="12999" data-duration="4 Weeks" data-desc="Anatomy-focused massage, essential oils therapy, and advanced hot stone methods." data-category="spa" data-is-course="true" data-image="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -304,7 +334,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹9999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Clinical Skin Aesthetics & Facial Care" data-price="9999" data-duration="3 Weeks" data-desc="Dermaceutical facial peels, collagen therapies, and skin analysis systems." data-category="spa" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="Clinical Skin Aesthetics & Facial Care" data-price="9999" data-duration="3 Weeks" data-desc="Dermaceutical facial peels, collagen therapies, and skin analysis systems." data-category="spa" data-is-course="true" data-image="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -329,7 +359,7 @@
                 <span class="panel-price-label">Tuition Fee:</span>
                 <span class="panel-price">₹6999</span>
               </div>
-              <button class="btn-course-enroll modal-trigger" data-title="Reflexology & Deep Body Detox Systems" data-price="6999" data-duration="2 Weeks" data-desc="Exfoliating body scrubs, foot reflex points, and luxury detox steam care." data-category="spa" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+              <button class="btn-course-enroll modal-trigger" data-title="Reflexology & Deep Body Detox Systems" data-price="6999" data-duration="2 Weeks" data-desc="Exfoliating body scrubs, foot reflex points, and luxury detox steam care." data-category="spa" data-is-course="true" data-image="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="academy-panel-features">
               <h4>Course Highlights &amp; Benefits</h4>
@@ -419,6 +449,66 @@
           <i class="fas fa-home"></i>
           <h4>Housewives</h4>
           <p>Start your part-time studio and build your independence.</p>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596178060810-72cb6f1947b1?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596178060810-72cb6f1947b1?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596178060810-72cb6f1947b1?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596178060810-72cb6f1947b1?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+        </div>
+      </div>
+
+      <!-- Infinite Loop Scrolling Image Banner -->
+      <div class="academy-image-banner-marquee">
+        <div class="marquee-track">
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596178060810-72cb6f1947b1?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600" alt="Academy Training" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600" alt="Hands-on Practice" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600" alt="Live Demonstration" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600" alt="Professional Styling" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600" alt="Masterclass Session" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1596178060810-72cb6f1947b1?q=80&w=600" alt="Graduation Ceremony" loading="lazy"></div>
+          <div class="marquee-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600" alt="Active Salon Environment" loading="lazy"></div>
         </div>
       </div>
 
