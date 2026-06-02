@@ -1183,3 +1183,357 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
   .ab-lbl { font-size: 0.65rem !important; width: 50px !important; }
 }
 
+
+/*  UPGRADED LUXURY SECTION VISUALS (SPECIALTIES, ACADEMY TABS, CAREERS & HOVERS)  */
+.category-card .cat-img-wrap {
+  display: none !important; /* Hide old landscape images to match premium flat circle style */
+}
+.category-card {
+  text-align: center !important;
+  align-items: center !important;
+  padding: 36px 24px !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  background: var(--card) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.category-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 15px 40px rgba(var(--accent-rgb), 0.12) !important;
+}
+
+/* Circular icon wraps for specialties */
+.cat-icon-wrap {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 1.8rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.category-card:hover .cat-icon-wrap {
+  transform: scale(1.12);
+}
+.cat-icon-wrap.bg-pink { background: #fce4ec; color: #ec407a; }
+.cat-icon-wrap.bg-purple { background: #f3e5f5; color: #ab47bc; }
+.cat-icon-wrap.bg-red { background: #fff3e0; color: #fb8c00; }
+.cat-icon-wrap.bg-blue { background: #e3f2fd; color: #2196f3; }
+
+.btn-cat-link {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: var(--accent) !important;
+  margin-top: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+}
+.btn-cat-link:hover {
+  color: var(--accent2) !important;
+  transform: translateX(4px) !important;
+}
+
+/* Academy Tabs UI */
+.academy-tabs-container {
+  margin-bottom: 48px;
+}
+.academy-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.academy-tab-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.academy-tab-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.academy-tab-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.25);
+}
+.academy-tab-panel {
+  display: none;
+}
+.academy-tab-panel.active {
+  display: block;
+  animation: tabFadeIn 0.5s ease-out;
+}
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.academy-panel-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 44px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.academy-panel-layout:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px rgba(var(--accent-rgb), 0.1);
+}
+.academy-panel-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.panel-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.panel-title-row h3 {
+  font-family: var(--font-title);
+  font-size: 1.9rem;
+  color: var(--text);
+  margin: 0;
+}
+.duration-badge {
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent2);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(var(--accent-rgb), 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.panel-desc {
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.7;
+  font-size: 1.02rem;
+}
+.panel-meta-row {
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.panel-price-label {
+  font-size: 0.98rem;
+  color: var(--muted);
+}
+.panel-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.academy-panel-features {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.academy-panel-features h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+.premium-check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.premium-check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+.premium-check-list li i {
+  margin-top: 3px;
+}
+.check-green {
+  color: #2d7a4f !important; /* Premium dark green */
+  font-size: 1.25rem;
+}
+
+/* why choose cards centered enhancement */
+.why-choose-card {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 40px 24px !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.why-choose-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 15px 40px rgba(var(--accent-rgb), 0.1) !important;
+}
+.why-num {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: rgba(var(--accent-rgb), 0.15);
+  line-height: 1;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+}
+.why-icon-wrap {
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.why-choose-card:hover .why-icon-wrap {
+  transform: scale(1.15);
+  color: var(--accent2);
+}
+.why-choose-card h4 {
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 12px !important;
+  color: var(--text);
+}
+.why-choose-card p {
+  font-size: 0.92rem !important;
+  color: var(--muted) !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+/* Career Opportunities Grid Layout */
+.careers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 40px;
+}
+.career-card {
+  background: var(--card) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 32px 24px !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.career-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 15px 45px rgba(var(--accent-rgb), 0.1) !important;
+}
+.career-icon-wrap {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.career-card:hover .career-icon-wrap {
+  transform: scale(1.15);
+  color: var(--accent2);
+}
+.career-card h4 {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+.student-benefits-row {
+  text-align: center !important;
+  margin-top: 44px !important;
+  padding: 16px !important;
+  border-top: 1px dashed var(--border) !important;
+  border-bottom: 1px dashed var(--border) !important;
+}
+.student-benefits-row p {
+  font-size: 0.95rem !important;
+  color: var(--muted) !important;
+  margin: 0 !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Premium Hover Transitions for standard sections */
+.svc-card, .gal-item, .review-card, .pricing-card, .team-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.svc-card:hover, .review-card:hover, .pricing-card:hover, .team-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 40px rgba(var(--accent-rgb), 0.1) !important;
+  border-color: var(--accent) !important;
+}
+.pricing-card.pricing-highlight:hover {
+  box-shadow: 0 15px 45px rgba(var(--accent-rgb), 0.25) !important;
+}
+.gal-item:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .academy-panel-layout {
+    grid-template-columns: 1fr !important;
+    padding: 28px !important;
+    gap: 28px !important;
+  }
+  .academy-tabs {
+    gap: 8px !important;
+  }
+  .academy-tab-btn {
+    padding: 10px 18px !important;
+    font-size: 0.88rem !important;
+  }
+  .panel-title-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .panel-title-row h3 {
+    font-size: 1.5rem !important;
+  }
+  .student-benefits-row p {
+    font-size: 0.88rem !important;
+  }
+}

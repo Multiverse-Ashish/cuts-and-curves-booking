@@ -136,44 +136,36 @@
       </div>
       <div class="categories-grid">
         <div class="category-card">
-          <div class="cat-img-wrap">
-            <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=600" alt="Skin Care" loading="lazy">
+          <div class="cat-icon-wrap bg-pink">
+            <i class="fas fa-spa text-pink"></i>
           </div>
-          <div class="cat-content">
-            <h3>Skin Care</h3>
-            <p>Facials, cleanup, bleach, D-Tan, and advanced skin treatments for glowing, healthy skin.</p>
-            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab &amp;&amp; window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-          </div>
+          <h3>Skin Care</h3>
+          <p>Facials, cleanup, bleach, D-Tan, and advanced skin treatments for glowing, healthy skin.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="category-card">
-          <div class="cat-img-wrap">
-            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600" alt="Hair Care" loading="lazy">
+          <div class="cat-icon-wrap bg-purple">
+            <i class="fas fa-cut text-purple"></i>
           </div>
-          <div class="cat-content">
-            <h3>Hair Care</h3>
-            <p>Hair cutting, styling, colouring, spa treatments, and therapeutic hair massage services.</p>
-            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab &amp;&amp; window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-          </div>
+          <h3>Hair Care</h3>
+          <p>Hair cutting, styling, colouring, spa treatments, and therapeutic hair massage services.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="category-card">
-          <div class="cat-img-wrap">
-            <img src="https://images.unsplash.com/photo-1598252577556-3f7734be7708?q=80&w=600" alt="Makeup" loading="lazy">
+          <div class="cat-icon-wrap bg-red">
+            <i class="fas fa-paint-brush text-red"></i>
           </div>
-          <div class="cat-content">
-            <h3>Makeup</h3>
-            <p>Bridal, party, engagement, and glam makeup looks by certified professional artists.</p>
-            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab &amp;&amp; window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-          </div>
+          <h3>Makeup</h3>
+          <p>Bridal, party, engagement, and glam makeup looks by certified professional artists.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="category-card">
-          <div class="cat-img-wrap">
-            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600" alt="Nail Care" loading="lazy">
+          <div class="cat-icon-wrap bg-blue">
+            <i class="fas fa-hand-sparkles text-blue"></i>
           </div>
-          <div class="cat-content">
-            <h3>Nail Care</h3>
-            <p>Professional manicure &amp; pedicure with advanced techniques and customized services.</p>
-            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab &amp;&amp; window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
-          </div>
+          <h3>Nail Care</h3>
+          <p>Professional manicure &amp; pedicure with advanced techniques and customized services.</p>
+          <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -260,46 +252,97 @@
         <h2>Professional <em>Academy</em> Courses</h2>
         <p>Learn from certified industry experts. Hands-on training on live models, global certifications, and 100% placement support.</p>
       </div>
-      <div class="academy-grid">
-            <div class="course-card" style="animation-delay:0.0s">
-              <div class="course-badge">Academy Course</div>
-              <h3>HD Bridal & Celebrity Makeup Masterclass</h3>
-              <p>High-fidelity base preparation, airbrush makeup, and fashion bridal styling.</p>
-              <div class="course-meta">
-                <span class="course-duration"><i class="far fa-clock"></i> 4 Weeks</span>
-                <span class="course-price">₹14999</span>
+            <div class="academy-tabs-container">
+        <div class="academy-tabs">
+          
+        <button class="academy-tab-btn active" data-tab="0">
+          <span>HD Bridal & Celebrity Makeup Masterclass</span>
+        </button>
+        <button class="academy-tab-btn " data-tab="1">
+          <span>Advanced Hair Design & Chemical Artistry</span>
+        </button>
+        <button class="academy-tab-btn " data-tab="2">
+          <span>Nail Artistry & Extensions Specialist</span>
+        </button>
+        </div>
+        <div class="academy-tab-contents">
+          
+        <div class="academy-tab-panel active" id="academy-panel-0">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>HD Bridal & Celebrity Makeup Masterclass</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 4 Weeks</span>
               </div>
-              <ul class="course-feats">
-                <li><i class='fas fa-check-circle'></i> Celebrity Artist Demos</li><li><i class='fas fa-check-circle'></i> International Certificate</li><li><i class='fas fa-check-circle'></i> 100% Placement Support</li>
-              </ul>
+              <p class="panel-desc">High-fidelity base preparation, airbrush makeup, and fashion bridal styling.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">₹14999</span>
+              </div>
               <button class="btn-course-enroll modal-trigger" data-title="HD Bridal & Celebrity Makeup Masterclass" data-price="14999" data-duration="4 Weeks" data-desc="High-fidelity base preparation, airbrush makeup, and fashion bridal styling." data-category="unisex" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
-            <div class="course-card" style="animation-delay:0.12s">
-              <div class="course-badge">Academy Course</div>
-              <h3>Advanced Hair Design & Chemical Artistry</h3>
-              <p>Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts.</p>
-              <div class="course-meta">
-                <span class="course-duration"><i class="far fa-clock"></i> 6 Weeks</span>
-                <span class="course-price">₹19999</span>
-              </div>
-              <ul class="course-feats">
-                <li><i class='fas fa-check-circle'></i> Chemical Lab Training</li><li><i class='fas fa-check-circle'></i> Master Stylist Certificate</li><li><i class='fas fa-check-circle'></i> Guaranteed Internships</li>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Celebrity Artist Demos</span></li><li><i class='fas fa-check-circle check-green'></i> <span>International Certificate</span></li><li><i class='fas fa-check-circle check-green'></i> <span>100% Placement Support</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
               </ul>
+            </div>
+          </div>
+        </div>
+        <div class="academy-tab-panel " id="academy-panel-1">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>Advanced Hair Design & Chemical Artistry</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 6 Weeks</span>
+              </div>
+              <p class="panel-desc">Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">₹19999</span>
+              </div>
               <button class="btn-course-enroll modal-trigger" data-title="Advanced Hair Design & Chemical Artistry" data-price="19999" data-duration="6 Weeks" data-desc="Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts." data-category="unisex" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
-            <div class="course-card" style="animation-delay:0.24s">
-              <div class="course-badge">Academy Course</div>
-              <h3>Nail Artistry & Extensions Specialist</h3>
-              <p>Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care.</p>
-              <div class="course-meta">
-                <span class="course-duration"><i class="far fa-clock"></i> 2 Weeks</span>
-                <span class="course-price">₹7999</span>
-              </div>
-              <ul class="course-feats">
-                <li><i class='fas fa-check-circle'></i> Nail Product Kit Included</li><li><i class='fas fa-check-circle'></i> Nail Tech Certification</li><li><i class='fas fa-check-circle'></i> Freelancer Career Setup</li>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Chemical Lab Training</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Master Stylist Certificate</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Guaranteed Internships</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
               </ul>
+            </div>
+          </div>
+        </div>
+        <div class="academy-tab-panel " id="academy-panel-2">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>Nail Artistry & Extensions Specialist</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 2 Weeks</span>
+              </div>
+              <p class="panel-desc">Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">₹7999</span>
+              </div>
               <button class="btn-course-enroll modal-trigger" data-title="Nail Artistry & Extensions Specialist" data-price="7999" data-duration="2 Weeks" data-desc="Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care." data-category="unisex" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Nail Product Kit Included</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Nail Tech Certification</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Freelancer Career Setup</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
 
       <!-- WHY CHOOSE US -->
@@ -309,34 +352,40 @@
       </div>
       <div class="why-choose-grid">
         <div class="why-choose-card">
-          <div class="why-icon">01</div>
-          <h4>Expert Trainers</h4>
-          <p>Learn directly from certified master stylists and industry professionals who share real-world salon insights.</p>
+          <span class="why-num">01</span>
+          <div class="why-icon-wrap"><i class="fas fa-user-graduate"></i></div>
+          <h4>Learn From Industry Experts</h4>
+          <p>Trainers with 10+ years of real salon and clinical experience will guide you at every step.</p>
         </div>
         <div class="why-choose-card">
-          <div class="why-icon">02</div>
+          <span class="why-num">02</span>
+          <div class="why-icon-wrap"><i class="fas fa-hands"></i></div>
           <h4>100% Practical Training</h4>
-          <p>Get hands-on experience on live models. Build your confidence and precision before stepping into the industry.</p>
+          <p>80% practical sessions for real-world readiness. Because beauty is hands-on.</p>
         </div>
         <div class="why-choose-card">
-          <div class="why-icon">03</div>
+          <span class="why-num">03</span>
+          <div class="why-icon-wrap"><i class="fas fa-briefcase"></i></div>
           <h4>Career-Focused Curriculum</h4>
-          <p>Our courses are aligned with current global trends and techniques requested by premium luxury salons.</p>
+          <p>From day one, you're not just a student — you're a future professional.</p>
         </div>
         <div class="why-choose-card">
-          <div class="why-icon">04</div>
+          <span class="why-num">04</span>
+          <div class="why-icon-wrap"><i class="fas fa-store"></i></div>
           <h4>In-House Salon Practice</h4>
-          <p>Practice inside active salon environments. Understand customer handling, consultation, and salon economics.</p>
+          <p>Practice on real clients and models under expert supervision before you step out.</p>
         </div>
         <div class="why-choose-card">
-          <div class="why-icon">05</div>
+          <span class="why-num">05</span>
+          <div class="why-icon-wrap"><i class="fas fa-award"></i></div>
           <h4>Dual Certification</h4>
-          <p>Earn professional certifications recognized by top brands and government accreditation bodies.</p>
+          <p>Government Approved + Academy Certified — valid across India &amp; abroad.</p>
         </div>
         <div class="why-choose-card">
-          <div class="why-icon">06</div>
+          <span class="why-num">06</span>
+          <div class="why-icon-wrap"><i class="fas fa-headset"></i></div>
           <h4>Lifetime Trainer Support</h4>
-          <p>Stay connected even after graduation. Access alumni refresher classes and placement opportunities anytime.</p>
+          <p>Get lifetime access to trainer support, doubt solving, and career guidance.</p>
         </div>
       </div>
 
@@ -375,51 +424,38 @@
 
       <!-- CAREER PATHS & BENEFITS -->
       <div class="academy-sub-header">
-        <span class="sub-label">Your Future Career Path</span>
-        <h3>Opportunities After Course Completion</h3>
+        <span class="sub-label">Career Paths</span>
+        <h3>Career Opportunities After Completion</h3>
       </div>
       <div class="careers-grid">
         <div class="career-card">
-          <div class="career-badge">Career Option 1</div>
+          <div class="career-icon-wrap"><i class="fas fa-star"></i></div>
           <h4>Certified Skin/Hair/Makeup Artist</h4>
-          <p>Work at premium high-end beauty salons, hotels, or spas as a specialized artist.</p>
         </div>
         <div class="career-card">
-          <div class="career-badge">Career Option 2</div>
+          <div class="career-icon-wrap"><i class="fas fa-palette"></i></div>
           <h4>Freelance Makeup Artist</h4>
-          <p>Run your own bridal makeup business, handling destination bookings and event glam.</p>
         </div>
         <div class="career-card">
-          <div class="career-badge">Career Option 3</div>
+          <div class="career-icon-wrap"><i class="fas fa-gem"></i></div>
           <h4>Bridal &amp; Occasion Specialist</h4>
-          <p>Partner with wedding planners, photographers, and boutiques for seasonal makeovers.</p>
         </div>
         <div class="career-card">
-          <div class="career-badge">Career Option 4</div>
+          <div class="career-icon-wrap"><i class="fas fa-store"></i></div>
           <h4>Salon Owner or Manager</h4>
-          <p>Launch your custom salon brand or manage operations for top franchises.</p>
         </div>
         <div class="career-card">
-          <div class="career-badge">Career Option 5</div>
-          <h4>Beauty Trainer &amp; Educator</h4>
-          <p>Teach at cosmetics schools, conduct workshops, or create video courses.</p>
+          <div class="career-icon-wrap"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h4>Beauty Trainer</h4>
         </div>
         <div class="career-card">
-          <div class="career-badge">Career Option 6</div>
+          <div class="career-icon-wrap"><i class="fas fa-briefcase-medical"></i></div>
           <h4>Skin Technician at Clinics</h4>
-          <p>Coordinate with cosmetologists and dermatologists for clinical skin care.</p>
         </div>
       </div>
 
-      <!-- STUDENT BENEFITS -->
-      <div class="student-benefits-card">
-        <h4>Academy Student Benefits</h4>
-        <div class="benefits-grid">
-          <div class="benefit-item"><i class="fas fa-camera"></i> <span>Professional Portfolio Shoot</span></div>
-          <div class="benefit-item"><i class="fas fa-hands-helping"></i> <span>Internship &amp; Placement Support</span></div>
-          <div class="benefit-item"><i class="fas fa-toolbox"></i> <span>Professional Practice Kit</span></div>
-          <div class="benefit-item"><i class="fas fa-award"></i> <span>Grand Certification Ceremony</span></div>
-        </div>
+      <div class="student-benefits-row">
+        <p><strong>Student Benefits:</strong> Portfolio Photoshoot &bull; Internship/Placement Support &bull; Certification Ceremony</p>
       </div>
     </div>
   </section>

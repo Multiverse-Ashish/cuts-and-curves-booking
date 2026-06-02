@@ -381,8 +381,29 @@ Please confirm my slot. Thank you! 🙏`;
     });
   }
 
+  // Academy Tabs switcher
+  const tabBtns = document.querySelectorAll('.academy-tab-btn');
+  const tabPanels = document.querySelectorAll('.academy-tab-panel');
+  if (tabBtns.length > 0) {
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabIdx = btn.getAttribute('data-tab');
+        
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        
+        btn.classList.add('active');
+        const activePanel = document.getElementById(`academy-panel-${tabIdx}`);
+        if (activePanel) {
+          activePanel.classList.add('active');
+        }
+      });
+    });
+  }
+
   // ── Intersection Observer for staggered fade-up-scale scroll animations ──
-  const animatedEls = document.querySelectorAll('.svc-card, .gal-item, .review-card, .pricing-card, .team-card, .course-card');
+
+  const animatedEls = document.querySelectorAll('.svc-card, .gal-item, .review-card, .pricing-card, .team-card, .academy-tab-panel, .category-card, .why-choose-card, .career-card');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
