@@ -431,7 +431,7 @@ Please confirm my slot. Thank you! 🙏`;
   }
 
 
-    // Automatic Academy Carousel Slideshow
+    // Automatic Academy Carousel Slideshow & Parallax
   document.querySelectorAll('.academy-carousel-banner').forEach(carousel => {
     const slides = carousel.querySelectorAll('.carousel-slide');
     const dots = carousel.querySelectorAll('.carousel-dot');
@@ -462,6 +462,7 @@ Please confirm my slot. Thank you! 🙏`;
         slideInterval = setInterval(nextSlide, 4000);
       });
     });
+
   });
 
   // ── BACKGROUND PARTICLES ANIMATION ─────────────────────────────────────────
