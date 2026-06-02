@@ -262,6 +262,20 @@
     .cell-url { min-width: 100px; }
     .url-link  { color: var(--accent); font-size: .78rem; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
     .url-link:hover { text-decoration: underline; }
+    .url-link-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent); color: #fff !important;
+      padding: 5px 12px; border-radius: 50px;
+      font-size: .72rem; font-weight: 700;
+      box-shadow: 0 2px 6px rgba(99,102,241,0.2);
+      transition: all .2s; text-decoration: none !important;
+      white-space: nowrap;
+    }
+    .url-link-btn:hover {
+      background: var(--accent-h);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(99,102,241,0.35);
+    }
 
     /* ── New column cells ──────────────────────────────────────────── */
     .cell-cat     { min-width: 120px; }
@@ -966,23 +980,15 @@ function toWA(phone) {
 // WHATSAPP MESSAGE
 // ─────────────────────────────────────────────────────────────────────────────
 function buildMessage(lead) {
-  return `Hello ${lead.name}! 👋
+  const city = lead.city || 'your area';
+  return `Hi ${lead.name}! 👋 I noticed *${lead.name}* in ${city} doesn't have a modern online booking page.
 
-I was checking salons in Gorakhpur and noticed that *${lead.name}* doesn't have a professional online presence — no booking page, no service showcase, no client reviews.
+I went ahead and designed a premium live demo website specifically for your salon:
+🌐 ${lead.url}
 
-I've already built a *premium demo website* for your salon:
-🌐 ${lead.url || '(Link coming soon)'}
+It allows clients to view your services and book appointments directly via WhatsApp. 
 
-Here's what's included:
-✅ Online Appointment Booking via WhatsApp
-✅ Full Services & Pricing Listed
-✅ Professional Photo Gallery
-✅ Client Reviews Section
-✅ Mobile-Friendly & Fast
-
-Take a look — *how's your experience?* Would you like to launch this for ${lead.name}? I can customise it fully with your branding, team, and offers.
-
-Can we connect for a quick discussion? 🚀`;
+Would you like me to customize this with your pricing and launch it for you? Let me know! 🚀`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1017,7 +1023,7 @@ function renderRow(lead, idx) {
 
   // Demo Site
   const urlCell = l.url
-    ? `<a class="url-link" href="${l.url}" target="_blank"><i class="fas fa-external-link-alt" style="font-size:.68rem"></i> View</a>`
+    ? `<a class="url-link-btn" href="${l.url}" target="_blank"><i class="fas fa-laptop"></i> View Demo</a>`
     : `<span class="no-data">—</span>`;
 
   // Google first URL (embedded preview)
