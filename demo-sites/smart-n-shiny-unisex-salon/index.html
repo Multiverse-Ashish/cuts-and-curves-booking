@@ -12,8 +12,6 @@
 <body class="layout-A">
   <!-- BACKGROUND ANIMATION CANVAS -->
   <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
-  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
-  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
 
   <!-- TOP BANNER -->
   <div class="top-bar">
@@ -24,17 +22,19 @@
   <header class="site-header" id="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo-link">SMART 'N' SHINY UNISEX SALON</a>
-      <nav class="main-nav">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#academy">Academy</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#faq">FAQ</a>
-        <a href="#homepage-booking" class="btn-primary">Book Now</a>
-      </nav>
-      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      <div class="header-right">
+        <nav class="main-nav">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#academy">Academy</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a href="#homepage-booking" class="btn-primary btn-header-book">Book Now</a>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      </div>
     </div>
     <!-- Mobile menu -->
     <div class="mobile-nav" id="mobile-nav">
@@ -274,6 +274,26 @@
       </div>
     </div>
   </section>
+
+  <!-- SERVICES CAROUSEL BANNER -->
+  <div class="services-carousel-banner-wrapper">
+    <div class="services-carousel-banner">
+      <div class="carousel-slides">
+        <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=600" alt="Service Slide 1" loading="lazy"></div>
+        <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1605497746444-ac9db450f779?q=80&w=600" alt="Service Slide 2" loading="lazy"></div>
+        <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=600" alt="Service Slide 3" loading="lazy"></div>
+        <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600" alt="Service Slide 4" loading="lazy"></div>
+        <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=600" alt="Service Slide 5" loading="lazy"></div>
+      </div>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" data-slide="0"></button>
+        <button class="carousel-dot" data-slide="1"></button>
+        <button class="carousel-dot" data-slide="2"></button>
+        <button class="carousel-dot" data-slide="3"></button>
+        <button class="carousel-dot" data-slide="4"></button>
+      </div>
+    </div>
+  </div>
 
   <!-- ACADEMY SECTION -->
   <section class="section academy-section" id="academy">
@@ -632,6 +652,27 @@
       <h2>Ready to Build a High-Paying Career in Beauty &amp; Wellness?</h2>
       <p>Book your appointment or enroll in a premium certification course in under 60 seconds — confirm directly on WhatsApp.</p>
       <a href="#homepage-booking" class="btn-primary btn-lg btn-white">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- GOOGLE MAPS EMBED -->
+  <section class="section map-section" id="location-map">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Find Us</span>
+        <h2>Our <em>Location</em></h2>
+        <p>Visit us at our premium facility. View the map below for directions.</p>
+      </div>
+      <div class="map-wrapper" style="width: 100%; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border);">
+        <iframe 
+          src="https://maps.google.com/maps?q=SMART%20%27N%27%20SHINY%20UNISEX%20SALON%2C%20Taramandal%2C%20Gorakhpur%2C%20UP&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="400" 
+          style="border:0; display:block;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
     </div>
   </section>
 

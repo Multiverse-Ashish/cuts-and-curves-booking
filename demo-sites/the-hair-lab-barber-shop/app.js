@@ -432,7 +432,7 @@ Please confirm my slot. Thank you! 🙏`;
 
 
     // Automatic Academy Carousel Slideshow & Parallax
-  document.querySelectorAll('.academy-carousel-banner').forEach(carousel => {
+  document.querySelectorAll('.academy-carousel-banner, .services-carousel-banner').forEach(carousel => {
     const slides = carousel.querySelectorAll('.carousel-slide');
     const dots = carousel.querySelectorAll('.carousel-dot');
     if (slides.length === 0) return;

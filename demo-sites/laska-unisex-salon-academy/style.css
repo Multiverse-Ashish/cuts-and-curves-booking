@@ -83,9 +83,20 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
   font-family:var(--font-title); font-size:1.5rem; font-weight:700;
   color:#001c1a; letter-spacing:.02em;
   position: relative;
+  transition: font-size 0.3s ease;
 }
 .logo-link::after {
   content: '.'; color: #0d8a7c;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.btn-header-book {
+  padding: 10px 20px !important;
+  font-size: 0.88rem !important;
+  border-radius: var(--radius-lg) !important;
 }
 .main-nav { display:flex; align-items:center; gap:32px; }
 .main-nav a { font-size:.9rem; font-weight:600; color:#3a7570; letter-spacing: 0.02em; }
@@ -104,7 +115,7 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 .hero {
   position:relative; min-height:85vh; display:flex; align-items:center;
   justify-content:center; text-align:center;
-  background-size:cover; background-position:center; background-attachment:fixed;
+  background-size:cover; background-position:center;
 }
 .hero-overlay {
   position:absolute; inset:0;
@@ -1168,6 +1179,9 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
   }
   .main-nav { display:none !important; }
   .hamburger { display:block !important; }
+  .header-right { gap: 12px !important; }
+  .btn-header-book { padding: 8px 14px !important; font-size: 0.78rem !important; }
+  .logo-link { font-size: 1.05rem !important; max-width: 60vw !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
   .hero { min-height:75vh !important; background-attachment:scroll !important; }
   .hero-content h1 { font-size: 2rem !important; }
   .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
@@ -1583,7 +1597,7 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 }
 
 /* Premium Automatic Carousel Banner Wrapper for Sticky Parallax Reveal */
-.academy-carousel-banner-wrapper {
+.academy-carousel-banner-wrapper, .services-carousel-banner-wrapper {
   position: relative !important;
   width: calc(100% + 48px) !important;
   margin-left: -24px !important;
@@ -1597,7 +1611,7 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
   border-bottom: 2px solid var(--border) !important;
   box-shadow: var(--shadow-sm) !important;
 }
-.academy-carousel-banner {
+.academy-carousel-banner, .services-carousel-banner {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -1662,12 +1676,32 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
 }
 
 @media (max-width: 768px) {
-  .academy-carousel-banner-wrapper {
+  .academy-carousel-banner-wrapper, .services-carousel-banner-wrapper {
     width: calc(100% + 32px) !important;
     margin-left: -16px !important;
     height: 260px !important;
     margin-top: 40px !important;
     margin-bottom: 40px !important;
+  }
+}
+
+/* Map Section Styles */
+.map-section {
+  padding: 80px 24px 40px !important;
+}
+.map-wrapper iframe {
+  filter: grayscale(0.2) contrast(1.1) brightness(0.95);
+  transition: all 0.3s ease;
+}
+.map-wrapper iframe:hover {
+  filter: none;
+}
+@media (max-width: 768px) {
+  .map-section {
+    padding: 40px 16px 20px !important;
+  }
+  .map-wrapper iframe {
+    height: 300px !important;
   }
 }
 
@@ -1703,7 +1737,6 @@ a { text-decoration:none; color:inherit; transition:all .25s cubic-bezier(0.16, 
   inset: 0 !important;
   background-size: cover !important;
   background-position: center !important;
-  background-attachment: fixed !important;
   opacity: 0;
   transition: opacity 1.5s ease-in-out !important;
   z-index: 1 !important;
