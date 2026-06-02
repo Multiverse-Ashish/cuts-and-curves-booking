@@ -1579,6 +1579,7 @@ function importCSV(event) {
 
       const fileName = file.name || "Imported Leads";
       if (confirm(`Import ${imported.length} leads from "${fileName}" as a new workspace?`)) {
+        // Setup new database and update current active states BEFORE calling saveState
         DATABASES[fileName] = {
           leads: imported,
           status: {},
@@ -1586,6 +1587,10 @@ function importCSV(event) {
           emails: {}
         };
         ACTIVE_DB = fileName;
+        LEADS = imported;
+        state.status = {};
+        state.prices = {};
+        state.emails = {};
         
         saveState();
         loadState();
@@ -1973,8 +1978,11 @@ function renderTabs() {
 }
 
 function switchDatabase(dbName) {
-  ACTIVE_DB = dbName;
+  // Save current active database state first
   saveState();
+  
+  // Switch to new database
+  ACTIVE_DB = dbName;
   loadState();
   populateFilters();
   renderTabs();
@@ -1993,10 +2001,23 @@ function deleteDatabase(event, dbName) {
     return;
   }
   delete DATABASES[dbName];
+  
+  // If active database is deleted, change active to another one
   if (ACTIVE_DB === dbName) {
     ACTIVE_DB = Object.keys(DATABASES)[0];
+    const currentDb = DATABASES[ACTIVE_DB];
+    LEADS = currentDb.leads;
+    state.status = currentDb.status || {};
+    state.prices = currentDb.prices || {};
+    state.emails = currentDb.emails || {};
   }
-  saveState();
+  
+  // Save changes directly to localStorage bypassing saveState LEADS overwrite
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    databases: DATABASES,
+    activeDb: ACTIVE_DB
+  }));
+  
   loadState();
   populateFilters();
   renderTabs();
