@@ -28,7 +28,7 @@
         <a href="#gallery">Gallery</a>
         <a href="#reviews">Reviews</a>
         <a href="#faq">FAQ</a>
-        <a href="booking.html" class="btn-primary">Book Now</a>
+        <a href="#homepage-booking" class="btn-primary">Book Now</a>
       </nav>
       <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
     </div>
@@ -41,7 +41,7 @@
       <a href="#gallery">Gallery</a>
       <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
-      <a href="booking.html" class="btn-primary" style="text-align: center; justify-content: center; width: 100%;">Book Now</a>
+      <a href="#homepage-booking" class="btn-primary" style="text-align: center; justify-content: center; width: 100%;">Book Now</a>
     </div>
   </header>
 
@@ -57,7 +57,7 @@
       </div>
       <p>Luxury styling · Professional training · Personalised care</p>
       <div class="hero-actions">
-        <a href="booking.html" class="btn-primary btn-lg">Book Appointment / Course</a>
+        <a href="#homepage-booking" class="btn-primary btn-lg">Book Appointment / Course</a>
         <a href="#services" class="btn-outline btn-lg">View Services</a>
       </div>
     </div>
@@ -92,7 +92,88 @@
             <li><i class="fas fa-check-circle"></i> UV-sterilised tools &amp; premium environments</li>
             <li><i class="fas fa-check-circle"></i> 100% placements support for trainees</li>
           </ul>
-          <a href="booking.html" class="btn-primary">Book an Experience</a>
+          <a href="#homepage-booking" class="btn-primary">Book an Experience</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCROLLING TICKER -->
+  <section class="scrolling-ticker">
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span>• Skin Care</span>
+          <span>• Hair Cuts &amp; Styling</span>
+          <span>• Bridal Makeups</span>
+          <span>• Nail Art &amp; Extensions</span>
+          <span>• Relaxing Spa Therapies</span>
+          <span>• Professional Academy Courses</span>
+          <span>• Global Hair Colouring</span>
+          <span>• Luxury Grooming</span>
+        </div>
+        <div class="ticker-group" aria-hidden="true">
+          <span>• Skin Care</span>
+          <span>• Hair Cuts &amp; Styling</span>
+          <span>• Bridal Makeups</span>
+          <span>• Nail Art &amp; Extensions</span>
+          <span>• Relaxing Spa Therapies</span>
+          <span>• Professional Academy Courses</span>
+          <span>• Global Hair Colouring</span>
+          <span>• Luxury Grooming</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES GRID -->
+  <section class="section categories-section" id="categories-overview">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Discover our specialties</span>
+        <h2>Our Core <em>Specialties</em></h2>
+        <p>Premium care customized for your unique look. Book any category below.</p>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1593702295094-aec22597af65?q=80&w=600" alt="Skin Care" loading="lazy">
+          </div>
+          <div class="cat-content">
+            <h3>Skin Care</h3>
+            <p>Facials, cleanup, bleach, D-Tan, and advanced skin treatments for glowing, healthy skin.</p>
+            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab &amp;&amp; window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600" alt="Hair Care" loading="lazy">
+          </div>
+          <div class="cat-content">
+            <h3>Hair Care</h3>
+            <p>Hair cutting, styling, colouring, spa treatments, and therapeutic hair massage services.</p>
+            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab &amp;&amp; window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1634480256802-7cb5b451f99a?q=80&w=600" alt="Makeup" loading="lazy">
+          </div>
+          <div class="cat-content">
+            <h3>Makeup</h3>
+            <p>Bridal, party, engagement, and glam makeup looks by certified professional artists.</p>
+            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab &amp;&amp; window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1501719183311-152dc5f02f90?q=80&w=600" alt="Nail Care" loading="lazy">
+          </div>
+          <div class="cat-content">
+            <h3>Nail Care</h3>
+            <p>Professional manicure &amp; pedicure with advanced techniques and customized services.</p>
+            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab &amp;&amp; window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -115,7 +196,7 @@
                 <span class="svc-duration"><i class="far fa-clock"></i> 30 min</span>
                 <span class="svc-price">₹299</span>
               </div>
-              <a href="booking.html?service=Signature%20Haircut" class="btn-book-svc">Book This Service</a>
+              <button class="btn-book-svc modal-trigger" data-title="Signature Haircut" data-price="299" data-duration="30 min" data-desc="Classic or modern haircut tailored precisely to your face shape." data-category="barber" data-is-course="false">Book This Service</button>
             </div>
             <div class="svc-card" style="animation-delay:0.1s">
               <div class="svc-icon"><i class="fas fa-spa"></i></div>
@@ -125,7 +206,7 @@
                 <span class="svc-duration"><i class="far fa-clock"></i> 20 min</span>
                 <span class="svc-price">₹199</span>
               </div>
-              <a href="booking.html?service=Beard%20Trim%20&%20Contour" class="btn-book-svc">Book This Service</a>
+              <button class="btn-book-svc modal-trigger" data-title="Beard Trim & Contour" data-price="199" data-duration="20 min" data-desc="Precision trim with hot towel finish and razor-edge contouring." data-category="barber" data-is-course="false">Book This Service</button>
             </div>
             <div class="svc-card" style="animation-delay:0.2s">
               <div class="svc-icon"><i class="fas fa-star"></i></div>
@@ -135,7 +216,7 @@
                 <span class="svc-duration"><i class="far fa-clock"></i> 45 min</span>
                 <span class="svc-price">₹399</span>
               </div>
-              <a href="booking.html?service=Royal%20Shave" class="btn-book-svc">Book This Service</a>
+              <button class="btn-book-svc modal-trigger" data-title="Royal Shave" data-price="399" data-duration="45 min" data-desc="Traditional straight-razor shave with luxury oils and face massage." data-category="barber" data-is-course="false">Book This Service</button>
             </div>
             <div class="svc-card" style="animation-delay:0.30000000000000004s">
               <div class="svc-icon"><i class="fas fa-cut"></i></div>
@@ -145,7 +226,7 @@
                 <span class="svc-duration"><i class="far fa-clock"></i> 45 min</span>
                 <span class="svc-price">₹599</span>
               </div>
-              <a href="booking.html?service=Hair%20Spa%20&%20Scalp%20Therapy" class="btn-book-svc">Book This Service</a>
+              <button class="btn-book-svc modal-trigger" data-title="Hair Spa & Scalp Therapy" data-price="599" data-duration="45 min" data-desc="Deep conditioning treatment to repair hair roots and revive scalp health." data-category="barber" data-is-course="false">Book This Service</button>
             </div>
             <div class="svc-card" style="animation-delay:0.4s">
               <div class="svc-icon"><i class="fas fa-spa"></i></div>
@@ -155,7 +236,7 @@
                 <span class="svc-duration"><i class="far fa-clock"></i> 40 min</span>
                 <span class="svc-price">₹499</span>
               </div>
-              <a href="booking.html?service=Charcoal%20Detox%20Facial" class="btn-book-svc">Book This Service</a>
+              <button class="btn-book-svc modal-trigger" data-title="Charcoal Detox Facial" data-price="499" data-duration="40 min" data-desc="Pore-cleansing charcoal mask followed by a relaxing head massage." data-category="barber" data-is-course="false">Book This Service</button>
             </div>
             <div class="svc-card" style="animation-delay:0.5s">
               <div class="svc-icon"><i class="fas fa-star"></i></div>
@@ -165,7 +246,7 @@
                 <span class="svc-duration"><i class="far fa-clock"></i> 45 min</span>
                 <span class="svc-price">₹499</span>
               </div>
-              <a href="booking.html?service=Grey%20Coverage%20Color" class="btn-book-svc">Book This Service</a>
+              <button class="btn-book-svc modal-trigger" data-title="Grey Coverage Color" data-price="499" data-duration="45 min" data-desc="Natural-tone grey coverage using ammonia-free, premium color." data-category="barber" data-is-course="false">Book This Service</button>
             </div>
       </div>
     </div>
@@ -191,7 +272,7 @@
               <ul class="course-feats">
                 <li><i class='fas fa-check-circle'></i> Master Class Training</li><li><i class='fas fa-check-circle'></i> Govt. Recognized Certificate</li><li><i class='fas fa-check-circle'></i> 100% Job Placement</li>
               </ul>
-              <a href="booking.html?service=Classic%20Barbering%20&%20Haircut%20Artistry" class="btn-course-enroll">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></a>
+              <button class="btn-course-enroll modal-trigger" data-title="Classic Barbering & Haircut Artistry" data-price="9999" data-duration="4 Weeks" data-desc="Master scissor cuts, clipper fades, tapers, and salon customer handling." data-category="barber" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="course-card" style="animation-delay:0.12s">
               <div class="course-badge">Academy Course</div>
@@ -204,7 +285,7 @@
               <ul class="course-feats">
                 <li><i class='fas fa-check-circle'></i> Live Model Practice</li><li><i class='fas fa-check-circle'></i> Razor Certification</li><li><i class='fas fa-check-circle'></i> Premium Product Kit</li>
               </ul>
-              <a href="booking.html?service=Precision%20Beard%20Sculpting%20&%20Razor%20Shaving" class="btn-course-enroll">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></a>
+              <button class="btn-course-enroll modal-trigger" data-title="Precision Beard Sculpting & Razor Shaving" data-price="5999" data-duration="2 Weeks" data-desc="Contour outline razor-edge lining, styling science, and hot-towel treatments." data-category="barber" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
             <div class="course-card" style="animation-delay:0.24s">
               <div class="course-badge">Academy Course</div>
@@ -217,8 +298,128 @@
               <ul class="course-feats">
                 <li><i class='fas fa-check-circle'></i> Hands-on Training</li><li><i class='fas fa-check-circle'></i> Scalp Care Certificate</li><li><i class='fas fa-check-circle'></i> Product Chemistry Study</li>
               </ul>
-              <a href="booking.html?service=Scalp%20Therapy%20&%20Luxury%20Hair%20Spa%20Care" class="btn-course-enroll">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></a>
+              <button class="btn-course-enroll modal-trigger" data-title="Scalp Therapy & Luxury Hair Spa Care" data-price="3999" data-duration="1 Weeks" data-desc="Revive roots, scale treatment techniques, and intensive scalp massage therapies." data-category="barber" data-is-course="true">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
             </div>
+      </div>
+
+      <!-- WHY CHOOSE US -->
+      <div class="academy-sub-header">
+        <span class="sub-label">Why Choose Our Academy</span>
+        <h3>Your Beauty Career Starts Here</h3>
+      </div>
+      <div class="why-choose-grid">
+        <div class="why-choose-card">
+          <div class="why-icon">01</div>
+          <h4>Expert Trainers</h4>
+          <p>Learn directly from certified master stylists and industry professionals who share real-world salon insights.</p>
+        </div>
+        <div class="why-choose-card">
+          <div class="why-icon">02</div>
+          <h4>100% Practical Training</h4>
+          <p>Get hands-on experience on live models. Build your confidence and precision before stepping into the industry.</p>
+        </div>
+        <div class="why-choose-card">
+          <div class="why-icon">03</div>
+          <h4>Career-Focused Curriculum</h4>
+          <p>Our courses are aligned with current global trends and techniques requested by premium luxury salons.</p>
+        </div>
+        <div class="why-choose-card">
+          <div class="why-icon">04</div>
+          <h4>In-House Salon Practice</h4>
+          <p>Practice inside active salon environments. Understand customer handling, consultation, and salon economics.</p>
+        </div>
+        <div class="why-choose-card">
+          <div class="why-icon">05</div>
+          <h4>Dual Certification</h4>
+          <p>Earn professional certifications recognized by top brands and government accreditation bodies.</p>
+        </div>
+        <div class="why-choose-card">
+          <div class="why-icon">06</div>
+          <h4>Lifetime Trainer Support</h4>
+          <p>Stay connected even after graduation. Access alumni refresher classes and placement opportunities anytime.</p>
+        </div>
+      </div>
+
+      <!-- ELIGIBILITY / WHO CAN JOIN -->
+      <div class="academy-sub-header">
+        <span class="sub-label">Who Can Join?</span>
+        <h3>Open To Aspiring Artists</h3>
+      </div>
+      <div class="eligibility-row">
+        <div class="eligibility-card">
+          <i class="fas fa-graduation-cap"></i>
+          <h4>Students</h4>
+          <p>Kickstart a creative career right after school or college.</p>
+        </div>
+        <div class="eligibility-card">
+          <i class="fas fa-user-tie"></i>
+          <h4>Freelancers</h4>
+          <p>Upgrade your skills to demand premium rates from clients.</p>
+        </div>
+        <div class="eligibility-card">
+          <i class="fas fa-briefcase"></i>
+          <h4>Working Women</h4>
+          <p>Transition into a high-income, creative and flexible field.</p>
+        </div>
+        <div class="eligibility-card">
+          <i class="fas fa-store"></i>
+          <h4>Salon Owners</h4>
+          <p>Learn advanced treatments to expand your salon services.</p>
+        </div>
+        <div class="eligibility-card">
+          <i class="fas fa-home"></i>
+          <h4>Housewives</h4>
+          <p>Start your part-time studio and build your independence.</p>
+        </div>
+      </div>
+
+      <!-- CAREER PATHS & BENEFITS -->
+      <div class="academy-sub-header">
+        <span class="sub-label">Your Future Career Path</span>
+        <h3>Opportunities After Course Completion</h3>
+      </div>
+      <div class="careers-grid">
+        <div class="career-card">
+          <div class="career-badge">Career Option 1</div>
+          <h4>Certified Skin/Hair/Makeup Artist</h4>
+          <p>Work at premium high-end beauty salons, hotels, or spas as a specialized artist.</p>
+        </div>
+        <div class="career-card">
+          <div class="career-badge">Career Option 2</div>
+          <h4>Freelance Makeup Artist</h4>
+          <p>Run your own bridal makeup business, handling destination bookings and event glam.</p>
+        </div>
+        <div class="career-card">
+          <div class="career-badge">Career Option 3</div>
+          <h4>Bridal &amp; Occasion Specialist</h4>
+          <p>Partner with wedding planners, photographers, and boutiques for seasonal makeovers.</p>
+        </div>
+        <div class="career-card">
+          <div class="career-badge">Career Option 4</div>
+          <h4>Salon Owner or Manager</h4>
+          <p>Launch your custom salon brand or manage operations for top franchises.</p>
+        </div>
+        <div class="career-card">
+          <div class="career-badge">Career Option 5</div>
+          <h4>Beauty Trainer &amp; Educator</h4>
+          <p>Teach at cosmetics schools, conduct workshops, or create video courses.</p>
+        </div>
+        <div class="career-card">
+          <div class="career-badge">Career Option 6</div>
+          <h4>Skin Technician at Clinics</h4>
+          <p>Coordinate with cosmetologists and dermatologists for clinical skin care.</p>
+        </div>
+      </div>
+
+      <!-- STUDENT BENEFITS -->
+      <div class="student-benefits-card">
+        <h4>Academy Student Benefits</h4>
+        <div class="benefits-grid">
+          <div class="benefit-item"><i class="fas fa-camera"></i> <span>Professional Portfolio Shoot</span></div>
+          <div class="benefit-item"><i class="fas fa-hands-helping"></i> <span>Internship &amp; Placement Support</span></div>
+          <div class="benefit-item"><i class="fas fa-toolbox"></i> <span>Professional Practice Kit</span></div>
+          <div class="benefit-item"><i class="fas fa-award"></i> <span>Grand Certification Ceremony</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -362,7 +563,7 @@
         </div>
         <div class="review-card review-featured">
           <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
+        <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
           <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
         </div>
         <div class="review-card">
@@ -374,34 +575,122 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="section faq-section" id="faq">
-    <div class="container faq-container">
+  <!-- HOMEPAGE BOOKING & CONTACT SPLIT -->
+  <section class="section booking-split-section" id="homepage-booking">
+    <div class="container">
       <div class="section-header">
-        <span class="section-label">Got Questions?</span>
-        <h2>Frequently Asked <em>Questions</em></h2>
+        <span class="section-label">Book Now</span>
+        <h2>Schedule Your <em>Visit</em></h2>
+        <p>Book a luxury pampering session or enroll in our next professional certification batch.</p>
       </div>
-      <div class="faq-list">
-            <div class="faq-item">
-              <button class="faq-q"><span>How do I book an appointment?</span><i class="fas fa-chevron-down"></i></button>
-              <div class="faq-a"><p>Simply click the 'Book Now' button on any service card, fill in your details, and confirm via WhatsApp. Our team will respond within minutes.</p></div>
+      <div class="booking-split-grid">
+        <!-- Left Column: Contact info -->
+        <div class="contact-info-card">
+          <h3>Get In Touch</h3>
+          <p>Have questions or want custom group packages? Contact our reception directly.</p>
+          <div class="contact-methods">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+              <div class="contact-details">
+                <span>Call Us</span>
+                <strong><a href="tel:nan">nan</a></strong>
+              </div>
             </div>
-            <div class="faq-item">
-              <button class="faq-q"><span>Are walk-ins accepted?</span><i class="fas fa-chevron-down"></i></button>
-              <div class="faq-a"><p>Yes! Walk-ins are welcome subject to availability. However, we recommend booking in advance to secure your preferred time slot and specialist.</p></div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+              <div class="contact-details">
+                <span>WhatsApp</span>
+                <strong><a href="https://wa.me/919598777222" target="_blank">Chat Now</a></strong>
+              </div>
             </div>
-            <div class="faq-item">
-              <button class="faq-q"><span>Do you use organic or chemical products?</span><i class="fas fa-chevron-down"></i></button>
-              <div class="faq-a"><p>We use a carefully curated mix of premium salon-grade and organic products tailored to each treatment and skin type.</p></div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-details">
+                <span>Email Address</span>
+                <strong>info@legends-cut-gents-salon.com</strong>
+              </div>
             </div>
-            <div class="faq-item">
-              <button class="faq-q"><span>What is your cancellation policy?</span><i class="fas fa-chevron-down"></i></button>
-              <div class="faq-a"><p>We ask for at least 2 hours' notice for cancellations. No-shows may be charged a nominal booking fee.</p></div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="contact-details">
+                <span>Address</span>
+                <strong>Dhala, Indira Nagar, Gorakhpur, UP 273001</strong>
+              </div>
             </div>
-            <div class="faq-item">
-              <button class="faq-q"><span>Is GST included in the listed prices?</span><i class="fas fa-chevron-down"></i></button>
-              <div class="faq-a"><p>Displayed prices are base rates. An 18% GST is added at checkout and clearly shown in your invoice summary before you confirm.</p></div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+              <div class="contact-details">
+                <span>Instagram Feed</span>
+                <strong><a href="https://instagram.com/legends-cut-gents-salon" target="_blank">@legends-cut-gents-salon</a></strong>
+              </div>
             </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="far fa-clock"></i></div>
+              <div class="contact-details">
+                <span>Working Hours</span>
+                <strong>Mon – Sun: 9:00 AM – 9:00 PM</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Tabbed Booking form -->
+        <div class="tabbed-booking-card">
+          <div class="form-tabs">
+            <button class="form-tab-btn active" id="tab-appointment-btn"><i class="fas fa-calendar-check"></i> Book Appointment</button>
+            <button class="form-tab-btn" id="tab-course-btn"><i class="fas fa-graduation-cap"></i> Course Inquiry</button>
+          </div>
+          <form id="homepage-booking-form" class="homepage-booking-form">
+            <div class="form-group">
+              <label id="dropdown-label">Select Service</label>
+              <select id="hp-sel-service" required>
+                <option value="" disabled selected>Choose a service...</option>
+                <!-- populated dynamically via JS based on active tab -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Specialist Preference</label>
+              <select id="hp-sel-stylist">
+                <option value="Any Available Specialist">Any Available Specialist</option>
+                <!-- populated dynamically via JS -->
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label id="date-label">Preferred Date</label>
+                <input type="date" id="hp-inp-date" required>
+              </div>
+              <div class="form-group">
+                <label>Preferred Time Slot</label>
+                <select id="hp-sel-time" required>
+                  <option value="" disabled selected>Select time...</option>
+                  <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+                  <option>12:00 PM</option><option>01:00 PM</option><option>02:00 PM</option>
+                  <option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option>
+                  <option>06:00 PM</option><option>07:00 PM</option><option>08:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Your Full Name</label>
+              <input type="text" id="hp-inp-name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label>WhatsApp Number</label>
+              <input type="tel" id="hp-inp-phone" placeholder="Enter your number" required>
+            </div>
+            <div class="form-group">
+              <label>Special Requests / Trainee Profile</label>
+              <textarea id="hp-txt-requests" rows="2" placeholder="Any specific requirements..."></textarea>
+            </div>
+            <div class="hp-invoice-box">
+              <div class="hp-inv-row"><span>Base Amount:</span><span id="hp-inv-base">₹0</span></div>
+              <div class="hp-inv-row"><span>GST (18%):</span><span id="hp-inv-gst">₹0</span></div>
+              <div class="hp-inv-row hp-inv-total"><span>Total Payable:</span><span id="hp-inv-total">₹0</span></div>
+            </div>
+            <button type="submit" class="btn-wa-submit"><i class="fab fa-whatsapp"></i> Confirm &amp; Submit on WhatsApp</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -411,7 +700,7 @@
     <div class="container">
       <h2>Ready to Build a High-Paying Career in Beauty &amp; Wellness?</h2>
       <p>Book your appointment or enroll in a premium certification course in under 60 seconds — confirm directly on WhatsApp.</p>
-      <a href="booking.html" class="btn-primary btn-lg btn-white">Get Started Now</a>
+      <a href="#homepage-booking" class="btn-primary btn-lg btn-white">Get Started Now</a>
     </div>
   </section>
 
@@ -422,9 +711,9 @@
         <h3>Legends Cut Gents salon</h3>
         <p>Gorakhpur's premier destination for premium styling, aesthetics, wellness, and professional training.</p>
         <div class="social-row">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://wa.me/919598777222"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://instagram.com/legends-cut-gents-salon" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/919598777222" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div class="footer-links">
@@ -434,7 +723,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#academy">Academy</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="booking.html">Book Now</a></li>
+          <li><a href="#homepage-booking">Book Now</a></li>
         </ul>
       </div>
       <div class="footer-contact">
@@ -454,6 +743,39 @@
     <button class="lb-close"><i class="fas fa-times"></i></button>
     <img id="lb-img" src="" alt="">
   </div>
+
+  <!-- SERVICE/COURSE DETAIL MODAL -->
+  <div id="detail-modal" class="detail-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <div class="modal-hero" id="modal-hero">
+        <div class="modal-hero-overlay"></div>
+        <span class="modal-badge" id="modal-badge">Service Details</span>
+      </div>
+      <div class="modal-body">
+        <h3 id="modal-title">Service Name</h3>
+        <p id="modal-desc">Service description goes here...</p>
+        <div class="modal-meta-row">
+          <span id="modal-duration"><i class="far fa-clock"></i> 30 mins</span>
+          <span id="modal-price" class="modal-price">₹299</span>
+        </div>
+        <div class="modal-gst-note">Price: <span id="modal-base-price">₹0</span> + 18% GST (₹<span id="modal-gst-amount">0</span>)</div>
+        <div class="modal-actions">
+          <a href="#" id="modal-wa-btn" class="btn-wa-modal" target="_blank"><i class="fab fa-whatsapp"></i> Book on WhatsApp</a>
+          <button id="modal-custom-book-btn" class="btn-custom-book">Customize Booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INLINE DATA FOR INTERACTIVE WIDGETS -->
+  <script>
+    window.SALON_SERVICES = [{"n": "Signature Haircut", "p": 299, "d": 30, "desc": "Classic or modern haircut tailored precisely to your face shape."}, {"n": "Beard Trim & Contour", "p": 199, "d": 20, "desc": "Precision trim with hot towel finish and razor-edge contouring."}, {"n": "Royal Shave", "p": 399, "d": 45, "desc": "Traditional straight-razor shave with luxury oils and face massage."}, {"n": "Hair Spa & Scalp Therapy", "p": 599, "d": 45, "desc": "Deep conditioning treatment to repair hair roots and revive scalp health."}, {"n": "Charcoal Detox Facial", "p": 499, "d": 40, "desc": "Pore-cleansing charcoal mask followed by a relaxing head massage."}, {"n": "Grey Coverage Color", "p": 499, "d": 45, "desc": "Natural-tone grey coverage using ammonia-free, premium color."}];
+    window.SALON_COURSES = [{"n": "Classic Barbering & Haircut Artistry", "p": 9999, "d": 4, "desc": "Master scissor cuts, clipper fades, tapers, and salon customer handling.", "feats": ["Master Class Training", "Govt. Recognized Certificate", "100% Job Placement"]}, {"n": "Precision Beard Sculpting & Razor Shaving", "p": 5999, "d": 2, "desc": "Contour outline razor-edge lining, styling science, and hot-towel treatments.", "feats": ["Live Model Practice", "Razor Certification", "Premium Product Kit"]}, {"n": "Scalp Therapy & Luxury Hair Spa Care", "p": 3999, "d": 1, "desc": "Revive roots, scale treatment techniques, and intensive scalp massage therapies.", "feats": ["Hands-on Training", "Scalp Care Certificate", "Product Chemistry Study"]}];
+    window.SALON_STYLISTS = [{"n": "Vikram Singh", "r": "Master Barber"}, {"n": "Sameer Khan", "r": "Beard Architect"}, {"n": "Rahul Verma", "r": "Scalp Therapist"}];
+    window.SALON_NAME = "Legends Cut Gents salon";
+    window.SALON_WA = "919598777222";
+  </script>
 
   <script src="app.js"></script>
 </body>

@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
     const closeLb = () => { lightbox.classList.remove('open'); lbImg.src = ''; };
-    lbClose.addEventListener('click', closeLb);
+    if (lbClose) lbClose.addEventListener('click', closeLb);
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
   }
@@ -57,7 +57,247 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── BOOKING FORM ────────────────────────────────────────────────────────────
+  // ── DETAIL MODAL LOGIC ─────────────────────────────────────────────────────
+  const detailModal = document.getElementById('detail-modal');
+  const modalClose = document.getElementById('modal-close-btn');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalDuration = document.getElementById('modal-duration');
+  const modalPrice = document.getElementById('modal-price');
+  const modalBasePrice = document.getElementById('modal-base-price');
+  const modalGstAmount = document.getElementById('modal-gst-amount');
+  const modalHero = document.getElementById('modal-hero');
+  const modalBadge = document.getElementById('modal-badge');
+  const modalWaBtn = document.getElementById('modal-wa-btn');
+  const modalCustomBookBtn = document.getElementById('modal-custom-book-btn');
+
+  // Helper images for modal banner
+  const categoryHeroImages = {
+    'barber': 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600',
+    'spa': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600',
+    'beauty': 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600',
+    'unisex': 'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600'
+  };
+
+  const openDetailModal = (btn) => {
+    if (!detailModal) return;
+    const title = btn.getAttribute('data-title');
+    const price = parseInt(btn.getAttribute('data-price')) || 0;
+    const duration = btn.getAttribute('data-duration');
+    const desc = btn.getAttribute('data-desc');
+    const category = btn.getAttribute('data-category');
+    const isCourse = btn.getAttribute('data-is-course') === 'true';
+
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalDesc) modalDesc.textContent = desc;
+    if (modalDuration) modalDuration.innerHTML = `<i class="far fa-clock"></i> ${duration}`;
+    
+    const gst = Math.round(price * 0.18);
+    const total = price + gst;
+
+    if (modalPrice) modalPrice.textContent = '₹' + total;
+    if (modalBasePrice) modalBasePrice.textContent = '₹' + price;
+    if (modalGstAmount) modalGstAmount.textContent = '₹' + gst;
+
+    if (modalBadge) modalBadge.textContent = isCourse ? 'Academy Course' : 'Premium Service';
+    if (modalHero) modalHero.style.backgroundImage = `url('${categoryHeroImages[category] || categoryHeroImages['unisex']}')`;
+
+    // Construct WhatsApp message
+    let msg = '';
+    const waNum = window.SALON_WA || '919598777222';
+    const salon = window.SALON_NAME || 'Premium Salon';
+
+    if (isCourse) {
+      msg = `Hello ${salon}! 🎓\n\nI want to enroll in the training course:\n🎓 *Course:* ${title}\n💰 *Tuition Fee:* ₹${total} (₹${price} + 18% GST)\n\nPlease share the syllabus and next batch start date. Thank you!`;
+    } else {
+      msg = `Hello ${salon}! 👋\n\nI want to book the service:\n📋 *Service:* ${title}\n💰 *Total:* ₹${total} (₹${price} + 18% GST)\n\nPlease confirm slot availability. Thank you!`;
+    }
+
+    if (modalWaBtn) modalWaBtn.href = `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
+
+    // Custom booking click scrolls to homepage form and pre-selects
+    if (modalCustomBookBtn) {
+      modalCustomBookBtn.onclick = () => {
+        closeDetailModal();
+        const bookingSection = document.getElementById('homepage-booking');
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: 'smooth' });
+          
+          // Select appropriate tab
+          if (isCourse) {
+            switchToTab('course');
+          } else {
+            switchToTab('appointment');
+          }
+
+          // Set value in select
+          setTimeout(() => {
+            const selectEl = document.getElementById('hp-sel-service');
+            if (selectEl) {
+              selectEl.value = title;
+              selectEl.dispatchEvent(new Event('change'));
+            }
+          }, 300);
+        }
+      };
+    }
+
+    detailModal.classList.add('open');
+  };
+
+  const closeDetailModal = () => {
+    if (detailModal) detailModal.classList.remove('open');
+  };
+
+  // Add click listeners to all triggers
+  document.querySelectorAll('.modal-trigger').forEach(btn => {
+    btn.addEventListener('click', () => openDetailModal(btn));
+  });
+
+  if (modalClose) {
+    modalClose.addEventListener('click', closeDetailModal);
+  }
+  if (detailModal) {
+    detailModal.addEventListener('click', e => { if (e.target === detailModal) closeDetailModal(); });
+  }
+
+  // ── HOMEPAGE BOOKING FORM LOGIC ────────────────────────────────────────────
+  const hpForm = document.getElementById('homepage-booking-form');
+  const tabAppointmentBtn = document.getElementById('tab-appointment-btn');
+  const tabCourseBtn = document.getElementById('tab-course-btn');
+  const hpSelService = document.getElementById('hp-sel-service');
+  const hpSelStylist = document.getElementById('hp-sel-stylist');
+  const hpInpDate = document.getElementById('hp-inp-date');
+  const hpSelTime = document.getElementById('hp-sel-time');
+  const hpInpName = document.getElementById('hp-inp-name');
+  const hpInpPhone = document.getElementById('hp-inp-phone');
+  const hpTxtRequests = document.getElementById('hp-txt-requests');
+  const hpInvBase = document.getElementById('hp-inv-base');
+  const hpInvGst = document.getElementById('hp-inv-gst');
+  const hpInvTotal = document.getElementById('hp-inv-total');
+  const dropdownLabel = document.getElementById('dropdown-label');
+
+  let activeTab = 'appointment'; // 'appointment' or 'course'
+
+  if (hpInpDate) {
+    hpInpDate.min = new Date().toISOString().split('T')[0];
+  }
+
+  const populateServices = () => {
+    if (!hpSelService) return;
+    hpSelService.innerHTML = '<option value="" disabled selected>Choose a service...</option>';
+    const list = window.SALON_SERVICES || [];
+    list.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.n;
+      opt.textContent = `${s.n} — ₹${s.p}`;
+      opt.setAttribute('data-price', s.p);
+      hpSelService.appendChild(opt);
+    });
+  };
+
+  const populateCourses = () => {
+    if (!hpSelService) return;
+    hpSelService.innerHTML = '<option value="" disabled selected>Choose a course...</option>';
+    const list = window.SALON_COURSES || [];
+    list.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.n;
+      opt.textContent = `${c.n} — ₹${c.p} (${c.d} Wks)`;
+      opt.setAttribute('data-price', c.p);
+      hpSelService.appendChild(opt);
+    });
+  };
+
+  const populateStylists = () => {
+    if (hpSelStylist) {
+      hpSelStylist.innerHTML = '';
+      if (activeTab === 'appointment') {
+        const optionDefault = document.createElement('option');
+        optionDefault.value = 'Any Available Specialist';
+        optionDefault.textContent = 'Any Available Specialist';
+        hpSelStylist.appendChild(optionDefault);
+        const list = window.SALON_STYLISTS || [];
+        list.forEach(sty => {
+          const opt = document.createElement('option');
+          opt.value = sty.n;
+          opt.textContent = sty.n;
+          hpSelStylist.appendChild(opt);
+        });
+      } else {
+        const opt = document.createElement('option');
+        opt.value = 'Academy Master Trainer';
+        opt.textContent = 'Academy Master Trainer';
+        hpSelStylist.appendChild(opt);
+      }
+    }
+  };
+
+  const updateHpInvoice = () => {
+    if (!hpSelService || !hpInvBase || !hpInvGst || !hpInvTotal) return;
+    const opt = hpSelService.options[hpSelService.selectedIndex];
+    const base = opt && opt.getAttribute('data-price') ? parseInt(opt.getAttribute('data-price')) : 0;
+    const gst  = Math.round(base * 0.18);
+    hpInvBase.textContent  = '₹' + base;
+    hpInvGst.textContent   = '₹' + gst;
+    hpInvTotal.textContent = '₹' + (base + gst);
+  };
+
+  const switchToTab = (tab) => {
+    activeTab = tab;
+    if (tab === 'appointment') {
+      if (tabAppointmentBtn) tabAppointmentBtn.classList.add('active');
+      if (tabCourseBtn) tabCourseBtn.classList.remove('active');
+      if (dropdownLabel) dropdownLabel.textContent = 'Select Service';
+      populateServices();
+      populateStylists();
+    } else {
+      if (tabCourseBtn) tabCourseBtn.classList.add('active');
+      if (tabAppointmentBtn) tabAppointmentBtn.classList.remove('active');
+      if (dropdownLabel) dropdownLabel.textContent = 'Select Academy Course';
+      populateCourses();
+      populateStylists();
+    }
+    updateHpInvoice();
+  };
+
+  // expose tab switch to global scope for quick clicks
+  window.switchToTab = switchToTab;
+
+  if (tabAppointmentBtn && tabCourseBtn) {
+    tabAppointmentBtn.addEventListener('click', () => switchToTab('appointment'));
+    tabCourseBtn.addEventListener('click', () => switchToTab('course'));
+    
+    // Initial setup
+    switchToTab('appointment');
+  }
+
+  if (hpSelService) {
+    hpSelService.addEventListener('change', updateHpInvoice);
+  }
+
+  if (hpForm) {
+    hpForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const opt    = hpSelService.options[hpSelService.selectedIndex];
+      const base   = parseInt(opt.getAttribute('data-price')) || 0;
+      const gst    = Math.round(base * 0.18);
+      const total  = base + gst;
+      const salon  = window.SALON_NAME || 'Premium Salon';
+      const waNum  = window.SALON_WA || '919598777222';
+
+      let msg = '';
+      if (activeTab === 'course') {
+        msg = `Hello ${salon}! 🎓\n\nI want to enroll in the training course:\n🎓 *Course:* ${hpSelService.value}\n💰 *Tuition Fee:* ₹${total} (₹${base} + 18% GST)\n📅 *Preferred Start Batch:* ${hpInpDate.value}\n⏰ *Time Slot:* ${hpSelTime.value}\n👤 *Trainer:* ${hpSelStylist.value}\n\nMy Trainee Details:\n• *Name:* ${hpInpName.value}\n• *Phone:* ${hpInpPhone.value}\n• *Special Request:* ${hpTxtRequests.value || 'None'}\n\nPlease confirm enrollment. Thank you!`;
+      } else {
+        msg = `Hello ${salon}! 👋\n\nI would like to book an appointment:\n📋 *Service:* ${hpSelService.value}\n💰 *Total:* ₹${total} (₹${base} + 18% GST)\n📅 *Date:* ${hpInpDate.value}\n⏰ *Time:* ${hpSelTime.value}\n👤 *Specialist:* ${hpSelStylist.value}\n\nMy Details:\n• *Name:* ${hpInpName.value}\n• *Phone:* ${hpInpPhone.value}\n• *Special Request:* ${hpTxtRequests.value || 'None'}\n\nPlease confirm my slot. Thank you!`;
+      }
+
+      window.open(`https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+  }
+
+  // ── STANDALONE BOOKING FORM (booking.html) ─────────────────────────────────
   const form = document.getElementById('booking-form');
   if (form) {
     const selSvc   = document.getElementById('sel-service');
@@ -70,12 +310,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const invGst   = document.getElementById('inv-gst');
     const invTotal = document.getElementById('inv-total');
 
-    // Min date = today
-    inpDate.min = new Date().toISOString().split('T')[0];
+    if (inpDate) {
+      inpDate.min = new Date().toISOString().split('T')[0];
+    }
 
-    // Pre-select from query string
     const qs = new URLSearchParams(window.location.search);
-    if (qs.get('service')) {
+    if (qs.get('service') && selSvc) {
       [...selSvc.options].forEach(o => { if (o.value === qs.get('service')) o.selected = true; });
     }
     if (qs.get('stylist')) {
