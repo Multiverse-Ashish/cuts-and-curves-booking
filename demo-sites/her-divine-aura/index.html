@@ -39,18 +39,29 @@
    DESIGN TOKENS
    ============================================ */
 :root {
-  --blush        #F9F3EC;
-  --blush-dark   #EEDDCD;
-  --rose         #C4721A;
-  --rose-light   #DF8F36;
-  --rose-dark    #8A4800;
-  --ivory        #FCFAF6;
-  --text-dark    #201000;
-  --text-mid     #4F351B;
-  --text-soft    #7D5E41;
-  --border       rgba(196,114,26,0.15);
-  --border-gold  rgba(200,169,106,0.25);
-  --gold         #C8A96A;
+  --blush:       #F9F3EC;
+  --blush-dark:  #EEDDCD;
+  --rose:        #C4721A;
+  --rose-light:  #DF8F36;
+  --rose-dark:   #8A4800;
+  --ivory:       #FCFAF6;
+  --text-dark:   #201000;
+  --text-mid:    #4F351B;
+  --text-soft:   #7D5E41;
+  --border:      rgba(196,114,26,0.15);
+  --border-gold: rgba(200,169,106,0.25);
+  --gold:        #C8A96A;
+  --noir:        #1C1410;
+  --noir-mid:    #2E201A;
+  --noir-soft:   #4A3830;
+  --champagne:   #F0DEC8;
+  --champagne-dk:#D9C4A8;
+  --pearl:       #FFFFFF;
+  --taupe:       #8C7068;
+  --gold-light:  #DFC28A;
+  --gold-pale:   #F0E0C0;
+  --sage:        #8A9E88;
+  --lilac:       #9B8EB4;
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-ui:      'Jost', system-ui, sans-serif;
   --font-script:  'Pinyon Script', cursive;
@@ -753,35 +764,7 @@ input,textarea,select{font-family:var(--font-ui)}
   .awards-counters{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-  :root {
-  --blush        #F9F3EC;
-  --blush-dark   #EEDDCD;
-  --rose         #C4721A;
-  --rose-light   #DF8F36;
-  --rose-dark    #8A4800;
-  --ivory        #FCFAF6;
-  --text-dark    #201000;
-  --text-mid     #4F351B;
-  --text-soft    #7D5E41;
-  --border       rgba(196,114,26,0.15);
-  --border-gold  rgba(200,169,106,0.25);
-  --gold         #C8A96A;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-ui:      'Jost', system-ui, sans-serif;
-  --font-script:  'Pinyon Script', cursive;
-  --ease:   cubic-bezier(0.4,0,0.2,1);
-  --spring: cubic-bezier(0.34,1.56,0.64,1);
-  --nav-h: 80px;
-  --r-sm:  8px;
-  --r-md:  16px;
-  --r-lg:  28px;
-  --r-xl:  48px;
-  --r-full:100px;
-  --shadow-sm:   0 2px 16px rgba(28,20,16,0.07);
-  --shadow-md:   0 8px 40px rgba(28,20,16,0.11);
-  --shadow-lg:   0 24px 70px rgba(28,20,16,0.16);
-  --shadow-xl:   0 48px 120px rgba(28,20,16,0.22);
-}
+  :root{--nav-h:66px}
   .nav-links,.nav-cta-d{display:none}
   #nav-toggle{display:flex}
   .sp{padding:70px 0}
@@ -2121,7 +2104,7 @@ const svcData = [
     ],
     "tip": "Bring your favorite outfit reference colors."
   }
-]];
+];
 
 const faqData = [
   {
@@ -2152,7 +2135,7 @@ const faqData = [
     "q": "Is parking available at the studio?",
     "a": "Yes \u2014 free street parking and dedicated guest slots are available right outside our Tulsa studio entrance."
   }
-]];
+];
 
 const productsData = [
   {
@@ -2215,7 +2198,7 @@ const productsData = [
     "desc": "Specifique serum for healthy scalp. Reduces dry flaking and improves density.",
     "badge": "new"
   }
-]];
+];
 
 // Cart state
 let cart = JSON.parse(localStorage.getItem('lm-cart') || '[]');
