@@ -765,25 +765,15 @@
       transition: all .2s; box-shadow: 0 4px 14px rgba(139,92,246,.35);
     }
     .btn-send-gmail:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(139,92,246,.45); }
-    .btn-send-default-mail {
-      background: linear-gradient(135deg, #4b5563, #1f2937);
+    .btn-send-outlook {
+      background: linear-gradient(135deg, #0078d4, #005a9e);
       color: #fff; border: none; padding: 10px 22px;
       border-radius: 50px; font-family: inherit;
       font-size: .86rem; font-weight: 700;
       cursor: pointer; display: flex; align-items: center; gap: 8px;
-      transition: all .2s; box-shadow: 0 4px 14px rgba(75,85,99,.35);
+      transition: all .2s; box-shadow: 0 4px 14px rgba(0,120,212,.35);
     }
-    .btn-send-default-mail:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(75,85,99,.45); }
-    .btn-send-resend {
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff; border: none; padding: 10px 22px;
-      border-radius: 50px; font-family: inherit;
-      font-size: .86rem; font-weight: 700;
-      cursor: pointer; display: flex; align-items: center; gap: 8px;
-      transition: all .2s; box-shadow: 0 4px 14px rgba(16,185,129,.35);
-    }
-    .btn-send-resend:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(16,185,129,.45); }
-    .btn-send-resend:disabled { background: #9ca3af; box-shadow: none; cursor: not-allowed; transform: none; }
+    .btn-send-outlook:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,120,212,.45); }
   </style>
 </head>
 <body>
@@ -1046,11 +1036,6 @@
     </div>
 
     <div class="compose-field">
-      <label>From (Sender Email)</label>
-      <input type="email" id="compose-from" value="Digitaload Team &lt;onboarding@resend.dev&gt;" placeholder="e.g. Ashish &lt;hello@yourdomain.com&gt;" />
-    </div>
-
-    <div class="compose-field">
       <label>To (Email)</label>
       <input type="email" id="compose-to" placeholder="recipient@example.com" />
     </div>
@@ -1070,14 +1055,11 @@
       <button class="tb-btn tb-btn-outline" onclick="copyEmailToClipboard()" style="gap:6px;">
         <i class="fas fa-copy"></i> Copy Text
       </button>
-      <button class="btn-send-default-mail" onclick="sendViaDefaultMail()">
-        <i class="fas fa-envelope"></i> Open in Mail Client
+      <button class="btn-send-outlook" onclick="sendViaOutlook()">
+        <i class="fab fa-microsoft"></i> Send via Outlook
       </button>
       <button class="btn-send-gmail" onclick="sendViaGmail()">
-        <i class="fab fa-google"></i> Open in Gmail
-      </button>
-      <button class="btn-send-resend" onclick="sendViaResend()" id="btn-resend-action">
-        <i class="fas fa-paper-plane"></i> Send via Resend
+        <i class="fab fa-google"></i> Send via Gmail
       </button>
     </div>
   </div>
@@ -1640,7 +1622,7 @@ function sendViaGmail() {
   showToast(`Opening Gmail for ${to}…`, 'fas fa-paper-plane');
 }
 
-function sendViaDefaultMail() {
+function sendViaOutlook() {
   const to      = document.getElementById('compose-to').value.trim();
   const subject = document.getElementById('compose-subject').value.trim();
   const body    = document.getElementById('compose-body').value.trim();
@@ -1660,10 +1642,10 @@ function sendViaDefaultMail() {
     if (wrap) wrap.classList.add('email-has-value');
   }
 
-  const url = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = url;
+  const url = `https://outlook.live.com/default.aspx?rru=compose&to=${encodeURIComponent(to)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.open(url, '_blank');
   document.getElementById('email-modal').classList.remove('open');
-  showToast(`Opening default mail client for ${to}…`, 'fas fa-envelope');
+  showToast(`Opening Outlook for ${to}…`, 'fas fa-envelope');
 }
 
 function copyEmailToClipboard() {
@@ -1673,75 +1655,6 @@ function copyEmailToClipboard() {
   navigator.clipboard.writeText(text)
     .then(() => showToast('Email text copied!', 'fas fa-check-circle'))
     .catch(() => showToast('Copy failed — try manually.', 'fas fa-exclamation-triangle', true));
-}
-
-function sendViaResend() {
-  const from    = document.getElementById('compose-from').value.trim();
-  const to      = document.getElementById('compose-to').value.trim();
-  const subject = document.getElementById('compose-subject').value.trim();
-  const body    = document.getElementById('compose-body').value.trim();
-
-  if (!to) {
-    showToast('Please enter a recipient email address.', 'fas fa-exclamation-triangle', true);
-    document.getElementById('compose-to').focus();
-    return;
-  }
-
-  const btn = document.getElementById('btn-resend-action');
-  const originalHtml = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-  const htmlBody = `<div style="font-family:sans-serif;white-space:pre-wrap;font-size:15px;line-height:1.6;color:#333333;">${body}</div>`;
-
-  const payload = {
-    from: from || "Digitaload Team <onboarding@resend.dev>",
-    to: to,
-    subject: subject,
-    html: htmlBody
-  };
-
-  const resendUrl = 'https://api.resend.com/emails';
-  const proxyUrl = 'https://corsproxy.io/?url=' + encodeURIComponent(resendUrl);
-
-  fetch(proxyUrl, {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer re_hHwgu17D_MK9c1VAa5dQzbyH5ZHbqYxTq',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(res => {
-    if (!res.ok) {
-      return res.json().then(errData => {
-        throw new Error(errData.message || `HTTP ${res.status}`);
-      }).catch(() => {
-        throw new Error(`HTTP ${res.status}`);
-      });
-    }
-    return res.json();
-  })
-  .then(data => {
-    showToast('Email sent successfully via Resend!', 'fas fa-check-circle');
-    if (_composeId) {
-      state.emails[_composeId] = to;
-      saveState();
-      const inp = document.getElementById(`email-${_composeId}`);
-      if (inp) inp.value = to;
-      const wrap = document.getElementById(`ewrap-${_composeId}`);
-      if (wrap) wrap.classList.add('email-has-value');
-    }
-    document.getElementById('email-modal').classList.remove('open');
-  })
-  .catch(err => {
-    console.error(err);
-    showToast(`Error sending email: ${err.message}`, 'fas fa-exclamation-triangle', true);
-  })
-  .finally(() => {
-    btn.disabled = false;
-    btn.innerHTML = originalHtml;
-  });
 }
 
 function copyMsg(id) {
