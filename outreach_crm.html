@@ -29,7 +29,7 @@
       --radius:     12px;
       --shadow:     0 2px 12px rgba(0,0,0,.08);
       --shadow-lg:  0 8px 32px rgba(0,0,0,.14);
-      --hh:         104px;  /* header height (including workspace tabs) */
+      --hh:         72px;  /* header height (single bar) */
     }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; min-height: 100vh; }
     a { text-decoration: none; color: inherit; }
@@ -368,6 +368,31 @@
     .btn-copy { background: var(--card); color: var(--muted); border: 1.5px solid var(--border); }
     .btn-copy:hover  { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
     .btn-copy.copied { border-color: var(--green);  color: var(--green);  background: var(--green-bg); }
+    .btn-delete { background: rgba(239, 68, 68, 0.1); color: var(--red); border: 1.5px solid rgba(239, 68, 68, 0.2); }
+    .btn-delete:hover { background: var(--red); color: #fff; border-color: var(--red); transform: translateY(-1px); }
+
+    .sync-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      transition: all 0.3s;
+    }
+    .sync-badge.syncing {
+      background: rgba(245, 158, 11, 0.15);
+      color: #d97706;
+    }
+    .sync-badge.synced {
+      background: rgba(16, 185, 129, 0.15);
+      color: #059669;
+    }
+    .sync-badge.error {
+      background: rgba(239, 68, 68, 0.15);
+      color: #dc2626;
+    }
 
     /* ─────────────────────────────────────────────────────────────────────
        IMPORT MODAL
@@ -740,6 +765,15 @@
       transition: all .2s; box-shadow: 0 4px 14px rgba(139,92,246,.35);
     }
     .btn-send-gmail:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(139,92,246,.45); }
+    .btn-send-default-mail {
+      background: linear-gradient(135deg, #4b5563, #1f2937);
+      color: #fff; border: none; padding: 10px 22px;
+      border-radius: 50px; font-family: inherit;
+      font-size: .86rem; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: all .2s; box-shadow: 0 4px 14px rgba(75,85,99,.35);
+    }
+    .btn-send-default-mail:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(75,85,99,.45); }
   </style>
 </head>
 <body>
@@ -751,7 +785,12 @@
       <div class="logo-icon"><i class="fas fa-bolt"></i></div>
       <div>
         <h1>Digi<span>Load</span> Leads</h1>
-        <p><span id="active-db-title">Gorakhpur Leads</span> · <span id="lead-count">45</span> Leads</p>
+        <div style="display:flex; align-items:center; gap:8px; margin-top:2px;">
+          <p><span id="active-db-title">All Leads</span> · <span id="lead-count">0</span> Leads</p>
+          <span id="sync-badge" class="sync-badge syncing">
+            <i class="fas fa-spinner fa-spin"></i> <span id="sync-label">Loading Cloud...</span>
+          </span>
+        </div>
       </div>
     </div>
     <div class="header-actions">
@@ -781,16 +820,6 @@
       </button>
       <button class="header-btn header-btn-primary" onclick="openImportModal()">
         <i class="fas fa-question-circle"></i> <span class="btn-label">CSV Format</span>
-      </button>
-    </div>
-  </div>
-  <div class="db-tabs-bar">
-    <div class="db-tabs-container" id="db-tabs-container">
-      <!-- Tabs will be rendered dynamically by renderTabs() -->
-    </div>
-    <div>
-      <button class="add-space-btn" onclick="document.getElementById('import-csv-input').click()">
-        <i class="fas fa-plus"></i> Add Workspace
       </button>
     </div>
   </div>
@@ -858,10 +887,10 @@
     <button class="tb-btn tb-btn-accent" onclick="resetAllStatus()" title="Reset all statuses to Pending">
       <i class="fas fa-redo-alt"></i> <span class="btn-label">Reset Status</span>
     </button>
-    <button class="tb-btn tb-btn-outline" onclick="resetLeads()" title="Restore default Gorakhpur leads dataset">
+    <button class="tb-btn tb-btn-outline" onclick="restoreDefaultLeads()" title="Restore default Gorakhpur & Lucknow dataset">
       <i class="fas fa-undo"></i> <span class="btn-label">Restore Defaults</span>
     </button>
-    <button class="tb-btn tb-btn-danger" onclick="removeAllLeads()" title="Permanently remove all leads">
+    <button class="tb-btn tb-btn-danger" onclick="clearAllLeads()" title="Permanently remove all leads">
       <i class="fas fa-trash"></i> <span class="btn-label">Remove All</span>
     </button>
   </div>
@@ -1026,6 +1055,9 @@
       <button class="tb-btn tb-btn-outline" onclick="copyEmailToClipboard()" style="gap:6px;">
         <i class="fas fa-copy"></i> Copy Text
       </button>
+      <button class="btn-send-default-mail" onclick="sendViaDefaultMail()">
+        <i class="fas fa-envelope"></i> Open in Mail Client
+      </button>
       <button class="btn-send-gmail" onclick="sendViaGmail()">
         <i class="fas fa-paper-plane"></i> Open in Gmail
       </button>
@@ -1040,9 +1072,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // DEFAULT LEAD DATA  (with address + google maps url)
 // ─────────────────────────────────────────────────────────────────────────────
-// Helper: extend a legacy lead object with new fields if missing
 function normalizeLead(l) {
   return {
+    id:                l.id                || 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now(),
     name:              l.name              || '',
     street:            l.street            || l.address || '',
     city:              l.city              || 'Gorakhpur',
@@ -1131,153 +1163,170 @@ const _RAW_LEADS = [
   {name:"ERA MAKEOVER",phone:"+91 97187 11091",wa:"919718711091",street:"Kamta",city:"Lucknow",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=ERA+MAKEOVER+Kamta+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/era-makeover/index.html",review_score:"5.0",published:"Yes"},
   {name:"Shreya J",phone:"+91 95595 55333",wa:"919559555333",street:"Chowk",city:"Lucknow",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Shreya+J+Chowk+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/shreya-j/index.html",review_score:"5.0",published:"Yes"},
   {name:"Nidhi Salon & Makeup Studio",phone:"+91 95693 35604",wa:"919569335604",street:"Chinhat",city:"Lucknow",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=Nidhi+Salon+&+Makeup+Studio+Chinhat+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/nidhi-salon-makeup-studio/index.html",review_score:"5.0",published:"Yes"},
-  {name:"Nizam's Salon & Hair Fixing",phone:"+91 98399 83966",wa:"919839983966",street:"Sarfarazganj",city:"Lucknow",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Nizam's+Salon+&+Hair+Fixing+Sarfarazganj+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/nizams-salon-hair-fixing/index.html",review_score:"5.0",published:"Yes"},
+  {name:"Nizam's Salon & Hair Fixing",phone:"+91 98399 83966",wa:"91839983966",street:"Sarfarazganj",city:"Lucknow",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Nizam's+Salon+&+Hair+Fixing+Sarfarazganj+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/nizams-salon-hair-fixing/index.html",review_score:"5.0",published:"Yes"},
   {name:"B4 Party Salon",phone:"+91 98396 60706",wa:"919839660706",street:"Naka Hindola",city:"Lucknow",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=B4+Party+Salon+Naka+Hindola+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/b4-party-salon/index.html",review_score:"5.0",published:"Yes"},
   {name:"OXYGEN Beauty Salon Hairs & Makeup Studio",phone:"+91 97946 34840",wa:"919794634840",street:"Rajajipuram",city:"Lucknow",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=OXYGEN+Beauty+Salon+Hairs+&+Makeup+Studio+Rajajipuram+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/oxygen-beauty-salon-hairs-makeup-studio/index.html",review_score:"5.0",published:"Yes"},
   {name:"M R Makeup Studio Unisex Salon",phone:"+91 63883 98698",wa:"916388398698",street:"Rajajipuram",city:"Lucknow",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=M+R+Makeup+Studio+Unisex+Salon+Rajajipuram+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/m-r-makeup-studio-unisex-salon/index.html",review_score:"5.0",published:"Yes"},
   {name:"GUPTA MEN'S SALON",phone:"+91 70817 88068",wa:"917081788068",street:"Fazullaganj",city:"Lucknow",country:"India",country_code:"IN",business_category:"Men's Salon",maps:"https://maps.google.com/?q=GUPTA+MEN'S+SALON+Fazullaganj+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/gupta-mens-salon/index.html",review_score:"5.0",published:"Yes"},
   {name:"The Head Masters Unisex Salon",phone:"+91 99880 01677",wa:"919988001677",street:"Rajajipuram",city:"Lucknow",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=The+Head+Masters+Unisex+Salon+Rajajipuram+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-head-masters-unisex-salon/index.html",review_score:"5.0",published:"Yes"},
-  {name:"RJ MAKEUP STUDIO AND UNISEX SALOON",phone:"+91 81125 11511",wa:"918112511511",street:"Rajajipuram",city:"Lucknow",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=RJ+MAKEUP+STUDIO+AND+UNISEX+SALOON+Rajajipuram+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/rj-makeup-studio-and-unisex-saloon/index.html",review_score:"5.0",published:"Yes"},
-  {name:"Smriti Makeovers & Salon",phone:"+91 90053 79640",wa:"919005379640",street:"Dubagga",city:"Lucknow",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=Smriti+Makeovers+&+Salon+Dubagga+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/smriti-makeovers-salon/index.html",review_score:"5.0",published:"Yes"},
-  {name:"The Hair Salon",phone:"+91 73554 49833",wa:"917355449833",street:"Dubagga",city:"Lucknow",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=The+Hair+Salon+Dubagga+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/the-hair-salon/index.html",review_score:"5.0",published:"Yes"},
-  {name:"VSARA Makeup Studio & Unisex Salon",phone:"+91 87956 34473",wa:"918795634473",street:"Thakurganj",city:"Lucknow",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=VSARA+Makeup+Studio+&+Unisex+Salon+Thakurganj+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/vsara-makeup-studio-unisex-salon/index.html",review_score:"5.0",published:"Yes"},
-  {name:"VOLUME KI & KA UNISEX SALON",phone:"+91 73111 00082",wa:"917311100082",street:"Rajajipuram",city:"Lucknow",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=VOLUME+KI+&+KA+UNISEX+SALON+Rajajipuram+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/volume-ki-ka-unisex-salon/index.html",review_score:"5.0",published:"Yes"},
-  {name:"Cuts and Curves",phone:"+91 90440 41213",wa:"919044041213",street:"Rajendra Nagar",city:"Lucknow",country:"India",country_code:"IN",business_category:"Unisex Salon",maps:"https://maps.google.com/?q=Cuts+and+Curves+Rajendra+Nagar+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/cuts-and-curves/index.html",review_score:"5.0",published:"Yes"}
+  {name:"RJ MAKEUP STUDIO AND UNISEX SALOON",phone:"+91 81125 11511",wa:"918112511511",street:"Rajajipuram",city:"Lucknow",country:"India",country_code:"IN",business_category:"Beauty Salon",maps:"https://maps.google.com/?q=RJ+MAKEUP+STUDIO+AND+UNISEX+SALOON+Rajajipuram+Lucknow",url:"https://multiverse-ashish.github.io/cuts-and-curves-booking/demo-sites/rj-makeup-studio-and-unisex-saloon/index.html",review_score:"5.0",published:"Yes"}
 ];
 const DEFAULT_LEADS = _RAW_LEADS.map(normalizeLead);
 
 // ─────────────────────────────────────────────────────────────────────────────
-// STATE (Multi-workspace database state management)
+// STATE (JSONBin Cloud Sync Integrated Flat Database)
 // ─────────────────────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'digiload-crm-v2';
+const STORAGE_KEY = 'digiload-crm-v3';
+const BIN_ID = '6a1f8d52f5f4af5e29b01d23';
+const MASTER_KEY = '$2a$10$Zs2A/PLUA85Y4BfOTnthqeV3kfBiAdiDn76MP/ZqrTrNdQrHQo35e';
+const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
 let LEADS = [];
 let state = { status: {}, prices: {}, emails: {} };
 let activeFilter = 'all';
-let DATABASES = {};
-let ACTIVE_DB = 'Gorakhpur Leads';
+let syncTimeout = null;
 
-function loadState() {
-  try {
-    const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    if (s.databases && Object.keys(s.databases).length) {
-      DATABASES = s.databases;
-      
-      // Self-healing migration: If "Gorakhpur Leads" workspace is polluted with both Gorakhpur and Lucknow (size > 50), split them!
-      if (DATABASES['Gorakhpur Leads'] && DATABASES['Gorakhpur Leads'].leads.length > 50) {
-        const allLeads = DATABASES['Gorakhpur Leads'].leads;
-        const gLeads = allLeads.filter(l => l.city.toLowerCase() === 'gorakhpur');
-        const lLeads = allLeads.filter(l => l.city.toLowerCase() === 'lucknow');
-        
-        DATABASES['Gorakhpur Leads'] = {
-          leads: gLeads,
-          status: {},
-          prices: {},
-          emails: {}
-        };
-        DATABASES['Lucknow Leads'] = {
-          leads: lLeads,
-          status: {},
-          prices: {},
-          emails: {}
-        };
-      }
-      ACTIVE_DB = s.activeDb || Object.keys(DATABASES)[0];
+function setSyncState(status, text) {
+  const badge = document.getElementById('sync-badge');
+  const label = document.getElementById('sync-label');
+  if (!badge || !label) return;
+  
+  badge.className = 'sync-badge ' + status; // syncing, synced, error
+  label.textContent = text;
+  
+  const icon = badge.querySelector('i');
+  if (icon) {
+    if (status === 'syncing') {
+      icon.className = 'fas fa-spinner fa-spin';
+    } else if (status === 'synced') {
+      icon.className = 'fas fa-check-circle';
     } else {
-      // Migrate legacy single database format or initialize default Gorakhpur & Lucknow workspaces
-      if (s.leads && s.leads.length) {
-        const legacyLeads = s.leads;
-        const gLeads = legacyLeads.filter(l => l.city.toLowerCase() === 'gorakhpur');
-        const lLeads = legacyLeads.filter(l => l.city.toLowerCase() === 'lucknow');
-        
-        if (gLeads.length > 0 && lLeads.length > 0) {
-          DATABASES = {
-            'Gorakhpur Leads': {
-              leads: gLeads,
-              status: s.status || {},
-              prices: s.prices || {},
-              emails: s.emails || {}
-            },
-            'Lucknow Leads': {
-              leads: lLeads,
-              status: {},
-              prices: {},
-              emails: {}
-            }
-          };
-        } else {
-          DATABASES = {
-            'Gorakhpur Leads': {
-              leads: legacyLeads,
-              status: s.status || {},
-              prices: s.prices || {},
-              emails: s.emails || {}
-            }
-          };
-        }
-      } else {
-        DATABASES = {
-          'Gorakhpur Leads': {
-            leads: [],
-            status: {},
-            prices: {},
-            emails: {}
-          },
-          'Lucknow Leads': {
-            leads: [],
-            status: {},
-            prices: {},
-            emails: {}
-          }
-        };
-      }
-      ACTIVE_DB = 'Gorakhpur Leads';
+      icon.className = 'fas fa-exclamation-triangle';
     }
-  } catch(e) {
-    DATABASES = {
-      'Gorakhpur Leads': {
-        leads: [],
-        status: {},
-        prices: {},
-        emails: {}
-      },
-      'Lucknow Leads': {
-        leads: [],
-        status: {},
-        prices: {},
-        emails: {}
-      }
-    };
-    ACTIVE_DB = 'Gorakhpur Leads';
   }
+}
+
+function saveLocalState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      leads:  LEADS,
+      status: state.status,
+      prices: state.prices,
+      emails: state.emails
+    }));
+  } catch (e) {
+    console.error('Failed to save to localStorage:', e);
+  }
+}
+
+async function loadState() {
+  setSyncState('syncing', 'Loading Cloud...');
   
-  // Set current active database references
-  const currentDb = DATABASES[ACTIVE_DB] || DATABASES[Object.keys(DATABASES)[0]];
-  LEADS = currentDb.leads;
-  state.status = currentDb.status || {};
-  state.prices = currentDb.prices || {};
-  state.emails = currentDb.emails || {};
-  
-  // Update header text subtitle
-  const titleEl = document.getElementById('active-db-title');
-  if (titleEl) {
-    titleEl.textContent = ACTIVE_DB;
+  // 1. Load from local cache first for fast visual layout
+  try {
+    const cached = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    if (cached.leads && cached.leads.length > 0) {
+      LEADS        = cached.leads;
+      state.status = cached.status || {};
+      state.prices = cached.prices || {};
+      state.emails = cached.emails || {};
+      
+      LEADS.forEach(l => {
+        if (!l.id) l.id = 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+      });
+      
+      const titleEl = document.getElementById('active-db-title');
+      if (titleEl) titleEl.textContent = 'All Leads (Cached)';
+      const cntEl = document.getElementById('lead-count');
+      if (cntEl) cntEl.textContent = LEADS.length;
+      
+      populateFilters();
+      renderTable();
+    }
+  } catch (e) {
+    console.error('Failed to load from local cache:', e);
+  }
+
+  // 2. Fetch from JSONBin.io cloud database
+  try {
+    const res = await fetch(`${API_URL}/latest`, {
+      method: 'GET',
+      headers: {
+        'X-Master-Key': MASTER_KEY,
+        'Cache-Control': 'no-cache'
+      }
+    });
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    const data = await res.json();
+    const record = data.record || {};
+    
+    LEADS        = Array.isArray(record.leads) ? record.leads : [];
+    state.status = record.status || {};
+    state.prices = record.prices || {};
+    state.emails = record.emails || {};
+    
+    LEADS.forEach(l => {
+      if (!l.id) l.id = 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+      if (l.email && !state.emails[l.id]) state.emails[l.id] = l.email;
+    });
+
+    saveLocalState();
+    setSyncState('synced', 'Cloud Synced');
+    
+    const titleEl = document.getElementById('active-db-title');
+    if (titleEl) titleEl.textContent = 'All Leads';
+    const cntEl = document.getElementById('lead-count');
+    if (cntEl) cntEl.textContent = LEADS.length;
+    
+    populateFilters();
+    renderTable();
+  } catch (err) {
+    console.error('Failed to load from JSONBin:', err);
+    setSyncState('error', 'Sync failed (offline)');
+    
+    // If nothing was loaded, initialize from DEFAULT_LEADS
+    if (LEADS.length === 0) {
+      LEADS = JSON.parse(JSON.stringify(DEFAULT_LEADS));
+      LEADS.forEach(l => {
+        if (!l.id) l.id = 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+        if (l.email) state.emails[l.id] = l.email;
+      });
+      saveLocalState();
+      populateFilters();
+      renderTable();
+    }
   }
 }
 
 function saveState() {
-  // Sync current active database state before saving
-  if (!DATABASES[ACTIVE_DB]) {
-    DATABASES[ACTIVE_DB] = {};
-  }
-  DATABASES[ACTIVE_DB].leads = LEADS;
-  DATABASES[ACTIVE_DB].status = state.status;
-  DATABASES[ACTIVE_DB].prices = state.prices;
-  DATABASES[ACTIVE_DB].emails = state.emails;
+  saveLocalState();
+  setSyncState('syncing', 'Saving to Cloud...');
   
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    databases: DATABASES,
-    activeDb: ACTIVE_DB
-  }));
+  if (syncTimeout) clearTimeout(syncTimeout);
+  
+  syncTimeout = setTimeout(async () => {
+    try {
+      const res = await fetch(API_URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': MASTER_KEY
+        },
+        body: JSON.stringify({
+          leads: LEADS,
+          status: state.status,
+          prices: state.prices,
+          emails: state.emails
+        })
+      });
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      setSyncState('synced', 'Cloud Synced');
+    } catch (err) {
+      console.error('Failed to save to JSONBin:', err);
+      setSyncState('error', 'Sync failed');
+      showToast('Cloud sync failed. Changes saved locally.', 'fas fa-exclamation-triangle', true);
+    }
+  }, 1000);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1311,85 +1360,76 @@ Would you like me to customize this with your pricing and launch it for you? Let
 // ROW RENDER
 // ─────────────────────────────────────────────────────────────────────────────
 function renderRow(lead, idx) {
-  const status  = state.status[idx] || 'pending';
-  const price   = state.prices[idx] || '';
-  // Pre-populate: prefer user-entered email → fallback to CSV email column
-  const email   = state.emails[idx] || lead.email || '';
-  if (!state.emails[idx] && lead.email) {
-    state.emails[idx] = lead.email; // sync to state for consistency
+  const id = lead.id;
+  const status  = state.status[id] || 'pending';
+  const price   = state.prices[id] || '';
+  const email   = state.emails[id] || lead.email || '';
+  if (!state.emails[id] && lead.email) {
+    state.emails[id] = lead.email;
   }
-  const l       = lead; // alias
+  const l = lead;
 
   const rowClass = status === 'qualified'    ? 'row-qualified'
                  : status === 'notqualified' ? 'row-notqualified' : '';
 
-  // Name + maps link
   const nameCell = l.maps
     ? `<a class="name-link" href="${l.maps}" target="_blank" rel="noopener" title="Open in Google Maps">
          <i class="fas fa-map-marker-alt map-pin"></i>${l.name}
        </a>`
     : `<span class="name-link" style="cursor:default"><i class="fas fa-store" style="color:var(--muted)"></i>${l.name}</span>`;
 
-  // Phone
   const phoneTel  = l.phone ? l.phone.replace(/\s/g,'') : '';
   const phoneCell = l.phone
     ? `<a class="phone-link" href="tel:${phoneTel}">${l.phone}</a>`
     : `<span class="no-data">—</span>`;
 
-  // Review score with stars
   const reviewCell = l.review_score
     ? `<span class="review-badge"><i class="fas fa-star" style="color:#f59e0b;font-size:.7rem"></i> ${l.review_score}</span>`
     : `<span class="no-data">—</span>`;
 
-  // Demo Site
   const urlCell = l.url
     ? `<a class="url-link-btn" href="${l.url}" target="_blank"><i class="fas fa-laptop"></i> View Demo</a>`
     : `<span class="no-data">—</span>`;
 
-  // Google first URL (embedded preview)
   const googleCell = l.google_first_url
     ? `<a class="url-link" href="${l.google_first_url}" target="_blank" title="${l.google_first_url}">
-        <i class="fab fa-google" style="font-size:.72rem;color:#4285f4"></i> Google
+         <i class="fab fa-google" style="font-size:.72rem;color:#4285f4"></i> Google
        </a>`
     : `<span class="no-data">—</span>`;
 
-  // Facebook
   const fbCell = l.facebook
     ? `<a class="url-link" href="${l.facebook}" target="_blank">
-        <i class="fab fa-facebook" style="font-size:.72rem;color:#1877f2"></i> Facebook
+         <i class="fab fa-facebook" style="font-size:.72rem;color:#1877f2"></i> Facebook
        </a>`
     : `<span class="no-data">—</span>`;
 
-  // Published badge
   const pubCell = l.published
     ? `<span class="pub-badge pub-yes"><i class="fas fa-check-circle"></i> ${l.published}</span>`
     : `<span class="pub-badge pub-no"><i class="fas fa-circle"></i> No</span>`;
 
-  // Category badge
   const catCell = l.business_category
     ? `<span class="cat-badge">${l.business_category}</span>`
     : `<span class="no-data">—</span>`;
 
-  // Status select
   const sSel = status === 'qualified'    ? 's-qualified'
              : status === 'notqualified' ? 's-notqualified' : 's-pending';
 
-  // Action buttons
   const waBtn = l.wa
-    ? `<button class="act-btn btn-wa" onclick="sendWA(${idx})"><i class="fab fa-whatsapp"></i> WA</button>`
+    ? `<button class="act-btn btn-wa" onclick="sendWA('${id}')"><i class="fab fa-whatsapp"></i> WA</button>`
     : `<button class="act-btn btn-wa" disabled><i class="fab fa-whatsapp"></i> WA</button>`;
 
   const callBtn = l.phone
     ? `<a class="act-btn btn-call" href="tel:${phoneTel}"><i class="fas fa-phone"></i> Call</a>`
     : `<button class="act-btn btn-call" disabled><i class="fas fa-phone"></i> Call</button>`;
 
-  // Mail button — always enabled; opens compose modal
-  const mailBtn = `<button class="act-btn btn-mail" onclick="openEmailModal(${idx})" title="Compose email"><i class="fas fa-envelope"></i> Mail</button>`;
+  const mailBtn = `<button class="act-btn btn-mail" onclick="openEmailModal('${id}')" title="Compose email"><i class="fas fa-envelope"></i> Mail</button>`;
 
-  return `<tr id="row-${idx}" class="${rowClass}">
+  const deleteBtn = `<button class="act-btn btn-delete" onclick="deleteLead('${id}')" title="Delete lead"><i class="fas fa-trash-alt"></i></button>`;
+
+  return `<tr id="row-${id}" class="${rowClass}">
   <td data-col="num" class="cell-num">${idx + 1}</td>
   <td data-col="status">
-    <select class="status-select ${sSel}" id="status-${idx}" onchange="setStatus(${idx}, this.value)">
+    <select class="status-select ${sSel}" id="status-${id}" onchange="setStatus('${id}', this.value)">
       <option value="pending"      ${status==='pending'      ?'selected':''}>⏳ Pending</option>
       <option value="qualified"    ${status==='qualified'    ?'selected':''}>✅ Approved</option>
       <option value="notqualified" ${status==='notqualified' ?'selected':''}>❌ Rejected</option>
@@ -1408,23 +1448,24 @@ function renderRow(lead, idx) {
   <td data-col="facebook" class="cell-fb">${fbCell}</td>
   <td data-col="published" class="cell-pub">${pubCell}</td>
   <td data-col="email" class="cell-email">
-    <div class="email-cell-wrap ${email ? 'email-has-value' : ''}" id="ewrap-${idx}">
-      <input type="email" class="email-input" id="email-${idx}"
+    <div class="email-cell-wrap ${email ? 'email-has-value' : ''}" id="ewrap-${id}">
+      <input type="email" class="email-input" id="email-${id}"
         value="${email}" placeholder="email@salon.com"
-        oninput="saveEmail(${idx}, this.value)">
+        oninput="saveEmail('${id}', this.value)">
       ${mailBtn}
     </div>
   </td>
   <td data-col="price" class="cell-price">
-    <input type="number" class="price-input" id="price-${idx}" value="${price}"
-      placeholder="0" min="0" oninput="updatePrice(${idx}, this.value)">
+    <input type="number" class="price-input" id="price-${id}" value="${price}"
+      placeholder="0" min="0" oninput="updatePrice('${id}', this.value)">
   </td>
   <td data-col="actions" class="cell-actions">
     <div class="act-row">
       ${waBtn}${callBtn}
-      <button class="act-btn btn-copy" id="copy-${idx}" onclick="copyMsg(${idx})">
+      <button class="act-btn btn-copy" id="copy-${id}" onclick="copyMsg('${id}')">
         <i class="fas fa-copy"></i> Copy
       </button>
+      ${deleteBtn}
     </div>
   </td>
 </tr>`;
@@ -1441,9 +1482,10 @@ function renderTable() {
   const catFilter = catFilterEl ? catFilterEl.value : '';
   const tbody = document.getElementById('leads-tbody');
   let html = '';
+  let matchIdx = 0;
 
-  LEADS.forEach((lead, idx) => {
-    const status   = state.status[idx] || 'pending';
+  LEADS.forEach((lead) => {
+    const status   = state.status[lead.id] || 'pending';
     const hasPhone = !!lead.phone;
 
     if (activeFilter === 'qualified'    && status !== 'qualified')    return;
@@ -1459,53 +1501,51 @@ function renderTable() {
       if (!haystack.includes(q)) return;
     }
 
-    html += renderRow(lead, idx);
+    html += renderRow(lead, matchIdx);
+    matchIdx++;
   });
 
-  tbody.innerHTML = html || `<tr><td colspan="16" class="empty-state"><i class="fas fa-search"></i><p>No leads match your filter.</p></td></tr>`;
+  tbody.innerHTML = html || `<tr><td colspan="17" class="empty-state"><i class="fas fa-search"></i><p>No leads match your filter.</p></td></tr>`;
   updateStats();
-  applyColVisibility(); // apply hidden cols after every render
+  applyColVisibility();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ACTIONS
 // ─────────────────────────────────────────────────────────────────────────────
-function setStatus(idx, val) {
+function setStatus(id, val) {
+  const lead = LEADS.find(l => l.id === id);
+  if (!lead) return;
   if (val === 'qualified') {
-    const currentPrice = state.prices[idx] || '';
-    const amt = prompt(`Lead Approved! Enter deal amount (₹) for "${LEADS[idx].name}":`, currentPrice);
+    const currentPrice = state.prices[id] || '';
+    const amt = prompt(`Lead Approved! Enter deal amount (₹) for "${lead.name}":`, currentPrice);
     if (amt !== null) {
-      state.prices[idx] = parseFloat(amt) || 0;
+      state.prices[id] = parseFloat(amt) || 0;
     }
   }
-  state.status[idx] = val;
-  const tr = document.getElementById(`row-${idx}`);
-  if (tr) {
-    const newTr = document.createElement('tbody');
-    newTr.innerHTML = renderRow(LEADS[idx], idx);
-    tr.replaceWith(newTr.firstElementChild);
-  }
+  state.status[id] = val;
+  updateStats();
+  renderTable();
+  saveState();
+}
+
+function updatePrice(id, val) {
+  state.prices[id] = parseFloat(val) || 0;
   updateStats();
   saveState();
 }
 
-function updatePrice(idx, val) {
-  state.prices[idx] = parseFloat(val) || 0;
-  updateStats();
-  saveState();
-}
-
-function sendWA(idx) {
-  const lead = LEADS[idx];
-  if (!lead.wa) return;
+function sendWA(id) {
+  const lead = LEADS.find(l => l.id === id);
+  if (!lead || !lead.wa) return;
   window.open(`https://wa.me/${lead.wa}?text=${encodeURIComponent(buildMessage(lead))}`, '_blank');
 }
 
 // ── Email ──────────────────────────────────────────────────────────────────
-function saveEmail(idx, val) {
-  state.emails[idx] = val.trim();
+function saveEmail(id, val) {
+  state.emails[id] = val.trim();
   saveState();
-  const wrap = document.getElementById(`ewrap-${idx}`);
+  const wrap = document.getElementById(`ewrap-${id}`);
   if (wrap) {
     if (val.trim()) wrap.classList.add('email-has-value');
     else wrap.classList.remove('email-has-value');
@@ -1547,26 +1587,26 @@ DigiLoad Team
 https://digiload.in`;
 }
 
-// Email compose state
-let _composeIdx = -1;
+let _composeId = null;
 
-function openEmailModal(idx) {
-  _composeIdx = idx;
-  const lead  = LEADS[idx];
-  const email = state.emails[idx] || lead.email || '';
+function openEmailModal(id) {
+  _composeId = id;
+  const lead  = LEADS.find(l => l.id === id);
+  if (!lead) return;
+  const email = state.emails[id] || lead.email || '';
 
   document.getElementById('compose-name').textContent    = lead.name || 'Unknown';
   document.getElementById('compose-to').value           = email;
   document.getElementById('compose-subject').value      = `Premium Website Ready for ${lead.name} 🚀`;
   document.getElementById('compose-body').value         = buildEmailBody(lead);
 
-  document.getElementById('email-modal').classList.add('active');
+  document.getElementById('email-modal').classList.add('open');
 }
 
 function closeEmailModal(e) {
   if (e && e.target !== document.getElementById('email-modal')) return;
-  document.getElementById('email-modal').classList.remove('active');
-  _composeIdx = -1;
+  document.getElementById('email-modal').classList.remove('open');
+  _composeId = null;
 }
 
 function sendViaGmail() {
@@ -1580,19 +1620,45 @@ function sendViaGmail() {
     return;
   }
 
-  // Save email to state
-  if (_composeIdx >= 0) {
-    state.emails[_composeIdx] = to;
+  if (_composeId) {
+    state.emails[_composeId] = to;
     saveState();
-    // Update the inline email input if visible
-    const inp = document.getElementById(`email-${_composeIdx}`);
+    const inp = document.getElementById(`email-${_composeId}`);
     if (inp) inp.value = to;
+    const wrap = document.getElementById(`ewrap-${_composeId}`);
+    if (wrap) wrap.classList.add('email-has-value');
   }
 
   const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   window.open(url, '_blank');
-  document.getElementById('email-modal').classList.remove('active');
+  document.getElementById('email-modal').classList.remove('open');
   showToast(`Opening Gmail for ${to}…`, 'fas fa-paper-plane');
+}
+
+function sendViaDefaultMail() {
+  const to      = document.getElementById('compose-to').value.trim();
+  const subject = document.getElementById('compose-subject').value.trim();
+  const body    = document.getElementById('compose-body').value.trim();
+
+  if (!to) {
+    showToast('Please enter a recipient email address.', 'fas fa-exclamation-triangle', true);
+    document.getElementById('compose-to').focus();
+    return;
+  }
+
+  if (_composeId) {
+    state.emails[_composeId] = to;
+    saveState();
+    const inp = document.getElementById(`email-${_composeId}`);
+    if (inp) inp.value = to;
+    const wrap = document.getElementById(`ewrap-${_composeId}`);
+    if (wrap) wrap.classList.add('email-has-value');
+  }
+
+  const url = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = url;
+  document.getElementById('email-modal').classList.remove('open');
+  showToast(`Opening default mail client for ${to}…`, 'fas fa-envelope');
 }
 
 function copyEmailToClipboard() {
@@ -1604,54 +1670,76 @@ function copyEmailToClipboard() {
     .catch(() => showToast('Copy failed — try manually.', 'fas fa-exclamation-triangle', true));
 }
 
-function copyMsg(idx) {
-  const btn = document.getElementById(`copy-${idx}`);
-  navigator.clipboard.writeText(buildMessage(LEADS[idx])).then(() => {
-    btn.classList.add('copied');
-    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+function copyMsg(id) {
+  const lead = LEADS.find(l => l.id === id);
+  if (!lead) return;
+  const btn = document.getElementById(`copy-${id}`);
+  navigator.clipboard.writeText(buildMessage(lead)).then(() => {
+    if (btn) {
+      btn.classList.add('copied');
+      btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    }
     showToast('Message copied to clipboard!', 'fas fa-check-circle');
     setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+      if (btn) {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+      }
     }, 2500);
   }).catch(() => showToast('Copy failed — try manually.', 'fas fa-exclamation-triangle', true));
 }
 
 function resetAllStatus() {
   if (!confirm('Reset all lead statuses to Pending? Prices will be kept.')) return;
-  state.status = {};
+  LEADS.forEach(l => {
+    state.status[l.id] = 'pending';
+  });
   saveState();
   renderTable();
   showToast('All statuses reset to Pending.', 'fas fa-redo-alt');
 }
 
-function resetLeads() {
-  if (ACTIVE_DB === 'Gorakhpur Leads') {
-    if (!confirm('Restore all leads to the default Gorakhpur dataset? This will reset all changes.')) return;
-    LEADS = DEFAULT_LEADS.filter(l => l.city.toLowerCase() === 'gorakhpur');
-    state.status = {};
-    state.prices = {};
-    state.emails = {};
-  } else if (ACTIVE_DB === 'Lucknow Leads') {
-    if (!confirm('Restore all leads to the default Lucknow dataset? This will reset all changes.')) return;
-    LEADS = DEFAULT_LEADS.filter(l => l.city.toLowerCase() === 'lucknow');
-    state.status = {};
-    state.prices = {};
-    state.emails = {};
-  } else {
-    if (!confirm(`Reset all status, deal values, and emails inside "${ACTIVE_DB}" workspace?`)) return;
-    state.status = {};
-    state.prices = {};
-    state.emails = {};
-  }
+function deleteLead(id) {
+  const index = LEADS.findIndex(l => l.id === id);
+  if (index < 0) return;
+  const leadName = LEADS[index].name;
+  if (!confirm(`Are you sure you want to delete lead "${leadName}"?`)) return;
+
+  LEADS.splice(index, 1);
+  delete state.status[id];
+  delete state.prices[id];
+  delete state.emails[id];
+
   saveState();
   populateFilters();
   renderTable();
-  showToast(`Reset active workspace "${ACTIVE_DB}".`, 'fas fa-undo');
+  showToast(`Deleted lead "${leadName}".`, 'fas fa-trash-alt');
 }
 
-function removeAllLeads() {
-  if (!confirm(`⚠️ PERMANENTLY remove all leads inside "${ACTIVE_DB}"?\nThis cannot be undone.`)) return;
+function restoreDefaultLeads() {
+  if (!confirm('Restore all leads to the default Gorakhpur & Lucknow dataset? This will overwrite all cloud data.')) return;
+  LEADS = JSON.parse(JSON.stringify(DEFAULT_LEADS));
+  LEADS.forEach(l => {
+    if (!l.id) l.id = 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+  });
+  state.status = {};
+  state.prices = {};
+  state.emails = {};
+  LEADS.forEach(l => {
+    if (l.email) state.emails[l.id] = l.email;
+  });
+  saveState();
+  const titleEl = document.getElementById('active-db-title');
+  if (titleEl) titleEl.textContent = 'All Leads';
+  const cntEl = document.getElementById('lead-count');
+  if (cntEl) cntEl.textContent = LEADS.length;
+  populateFilters();
+  renderTable();
+  showToast('Default leads restored.', 'fas fa-undo');
+}
+
+function clearAllLeads() {
+  if (!confirm('⚠️ Are you sure you want to permanently delete all leads?\nThis will clear all cloud data and cannot be undone.')) return;
   LEADS = [];
   state.status = {};
   state.prices = {};
@@ -1659,7 +1747,7 @@ function removeAllLeads() {
   saveState();
   populateFilters();
   renderTable();
-  showToast(`All leads cleared from "${ACTIVE_DB}".`, 'fas fa-trash', true);
+  showToast('All leads cleared.', 'fas fa-trash', true);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1667,14 +1755,29 @@ function removeAllLeads() {
 // ─────────────────────────────────────────────────────────────────────────────
 function updateStats() {
   const total     = LEADS.length;
-  const qualified = Object.values(state.status).filter(s => s === 'qualified').length;
-  const notq      = Object.values(state.status).filter(s => s === 'notqualified').length;
-  const revenue   = Object.values(state.prices).reduce((a, b) => a + (b || 0), 0);
-  const convRate  = total ? Math.round((qualified / total) * 100) : 0;
-  const qualPrices = Object.entries(state.prices)
-    .filter(([k]) => state.status[k] === 'qualified')
-    .map(([,v]) => v || 0);
-  const avg = qualPrices.length ? Math.round(qualPrices.reduce((a, b) => a + b, 0) / qualPrices.length) : 0;
+  let qualified = 0;
+  let notq = 0;
+  let revenue = 0;
+  let qualPriceSum = 0;
+  let qualCount = 0;
+  
+  LEADS.forEach(l => {
+    const s = state.status[l.id] || 'pending';
+    if (s === 'qualified') {
+      qualified++;
+      const p = state.prices[l.id] || 0;
+      revenue += p;
+      if (p > 0) {
+        qualPriceSum += p;
+        qualCount++;
+      }
+    } else if (s === 'notqualified') {
+      notq++;
+    }
+  });
+  
+  const convRate = total ? Math.round((qualified / total) * 100) : 0;
+  const avg = qualCount ? Math.round(qualPriceSum / qualCount) : 0;
 
   const fmt = n => n.toLocaleString('en-IN');
   document.getElementById('stat-total').textContent     = total;
@@ -1688,9 +1791,13 @@ function updateStats() {
   document.getElementById('sum-revenue').textContent    = '₹' + fmt(revenue);
   document.getElementById('sum-avg').textContent        = avg ? '₹' + fmt(avg) : '₹0';
   document.getElementById('lead-count').textContent     = total;
-  document.querySelector('[data-filter="all"]').textContent          = `All (${total})`;
-  document.querySelector('[data-filter="qualified"]').textContent    = `✅ Qualified (${qualified})`;
-  document.querySelector('[data-filter="notqualified"]').textContent = `❌ Not Qualified (${notq})`;
+  
+  const filterAll = document.querySelector('[data-filter="all"]');
+  if (filterAll) filterAll.textContent = `All (${total})`;
+  const filterQ = document.querySelector('[data-filter="qualified"]');
+  if (filterQ) filterQ.textContent = `✅ Qualified (${qualified})`;
+  const filterNQ = document.querySelector('[data-filter="notqualified"]');
+  if (filterNQ) filterNQ.textContent = `❌ Not Qualified (${notq})`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1737,7 +1844,6 @@ function importCSV(event) {
         const cols = parseCsvLine(lines[i]);
         if (!cols.length || !cols[iName]) continue;
         const phone = iPhone >= 0 ? cols[iPhone] || '' : '';
-        // prefer explicit street, fall back to address column
         const street = iStreet >= 0 ? cols[iStreet] || ''
                      : iAddr   >= 0 ? cols[iAddr]   || '' : '';
         imported.push(normalizeLead({
@@ -1763,39 +1869,17 @@ function importCSV(event) {
 
       const fileName = file.name || 'Imported Leads';
 
-      // Pre-populate state.emails from the CSV email column
-      const emailsFromCsv = {};
-      imported.forEach((lead, i) => {
-        if (lead.email) emailsFromCsv[i] = lead.email;
-      });
+      if (confirm(`Import ${imported.length} leads from "${fileName}" and append to the active list?`)) {
+        imported.forEach(l => {
+          LEADS.push(l);
+          if (l.email) state.emails[l.id] = l.email;
+        });
 
-      if (confirm(`Import ${imported.length} leads from "${fileName}" as a new workspace?`)) {
-        // Create new database
-        DATABASES[fileName] = {
-          leads:  imported,
-          status: {},
-          prices: {},
-          emails: emailsFromCsv  // ← pre-fill emails from CSV
-        };
-        // Switch to it directly (no loadState race condition)
-        ACTIVE_DB    = fileName;
-        LEADS        = imported;
-        state.status = {};
-        state.prices = {};
-        state.emails = emailsFromCsv;
-
-        // Persist
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({ databases: DATABASES, activeDb: ACTIVE_DB }));
-
-        // Update header
-        const titleEl = document.getElementById('active-db-title');
-        if (titleEl) titleEl.textContent = ACTIVE_DB;
-
+        saveState();
         populateFilters();
-        renderTabs();
         renderTable();
         closeImportModal();
-        showToast(`✔ ${imported.length} leads imported into "${fileName}"!`, 'fas fa-file-import');
+        showToast(`✔ ${imported.length} leads appended!`, 'fas fa-file-import');
       }
     } catch (err) {
       showToast('Error reading CSV: ' + err.message, 'fas fa-exclamation-triangle', true);
@@ -1824,11 +1908,12 @@ function parseCsvLine(line) {
 function exportCSV() {
   const hdr = 'name,street,city,country,country_code,phone_number,review_score,google_maps_url,url,emails,facebook,google_first_url,business_category,published,status,deal_price_inr\n';
   let csv = hdr;
-  LEADS.forEach((l, i) => {
-    const s  = state.status[i] || 'pending';
-    const p  = state.prices[i] || 0;
-    const em = state.emails[i] || l.email || '';
-    csv += `"${l.name}","${l.street||''}","${l.city||''}","${l.country||''}","${l.country_code||''}","${l.phone||''}","${l.review_score||''}","${l.maps||''}","${l.url||''}","${em}","${l.facebook||''}","${l.google_first_url||''}","${l.business_category||''}","${l.published||''}","${s}","${p}"\n`;
+  LEADS.forEach((l) => {
+    const s  = state.status[l.id] || 'pending';
+    const p  = state.prices[l.id] || 0;
+    const em = state.emails[l.id] || l.email || '';
+    const esc = val => `"${(val || '').toString().replace(/"/g, '""')}"`;
+    csv += `${esc(l.name)},${esc(l.street)},${esc(l.city)},${esc(l.country)},${esc(l.country_code)},${esc(l.phone)},${esc(l.review_score)},${esc(l.maps)},${esc(l.url)},${esc(em)},${esc(l.facebook)},${esc(l.google_first_url)},${esc(l.business_category)},${esc(l.published)},${esc(s)},${esc(p)}\n`;
   });
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url  = URL.createObjectURL(blob);
@@ -1889,8 +1974,6 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 document.getElementById('search-input').addEventListener('input', renderTable);
 
-// Note: saveState() and loadState() are defined under STATE at the top of the script block.
-
 // ─────────────────────────────────────────────────────────────────────────────
 // COLUMN PICKER
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1913,7 +1996,6 @@ const COLUMNS = [
   { key: 'actions',   label: 'Actions' },
 ];
 
-// Sensible defaults — show core cols, hide noisier ones
 const COL_DEFAULTS = {
   num: true, status: true, name: true, category: true,
   street: true, city: true, country: false, code: false,
@@ -1934,7 +2016,6 @@ function saveVisibleCols() {
   localStorage.setItem('digiload-cols', JSON.stringify(visibleCols));
 }
 
-// Apply col-hidden class to all th/td with matching data-col
 function applyColVisibility() {
   COLUMNS.forEach(({ key }) => {
     const hide = !visibleCols[key];
@@ -1944,7 +2025,6 @@ function applyColVisibility() {
   });
 }
 
-// Build checkboxes inside the panel
 function buildColPickerUI() {
   const list = document.getElementById('col-picker-list');
   if (!list) return;
@@ -1974,7 +2054,6 @@ function selectAllCols() {
 }
 
 function deselectAllCols() {
-  // Always keep name + actions so table is usable
   COLUMNS.forEach(({ key }) => {
     visibleCols[key] = (key === 'name' || key === 'actions');
   });
@@ -1987,7 +2066,6 @@ function toggleColPicker() {
   document.getElementById('col-picker-panel').classList.toggle('open');
 }
 
-// Close picker on outside click
 document.addEventListener('click', e => {
   const wrap = document.getElementById('col-picker-wrap');
   if (wrap && !wrap.contains(e.target)) {
@@ -2046,17 +2124,17 @@ function renderAnalyticsCharts() {
   });
 
   let pending = 0, qualified = 0, notqualified = 0;
-  LEADS.forEach((l, i) => {
-    const s = state.status[i] || 'pending';
+  LEADS.forEach(l => {
+    const s = state.status[l.id] || 'pending';
     if (s === 'qualified') qualified++;
     else if (s === 'notqualified') notqualified++;
     else pending++;
   });
 
   const valMap = {};
-  LEADS.forEach((l, i) => {
+  LEADS.forEach(l => {
     const cat = l.business_category || 'Other';
-    const p = state.prices[i] || 0;
+    const p = state.prices[l.id] || 0;
     if (p > 0) {
       valMap[cat] = (valMap[cat] || 0) + p;
     }
@@ -2123,132 +2201,11 @@ function renderAnalyticsCharts() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// MULTI-WORKSPACE TABS LOGIC
-// ─────────────────────────────────────────────────────────────────────────────
-function renderTabs() {
-  const container = document.getElementById('db-tabs-container');
-  if (!container) return;
-  
-  let html = '';
-  Object.keys(DATABASES).forEach(dbName => {
-    const isActive = dbName === ACTIVE_DB;
-    const activeClass = isActive ? 'active' : '';
-    // Show close button only if there is more than 1 database workspace
-    const closeBtn = Object.keys(DATABASES).length > 1 
-      ? `<i class="fas fa-times close-tab" onclick="handleTabDelete(this, event)" title="Delete workspace"></i>`
-      : '';
-      
-    // Escape double quotes inside attribute values
-    const dbNameAttr = dbName.replace(/"/g, '&quot;');
-    const dbNameText = dbName;
-      
-    html += `
-      <div class="db-tab ${activeClass}" data-dbname="${dbNameAttr}" onclick="handleTabClick(event.currentTarget, event)">
-        <i class="fas fa-database" style="font-size: 0.72rem; opacity: 0.85; pointer-events:none;"></i>
-        <span style="pointer-events:none;">${dbNameText}</span>
-        ${closeBtn}
-      </div>
-    `;
-  });
-  container.innerHTML = html;
-}
-
-function handleTabClick(el, event) {
-  // Walk up to the actual .db-tab element in case a child (icon/span) was clicked
-  const tab = el.closest('.db-tab');
-  if (!tab) return;
-  // Decode HTML entities (&quot; → ") from the attribute
-  const dbName = tab.getAttribute('data-dbname').replace(/&quot;/g, '"');
-  if (dbName) {
-    switchDatabase(dbName);
-  }
-}
-
-function handleTabDelete(el, event) {
-  event.stopPropagation(); // Prevent switching tab trigger
-  const parent = el.closest('.db-tab');
-  if (parent) {
-    const dbName = parent.getAttribute('data-dbname');
-    if (dbName) {
-      deleteDatabase(dbName);
-    }
-  }
-}
-
-function switchDatabase(dbName) {
-  if (!DATABASES[dbName]) {
-    showToast(`Workspace "${dbName}" not found.`, 'fas fa-exclamation-triangle', true);
-    return;
-  }
-  // Save current state first
-  saveState();
-
-  // Switch active DB
-  ACTIVE_DB = dbName;
-
-  // Directly point globals to new DB — no full reload needed
-  const db = DATABASES[ACTIVE_DB];
-  LEADS        = db.leads  || [];
-  state.status = db.status || {};
-  state.prices = db.prices || {};
-  state.emails = db.emails || {};
-
-  // Update header subtitle
-  const titleEl = document.getElementById('active-db-title');
-  if (titleEl) titleEl.textContent = ACTIVE_DB;
-
-  // Save updated activeDb
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ databases: DATABASES, activeDb: ACTIVE_DB }));
-
-  populateFilters();
-  renderTabs();
-  renderTable();
-  showToast(`Switched to: ${dbName}`, 'fas fa-check-circle');
-}
-
-function deleteDatabase(dbName) {
-  const keys = Object.keys(DATABASES);
-  if (keys.length <= 1) {
-    showToast("Cannot delete the last remaining workspace.", "fas fa-exclamation-triangle", true);
-    return;
-  }
-  if (!confirm(`Are you sure you want to permanently delete the "${dbName}" workspace?`)) {
-    return;
-  }
-  delete DATABASES[dbName];
-  
-  // If active database is deleted, change active to another one
-  if (ACTIVE_DB === dbName) {
-    ACTIVE_DB = Object.keys(DATABASES)[0];
-    const currentDb = DATABASES[ACTIVE_DB];
-    LEADS = currentDb.leads || [];
-    state.status = currentDb.status || {};
-    state.prices = currentDb.prices || {};
-    state.emails = currentDb.emails || {};
-  }
-  
-  // Save changes directly to localStorage bypassing saveState LEADS overwrite
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    databases: DATABASES,
-    activeDb: ACTIVE_DB
-  }));
-  
-  loadState();
-  populateFilters();
-  renderTabs();
-  renderTable();
-  showToast(`Deleted workspace "${dbName}".`, "fas fa-trash");
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────────────────────────────────────
 loadState();
-renderTabs();
 loadVisibleCols();
 buildColPickerUI();
-populateFilters();
-renderTable(); // calls applyColVisibility() at end
 </script>
 </body>
 </html>
