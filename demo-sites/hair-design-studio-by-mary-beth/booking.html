@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment or Academy Course | Hair Design Studio by Mary Beth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <div class="top-bar"><p><a href="index.html" style="color:#fff"><i class="fas fa-arrow-left"></i> Back to Home</a></p></div>
+  <div class="booking-page">
+    <div class="booking-card">
+      <h2>Book Appointment / Course</h2>
+      <p>Fill in the details below. Your appointment or course enrollment will be confirmed directly on WhatsApp.</p>
+      <form id="booking-form">
+        <div class="form-group">
+          <label>Select Service or Course</label>
+          <select id="sel-service" required>
+            <option value="" disabled selected>Choose service or course...</option>
+            <optgroup label="Premium Services">
+              <option value="Unisex Signature Haircut" data-price="60">Unisex Signature Haircut — $60</option>
+<option value="Global Hair Coloring" data-price="135">Global Hair Coloring — $135</option>
+<option value="Nourishing Hair Spa" data-price="90">Nourishing Hair Spa — $90</option>
+<option value="Skin Radiance Treatment" data-price="105">Skin Radiance Treatment — $105</option>
+<option value="Hair + Beard Combo" data-price="80">Hair + Beard Combo — $80</option>
+<option value="Luxury Manicure Spa" data-price="55">Luxury Manicure Spa — $55</option>
+            </optgroup>
+            <optgroup label="Academy Professional Courses">
+              <option value="HD Bridal & Celebrity Makeup Masterclass" data-price="1800">HD Bridal & Celebrity Makeup Masterclass — $1800 (4 Weeks)</option>
+<option value="Advanced Hair Design & Chemical Artistry" data-price="2500">Advanced Hair Design & Chemical Artistry — $2500 (6 Weeks)</option>
+<option value="Nail Artistry & Extensions Specialist" data-price="800">Nail Artistry & Extensions Specialist — $800 (2 Weeks)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Specialist / Trainer</label>
+          <select id="sel-stylist">
+            <option value="Any Available Specialist / Trainer">Any Available Specialist / Trainer</option>
+            <option value="Alex Mercer">Alex Mercer (Principal Hairdresser)</option>
+<option value="Emma Watson">Emma Watson (Beauty Expert)</option>
+<option value="Daniel Craig">Daniel Craig (Senior Stylist)</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Appointment / Batch Date</label>
+            <input type="date" id="inp-date" required>
+          </div>
+          <div class="form-group">
+            <label>Preferred Time Slot</label>
+            <select id="sel-time" required>
+              <option value="" disabled selected>Select time...</option>
+              <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+              <option>12:00 PM</option><option>01:00 PM</option><option>02:00 PM</option>
+              <option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option>
+              <option>06:00 PM</option><option>07:00 PM</option><option>08:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Your Full Name</label><input type="text" id="inp-name" placeholder="Enter your name" required></div>
+        <div class="form-group"><label>WhatsApp Number</label><input type="tel" id="inp-phone" placeholder="Your phone number" required></div>
+        <div class="invoice-box">
+          <h4>Invoice Summary</h4>
+          <div class="inv-row"><span>Base Tuition / Service:</span><span id="inv-base">$0</span></div>
+          <div class="inv-row"><span>Sales Tax (8%):</span><span id="inv-gst">$0</span></div>
+          <div class="inv-row inv-total"><span>Total Due:</span><span id="inv-total">$0</span></div>
+        </div>
+        <input type="hidden" id="salon-name" value="Hair Design Studio by Mary Beth">
+        <input type="hidden" id="wa-number" value="916059296693">
+        <button type="submit" class="btn-wa"><i class="fab fa-whatsapp"></i> Confirm &amp; Enroll via WhatsApp</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

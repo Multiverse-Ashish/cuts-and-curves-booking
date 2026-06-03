@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment or Academy Course | Gianna's Salon & Spa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+  <div class="top-bar"><p><a href="index.html" style="color:#fff"><i class="fas fa-arrow-left"></i> Back to Home</a></p></div>
+  <div class="booking-page">
+    <div class="booking-card">
+      <h2>Book Appointment / Course</h2>
+      <p>Fill in the details below. Your appointment or course enrollment will be confirmed directly on WhatsApp.</p>
+      <form id="booking-form">
+        <div class="form-group">
+          <label>Select Service or Course</label>
+          <select id="sel-service" required>
+            <option value="" disabled selected>Choose service or course...</option>
+            <optgroup label="Premium Services">
+              <option value="Aromatherapy Massage" data-price="120">Aromatherapy Massage — $120</option>
+<option value="Swedish Massage Therapy" data-price="140">Swedish Massage Therapy — $140</option>
+<option value="Reflexology Foot Treatment" data-price="70">Reflexology Foot Treatment — $70</option>
+<option value="Rejuvenating Herbal Facial" data-price="95">Rejuvenating Herbal Facial — $95</option>
+<option value="Steam & Body Polish Scrub" data-price="160">Steam & Body Polish Scrub — $160</option>
+<option value="Deep Muscle Tissue Massage" data-price="180">Deep Muscle Tissue Massage — $180</option>
+            </optgroup>
+            <optgroup label="Academy Professional Courses">
+              <option value="Therapeutic Massage & Aromatherapy" data-price="1500">Therapeutic Massage & Aromatherapy — $1500 (4 Weeks)</option>
+<option value="Clinical Skin Aesthetics & Facial Care" data-price="1000">Clinical Skin Aesthetics & Facial Care — $1000 (3 Weeks)</option>
+<option value="Reflexology & Deep Body Detox Systems" data-price="700">Reflexology & Deep Body Detox Systems — $700 (2 Weeks)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Specialist / Trainer</label>
+          <select id="sel-stylist">
+            <option value="Any Available Specialist / Trainer">Any Available Specialist / Trainer</option>
+            <option value="Sarah Jenkins">Sarah Jenkins (Lead Therapist)</option>
+<option value="Chloe Mercer">Chloe Mercer (Deep Tissue Expert)</option>
+<option value="David Vance">David Vance (Reflexology Specialist)</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Appointment / Batch Date</label>
+            <input type="date" id="inp-date" required>
+          </div>
+          <div class="form-group">
+            <label>Preferred Time Slot</label>
+            <select id="sel-time" required>
+              <option value="" disabled selected>Select time...</option>
+              <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+              <option>12:00 PM</option><option>01:00 PM</option><option>02:00 PM</option>
+              <option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option>
+              <option>06:00 PM</option><option>07:00 PM</option><option>08:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Your Full Name</label><input type="text" id="inp-name" placeholder="Enter your name" required></div>
+        <div class="form-group"><label>WhatsApp Number</label><input type="tel" id="inp-phone" placeholder="Your phone number" required></div>
+        <div class="invoice-box">
+          <h4>Invoice Summary</h4>
+          <div class="inv-row"><span>Base Tuition / Service:</span><span id="inv-base">$0</span></div>
+          <div class="inv-row"><span>Sales Tax (8%):</span><span id="inv-gst">$0</span></div>
+          <div class="inv-row inv-total"><span>Total Due:</span><span id="inv-total">$0</span></div>
+        </div>
+        <input type="hidden" id="salon-name" value="Gianna's Salon & Spa">
+        <input type="hidden" id="wa-number" value="919416246575">
+        <button type="submit" class="btn-wa"><i class="fab fa-whatsapp"></i> Confirm &amp; Enroll via WhatsApp</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeless Beauty | Premium Salon, Spa &amp; Academy — Gorakhpur</title>
+  <meta name="description" content="Book premium services &amp; professional academy training courses at Timeless Beauty in 520 E Jackson St Suite 12, Gorakhpur. Live certification courses.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&family=Syne:wght@400;700&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="layout-a">
+  <!-- BACKGROUND ANIMATION CANVAS -->
+  <canvas id="bg-animation-canvas" class="bg-animation-canvas"></canvas>
+
+  <!-- TOP BANNER -->
+  <div class="top-bar">
+    <p><i class="fas fa-gift"></i>&nbsp; Learn &amp; Grow with Professional Certification Courses! Book today &amp; get direct hands-on support!</p>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">Timeless Beauty</a>
+      <div class="header-right">
+        <nav class="main-nav">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#academy">Academy</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a href="#homepage-booking" class="btn-primary btn-header-book">Book Now</a>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#academy">Academy</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#homepage-booking" class="btn-primary" style="text-align: center; justify-content: center; width: 100%;">Book Now</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-carousel">
+      <div class="hero-bg-slide active" ><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=90&w=1600&auto=format&fit=crop" alt="Timeless Beauty salon" loading="eager"></div><div class="hero-bg-slide " ><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=90&w=1600&auto=format&fit=crop" alt="Timeless Beauty salon" loading="lazy"></div><div class="hero-bg-slide " ><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=90&w=1600&auto=format&fit=crop" alt="Timeless Beauty salon" loading="lazy"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-label">Gorakhpur's Premier Luxury Salon &amp; Academy</span>
+      <h1>Timeless Beauty</h1>
+      <div class="hero-stars">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <span>3.0 Google Rating</span>
+      </div>
+      <p>Luxury styling · Professional training · Personalised care</p>
+      <div class="hero-actions">
+        <a href="#homepage-booking" class="btn-primary btn-lg">Book Appointment / Course</a>
+        <a href="#services" class="btn-outline btn-lg">View Services</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><span class="stat-num">500+</span><span class="stat-lbl">Happy Clients</span></div>
+      <div class="stat"><span class="stat-num">5+</span><span class="stat-lbl">Years of Excellence</span></div>
+      <div class="stat"><span class="stat-num">3.0</span><span class="stat-lbl">Google Rating</span></div>
+      <div class="stat"><span class="stat-num">20+</span><span class="stat-lbl">Premium Services</span></div>
+    </div>
+  </section>
+
+  <!-- PREMIUM OFFERS SECTION -->
+  <section class="section offers-section" id="exclusive-offers">
+    <div class="container">
+      <div class="offers-banner-card">
+        <div class="offers-banner-content">
+          <span class="offers-badge"><i class="fas fa-percentage"></i> Limited Time Offer</span>
+          <h2>30% OFF HD Bridal Makeup & Gold Glow Facials</h2>
+          <p>Get a stunning transformation with a 30% discount on HD bridal makeup, advanced skin glow facials, and luxury hair keratin infusions.</p>
+          <div class="offers-cta-row">
+            <a href="#homepage-booking" class="btn-primary btn-claim-offer" onclick="window.switchToTab && window.switchToTab('appointment')">
+              <i class="fas fa-tag"></i> Claim Offer Now
+            </a>
+          </div>
+        </div>
+        <div class="offers-translucent-cards">
+          <div class="offer-sub-card">
+            <div class="offer-sub-icon"><img src="https://images.unsplash.com/photo-1517256064527-09c53b2d0c6b?q=80&w=150&auto=format&fit=crop" alt="Early Bird" loading="lazy"></div>
+            <h4>Early Bird Discount</h4>
+            <p>Book between 9 AM – 12 PM for an extra 10% OFF your service.</p>
+          </div>
+          <div class="offer-sub-card">
+            <div class="offer-sub-icon"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=150&auto=format&fit=crop" alt="Group Discount" loading="lazy"></div>
+            <h4>Group Discount</h4>
+            <p>Bring a friend along and both get 15% OFF your total bill.</p>
+          </div>
+          <div class="offer-sub-card">
+            <div class="offer-sub-icon"><img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=150&auto=format&fit=crop" alt="Refer & Earn" loading="lazy"></div>
+            <h4>Refer &amp; Earn</h4>
+            <p>Refer someone to our Academy or Salon &amp; get a free head massage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="About Timeless Beauty" loading="lazy">
+          <div class="about-badge"><span class="ab-num">5+</span><span class="ab-lbl">Years of Luxury</span></div>
+        </div>
+        <div class="about-content">
+          <span class="section-label">Our Story</span>
+          <h2>Redefining Beauty &amp; <em>Confidence</em></h2>
+          <p>We reveal your ultimate beauty through advanced aesthetics, expert makeup artistry, and luxury skin therapies. Specialising in bespoke bridal packages and state-of-the-art hair transformations, our certified artists craft looks that celebrate your unique radiance.</p>
+          <ul class="about-perks">
+            <li><i class="fas fa-check-circle"></i> Certified master stylists &amp; therapists</li>
+            <li><i class="fas fa-check-circle"></i> Professional training academies &amp; certifications</li>
+            <li><i class="fas fa-check-circle"></i> UV-sterilised tools &amp; premium environments</li>
+            <li><i class="fas fa-check-circle"></i> 100% placements support for trainees</li>
+          </ul>
+          <a href="#homepage-booking" class="btn-primary">Book an Experience</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCROLLING TICKER -->
+  <section class="scrolling-ticker">
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span>• Skin Care</span>
+          <span>• Hair Cuts &amp; Styling</span>
+          <span>• Bridal Makeups</span>
+          <span>• Nail Art &amp; Extensions</span>
+          <span>• Relaxing Spa Therapies</span>
+          <span>• Professional Academy Courses</span>
+          <span>• Global Hair Colouring</span>
+          <span>• Luxury Grooming</span>
+        </div>
+        <div class="ticker-group" aria-hidden="true">
+          <span>• Skin Care</span>
+          <span>• Hair Cuts &amp; Styling</span>
+          <span>• Bridal Makeups</span>
+          <span>• Nail Art &amp; Extensions</span>
+          <span>• Relaxing Spa Therapies</span>
+          <span>• Professional Academy Courses</span>
+          <span>• Global Hair Colouring</span>
+          <span>• Luxury Grooming</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES GRID -->
+  <section class="section categories-section" id="categories-overview">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Discover our specialties</span>
+        <h2>Our Core <em>Specialties</em></h2>
+        <p>Premium care customized for your unique look. Book any category below.</p>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600&auto=format&fit=crop" alt="HD Makeup & Makeovers" loading="lazy">
+          </div>
+          <div class="cat-content">
+            <h3>HD Makeup & Makeovers</h3>
+            <p>High definition bridal, party, celebrity, and engagement makeup applications.</p>
+            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600&auto=format&fit=crop" alt="Hair styling & Care" loading="lazy">
+          </div>
+          <div class="cat-content">
+            <h3>Hair styling & Care</h3>
+            <p>Keratin therapy, smooth extensions, rich global hair coloring, and designer haircuts.</p>
+            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600&auto=format&fit=crop" alt="Nail Extensions & Art" loading="lazy">
+          </div>
+          <div class="cat-content">
+            <h3>Nail Extensions & Art</h3>
+            <p>Acrylic/gel extensions, premium custom nail art, chrome overlay, and deluxe pedicure/manicures.</p>
+            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=600&auto=format&fit=crop" alt="Skin Radiance & Facials" loading="lazy">
+          </div>
+          <div class="cat-content">
+            <h3>Skin Radiance & Facials</h3>
+            <p>Gold radiance facials, skin tightening, chemical peels, and customized detan treatments.</p>
+            <a href="#homepage-booking" class="btn-cat-link" onclick="window.switchToTab && window.switchToTab('appointment')">Book Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services-section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">What We Offer</span>
+        <h2>Premium <em>Services</em></h2>
+        <p>Crafted with precision, delivered with care — explore our signature service menu.</p>
+      </div>
+      <div class="svc-grid">
+            <div class="svc-card modal-trigger" data-title="HD Bridal Makeup" data-price="450" data-duration="120 min" data-desc="Flawless HD bridal package by senior certified makeup artists." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" style="animation-delay:0.0s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="HD Bridal Makeup" loading="lazy">
+              </div>
+              <div class="svc-card-content">
+                <h3>HD Bridal Makeup</h3>
+                <p>Flawless HD bridal package by senior certified makeup artists.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 120 min</span>
+                  <span class="svc-price">$450</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
+            </div>
+            <div class="svc-card modal-trigger" data-title="Gold Radiance Facial" data-price="110" data-duration="60 min" data-desc="Deep skin cleansing, peel, and golden glow face massage." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" style="animation-delay:0.1s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Gold Radiance Facial" loading="lazy">
+              </div>
+              <div class="svc-card-content">
+                <h3>Gold Radiance Facial</h3>
+                <p>Deep skin cleansing, peel, and golden glow face massage.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
+                  <span class="svc-price">$110</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
+            </div>
+            <div class="svc-card modal-trigger" data-title="Keratin Hair Therapy" data-price="200" data-duration="90 min" data-desc="Protein hair wrap to eliminate frizz and restore natural shine." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" style="animation-delay:0.2s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Keratin Hair Therapy" loading="lazy">
+              </div>
+              <div class="svc-card-content">
+                <h3>Keratin Hair Therapy</h3>
+                <p>Protein hair wrap to eliminate frizz and restore natural shine.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 90 min</span>
+                  <span class="svc-price">$200</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
+            </div>
+            <div class="svc-card modal-trigger" data-title="Deluxe Manicure & Pedicure" data-price="85" data-duration="75 min" data-desc="Luxury nail cleaning, scrub massage, and premium lacquer finish." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600" style="animation-delay:0.30000000000000004s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600" alt="Deluxe Manicure & Pedicure" loading="lazy">
+              </div>
+              <div class="svc-card-content">
+                <h3>Deluxe Manicure & Pedicure</h3>
+                <p>Luxury nail cleaning, scrub massage, and premium lacquer finish.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 75 min</span>
+                  <span class="svc-price">$85</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
+            </div>
+            <div class="svc-card modal-trigger" data-title="Organic Waxing & Threading" data-price="50" data-duration="45 min" data-desc="Delicate hair removal with natural wax for smooth, irritation-free skin." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" style="animation-delay:0.4s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Organic Waxing & Threading" loading="lazy">
+              </div>
+              <div class="svc-card-content">
+                <h3>Organic Waxing & Threading</h3>
+                <p>Delicate hair removal with natural wax for smooth, irritation-free skin.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 45 min</span>
+                  <span class="svc-price">$50</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
+            </div>
+            <div class="svc-card modal-trigger" data-title="Celebrity Party Makeover" data-price="180" data-duration="60 min" data-desc="Event-ready premium makeup and custom hair design for any occasion." data-category="beauty" data-is-course="false" data-image="https://images.unsplash.com/photo-1527799881375-d5e89009a3b6?q=80&w=600" style="animation-delay:0.5s">
+              <div class="svc-thumb">
+                <img src="https://images.unsplash.com/photo-1527799881375-d5e89009a3b6?q=80&w=600" alt="Celebrity Party Makeover" loading="lazy">
+              </div>
+              <div class="svc-card-content">
+                <h3>Celebrity Party Makeover</h3>
+                <p>Event-ready premium makeup and custom hair design for any occasion.</p>
+                <div class="svc-meta">
+                  <span class="svc-duration"><i class="far fa-clock"></i> 60 min</span>
+                  <span class="svc-price">$180</span>
+                </div>
+                <button class="btn-book-svc">View Details &amp; Book</button>
+              </div>
+            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES CAROUSEL BANNER -->
+  <div class="services-carousel-banner-wrapper">
+    <div class="services-carousel-banner">
+      <div class="carousel-slides">
+        <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Service Slide 1" loading="lazy"></div>
+        <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Service Slide 2" loading="lazy"></div>
+        <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600" alt="Service Slide 3" loading="lazy"></div>
+        <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Service Slide 4" loading="lazy"></div>
+        <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1527799881375-d5e89009a3b6?q=80&w=600" alt="Service Slide 5" loading="lazy"></div>
+      </div>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" data-slide="0"></button>
+        <button class="carousel-dot" data-slide="1"></button>
+        <button class="carousel-dot" data-slide="2"></button>
+        <button class="carousel-dot" data-slide="3"></button>
+        <button class="carousel-dot" data-slide="4"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACADEMY SECTION -->
+  <section class="section academy-section" id="academy">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Academy &amp; Training</span>
+        <h2>Professional <em>Academy</em> Courses</h2>
+        <p>Learn from certified industry experts. Hands-on training on live models, global certifications, and 100% placement support.</p>
+      </div>
+      <div class="academy-tabs-container">
+        <div class="academy-tabs">
+          
+        <button class="academy-tab-btn active" data-tab="0">
+          <span>HD Bridal & Celebrity Makeup Masterclass</span>
+        </button>
+        <button class="academy-tab-btn " data-tab="1">
+          <span>Advanced Hair Design & Chemical Artistry</span>
+        </button>
+        <button class="academy-tab-btn " data-tab="2">
+          <span>Nail Artistry & Extensions Specialist</span>
+        </button>
+        </div>
+        <div class="academy-tab-contents">
+          
+        <div class="academy-tab-panel active" id="academy-panel-0">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>HD Bridal & Celebrity Makeup Masterclass</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 4 Weeks</span>
+              </div>
+              <p class="panel-desc">High-fidelity base preparation, airbrush makeup, and fashion bridal styling.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">$1800</span>
+              </div>
+              <button class="btn-course-enroll modal-trigger" data-title="HD Bridal & Celebrity Makeup Masterclass" data-price="1800" data-duration="4 Weeks" data-desc="High-fidelity base preparation, airbrush makeup, and fashion bridal styling." data-category="beauty" data-is-course="true" data-image="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+            </div>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Celebrity Artist Demos</span></li><li><i class='fas fa-check-circle check-green'></i> <span>International Certificate</span></li><li><i class='fas fa-check-circle check-green'></i> <span>100% Placement Support</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="academy-tab-panel " id="academy-panel-1">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>Advanced Hair Design & Chemical Artistry</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 6 Weeks</span>
+              </div>
+              <p class="panel-desc">Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">$2500</span>
+              </div>
+              <button class="btn-course-enroll modal-trigger" data-title="Advanced Hair Design & Chemical Artistry" data-price="2500" data-duration="6 Weeks" data-desc="Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts." data-category="beauty" data-is-course="true" data-image="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+            </div>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Chemical Lab Training</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Master Stylist Certificate</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Guaranteed Internships</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="academy-tab-panel " id="academy-panel-2">
+          <div class="academy-panel-layout">
+            <div class="academy-panel-info">
+              <div class="panel-title-row">
+                <h3>Nail Artistry & Extensions Specialist</h3>
+                <span class="duration-badge"><i class="far fa-clock"></i> 2 Weeks</span>
+              </div>
+              <p class="panel-desc">Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care.</p>
+              <div class="panel-meta-row">
+                <span class="panel-price-label">Tuition Fee:</span>
+                <span class="panel-price">$800</span>
+              </div>
+              <button class="btn-course-enroll modal-trigger" data-title="Nail Artistry & Extensions Specialist" data-price="800" data-duration="2 Weeks" data-desc="Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care." data-category="beauty" data-is-course="true" data-image="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=600">Enroll &amp; Get Syllabus <i class="fab fa-whatsapp"></i></button>
+            </div>
+            <div class="academy-panel-features">
+              <h4>Course Highlights &amp; Benefits</h4>
+              <ul class="premium-check-list">
+                <li><i class='fas fa-check-circle check-green'></i> <span>Nail Product Kit Included</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Nail Tech Certification</span></li><li><i class='fas fa-check-circle check-green'></i> <span>Freelancer Career Setup</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>80% Practical Sessions on Live Models</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Premium Starter Practice Kit Provided</span></li>
+                <li><i class="fas fa-check-circle check-green"></i> <span>Government &amp; Academy Dual Certification</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="student-benefits-row">
+        <p><strong>Student Benefits:</strong> Portfolio Photoshoot &bull; Internship/Placement Support &bull; Certification Ceremony</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Transparent Pricing</span>
+        <h2>Choose Your <em>Package</em></h2>
+        <p>Simple, upfront pricing with no hidden charges. All packages bookable online.</p>
+      </div>
+      <div class="pricing-grid">
+            <div class="pricing-card ">
+              
+              <h3>Starter</h3>
+              <div class="pricing-amount">$49<span>/session</span></div>
+              <p>Single premium service of your choice. Perfect for a quick refresh.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 1 Service</li><li><i class="fas fa-check"></i> Expert Stylist</li><li><i class="fas fa-check"></i> Quality Products</li><li><i class="fas fa-check"></i> WhatsApp Booking</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
+            <div class="pricing-card pricing-highlight">
+              <span class="pricing-badge">Most Popular</span>
+              <h3>Experience</h3>
+              <div class="pricing-amount">$129<span>/session</span></div>
+              <p>Two premium services. The most popular choice for our guests.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 2 Services</li><li><i class="fas fa-check"></i> Senior Specialist</li><li><i class="fas fa-check"></i> Premium Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Tea/Coffee</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
+            <div class="pricing-card ">
+              
+              <h3>Luxury</h3>
+              <div class="pricing-amount">$249<span>/session</span></div>
+              <p>Full transformation package — hair, skin, and grooming combined.</p>
+              <ul class="pricing-features"><li><i class="fas fa-check"></i> 4 Services</li><li><i class="fas fa-check"></i> Master Artist</li><li><i class="fas fa-check"></i> Luxury Products</li><li><i class="fas fa-check"></i> Priority Booking</li><li><i class="fas fa-check"></i> Complimentary Head Massage</li><li><i class="fas fa-check"></i> Take-Home Kit</li></ul>
+              <a href="booking.html" class="btn-pricing">Get Started</a>
+            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section team-section" id="team">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Meet the Experts</span>
+        <h2>Our <em>Specialist</em> Team</h2>
+        <p>Hand-picked professionals trained in the latest global techniques.</p>
+      </div>
+      <div class="team-grid">
+            <div class="team-card">
+              <div class="team-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop" alt="Amanda Rose" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"></div>
+              <h4>Amanda Rose</h4>
+              <p>Senior Makeup Artist</p>
+              <a href="booking.html?stylist=Amanda%20Rose" class="btn-team-book">Book with Amanda</a>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop" alt="Sophia Martinez" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"></div>
+              <h4>Sophia Martinez</h4>
+              <p>Skin Aesthetician</p>
+              <a href="booking.html?stylist=Sophia%20Martinez" class="btn-team-book">Book with Sophia</a>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop" alt="Lily Harrison" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"></div>
+              <h4>Lily Harrison</h4>
+              <p>Nail Technician</p>
+              <a href="booking.html?stylist=Lily%20Harrison" class="btn-team-book">Book with Lily</a>
+            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL-WIDTH GALLERY SLIDING CAROUSEL -->
+  <div class="gallery-carousel-wrapper">
+    <div class="gallery-carousel">
+      <div class="gallery-carousel-slides">
+        <div class="gallery-carousel-slide"><img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Slide 1" loading="lazy"></div><div class="gallery-carousel-slide"><img src="https://images.unsplash.com/photo-1527799881375-d5e89009a3b6?q=80&w=600" alt="Slide 2" loading="lazy"></div><div class="gallery-carousel-slide"><img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=600" alt="Slide 3" loading="lazy"></div><div class="gallery-carousel-slide"><img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Slide 4" loading="lazy"></div><div class="gallery-carousel-slide"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Slide 5" loading="lazy"></div>
+      </div>
+      <div class="gallery-carousel-dots">
+        <button class="gallery-carousel-dot active" data-slide="0"></button><button class="gallery-carousel-dot " data-slide="1"></button><button class="gallery-carousel-dot " data-slide="2"></button><button class="gallery-carousel-dot " data-slide="3"></button><button class="gallery-carousel-dot " data-slide="4"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Visual Portfolio</span>
+        <h2>Our <em>Gallery</em></h2>
+        <p>A curated showcase of our premium sessions, spaces, and transformations.</p>
+      </div>
+      <div class="gallery-grid">
+            <div class="gal-item" style="animation-delay:0.0s">
+              <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" alt="Gallery 1" loading="lazy">
+              <div class="gal-hover">
+                <a href="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600" class="lb-trigger"><i class="fas fa-expand-arrows-alt"></i></a>
+              </div>
+            </div>
+            <div class="gal-item" style="animation-delay:0.08s">
+              <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" alt="Gallery 2" loading="lazy">
+              <div class="gal-hover">
+                <a href="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600" class="lb-trigger"><i class="fas fa-expand-arrows-alt"></i></a>
+              </div>
+            </div>
+            <div class="gal-item" style="animation-delay:0.16s">
+              <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" alt="Gallery 3" loading="lazy">
+              <div class="gal-hover">
+                <a href="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600" class="lb-trigger"><i class="fas fa-expand-arrows-alt"></i></a>
+              </div>
+            </div>
+            <div class="gal-item" style="animation-delay:0.24s">
+              <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600" alt="Gallery 4" loading="lazy">
+              <div class="gal-hover">
+                <a href="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600" class="lb-trigger"><i class="fas fa-expand-arrows-alt"></i></a>
+              </div>
+            </div>
+            <div class="gal-item" style="animation-delay:0.32s">
+              <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" alt="Gallery 5" loading="lazy">
+              <div class="gal-hover">
+                <a href="https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=600" class="lb-trigger"><i class="fas fa-expand-arrows-alt"></i></a>
+              </div>
+            </div>
+            <div class="gal-item" style="animation-delay:0.4s">
+              <img src="https://images.unsplash.com/photo-1527799881375-d5e89009a3b6?q=80&w=600" alt="Gallery 6" loading="lazy">
+              <div class="gal-hover">
+                <a href="https://images.unsplash.com/photo-1527799881375-d5e89009a3b6?q=80&w=600" class="lb-trigger"><i class="fas fa-expand-arrows-alt"></i></a>
+              </div>
+            </div>
+            <div class="gal-item" style="animation-delay:0.48s">
+              <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=600" alt="Gallery 7" loading="lazy">
+              <div class="gal-hover">
+                <a href="https://images.unsplash.com/photo-1515688594390-b649af70d282?q=80&w=600" class="lb-trigger"><i class="fas fa-expand-arrows-alt"></i></a>
+              </div>
+            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Client Love</span>
+        <h2>What Our <em>Clients</em> Say</h2>
+        <p>Rated 3.0 stars on Google — here's why our clients keep coming back.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"The best salon and academy experience in Gorakhpur! Extremely polite staff, luxury ambience, and amazing courses. Highly recommended to everyone!"</p>
+          <div class="reviewer"><div class="r-avatar">A</div><div><strong>Amit Sharma</strong><span>Regular Client / Alumnus</span></div></div>
+        </div>
+        <div class="review-card review-featured">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Very professional staff and top-tier hygiene. The training modules are extremely structured and detailed. Definitely worth every rupee — will visit again!"</p>
+          <div class="reviewer"><div class="r-avatar">S</div><div><strong>Sneha Kapoor</strong><span>Verified Patron / Trainee</span></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Got a hair makeover here and also got details for their cosmetics course — absolutely stunning! The complimentary consultation was the perfect touch. Highly satisfied."</p>
+          <div class="reviewer"><div class="r-avatar">R</div><div><strong>Rohan Verma</strong><span>First-Time Visitor</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOMEPAGE BOOKING & CONTACT SPLIT -->
+  <section class="section booking-split-section" id="homepage-booking">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Book Now</span>
+        <h2>Schedule Your <em>Visit</em></h2>
+        <p>Book a luxury pampering session or enroll in our next professional certification batch.</p>
+      </div>
+      <div class="booking-split-grid">
+        <div class="contact-info-card">
+          <h3>Get In Touch</h3>
+          <p>Have questions or want custom group packages? Contact our reception directly.</p>
+          <div class="contact-methods">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+              <div class="contact-details">
+                <span>Call Us</span>
+                <strong><a href="tel:+1 417-370-8266">+1 417-370-8266</a></strong>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+              <div class="contact-details">
+                <span>WhatsApp</span>
+                <strong><a href="https://wa.me/914173708266" target="_blank">Chat Now</a></strong>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="far fa-clock"></i></div>
+              <div class="contact-details">
+                <span>Working Hours</span>
+                <strong>Mon – Sun: 9:00 AM – 9:00 PM</strong>
+              </div>
+            </div>
+          </div>
+          <div class="contact-socials-wrapper">
+            <h4>Follow Us</h4>
+            <div class="contact-social-icons">
+              <a href="https://instagram.com" target="_blank" class="contact-social-icon-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://facebook.com" target="_blank" class="contact-social-icon-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://wa.me/914173708266" target="_blank" class="contact-social-icon-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="tabbed-booking-card">
+          <div class="form-tabs">
+            <button class="form-tab-btn active" id="tab-appointment-btn"><i class="fas fa-calendar-check"></i> Book Appointment</button>
+            <button class="form-tab-btn" id="tab-course-btn"><i class="fas fa-graduation-cap"></i> Course Inquiry</button>
+          </div>
+          <form id="homepage-booking-form" class="homepage-booking-form">
+            <div class="form-group">
+              <label id="dropdown-label">Select Service</label>
+              <select id="hp-sel-service" required>
+                <option value="" disabled selected>Choose a service...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Specialist Preference</label>
+              <select id="hp-sel-stylist">
+                <option value="Any Available Specialist">Any Available Specialist</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label id="date-label">Preferred Date</label>
+                <input type="date" id="hp-inp-date" required>
+              </div>
+              <div class="form-group">
+                <label>Preferred Time Slot</label>
+                <select id="hp-sel-time" required>
+                  <option value="" disabled selected>Select time...</option>
+                  <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+                  <option>12:00 PM</option><option>01:00 PM</option><option>02:00 PM</option>
+                  <option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option>
+                  <option>06:00 PM</option><option>07:00 PM</option><option>08:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Your Full Name</label>
+              <input type="text" id="hp-inp-name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label>WhatsApp Number</label>
+              <input type="tel" id="hp-inp-phone" placeholder="Enter your number" required>
+            </div>
+            <div class="form-group">
+              <label>Special Requests / Trainee Profile</label>
+              <textarea id="hp-txt-requests" rows="2" placeholder="Any specific requirements..."></textarea>
+            </div>
+            <div class="hp-invoice-box">
+              <div class="hp-inv-row"><span>Base Amount:</span><span id="hp-inv-base">$0</span></div>
+              <div class="hp-inv-row"><span>Sales Tax (8%):</span><span id="hp-inv-gst">$0</span></div>
+              <div class="hp-inv-row hp-inv-total"><span>Total Payable:</span><span id="hp-inv-total">$0</span></div>
+            </div>
+            <button type="submit" class="btn-wa-submit"><i class="fab fa-whatsapp"></i> Confirm &amp; Submit on WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to Build a High-Paying Career in Beauty &amp; Wellness?</h2>
+      <p>Book your appointment or enroll in a premium certification course in under 60 seconds — confirm directly on WhatsApp.</p>
+      <a href="#homepage-booking" class="btn-primary btn-lg btn-white">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- GOOGLE MAPS EMBED -->
+  <section class="section map-section" id="location-map">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Find Us</span>
+        <h2>Our <em>Location</em></h2>
+        <p>Visit us at our premium facility. View the map below for directions.</p>
+      </div>
+      <div class="map-wrapper" style="width: 100%; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border);">
+        <iframe 
+          src="https://maps.google.com/maps?q=Timeless%20Beauty%2C%20520%20E%20Jackson%20St%20Suite%2012&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="400" 
+          style="border:0; display:block;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h3>Timeless Beauty</h3>
+        <p>Gorakhpur's premier destination for premium styling, aesthetics, wellness, and professional training.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#academy">Academy</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#homepage-booking">Book Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Find Us</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 520 E Jackson St Suite 12</p>
+        <p><i class="fas fa-clock"></i> Mon – Sun: 9:00 AM – 9:00 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Timeless Beauty. All Rights Reserved. | Designed with Ultra-Premium Aesthetics.</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <button class="lb-close"><i class="fas fa-times"></i></button>
+    <img id="lb-img" src="" alt="">
+  </div>
+
+  <!-- SERVICE/COURSE DETAIL MODAL -->
+  <div id="detail-modal" class="detail-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <div class="modal-hero" id="modal-hero">
+        <div class="modal-hero-overlay"></div>
+        <span class="modal-badge" id="modal-badge">Service Details</span>
+      </div>
+      <div class="modal-body">
+        <h3 id="modal-title">Service Name</h3>
+        <p id="modal-desc">Service description goes here...</p>
+        <div class="modal-meta-row">
+          <span id="modal-duration"><i class="far fa-clock"></i> 30 mins</span>
+          <span id="modal-price" class="modal-price">$299</span>
+        </div>
+        <div class="modal-gst-note">Price: <span id="modal-base-price">$0</span> + Sales Tax (8%) ($<span id="modal-gst-amount">0</span>)</div>
+        <div class="modal-actions">
+          <a href="#" id="modal-wa-btn" class="btn-wa-modal" target="_blank"><i class="fab fa-whatsapp"></i> Book on WhatsApp</a>
+          <button id="modal-custom-book-btn" class="btn-custom-book">Customize Booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INLINE DATA FOR INTERACTIVE WIDGETS -->
+  <script>
+    window.SALON_SERVICES = [{"n": "HD Bridal Makeup", "p": 450, "d": 120, "desc": "Flawless HD bridal package by senior certified makeup artists."}, {"n": "Gold Radiance Facial", "p": 110, "d": 60, "desc": "Deep skin cleansing, peel, and golden glow face massage."}, {"n": "Keratin Hair Therapy", "p": 200, "d": 90, "desc": "Protein hair wrap to eliminate frizz and restore natural shine."}, {"n": "Deluxe Manicure & Pedicure", "p": 85, "d": 75, "desc": "Luxury nail cleaning, scrub massage, and premium lacquer finish."}, {"n": "Organic Waxing & Threading", "p": 50, "d": 45, "desc": "Delicate hair removal with natural wax for smooth, irritation-free skin."}, {"n": "Celebrity Party Makeover", "p": 180, "d": 60, "desc": "Event-ready premium makeup and custom hair design for any occasion."}];
+    window.SALON_COURSES = [{"n": "HD Bridal & Celebrity Makeup Masterclass", "p": 1800, "d": 4, "desc": "High-fidelity base preparation, airbrush makeup, and fashion bridal styling.", "feats": ["Celebrity Artist Demos", "International Certificate", "100% Placement Support"]}, {"n": "Advanced Hair Design & Chemical Artistry", "p": 2500, "d": 6, "desc": "Global Ammonia-free coloring, Keratin smoothing, and structural hair cuts.", "feats": ["Chemical Lab Training", "Master Stylist Certificate", "Guaranteed Internships"]}, {"n": "Nail Artistry & Extensions Specialist", "p": 800, "d": 2, "desc": "Gel/acrylic Extensions building, 3D Nail Art design, and nail hygiene care.", "feats": ["Nail Product Kit Included", "Nail Tech Certification", "Freelancer Career Setup"]}];
+    window.SALON_STYLISTS = [{"n": "Amanda Rose", "r": "Senior Makeup Artist", "img": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop"}, {"n": "Sophia Martinez", "r": "Skin Aesthetician", "img": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop"}, {"n": "Lily Harrison", "r": "Nail Technician", "img": "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop"}];
+    window.SALON_NAME = "Timeless Beauty";
+    window.SALON_WA = "914173708266";
+    window.SALON_CURRENCY = "$";
+    window.SALON_TAX_NAME = "Sales Tax (8%)";
+    window.SALON_TAX_RATE = 0.08;
+  </script>
+
+  <script src="app.js"></script>
+</body>
+</html>
