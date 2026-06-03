@@ -1046,6 +1046,11 @@
     </div>
 
     <div class="compose-field">
+      <label>From (Sender Email)</label>
+      <input type="email" id="compose-from" value="Digitaload Team &lt;onboarding@resend.dev&gt;" placeholder="e.g. Ashish &lt;hello@yourdomain.com&gt;" />
+    </div>
+
+    <div class="compose-field">
       <label>To (Email)</label>
       <input type="email" id="compose-to" placeholder="recipient@example.com" />
     </div>
@@ -1671,6 +1676,7 @@ function copyEmailToClipboard() {
 }
 
 function sendViaResend() {
+  const from    = document.getElementById('compose-from').value.trim();
   const to      = document.getElementById('compose-to').value.trim();
   const subject = document.getElementById('compose-subject').value.trim();
   const body    = document.getElementById('compose-body').value.trim();
@@ -1689,7 +1695,7 @@ function sendViaResend() {
   const htmlBody = `<div style="font-family:sans-serif;white-space:pre-wrap;font-size:15px;line-height:1.6;color:#333333;">${body}</div>`;
 
   const payload = {
-    from: "Digitaload Team <onboarding@resend.dev>",
+    from: from || "Digitaload Team <onboarding@resend.dev>",
     to: to,
     subject: subject,
     html: htmlBody
